@@ -1,16 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { MentorComponent } from './mentor.component';
-
-
+import { MentorRouterModule } from './mentor-router.module';
 
 @NgModule({
   declarations: [MentorComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [MentorComponent]
+  imports: [MentorRouterModule]
 })
-export class MentorModule {
-}
+export class MentorModule { }
