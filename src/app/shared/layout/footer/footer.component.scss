@@ -1,0 +1,48 @@
+@import "variables";
+
+footer{
+    background-color: $fuschia80;
+    height: 150px;
+    @extend %base-font;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    *{
+        color: white;
+    }
+    h4{
+        font-size: 36px;
+    }
+    p{
+        font-size: 18px;
+    }
+    .mainText {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0 0 0;
+        .projectName {
+            padding-left: 30px;
+        }
+        .footerLinks{
+            padding: 8px 100px 0 0;
+            text-align: center;
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color: #524C6F;
+        }
+    }
+    }
+    .textBottom{
+        text-align: center;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mainText  {
+    color: blue;
+    }
+}
