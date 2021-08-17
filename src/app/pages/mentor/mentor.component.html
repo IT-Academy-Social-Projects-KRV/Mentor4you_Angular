@@ -1,1 +1,44 @@
 <p>mentor works!</p>
+<section class="form-review">
+	<div class="form-review__container ">
+		<div class="form-review__row col-md-12">
+			<div class="form-review__title">Add Review</div>
+		</div>
+		<form action="" [formGroup] = "formAddReview" (ngSubmit) = "submit()">
+			<div class="form-review__wrapper">
+			<div class="form-review__row">
+				<div class="form-review__input-wrapper">
+					<div class="form-review__column">
+						<label for="" class="form-review__label">
+							<input placeholder="Name" type="text" class="form-review__input" formControlName="name">
+						</label>
+					</div>
+					<div class="form-review__column">
+						<label for="" class="form-review__label">
+							<input  placeholder="Email" type="text" class="form-review__input" formControlName="email">
+						</label>
+					</div>
+				</div>
+
+			</div>
+			<div class="form-review__row">
+				<div class="form-review__textarea-wrapper">
+					<textarea  name="" id="" cols="30" rows="10" class="form-review__textarea" formControlName = "textarea"></textarea>
+				</div>
+			</div>
+			<div class="form-review__row">
+				<div class="form-review__range-wrapper">
+					1,2,3
+				</div>
+			</div>
+			<div class="form-review__row">
+				<div class="form-review__button-wrapper">
+					<button type="submit">Submit Now</button>
+				</div>
+			</div>
+
+			</div>
+		</form>
+		
+	</div>
+</section>

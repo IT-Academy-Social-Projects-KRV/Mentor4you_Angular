@@ -6,15 +6,16 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
+// import { MentorComponent} from './pages/mentor/'
 
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, FooterComponent
+    AppComponent, HeaderComponent, FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
