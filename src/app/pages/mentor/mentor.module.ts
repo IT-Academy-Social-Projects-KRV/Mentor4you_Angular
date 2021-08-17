@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 
 import { MentorComponent } from './mentor.component';
 import { MentorRouterModule } from './mentor-router.module';
+import { MainSectionComponent } from './components/main-section/main-section.component';
 
 @NgModule({
-  declarations: [MentorComponent],
+  declarations: [MentorComponent, MainSectionComponent],
   imports: [MentorRouterModule]
 })
 export class MentorModule { }
