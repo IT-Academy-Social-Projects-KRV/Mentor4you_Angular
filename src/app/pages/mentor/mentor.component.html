@@ -15,8 +15,8 @@
 					</div>
 					<div class="form-review__column">
 						<label for="" class="form-review__label">
-							<input [class.error]="formAddReview.get('email').invalid&&formAddReview.get('email').touched"  placeholder="Email" type="text" class="form-review__input" formControlName="email">
-						<div *ngIf = "formAddReview.get('email').invalid&&formAddReview.get('email').touched" class="form-review__email-error">Введіть коректний email</div>
+							<input [class.error]="formAddReview.value.email.invalid&&formAddReview.value.email.touched"  placeholder="email" type="text" class="form-review__input" formControlName="email">
+						<div >Введіть коректний email</div>
 						</label>
 					</div>
 				</div>
@@ -24,16 +24,16 @@
 			</div>
 			<div class="form-review__row">
 				<div #textAreaWrapper class="form-review__textarea-wrapper">
-					<textarea (click) = "addFocus()"  name="" id="" cols="30" rows="10" class="form-review__textarea" formControlName = "textarea"></textarea>
+					<textarea   name="" id="" cols="30" rows="10" class="form-review__textarea" formControlName = "textarea"></textarea>
 				</div>
 			</div>
 			<div class="form-review__row">
 				<div class="form-review__range-wrapper">
-				<button class="form-review__range" color="accent" *ngFor="let r of ratingArr; let i = index" (click)="onClick(i)"> 
+				<!-- <button class="form-review__range" color="accent" *ngFor="let r of ratingArr; let i = index" (click)="onClick(i)"> 
 				<div class="li">
 					{{ returnStar(i) }}
 				</div>
-				</button>
+				</button> -->
 				</div>
 			</div>
 			<div class="form-review__row">

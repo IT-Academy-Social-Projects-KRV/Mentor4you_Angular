@@ -9,10 +9,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./mentor.component.scss']
 })
 export class MentorComponent implements OnInit {
-  @ViewChild('textAreaWrapper',{static:false}) textarea: ElementRef;
+  // @ViewChild('textAreaWrapper',{static:false}) textarea!: ElementRef;
+  
   formAddReview: FormGroup = new FormGroup({
-    name: new FormControl('',Validators.required),
-    email: new FormControl('', [Validators.required,Validators.email]),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     textarea: new FormControl('', Validators.required),
   })
   currentRate = 0
@@ -31,10 +32,12 @@ export class MentorComponent implements OnInit {
   ]
 
   constructor(
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+
   ) {
     // default to no rating, i.e. all empty stars
     this.ratingArr = Array(this.starCount).fill(false);
+
   }
 
 
@@ -56,15 +59,14 @@ export class MentorComponent implements OnInit {
 
   }
  ngOnInit(): void {
+   
+ 
   }
    addFocus(){
        
     }
-  submit() {
+ submit() {
     console.log(this.formAddReview);
-    console.log(this.formAddReview.get('email').invalid);
-    
-
 
   }
 }
