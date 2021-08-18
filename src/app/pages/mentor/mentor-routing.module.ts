@@ -14,4 +14,4 @@ const routes: Routes = [
   declarations: [],
   imports: [RouterModule.forChild(routes)]
 })
-export class MentorRouterModule { }
+export class MentorRoutingModule { }
