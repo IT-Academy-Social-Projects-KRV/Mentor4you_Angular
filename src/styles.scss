@@ -1,5 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:regular,700&display=swap&subset=cyrillic-ext');
+@import url('https://fonts.googleapis.com/css?family=Roboto:regular,700&display=swap&subset=cyrillic-ext');
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
+$R:Roboto;
+
+html {
+   font-family: serif;
+   box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+   box-sizing: inherit;
+}
+
+ul {
+   padding: 0;
+   margin: 0;
+
+}
+
+li {
+   list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label {
+   margin: 0;
+   padding: 0;
+}
+
+button {
+   padding: 0;
+}
+
+a {
+   display: inline-block;
+   text-decoration: none;
+}
+
+
+body {
+   height: 100%;
+   font-size: 14px;
+   font-family: $R;
+   font-weight: 500;
+   font-style: normal;
+   line-height: 1;
+   letter-spacing: normal;
+}
+
+html,
+body {
+
+   ::-webkit-scrollbar {
+      background-color: #dedede;
+      width: 10px;
+      // border-radius: 20px;
+   }
+
+   ::-webkit-scrollbar-thumb {
+      background-color: rgba(58, 182, 125, .8);
+      border-radius: 20px;
+   }
+
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

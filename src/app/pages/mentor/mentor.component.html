@@ -15,25 +15,30 @@
 					</div>
 					<div class="form-review__column">
 						<label for="" class="form-review__label">
-							<input  placeholder="Email" type="text" class="form-review__input" formControlName="email">
+							<input [class.error]="formAddReview.get('email').invalid&&formAddReview.get('email').touched"  placeholder="Email" type="text" class="form-review__input" formControlName="email">
+						<div *ngIf = "formAddReview.get('email').invalid&&formAddReview.get('email').touched" class="form-review__email-error">Введіть коректний email</div>
 						</label>
 					</div>
 				</div>
 
 			</div>
 			<div class="form-review__row">
-				<div class="form-review__textarea-wrapper">
-					<textarea  name="" id="" cols="30" rows="10" class="form-review__textarea" formControlName = "textarea"></textarea>
+				<div #textAreaWrapper class="form-review__textarea-wrapper">
+					<textarea (click) = "addFocus()"  name="" id="" cols="30" rows="10" class="form-review__textarea" formControlName = "textarea"></textarea>
 				</div>
 			</div>
 			<div class="form-review__row">
 				<div class="form-review__range-wrapper">
-					1,2,3
+				<button class="form-review__range" color="accent" *ngFor="let r of ratingArr; let i = index" (click)="onClick(i)"> 
+				<div class="li">
+					{{ returnStar(i) }}
+				</div>
+				</button>
 				</div>
 			</div>
 			<div class="form-review__row">
 				<div class="form-review__button-wrapper">
-					<button type="submit">Submit Now</button>
+					<button [disabled] = "formAddReview.invalid" class="form-review__button" type="submit" [class.disabled] = "formAddReview.invalid">Submit Now</button>
 				</div>
 			</div>
 
