@@ -1,4 +1,3 @@
-import { ElementRef } from '@angular/core';
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,12 +7,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './mentor.component.html',
   styleUrls: ['./mentor.component.scss']
 })
-export class MentorComponent implements OnInit {
-  // @ViewChild('textAreaWrapper',{static:false}) textarea!: ElementRef;
-  
+export class MentorComponent implements OnInit{
+  btnCheck:boolean = false;
   formAddReview: FormGroup = new FormGroup({
     name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required,Validators.email]),
     textarea: new FormControl('', Validators.required),
   })
   currentRate = 0
@@ -39,9 +37,6 @@ export class MentorComponent implements OnInit {
     this.ratingArr = Array(this.starCount).fill(false);
 
   }
-
-
-
   returnStar(i: number) {
     if (this.rating >= i + 1) {
       return 'star';
@@ -49,24 +44,26 @@ export class MentorComponent implements OnInit {
       return 'star_border';
     }
   }
-
   onClick(i: number) {
     this.rating = i + 1;
-    this.snackBar.open(this.response[i], '', {
-      duration: this.snackBarDuration,
-      panelClass: ['snack-bar']
-    });
+    console.log('rating '+this.rating);
+    console.log('starCount '+this.starCount);
+    console.log('ratingArr '+this.ratingArr);
+    
+    // this.snackBar.open(this.response[i], '', {
+    //   duration: this.snackBarDuration,
+    //   panelClass: ['snack-bar']
+    // });
+  }
+ ngOnInit(): void {}
+   addFocus(){ }
 
-  }
- ngOnInit(): void {
-   
- 
-  }
-   addFocus(){
-       
-    }
  submit() {
-    console.log(this.formAddReview);
+  //  console.log(this.formAddReview.get('email')?.invalid);
 
   }
+  btnClick(){
+    this.btnCheck = !this.btnCheck;
+  }
+
 }

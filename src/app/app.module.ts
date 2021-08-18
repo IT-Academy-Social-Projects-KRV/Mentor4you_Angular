@@ -7,8 +7,7 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 // import { MentorComponent} from './pages/mentor/'
 
@@ -22,8 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeModule,
     CommonModule,
     NgbModule,
-    BrowserAnimationsModule
-    
+    NgbPaginationModule, NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

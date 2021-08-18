@@ -195,7 +195,7 @@
 
       @media(min-width: 992px) {
          &:hover {
-            box-shadow: 1px -1px 18px 10px rgba(34, 60, 80, .2);
+            box-shadow: 1px -1px 18px 10px rgba(163, 166, 169, 0.4);
          }
       }
 
@@ -210,6 +210,11 @@
    pointer-events: none;
 }
 
+.error-text {
+   color: red;
+   position: absolute;
+}
+
 .error {
    border-color: #ff0000;
 
@@ -218,25 +223,7 @@
    }
 }
 
-.form-review__ran {
-   height: 20px;
+.btnClick {
+   transition: all .3;
+   box-shadow: 0px 0px 0px 0px rgba(163, 166, 169, 0.4);
 }
-
-.form-review__range {
-   .li {
-      float: right;
-      color: #ddd;
-      padding: 10px 5px;
-
-   }
-
-   .li:hover,
-   .li:hover~li {
-      color: #ffd700;
-   }
-
-  
-} .form-review__range {
-      display: inline-block;
-      list-style: none;
-   }

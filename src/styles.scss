@@ -59,9 +59,11 @@ body {
    letter-spacing: normal;
 }
 
+
+
 html,
 body {
-
+height: 100%;
    ::-webkit-scrollbar {
       background-color: #dedede;
       width: 10px;
@@ -73,10 +75,6 @@ body {
       border-radius: 20px;
    }
 
+   margin: 0;
+   font-family: Roboto
 }
-
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

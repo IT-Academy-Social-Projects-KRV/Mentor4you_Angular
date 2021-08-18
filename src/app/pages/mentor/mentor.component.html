@@ -15,30 +15,35 @@
 					</div>
 					<div class="form-review__column">
 						<label for="" class="form-review__label">
-							<input [class.error]="formAddReview.value.email.invalid&&formAddReview.value.email.touched"  placeholder="email" type="text" class="form-review__input" formControlName="email">
-						<div >Введіть коректний email</div>
+							<input   placeholder="Email" type="text" class="form-review__input" formControlName="email">
+						<div class="error-text" *ngIf = "formAddReview.get('email')?.invalid&&formAddReview.get('email')?.touched">Введіть коректний email</div>
 						</label>
 					</div>
 				</div>
 
 			</div>
 			<div class="form-review__row">
-				<div #textAreaWrapper class="form-review__textarea-wrapper">
+				<div  class="form-review__textarea-wrapper">
 					<textarea   name="" id="" cols="30" rows="10" class="form-review__textarea" formControlName = "textarea"></textarea>
 				</div>
 			</div>
 			<div class="form-review__row">
 				<div class="form-review__range-wrapper">
-				<!-- <button class="form-review__range" color="accent" *ngFor="let r of ratingArr; let i = index" (click)="onClick(i)"> 
-				<div class="li">
+				<!-- <button class="form-review__range" color="accent" *ngFor="let r of ratingArr; let i = index" (click)="onClick(i)">  -->
+				<!-- <div class="li">
 					{{ returnStar(i) }}
 				</div>
+				</button> -->
+				<!-- <button mat-icon-button color="accent" *ngFor="let r of ratingArr; index as i" (click)="onClick(i)">
+					<mat-icon>
+						{{ returnStar(i) }}
+					</mat-icon>
 				</button> -->
 				</div>
 			</div>
 			<div class="form-review__row">
 				<div class="form-review__button-wrapper">
-					<button [disabled] = "formAddReview.invalid" class="form-review__button" type="submit" [class.disabled] = "formAddReview.invalid">Submit Now</button>
+					<button [class.btnClick] = "btnCheck"[disabled] = "formAddReview.invalid" class="form-review__button" type="submit" [class.disabled] = "formAddReview.invalid" (click) = "btnClick()">Submit Now</button>
 				</div>
 			</div>
 
