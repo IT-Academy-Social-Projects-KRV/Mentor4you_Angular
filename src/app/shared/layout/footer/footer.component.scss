@@ -4,15 +4,9 @@ footer{
     background-color: $fuschia80;
     height: 150px;
     @extend %base-font;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    margin-top: auto;
     *{
         color: white;
-    }
-    h4{
-        font-size: 36px;
     }
     p{
         font-size: 18px;
@@ -20,12 +14,16 @@ footer{
     .mainText {
         display: flex;
         justify-content: space-between;
+        justify-items: flex-start;
         padding: 20px 0 0 0;
         .projectName {
             padding-left: 30px;
+            p.appName{
+                font-size: 36px;
+            }
         }
         .footerLinks{
-            padding: 8px 100px 0 0;
+            padding: 0 100px 0 0;
             text-align: center;
         a{
             text-decoration: none;
@@ -38,11 +36,7 @@ footer{
     .textBottom{
         text-align: center;
         font-size: 16px;
+        padding-top: 20px;
     }
 }
 
-@media (max-width: 768px) {
-    .mainText  {
-    color: blue;
-    }
-}
