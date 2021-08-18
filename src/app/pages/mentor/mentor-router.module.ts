@@ -5,7 +5,7 @@ import { MentorComponent } from './mentor.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'mentor',
     component: MentorComponent
   }
 ];
