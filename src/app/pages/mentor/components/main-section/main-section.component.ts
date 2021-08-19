@@ -14,6 +14,7 @@ export class MainSectionComponent implements OnInit {
     ' Angular',
     ' Python ',
   ];
+
   button:string='Message'
   place:string=' Remote'
   rate:string=' 200$'
@@ -26,6 +27,11 @@ export class MainSectionComponent implements OnInit {
     ' Germany ',
   ];
   grp_ment: string | undefined
+
+  getCustom(elem:HTMLElement){
+    console.log(elem.textContent)
+    elem.style.color='white'
+  }
 
   ngOnInit(): void {
     if(this.group)
@@ -44,12 +50,8 @@ export class MainSectionComponent implements OnInit {
       this.button='Connect'
 
     }
-
   }
 
-  // getCustom(name: HTMLHeadingElement)
-  // {
-  //   name.style.color='black'
-  // }
+
 
 }
