@@ -4,7 +4,7 @@
     <div class="col-4">
       <img src="https://i.pravatar.cc/120" alt="" class="avatar rounded-circle">
       <h3 class="name">Name Surname</h3>
-      <div class="soc-link">
+      <div class="soc-link" *ngIf="auth">
         <mat-icon class="d-flex justify-content-start">
           <a href="#" class="material-icons-outlined">telegram</a>
           <a href="#" class="material-icons-outlined">mail_outline</a>
@@ -13,7 +13,7 @@
 
         </mat-icon>
       </div>
-      <button class="btn">Message</button>
+      <button class="btn">{{button}}</button>
     </div>
     <div class="col-4">
       <div class="category"><b>Category:</b><span>{{Category[0]}}</span><span>{{Category[2]}}</span></div>

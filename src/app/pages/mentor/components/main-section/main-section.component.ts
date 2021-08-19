@@ -14,9 +14,11 @@ export class MainSectionComponent implements OnInit {
     ' Angular',
     ' Python ',
   ];
+  button:string='Message'
   place:string=' Remote'
   rate:string=' 200$'
   group:boolean=true
+  auth:boolean=true
   public Languages:Array<string> = [
     ' Ukrainian',
     ' Russian',
@@ -34,7 +36,20 @@ export class MainSectionComponent implements OnInit {
       this.grp_ment='No'
     }
 
+    if(this.auth)
+    {
+      this.button='Message'
+    }
+    else{
+      this.button='Connect'
+
+    }
 
   }
+
+  // getCustom(name: HTMLHeadingElement)
+  // {
+  //   name.style.color='black'
+  // }
 
 }
