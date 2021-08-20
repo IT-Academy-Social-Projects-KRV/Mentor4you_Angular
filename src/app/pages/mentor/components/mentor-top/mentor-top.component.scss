@@ -1,0 +1,222 @@
+form {
+  margin: 40px auto;
+  display: flex;
+  justify-content: space-between;
+  width: 1140px;
+  height: 50px;
+
+  .categories {
+    max-width: 250px;
+    width: 100%;
+    max-height: 50px;
+  }
+
+  .languages {
+    max-width: 240px;
+    width: 100%;
+    max-height: 50px;
+  }
+
+  .city {
+    max-width: 250px;
+    width: 100%;
+    max-height: 50px;
+  }
+}
+
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked { background: linear-gradient(#00b09b, #96c93d); }
+
+::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  background: linear-gradient(#00b09b, #96c93d);
+}
+
+
+//input type=range
+
+.range-slider {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  // margin-bottom: 30px;
+
+  .number-group {
+    margin-right: 5px;
+    flex: 1 0 auto;
+    text-align: center;
+    height: 25px;
+    font-weight: 300;
+    font-size: 13px;
+    color: black;
+
+    #input-min {
+      outline: none;
+      width: 50px;
+      margin-left: 5px;
+    }
+
+    #input-max {
+      outline: none;
+      width: 50px;
+      margin-left: 5px;
+    }
+
+
+    .number-input {
+      width: 36px;
+      height: 30px;
+      text-align: center;
+      color: #ffffff;
+      background: linear-gradient(#00b09b, #96c93d);
+      border: 0;
+      border-radius: 5px;
+
+      &:first-of-type {
+        margin-right: 5px;
+      }
+
+      &:last-of-type {
+        margin-left: 5px;
+      }
+
+      // vendor-prefix exception
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+
+      &:invalid,
+      &:out-of-range {
+        border: 2px solid green;
+      }
+    }
+  }
+
+  .range-group {
+    position: relative;
+    flex: 0 0 100%;
+    height: 25px;
+    width: 120px;
+
+    .range-input {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      margin-bottom: 0;
+      -webkit-appearance: none; // vendor-prefix exception
+      width: 100%;
+      border-bottom: 0;
+
+      &:focus {
+        outline: 0;
+        // doesn't seem to allow the track colour to change
+        // &::-webkit-slider-runnable-track,
+        // &::-ms-fill-lower,
+        // &::-ms-fill-upper {
+        // 	background: $primary-color;
+        // }
+
+      }
+
+      // vendor prefix exceptions - must be kept seperate to work
+      &::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 2px;
+        cursor: pointer;
+        // animate: .2s;
+        animation: .2s;
+        background: linear-gradient(#00b09b, #96c93d);
+        border-radius: 1px;
+        box-shadow: none;
+        border: 0;
+      }
+
+      &::-webkit-slider-thumb {
+        z-index: 2;
+        position: relative;
+        // box-shadow: 0px 0px 0px #000;
+        // border: 1px solid #2497e3;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: linear-gradient(#00b09b, #96c93d);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -7px;
+      }
+
+      &::-moz-range-track {
+        width: 100%;
+        height: 2px;
+        cursor: pointer;
+        // animate: .2s;
+        animation: .2s;
+        background: linear-gradient(#00b09b, #96c93d);
+        border-radius: 1px;
+        box-shadow: none;
+        border: 0;
+      }
+
+      &::-moz-range-thumb {
+        z-index: 2;
+        position: relative;
+        box-shadow: 0 0 0 #000;
+        border: 1px solid #2497e3;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: linear-gradient(#00b09b, #96c93d);
+        cursor: pointer;
+      }
+
+      &::-ms-track {
+        width: 100%;
+        height: 5px;
+        cursor: pointer;
+        // animate: .2s;
+        animation: .2s;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+      }
+
+      &::-ms-fill-lower,
+      &::-ms-fill-upper {
+        background: linear-gradient(#00b09b, #96c93d);
+        border-radius: 1px;
+        box-shadow: none;
+        border: 0;
+      }
+
+      &::-ms-thumb {
+        z-index: 2;
+        position: relative;
+        // box-shadow: 0px 0px 0px #000;
+        // border: 1px solid #2497e3;
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        background: linear-gradient(#00b09b, #96c93d);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.Submit-button {
+  height: 50px;
+  text-align: center;
+  margin-top: 10px;
+
+  .btn {
+    background: linear-gradient(#00b09b, #96c93d);
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    outline: none;
+
+    &:hover {
+      box-shadow: 1px 1px 1px 1px darkblue;
+    }
+  }
+}
