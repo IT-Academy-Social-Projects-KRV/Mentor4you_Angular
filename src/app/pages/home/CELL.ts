@@ -18,7 +18,7 @@ export const CELL: cell[] = [
   {
     img: '../../assets/images/reviews-slider/0.svg',
     title: '“Interesting implementation”',
-    text: 'Amazing content from mentor4you, they not only cover figma also they concentrated on UX and other design aspects, Very helpful to build by career. Thank you Mentoy4you!',
+    text: 'Amazing content from mentor4you, they not only cover figma also they concentrated on UX and other design aspects, Very helpful to build by career. Thank you Mentor4you!',
     name: 'Alisa rahman',
     mark: 5,
   },
