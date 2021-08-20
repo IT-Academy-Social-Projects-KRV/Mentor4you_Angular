@@ -7,6 +7,7 @@
     [width]="1120"
     [height]="250"
     [loop]="true"
+    [transitionDuration]="500"
   >
     <div *ngFor="let item of review" class="carousel-cell slider__cell">
       <img class="slider__cell-image" src="{{ item.img }}" alt="img" />
