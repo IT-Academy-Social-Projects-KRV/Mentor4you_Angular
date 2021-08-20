@@ -58,10 +58,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    img {
-      max-width: 17px;
-      max-height: 17px;
-    }
+    padding-bottom: 5px;
   }
   &__cell-name {
     font-family: "Roboto";
