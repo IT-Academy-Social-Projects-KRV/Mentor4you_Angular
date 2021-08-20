@@ -1,0 +1,212 @@
+@import "variables";
+@import "reset";
+
+.container{
+    padding: 0;
+}
+.introduction{
+    margin: 0 auto;
+    &__bg-wrapper{
+        max-width: 1140px;
+        height: 420px;
+        background-color: #fff;
+    }
+    &__inner{
+        background: -webkit-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
+        background: -moz-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
+        background: linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 15px;
+    }
+    &__info{
+        width: 35%;
+        &-exhortation{
+            color: $green;
+            font-size: 80px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+        &-start{
+            color: $darkblue;
+            font-size: 32px;
+            padding-right: 15px;
+        }
+        &-your{
+            font-size: 64px;
+            font-weight: 700;
+        }
+        &-slogan{
+            color: $darkblue;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            padding-left: 85px;
+            margin-bottom: 45px;
+            position: relative;
+            &::before{
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 13px;
+                background-color: $darkblue;
+                width: 75px;
+                height: 2px;
+            }
+        }
+        &-btn{
+            color: $darkblue;
+            border: 3px solid $darkblue;
+            border-radius: 15px;
+            padding: 10px 60px;
+            font-size: 20px;
+            line-height: 24px;
+            text-decoration: none;
+            cursor: pointer;
+            &:hover{
+                @include btn-shadow;
+                font-weight: 700;
+                transform: scale(1.1, 1.1);
+            }
+        }
+    }
+    &__img{
+        height: 275px;
+    }
+}
+
+@media (max-width: 1080px){
+    .introduction__img{
+        height: 250px;
+    }
+    .introduction__info-start{
+        font-size: 27px;
+    }
+    .introduction__info-your{
+        font-size: 55px;
+    }
+    .introduction__info-exhortation{
+        font-size: 70px;
+    }
+    .introduction__info-slogan{
+        font-size: 17px;
+    }
+    .introduction__info-btn{
+        font-size: 17px;
+        padding: 10px 50px;
+    }
+}
+@media (max-width: 992px){
+    .introduction__img{
+        height: 200px;
+    }
+    .introduction__info-btn{
+        padding: 10px 40px;
+    }
+}
+@media (max-width: 768px){
+    .introduction__img{
+        height: 180px;
+    }
+    .introduction__info-start{
+        font-size: 25px;
+    }
+    .introduction__info-your{
+        font-size: 42px;
+    }
+    .introduction__info-exhortation{
+        font-size: 55px;
+    }
+    .introduction__info-slogan{
+        font-size: 16px;
+        padding-left: 60px;
+    }
+    .introduction__info-slogan::before{
+        width: 50px;
+    }
+    .introduction__info-btn{
+        font-size: 16px;
+        padding: 7px 15px;
+    }
+}
+@media (max-width: 576px){
+    .introduction__img{
+        height: 120px;
+    }
+    .introduction__info-slogan{
+        font-size: 16px;
+        padding-left: 55px;
+    }
+    .introduction__info-slogan::before{
+        width: 40px;
+    }
+}
+@media (max-width: 470px){
+    .introduction__inner{
+        padding: 0;
+    }
+    .introduction__img{
+        height: 100px;
+    }
+    .introduction__info-start{
+        font-size: 23px;
+    }
+    .introduction__info-your{
+        font-size: 37px;
+    }
+    .introduction__info-exhortation{
+        font-size: 49px;
+    }
+    .introduction__info-slogan{
+        font-size: 16px;
+        padding-left: 30px;
+    }
+    .introduction__info-slogan::before{
+        width: 28px;
+    }
+}
+@media (max-width: 360px){
+    .introduction__img{
+        height: 95px;
+    }
+    .introduction__info-start{
+        font-size: 20px;
+    }
+    .introduction__info-your{
+        font-size: 35px;
+    }
+    .introduction__info-exhortation{
+        font-size: 44px;
+    }
+    .introduction__info-slogan{
+        font-size: 16px;
+        padding-left: 27px;
+        width: 150px;
+        margin-bottom: 30px;
+    }
+    .introduction__info-slogan::before{
+        width: 25px;
+    }
+}
+@media (max-width: 320px){
+    .introduction__img{
+        height: 90px;
+    }
+    .introduction__info-start{
+        font-size: 19px;
+    }
+    .introduction__info-your{
+        font-size: 32px;
+    }
+    .introduction__info-exhortation{
+        font-size: 40px;
+        margin-bottom: 5px;
+    }
+    .introduction__info-btn{
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+}
