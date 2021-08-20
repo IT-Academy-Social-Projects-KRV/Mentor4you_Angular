@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild,AfterViewInit} from '@angular/core';
 
 @Component({
   selector: 'app-main-section',
   templateUrl: './main-section.component.html',
   styleUrls: ['./main-section.component.scss']
 })
-export class MainSectionComponent implements OnInit {
-
+export class MainSectionComponent implements OnInit,AfterViewInit {
+  @ViewChild('name')name?:ElementRef
   constructor() { }
   public Category:Array<string> = [
     ' JavaScript',
@@ -14,7 +14,6 @@ export class MainSectionComponent implements OnInit {
     ' Angular',
     ' Python ',
   ];
-
   button:string='Message'
   place:string=' Remote'
   rate:string=' 200$'
@@ -30,7 +29,7 @@ export class MainSectionComponent implements OnInit {
 
   getCustom(elem:HTMLElement){
     console.log(elem.textContent)
-    elem.style.color='white'
+    elem.style.marginTop='20px'
   }
 
   ngOnInit(): void {
@@ -41,15 +40,18 @@ export class MainSectionComponent implements OnInit {
     else {
       this.grp_ment='No'
     }
+  }
 
+  ngAfterViewInit() {
     if(this.auth)
     {
       this.button='Message'
     }
     else{
       this.button='Connect'
-
+      this.getCustom(this.name?.nativeElement)
     }
+
   }
 
 
