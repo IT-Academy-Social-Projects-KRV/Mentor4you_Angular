@@ -1,0 +1,27 @@
+$darkblue: #524C6F;
+$fuschia100: #3AB67D;
+$fuschia80: #5CC092;
+$fuschia60: #7FC9A7;
+$green: #52D197;
+$grey: #A3A3A3;
+$lightgray: #DEDEDE;
+$black: #26242E;
+$red: #FC3665;
+$bg: #F6F9FE;
+%base-font{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+@mixin title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 44px;
+    color: $black;
+}
+@mixin btn-shadow{
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}

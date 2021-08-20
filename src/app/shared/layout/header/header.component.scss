@@ -1,0 +1,147 @@
+@import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;1,400&family=Roboto:wght@400;700&display=swap');
+
+.container{
+    background-color: #F4F4F4;
+}
+.logo{
+    width: 180px;
+}
+.avatar{
+    width: 50px;
+    height: 50px;
+}
+.header{
+    @extend %base-font;
+    font-size: 20px;
+    &__inner{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 120px;
+        padding: 0 15px;
+    }
+    &__logo{
+        cursor: pointer;
+    }
+    &__menu{
+        &__list{
+            list-style: none;
+            &-item{
+                display: inline-block;
+                margin-right: 50px;
+                cursor: pointer;
+            }
+            &-link{
+                text-decoration: none;
+                color: $fuschia100;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    &__btns{
+        &__inner{
+            width: 140px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &-message{
+            cursor: pointer;
+            &__inner{
+                position: relative;
+            }
+            &--indicator{
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+        &-avatar{
+            width: 50px;
+            height: 50px;
+            border: 1px solid $grey;
+            border-radius: 50%; 
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &-border{
+                width: 40px;
+                height: 40px;
+                margin: 0 auto;
+                border-radius: 50%;
+                overflow: hidden;
+                object-fit: contain;
+            }
+        }
+        &-dots{
+            padding: 0 10px;
+        }
+        &__settings{
+            cursor: pointer;
+            position: relative;
+        }
+        &-signin{
+            margin-right: 30px;
+            border: 2px solid $green;
+            color: $green;
+        } 
+        &-signup{
+            border: 2px solid $darkblue;
+            color: $darkblue;
+        }
+    }
+    &__btn{
+        display: inline-block;
+        text-decoration: none;
+        padding: 13px 25px;    
+        border-radius: 15px;
+        cursor: pointer;
+        &:hover{
+            @include btn-shadow;
+        }
+    } 
+}
+.settings-menu{
+    position: absolute;
+    right: 0;
+    bottom: -140px;
+    border: 1px solid $lightgray;
+    background-color: #fff;
+    width: 205px;
+    padding: 16px 25px;
+    &__item{
+        display: flex;
+        margin-bottom: 10px;
+        &__img{
+            margin-right: 10px;
+        }
+        &__text{
+            text-decoration: none;
+            color: $black;
+            cursor: pointer;
+        }
+    }
+}
+.logout{
+    color: $red;
+}
+
+// @media (min-width: 1200px){
+    
+// }
+// @media (min-width: 1080px){
+    
+// }
+// @media (min-width: 992px){
+
+// }
+// @media (min-width: 768px){
+    
+// }
+// @media (min-width: 576px){
+    
+// }
