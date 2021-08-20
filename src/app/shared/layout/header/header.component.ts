@@ -16,14 +16,19 @@ export class HeaderComponent implements OnInit {
   @ViewChild('menu') menu!: ElementRef;
 
   constructor(private renderer: Renderer2) {
-    this.renderer.listen('window', 'click',(e:Event)=>{
-     if(e.target !== this.toggleButton.nativeElement && e.target!==this.menu.nativeElement){
-         this.showSettingsMenu=false;
-     }
- });
+
    }
 
   ngOnInit(): void {
+    this.closeMenu();
+  }
+
+  closeMenu(): void{
+    this.renderer.listen('window', 'click',(e:Event)=>{
+      if(e.target !== this.toggleButton?.nativeElement && e.target!==this.menu?.nativeElement){
+          this.showSettingsMenu=false;
+      }
+  });
   }
 
   showSettings(){
