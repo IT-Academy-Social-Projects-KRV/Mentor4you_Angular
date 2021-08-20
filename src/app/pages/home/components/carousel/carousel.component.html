@@ -1,49 +1,22 @@
 <div class="slider">
   <h2 class="slider__title">What our Mentees say <span>About Us</span></h2>
 
-  <carousel class="slider__carousel" [cellsToShow]="2" [width]="1156" [height]="250" [loop]="true">
-    <div class="carousel-cell slider__cell">
-      <img class="slider__cell-image" src="../../../../../assets/images/reviews-slider/0.svg" alt="img" />
+  <carousel
+    class="slider__carousel"
+    [cellsToShow]="2"
+    [width]="1156"
+    [height]="250"
+    [loop]="true"
+  >
+    <div *ngFor="let item of review" class="carousel-cell slider__cell">
+      <img class="slider__cell-image" src="{{ item.img }}" alt="img" />
+
       <div class="slider__cell-content">
-        <h4 class="slider__cell-title">“Honestly awesome approach”</h4>
+        <h4 class="slider__cell-title">{{ item.title }}</h4>
         <p class="slider__cell-text">
-          Amazing content from google, they not only cover figma also they
-          concentrated on UX and other design aspects, Very helpful to build by
-          career. Thank you Coursera & Google.
+          {{ item.text }}
         </p>
-        <span class="slider__cell-name">Alisa rahman</span>
-      </div>
-    </div>
-    <div class="carousel-cell slider__cell">
-      <img class="slider__cell-image" src="../../../../../assets/images/reviews-slider/0.svg" alt="img" />
-      <div class="slider__cell-content">
-        <h4 class="slider__cell-title">“Honestly awesome approach”</h4>
-        <p class="slider__cell-text">
-          I think this first course is incredibly well structured with a very good approach of covering all the steps in their most basic form and then advancing into them while having the big picture in mind.
-        </p>
-        <span class="slider__cell-name">Alisa rahman</span>
-      </div>
-    </div>
-    <div class="carousel-cell slider__cell">
-      <img class="slider__cell-image" src="../../../../../assets/images/reviews-slider/0.svg" alt="img" />
-      <div class="slider__cell-content">
-        <h4 class="slider__cell-title">“Honestly awesome approach”</h4>
-        <p class="slider__cell-text">
-          Amazing content from google, they not only cover figma also they
-          concentrated on UX and other design aspects, Very helpful to build by
-          career. Thank you Coursera & Google.
-        </p>
-        <span class="slider__cell-name">Alisa rahman</span>
-      </div>
-    </div>
-    <div class="carousel-cell slider__cell">
-      <img class="slider__cell-image" src="../../../../../assets/images/reviews-slider/0.svg" alt="img" />
-      <div class="slider__cell-content">
-        <h4 class="slider__cell-title">“Honestly awesome approach”</h4>
-        <p class="slider__cell-text">
-          I think this first course is incredibly well structured with a very good approach of covering all the steps in their most basic form and then advancing into them while having the big picture in mind.
-        </p>
-        <span class="slider__cell-name">Alisa rahman</span>
+        <span class="slider__cell-name">{{ item.name }}</span>
       </div>
     </div>
   </carousel>

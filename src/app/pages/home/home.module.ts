@@ -8,9 +8,10 @@ import { InvitationComponent } from './components/invitation/invitation.componen
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [HomeComponent, CarouselComponent, IntroductionComponent, InvitationComponent],
-  imports: [HomeRoutingModule, IvyCarouselModule],
+  imports: [HomeRoutingModule, IvyCarouselModule, CommonModule],
 })
 export class HomeModule {}
