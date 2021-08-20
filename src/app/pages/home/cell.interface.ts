@@ -3,4 +3,5 @@ export interface cell {
   title: string;
   text: string;
   name: string;
+  mark: number;
 }

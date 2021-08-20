@@ -17,7 +17,7 @@
     }
   }
 
-  &__carousel{
+  &__carousel {
     max-width: 1156px;
     width: 100%;
     margin: 0 auto;
@@ -33,7 +33,7 @@
       max-height: 140px;
     }
   }
-  &__cell-content{
+  &__cell-content {
     max-width: 340px;
     max-height: 270px;
     height: 100%;
@@ -54,17 +54,20 @@
     color: black;
     line-height: 25.5px;
   }
+  &__cell-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      max-width: 17px;
+      max-height: 17px;
+    }
+  }
   &__cell-name {
     font-family: "Roboto";
     font-weight: 500;
     font-size: 18px;
     color: black;
-    position: relative;
-    &::after{
-      position: absolute;
-      content: url('../../../../../assets/images/reviews-slider/rate.svg');
-      right: 0;
-    }
   }
 }
 
