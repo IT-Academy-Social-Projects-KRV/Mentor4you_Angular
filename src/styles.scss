@@ -3,3 +3,9 @@
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
+
+body,
+html{
+  min-width: 1156px;
+  background-color: #FFFFFF;
+}
