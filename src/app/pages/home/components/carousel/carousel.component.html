@@ -17,7 +17,14 @@
           {{ item.text }}
         </p>
 
-        <span class="slider__cell-name">{{ item.name }}</span>
+        <div class="slider__cell-bottom">
+          <span class="slider__cell-name">{{ item.name }}</span>
+          <!-- <img *ngFor="let star of review"
+            class="slider__cell-mark"
+            src="../../../../../assets/images/reviews-slider/star.svg"
+            alt="star"
+          /> -->
+        </div>
       </div>
     </div>
   </carousel>
