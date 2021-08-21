@@ -4,8 +4,20 @@
     font-family: 'Roboto', sans-serif;
     line-height: 20px;
     color: black;
-    h1, h2{
-        font-family: 'Roboto', sans-serif;  
+    background-image: url(./../../../assets/images/bg.png);
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    background-color: white;
+    padding: 50px 10px;
+    a{
+        color: $fuschia100;
+        font-weight: bold;
+    }
+    h1{
+       @include title;   
+    }
+    h2{
+        color: black;  
     }
     p {
         padding: 5px 0;

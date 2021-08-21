@@ -1,10 +1,11 @@
 @import "variables";
 
 footer{
+    .container{
     background-color: $fuschia80;
     height: 150px;
     @extend %base-font;
-    margin-top: auto;
+    margin: auto;
     *{
         color: white;
     }
@@ -39,5 +40,6 @@ footer{
         font-size: 16px;
         padding-top: 20px;
     }
+}
 }
 
