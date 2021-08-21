@@ -1,0 +1,33 @@
+<div class="main-section container">
+
+  <div class="row">
+    <div class="col-4">
+      <img src="https://i.pravatar.cc/120" alt="" class="avatar rounded-circle">
+      <h3 class="name" #name>{{name_surname}}</h3>
+      <div class="soc-link" *ngIf="auth">
+        <mat-icon class="d-flex justify-content-start">
+          <a href="#" class="material-icons-outlined">telegram</a>
+          <a href="#" class="material-icons-outlined">mail_outline</a>
+          <a href="#" class="material-icons">phone_in_talk</a>
+          <a href="#" class="material-icons-outlined">linkin</a>
+
+        </mat-icon>
+      </div>
+      <button class="btn" >{{button}}</button>
+    </div>
+    <div class="col-4">
+      <div class="category"><b>Category: </b><span>{{Category[0]}}</span><span>{{Category[2]}}</span></div>
+      <br>
+      <div class="info-section d-flex align-items-start flex-column">
+        <p><b>Place:</b><span class="place">{{place}}</span></p>
+        <p><b>Rate:</b><span class="rate">{{rate}}</span></p>
+        <p><b>Group mentoring:</b><span class="grp_ment"> {{grp_ment}}</span></p>
+        <p><b>Languages:</b><span class="language">{{Languages[0]}}</span></p>
+      </div>
+    </div>
+    <div class="col-4 description align-self-center">
+      <br>
+      <p>{{description}}</p>
+    </div>
+  </div>
+</div>
