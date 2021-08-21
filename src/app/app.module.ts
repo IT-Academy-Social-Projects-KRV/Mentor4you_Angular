@@ -9,6 +9,9 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { InMemoryDataService } from './core/mock/in-memory-data.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,10 @@ import { InMemoryDataService } from './core/mock/in-memory-data.service';
     HttpClientModule,
     HomeModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)
+    HomeModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
