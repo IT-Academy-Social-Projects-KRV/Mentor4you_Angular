@@ -1,64 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
 @import "variables";
+@import "reset";
 
-html{
-    box-sizing: border-box;
-}
-  
-*,
-*::after,
-*::before{
-    box-sizing: inherit;
-}
-  
-ul[class],
-ol[class] {
-    padding: 0;
-}
-  
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-ol,
-li,
-figure,
-figcaption,
-blockquote,
-dl,
-dd {
-    margin: 0;
-}
-  
-ul[class] {
-    list-style: none;
-}
-  
-img {
-    max-width: 100%;
-    display: block;
-}
-  
-input,
-button,
-textarea,
-select {
-    font: inherit;
-}
-  
-a{
-    text-decoration: none;
-}
-  
 body{
     background-color: $bg;
+    font-family: Roboto;
+}
+
+html,
+body {
+height: 100%;
+   ::-webkit-scrollbar {
+      background-color: #dedede;
+      width: 10px;
+      // border-radius: 20px;
+   }
+   ::-webkit-scrollbar-thumb {
+      background-color: rgba(58, 182, 125, .8);
+      border-radius: 20px;
+   }
 }
