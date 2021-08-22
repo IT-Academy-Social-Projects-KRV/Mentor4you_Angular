@@ -31,7 +31,7 @@ export class MentorTopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.getConfig().subscribe((data: any) => this.mentorFilter = new MentorsFilter(data.category, data.city, data.language, data.minValue, data.maxValue));
+    this.http.getConfig().subscribe((data: any) => this.mentorFilter = new MentorsFilter(data.categories, data.city, data.languages, data.mimNum,data.maxNum));
 
     this.showSlider();
   }
