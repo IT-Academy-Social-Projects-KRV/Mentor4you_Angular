@@ -13,22 +13,25 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getRate(mark: number) {
-    if (mark === 5) {
-      return '../../../../../assets/images/reviews-slider/rate5.svg';
+  getRate(mark: number): string {
+    switch (mark) {
+      case 5:
+        return '../../../../../assets/images/reviews-slider/rate5.svg';
+        break;
+      case 4:
+        return '../../../../../assets/images/reviews-slider/rate4.svg';
+        break;
+      case 3:
+        return '../../../../../assets/images/reviews-slider/rate3.svg';
+        break;
+      case 2:
+        return '../../../../../assets/images/reviews-slider/rate2.svg';
+        break;
+      case 1:
+        return '../../../../../assets/images/reviews-slider/rate1.svg';
+      default:
+        return '';
+        break;
     }
-    if (mark === 4) {
-      return '../../../../../assets/images/reviews-slider/rate4.svg';
-    }
-    if (mark === 3) {
-      return '../../../../../assets/images/reviews-slider/rate3.svg';
-    }
-    if (mark === 2) {
-      return '../../../../../assets/images/reviews-slider/rate2.svg';
-    }
-    if (mark === 1) {
-      return '../../../../../assets/images/reviews-slider/rate1.svg';
-    }
-    else return ''
   }
 }

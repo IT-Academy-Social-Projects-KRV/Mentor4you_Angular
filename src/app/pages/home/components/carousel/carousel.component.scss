@@ -1,5 +1,5 @@
 .slider {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   max-width: 1140px;
   margin: 100px auto;
   width: 100%;
@@ -53,6 +53,7 @@
     font-weight: 500;
     font-size: 20px;
     color: black;
+    margin: 10px 0 30px;
   }
   &__cell-text {
     font-family: "Roboto";
@@ -60,12 +61,13 @@
     font-size: 16px;
     color: black;
     line-height: 25.5px;
+    flex: 1 1 auto;
   }
   &__cell-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 5px;
+    padding-bottom: 7px;
   }
   &__cell-name {
     font-family: "Roboto";
