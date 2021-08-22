@@ -6,7 +6,9 @@
 
 .mentor-list__title {
   @include title;
-  text-align: center;
+  font-size: 54px;
+  display: flex;
+  justify-content: center;
   margin-bottom: 100px;
   position: relative;
 
