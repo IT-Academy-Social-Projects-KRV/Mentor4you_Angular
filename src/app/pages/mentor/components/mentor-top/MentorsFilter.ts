@@ -1,9 +1,9 @@
 export class MentorsFilter {
-  public category: any[];
-  public city: any[];
-  public language: any[];
-  public minValue: number;
-  public maxValue: number;
+  public category?: any[];
+  public city?: any[];
+  public language?: any[];
+  public minValue?: number;
+  public maxValue?: number;
 
   constructor(
     _category: any[],

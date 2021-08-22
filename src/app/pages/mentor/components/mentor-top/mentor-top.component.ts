@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component,ElementRef, OnInit, ViewChild} from '@angular/core';
 import {categories, city, languages} from "./Selected_options";
 import {MentorsFilter} from "./MentorsFilter";
 import {MentorTopService} from "./mentor-top.service";
@@ -10,21 +10,30 @@ import {MentorTopService} from "./mentor-top.service";
   styleUrls: ['./mentor-top.component.scss']
 })
 
+
 export class MentorTopComponent implements OnInit {
   categories = categories;
   languages = languages;
   city = city;
   mimNum: number = 1;
-  maxNum: number = 100;
+  maxNum: number = 1000;
   selectedLanguages: any[] = [];
   selectedCategories: any[] = [];
   selectedCity: any[] = [];
-  mentorFilter: MentorsFilter | undefined;
+  mentorFilter?: MentorsFilter;
+  dropList: boolean = true;
 
-  constructor(private http: MentorTopService) {}
+  @ViewChild('showDiv') showDiv!: ElementRef;
+  @ViewChild('rangeSlider') rangeSlider!: ElementRef;
+
+
+  constructor(private http: MentorTopService) {
+  }
 
   ngOnInit(): void {
-    this.http.getConfig().subscribe((data:any) => this.mentorFilter = new MentorsFilter(data.category,data.city,data.language,data.minValue,data.maxValue));
+    this.http.getConfig().subscribe((data: any) => this.mentorFilter = new MentorsFilter(data.category, data.city, data.language, data.minValue, data.maxValue));
+
+    this.showSlider();
   }
 
   AddCategory = ($event: any): void => {
@@ -36,7 +45,7 @@ export class MentorTopComponent implements OnInit {
 
   RemoveCategory = ($event: any): void => {
     console.log($event);
-    this.categories = this.categories.filter(categories => categories.id !== $event.value.id)
+    this.selectedCategories = this.selectedCategories.filter(categories => categories.id !== $event.value.id);
   }
 
   AddCity = ($event: any): void => {
@@ -47,7 +56,7 @@ export class MentorTopComponent implements OnInit {
 
   RemoveCity = ($event: any): void => {
     console.log($event);
-    this.selectedCity = this.selectedCity.filter(cities => cities.id !== $event.value.id)
+    this.selectedCity = this.selectedCity.filter(cities => cities.id !== $event.value.id);
   }
 
   AddLanguage = ($event: any): void => {
@@ -58,7 +67,8 @@ export class MentorTopComponent implements OnInit {
 
   RemoveLanguage = ($event: any): void => {
     console.log($event);
-    this.selectedCity = this.selectedLanguages.filter(languages => languages.id !== $event.value.id)
+    this.selectedLanguages = this.selectedLanguages.filter(languages => languages.id !== $event.value.id);
+    this.selectedLanguages = [''];
   }
 
 
@@ -74,5 +84,9 @@ export class MentorTopComponent implements OnInit {
     let fields = new MentorsFilter(this.selectedCategories, this.selectedCity, this.selectedLanguages, this.mimNum, this.maxNum)
     this.http.postConfig(fields);
     console.log(fields)
+  }
+
+  showSlider() {
+    this.dropList = !this.dropList;
   }
 }
