@@ -12,4 +12,23 @@ export class CarouselComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getRate(mark: number) {
+    if (mark === 5) {
+      return '../../../../../assets/images/reviews-slider/rate5.svg';
+    }
+    if (mark === 4) {
+      return '../../../../../assets/images/reviews-slider/rate4.svg';
+    }
+    if (mark === 3) {
+      return '../../../../../assets/images/reviews-slider/rate3.svg';
+    }
+    if (mark === 2) {
+      return '../../../../../assets/images/reviews-slider/rate2.svg';
+    }
+    if (mark === 1) {
+      return '../../../../../assets/images/reviews-slider/rate1.svg';
+    }
+    else return ''
+  }
 }

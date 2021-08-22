@@ -6,7 +6,7 @@ export const CELL: cell[] = [
     title: '“Amazing idea”',
     text: 'Very interesting implementation of the service, it helped me find a person who is always with me for a long time to acquire the necessary skills to build a successful career in IT',
     name: 'Tony Stark',
-    mark: 5,
+    mark: 4,
   },
   {
     img: '../../assets/images/reviews-slider/1.svg',
@@ -20,7 +20,7 @@ export const CELL: cell[] = [
     title: '“Interesting implementation”',
     text: 'Amazing content from mentor4you, they not only cover figma also they concentrated on UX and other design aspects, Very helpful to build by career. Thank you Mentor4you!',
     name: 'Alisa rahman',
-    mark: 5,
+    mark: 4,
   },
   {
     img: '../../assets/images/reviews-slider/2.svg',

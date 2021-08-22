@@ -19,11 +19,13 @@
 
         <div class="slider__cell-bottom">
           <span class="slider__cell-name">{{ item.name }}</span>
-          <img
-            class="slider__cell-mark"
-            src="../../../../../assets/images/reviews-slider/rate.svg"
-            alt="rate"
-          />
+          <span>
+            <img
+              class="slider__cell-mark"
+              src="{{ getRate(item.mark) }}"
+              alt="rate"
+            />
+          </span>
         </div>
       </div>
     </div>
