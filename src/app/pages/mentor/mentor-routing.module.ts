@@ -12,6 +12,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class MentorRoutingModule { }

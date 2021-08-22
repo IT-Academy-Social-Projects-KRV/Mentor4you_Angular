@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { MentorComponent } from './mentor.component';
-<<<<<<< HEAD
 import { MentorRoutingModule } from './mentor-routing.module';
-
-@NgModule({
-  declarations: [MentorComponent],
-  imports: [
-    CommonModule,
-    MentorRoutingModule
-  ]
-=======
-import { MentorRouterModule } from './mentor-router.module';
 import { MainSectionComponent } from './components/main-section/main-section.component';
-import {MatIconModule} from "@angular/material/icon";
-import {CommonModule} from "@angular/common";
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [MentorComponent, MainSectionComponent],
-  imports: [MentorRouterModule, MatIconModule, CommonModule]
->>>>>>> dev
+  declarations: [
+    MentorComponent,
+    MainSectionComponent
+  ],
+  imports: [
+    SharedModule,
+    MentorRoutingModule,
+  ]
 })
+
 export class MentorModule { }
