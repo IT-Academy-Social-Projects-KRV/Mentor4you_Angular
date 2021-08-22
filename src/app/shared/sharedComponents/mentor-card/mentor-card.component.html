@@ -1,0 +1,17 @@
+<div *ngIf="mentor?.img" class="mentor-card">
+  <div class="mentor-card__info">
+    <div class="mentor-card__image-wrap">
+      <img class="mentor-card__image" src="{{mentor?.img}}" alt="{{mentor?.name}}">
+    </div>
+    <p class="mentor-card__name">{{mentor?.name}}</p>
+    <p class="mentor-card__category">{{mentor!.category[0]}}, {{mentor!.category[1]}}</p>
+    <p class="mentor-card__rating">
+      <img *ngFor="let star of stars" src="./../../../../../assets/images/star.svg" alt="star">
+    </p>
+  </div>
+
+  <div class="mentor-card__btns btns">
+    <button class="btns__ask">Ask for a mentorship project</button>
+    <button class="btns__view">View more</button>
+  </div>
+</div>

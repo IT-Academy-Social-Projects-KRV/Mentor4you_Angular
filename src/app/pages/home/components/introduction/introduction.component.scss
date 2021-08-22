@@ -66,6 +66,7 @@
             line-height: 24px;
             text-decoration: none;
             cursor: pointer;
+            transition: 0.3s transform;
             &:hover{
                 @include btn-shadow;
                 font-weight: 700;
