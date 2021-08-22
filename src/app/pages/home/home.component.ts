@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Mentor } from 'src/app/core/interfaces';
+import { MentorService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  mentors: Mentor[] = [];
 
-  constructor() { }
+  constructor(
+    private mentorService: MentorService
+  ) { }
 
   ngOnInit(): void {
+    this.mentorService.getMentors().subscribe(
+      mentors => this.mentors = mentors
+    )
   }
 
 }
