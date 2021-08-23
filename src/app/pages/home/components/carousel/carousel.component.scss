@@ -28,10 +28,17 @@
   }
 
   &__cell {
+    margin-top: 5px !important;
     display: flex;
     align-items: center;
     border: 1px solid #3ab67d;
     border-radius: 10px;
+    height: 250px !important;
+    
+    &:hover {
+      box-shadow: 0 0 5px 1px #d8d8d8;
+      transition: 500ms;
+    }
     &-image {
       margin-left: 20px;
       margin-right: 35px;
@@ -53,7 +60,7 @@
     font-weight: 500;
     font-size: 20px;
     color: black;
-    margin: 10px 0 30px;
+    margin: 15px 0 25px;
   }
   &__cell-text {
     font-family: "Roboto";
@@ -67,7 +74,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 7px;
+    margin-bottom: 20px;
   }
   &__cell-name {
     font-family: "Roboto";
@@ -85,8 +92,3 @@
   }
 }
 
-.carousel-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
