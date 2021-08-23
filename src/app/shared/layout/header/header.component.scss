@@ -3,6 +3,7 @@
 
 .container{
     background-color: #F4F4F4;
+    min-width: 1140px;
 }
 .logo{
     width: 180px;
@@ -129,19 +130,3 @@
 .logout{
     color: $red;
 }
-
-// @media (min-width: 1200px){
-    
-// }
-// @media (min-width: 1080px){
-    
-// }
-// @media (min-width: 992px){
-
-// }
-// @media (min-width: 768px){
-    
-// }
-// @media (min-width: 576px){
-    
-// }

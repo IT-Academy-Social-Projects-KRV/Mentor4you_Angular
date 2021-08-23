@@ -1,0 +1,94 @@
+.slider {
+  background-color: #ffffff;
+  max-width: 1140px;
+  margin: 100px auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    width: 300px;
+    text-align: center;
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 38px;
+    color: #26242e;
+    margin-bottom: 50px;
+    span {
+      display: block;
+      color: #3ab67d;
+    }
+  }
+
+  &__carousel {
+    max-width: 1156px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__cell {
+    margin-top: 5px !important;
+    display: flex;
+    align-items: center;
+    border: 1px solid #3ab67d;
+    border-radius: 10px;
+    height: 250px !important;
+    
+    &:hover {
+      box-shadow: 0 0 5px 1px #d8d8d8;
+      transition: 500ms;
+    }
+    &-image {
+      margin-left: 20px;
+      margin-right: 35px;
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+
+  &__cell-content {
+    max-width: 340px;
+    max-height: 270px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  &__cell-title {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+    margin: 15px 0 25px;
+  }
+  &__cell-text {
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 16px;
+    color: black;
+    line-height: 25.5px;
+    flex: 1 1 auto;
+  }
+  &__cell-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  &__cell-name {
+    font-family: "Roboto";
+    font-weight: 500;
+    font-size: 18px;
+    color: black;
+  }
+}
+
+@media (min-width: 320px) {
+  .slider {
+    &__title {
+      font-size: 30px;
+    }
+  }
+}
+

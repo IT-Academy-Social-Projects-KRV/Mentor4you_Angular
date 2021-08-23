@@ -7,26 +7,26 @@
 @import "variables";
 @import "reset";
 
-body{
-    background-color: $bg;
-  font-family: Roboto, sans-serif;
+body {
+  background-color: #ffffff;
+  min-width: 1140px;
+  width: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 html,
 body {
-height: 100%;
-   ::-webkit-scrollbar {
-      background-color: #dedede;
-      width: 10px;
-      // border-radius: 20px;
-   }
-   ::-webkit-scrollbar-thumb {
-      background-color: rgba(58, 182, 125, .8);
-      border-radius: 20px;
-   }
+  height: 100%;
+  ::-webkit-scrollbar {
+    background-color: #dedede;
+    width: 10px;
+    // border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(58, 182, 125, 0.8);
+    border-radius: 20px;
+  }
 }
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

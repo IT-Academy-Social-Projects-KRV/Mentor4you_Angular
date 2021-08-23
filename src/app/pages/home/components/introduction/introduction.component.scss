@@ -3,6 +3,7 @@
 
 .container{
     padding: 0;
+    min-width: 1140px;
 }
 .introduction{
     margin: 0 auto;
@@ -21,6 +22,7 @@
         padding: 0 15px;
     }
     &__info{
+        max-width: 315px;
         width: 35%;
         &-exhortation{
             color: $green;
@@ -80,9 +82,9 @@
 }
 
 @media (max-width: 1080px){
-    .introduction__img{
-        height: 250px;
-    }
+    // .introduction__img{
+    //     height: 250px;
+    // }
     .introduction__info-start{
         font-size: 27px;
     }
@@ -101,17 +103,17 @@
     }
 }
 @media (max-width: 992px){
-    .introduction__img{
-        height: 200px;
-    }
+    // .introduction__img{
+    //     height: 200px;
+    // }
     .introduction__info-btn{
         padding: 10px 40px;
     }
 }
 @media (max-width: 768px){
-    .introduction__img{
-        height: 180px;
-    }
+    // .introduction__img{
+    //     height: 180px;
+    // }
     .introduction__info-start{
         font-size: 25px;
     }
@@ -134,9 +136,9 @@
     }
 }
 @media (max-width: 576px){
-    .introduction__img{
-        height: 120px;
-    }
+    // .introduction__img{
+    //     height: 120px;
+    // }
     .introduction__info-slogan{
         font-size: 16px;
         padding-left: 55px;
@@ -149,9 +151,9 @@
     .introduction__inner{
         padding: 0;
     }
-    .introduction__img{
-        height: 100px;
-    }
+    // .introduction__img{
+    //     height: 100px;
+    // }
     .introduction__info-start{
         font-size: 23px;
     }
@@ -170,9 +172,9 @@
     }
 }
 @media (max-width: 360px){
-    .introduction__img{
-        height: 95px;
-    }
+    // .introduction__img{
+    //     height: 95px;
+    // }
     .introduction__info-start{
         font-size: 20px;
     }
@@ -193,9 +195,9 @@
     }
 }
 @media (max-width: 320px){
-    .introduction__img{
-        height: 90px;
-    }
+    // .introduction__img{
+    //     height: 90px;
+    // }
     .introduction__info-start{
         font-size: 19px;
     }

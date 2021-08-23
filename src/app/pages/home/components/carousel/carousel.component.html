@@ -1,0 +1,33 @@
+<div class="slider">
+  <h2 class="slider__title">What our Mentees say <span>About Us</span></h2>
+
+  <carousel
+    class="slider__carousel"
+    [cellsToShow]="2"
+    [width]="1120"
+    [height]="260"
+    [loop]="true"
+  >
+    <div *ngFor="let item of review" class="carousel-cell slider__cell">
+      <img class="slider__cell-image" src="{{ item.img }}" alt="img" />
+
+      <div class="slider__cell-content">
+        <h4 class="slider__cell-title">{{ item.title }}</h4>
+        <p class="slider__cell-text">
+          {{ item.text }}
+        </p>
+
+        <div class="slider__cell-bottom">
+          <span class="slider__cell-name">{{ item.name }}</span>
+          <span>
+            <img
+              class="slider__cell-mark"
+              src="{{ getRate(item.mark) }}"
+              alt="rate"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </carousel>
+</div>
