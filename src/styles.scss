@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import "~@ng-select/ng-select/themes/material.theme.css";
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
@@ -8,7 +9,7 @@
 
 body{
     background-color: $bg;
-    font-family: Roboto;
+  font-family: Roboto, sans-serif;
 }
 
 html,
@@ -24,5 +25,8 @@ height: 100%;
       border-radius: 20px;
    }
 }
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
