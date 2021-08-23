@@ -1,4 +1,4 @@
-import { cell } from './cell.interface';
+import { cell } from '../interfaces/cell.interface';
 
 export const CELL: cell[] = [
   {

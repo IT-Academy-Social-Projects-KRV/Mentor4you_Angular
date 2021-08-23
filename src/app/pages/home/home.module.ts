@@ -10,7 +10,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
