@@ -1,29 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap");
 @import "~bootswatch/dist/minty/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
 @import "variables";
 @import "reset";
 
-body{
-    background-color: #FFFFFF;
-    font-family: Roboto;
-    min-width: 1140px;
+body {
+  background-color: #ffffff;
+  font-family: Roboto;
+  min-width: 1140px;
+  width: 100%;
 }
 
 html,
 body {
-height: 100%;
-   ::-webkit-scrollbar {
-      background-color: #dedede;
-      width: 10px;
-      // border-radius: 20px;
-   }
-   ::-webkit-scrollbar-thumb {
-      background-color: rgba(58, 182, 125, .8);
-      border-radius: 20px;
-   }
+  height: 100%;
+  ::-webkit-scrollbar {
+    background-color: #dedede;
+    width: 10px;
+    // border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(58, 182, 125, 0.8);
+    border-radius: 20px;
+  }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
