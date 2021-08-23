@@ -2,6 +2,7 @@ import {Component,ElementRef, OnInit, ViewChild} from '@angular/core';
 import {categories, city, languages} from "./Selected_options";
 import {MentorsFilter} from "./MentorsFilter";
 import {MentorTopService} from "./mentor-top.service";
+import {MentorDataFilter} from "../../../../core";
 
 
 @Component({
@@ -20,18 +21,17 @@ export class MentorTopComponent implements OnInit {
   selectedLanguages: any[] = [];
   selectedCategories: any[] = [];
   selectedCity: any[] = [];
-  mentorFilter?: MentorsFilter;
   dropList: boolean = true;
+  mentorDataFilter: any;
 
   @ViewChild('showDiv') showDiv!: ElementRef;
   @ViewChild('rangeSlider') rangeSlider!: ElementRef;
 
 
-  constructor(private http: MentorTopService) {
+  constructor( private mentorService: MentorTopService ) {
   }
 
   ngOnInit(): void {
-    this.http.getConfig().subscribe((data: any) => this.mentorFilter = new MentorsFilter(data.categories, data.city, data.languages, data.mimNum,data.maxNum));
 
     this.showSlider();
   }
@@ -82,8 +82,12 @@ export class MentorTopComponent implements OnInit {
 
   onSubmit() {
     let fields = new MentorsFilter(this.selectedCategories, this.selectedCity, this.selectedLanguages, this.mimNum, this.maxNum)
-    this.http.postConfig(fields);
+    this.mentorService.postConfig(fields);
     console.log(fields)
+  }
+
+  getMentorData(){
+    this.mentorService.getMentorData().subscribe((data: any) => this.mentorDataFilter = data);
   }
 
   showSlider() {

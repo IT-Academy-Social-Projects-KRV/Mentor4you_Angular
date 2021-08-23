@@ -1,14 +1,23 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { MentorComponent } from './mentor.component';
-import { MentorRouterModule } from './mentor-router.module';
-import { MentorTopComponent } from './components/mentor-top/mentor-top.component';
-import {NgSelectModule} from "@ng-select/ng-select";
-import {FormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
+import {MentorRoutingModule} from './mentor-routing.module';
+import {SharedModule} from 'src/app/shared/shared.module';
+import {MainSectionComponent} from './components/main-section/main-section.component';
+import {MentorComponent} from './mentor.component';
+import {MentorTopComponent} from './components/mentor-top/mentor-top.component';
+
 
 @NgModule({
-  declarations: [MentorComponent, MentorTopComponent],
-    imports: [MentorRouterModule, NgSelectModule, FormsModule, CommonModule]
+  declarations: [
+    MentorComponent,
+    MainSectionComponent,
+    MentorTopComponent
+  ],
+  imports: [
+    SharedModule,
+    MentorRoutingModule,
+  ]
 })
-export class MentorModule { }
+
+export class MentorModule {
+}

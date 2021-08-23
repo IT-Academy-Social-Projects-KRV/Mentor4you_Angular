@@ -18,7 +18,7 @@ export class MentorTopService implements OnInit{
     this.http.post('', mentor)
   }
 
-  getConfig(){
+  getMentorData(){
     return this.http.get('')
   }
 }
