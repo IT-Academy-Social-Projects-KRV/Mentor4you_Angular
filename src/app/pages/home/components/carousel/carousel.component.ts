@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CELL } from '../../CELL';
-import { cell } from '../../cell.interface';
+import { CELL } from './CELL';
+import { cell } from './cell.interface';
 
 @Component({
   selector: 'app-carousel',
