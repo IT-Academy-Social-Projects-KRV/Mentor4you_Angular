@@ -4,16 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FormsModule} from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { InMemoryDataService } from '../core';
-import {NgSelectModule} from "@ng-select/ng-select";
-
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  imports: [
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)
-  ],
+  imports: [HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)],
   exports: [
     CommonModule,
     HttpClientModule,
@@ -21,6 +18,6 @@ import {NgSelectModule} from "@ng-select/ng-select";
     NgbModule,
     FormsModule,
     NgSelectModule
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
