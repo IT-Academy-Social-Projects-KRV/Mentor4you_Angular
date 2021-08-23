@@ -20,13 +20,14 @@ footer{
         padding: 20px 0 0 0;
         .projectName {
             padding-left: 30px;
-            p.appName{
-                font-size: 36px;
+            img{
+                width: 300px;
             }
         }
         .footerLinks{
-            padding: 0 100px 0 0;
+            padding: 0 30px 0 0;
             text-align: center;
+            margin: auto 0;
         a{
             text-decoration: none;
         }
