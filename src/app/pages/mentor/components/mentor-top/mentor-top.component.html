@@ -1,0 +1,63 @@
+<form #myForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+  <div class="categories">
+    <ng-select class="custom"
+               [items]="categories"
+               bindLabel="name"
+               bindValue="id"
+               placeholder="Choose category"
+               [multiple]="true"
+               [maxSelectedItems]="2"
+               (add)="AddCategory($event)"
+               (remove)="RemoveCategory($event)">
+    </ng-select>
+  </div>
+  <div class="languages">
+    <ng-select class="custom"
+               [items]="languages"
+               bindLabel="name"
+               bindValue="id"
+               placeholder="Choose language"
+               [multiple]="true"
+               [maxSelectedItems]="2"
+               (add)="AddLanguage($event)"
+               (remove)="RemoveCity($event)">
+    </ng-select>
+  </div>
+  <div class="city">
+    <ng-select class="custom"
+               [items]="city"
+               bindLabel="name"
+               placeholder="Choose city"
+               [multiple]="true"
+               [maxSelectedItems]="2"
+               (add)="AddCity($event)"
+               (remove)="RemoveCity($event)">
+    </ng-select>
+  </div>
+  <div class="dropButton">
+    <div class="showList" (click)="showSlider()"><span>Choose Rate</span></div>
+  <ng-container class="dropList" *ngIf="dropList">
+    <div class="range-slider">
+        <div id="rangeSlider" class="range-slider">
+          <div class="number-group">
+            <label for="input-min" class="minInput">From</label>
+            <input id="input-min" class="number-input" type="number" [value]="this.mimNum" min="1" max="1000"/>
+            <label for="input-max">to</label>
+            <input id="input-max" class="number-input" type="number" [value]="this.maxNum" min="1" max="1000"/>
+          </div>
+          <div class="range-group">
+            <input class="range-input" [value]="this.mimNum" min="1" max="1000" step="1" type="range"
+                   (input)="ChangeMin($event)"/>
+            <input class="range-input" [value]="this.maxNum" min="1" max="1000" step="1" type="range"
+                   (input)="ChangeMax($event)"/>
+          </div>
+        </div>
+    </div>
+  </ng-container>
+  </div>
+  <div class="Submit-button">
+    <button type="submit" class="btn" (click)="getMentorData()">Search</button>
+  </div>
+</form>
+<!--<div>Имя: {{myForm.value.name}}</div>-->
+<!--<div>Email: {{myForm.value.email}}</div>`-->

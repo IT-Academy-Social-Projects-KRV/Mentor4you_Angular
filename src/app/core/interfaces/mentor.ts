@@ -5,3 +5,8 @@ export interface Mentor {
   category: Array<string>;
   rating?: number;
 }
+
+export interface MentorDataFilter {
+  id: number;
+  name: string;
+}

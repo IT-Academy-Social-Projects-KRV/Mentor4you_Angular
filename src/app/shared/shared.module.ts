@@ -4,9 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-
+import { FormsModule} from "@angular/forms";
 import { MaterialModule } from './material/material.module';
 import { InMemoryDataService } from '../core';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { InMemoryDataService } from '../core';
     HttpClientModule,
     MaterialModule,
     NgbModule,
+    FormsModule,
+    NgSelectModule
   ]
 })
 export class SharedModule { }

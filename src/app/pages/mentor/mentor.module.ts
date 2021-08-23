@@ -1,14 +1,17 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { MentorComponent } from './mentor.component';
-import { MentorRoutingModule } from './mentor-routing.module';
-import { MainSectionComponent } from './components/main-section/main-section.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import {MentorRoutingModule} from './mentor-routing.module';
+import {SharedModule} from 'src/app/shared/shared.module';
+import {MainSectionComponent} from './components/main-section/main-section.component';
+import {MentorComponent} from './mentor.component';
+import {MentorTopComponent} from './components/mentor-top/mentor-top.component';
+
 
 @NgModule({
   declarations: [
     MentorComponent,
-    MainSectionComponent
+    MainSectionComponent,
+    MentorTopComponent
   ],
   imports: [
     SharedModule,
@@ -16,4 +19,5 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ]
 })
 
-export class MentorModule { }
+export class MentorModule {
+}
