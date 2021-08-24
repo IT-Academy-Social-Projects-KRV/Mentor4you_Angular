@@ -8,7 +8,7 @@
 @import "reset";
 
 body {
-  background-color: #ffffff;
+  background-color: $bg;
   min-width: 1140px;
   width: 100%;
   margin: 0;
@@ -26,6 +26,16 @@ body {
   ::-webkit-scrollbar-thumb {
     background-color: rgba(58, 182, 125, 0.8);
     border-radius: 20px;
+  }
+}
+
+.pagination {
+  list-style-type: none;
+  display: flex;
+  
+  li {
+    cursor: pointer;
+    margin-right: 3px;
   }
 }
 
