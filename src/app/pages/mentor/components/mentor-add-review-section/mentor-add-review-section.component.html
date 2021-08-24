@@ -1,0 +1,52 @@
+<section class="form-review">
+	<div class="form-review__container container">
+		<div class="form-review__row col-md-12">
+			<div class="form-review__title">Add Review</div>
+		</div>
+		<form action="" [formGroup]="formAddReview" (ngSubmit)="submit()">
+			<div class="form-review__wrapper">
+				<div class="form-review__row">
+					<div class="form-review__input-wrapper">
+						<div class="form-review__column">
+							<label for="" class="form-review__label">
+								<input placeholder="Name" type="text" class="form-review__input" formControlName="name">
+							</label>
+						</div>
+						<div class="form-review__column">
+							<label for="" class="form-review__label">
+								<input placeholder="Email" type="text" class="form-review__input" formControlName="email">
+								<div class="error-text"
+									*ngIf="formAddReview.get('email')?.invalid&&formAddReview.get('email')?.touched">Введіть
+									коректний email</div>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-review__row">
+					<div class="form-review__textarea-wrapper">
+						<textarea name="" id="" cols="30" rows="10" class="form-review__textarea"
+							formControlName="textarea"></textarea>
+					</div>
+				</div>
+				<div class="form-review__row">
+					<div class="form-review__range-wrapper">
+
+						<div class="form-review__range">
+							<ng-container *ngFor="let star of stars">
+								<app-star-raiting [starId]="star" [rating]="hoverState || rating" (enter)="enter($event)"
+									(leave)="leave()" (bigClick)="updateRating(star)">
+								</app-star-raiting>
+							</ng-container>
+						</div>
+					</div>
+				</div>
+				<div class="form-review__row">
+					<div class="form-review__button-wrapper">
+						<button [class.btnClick]="btnCheck" [disabled]="formAddReview.invalid" class="form-review__button"
+							type="submit" [class.disabled]="formAddReview.invalid" (click)="btnClick()">Submit Now</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
