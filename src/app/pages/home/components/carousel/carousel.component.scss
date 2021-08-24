@@ -1,7 +1,8 @@
 .slider {
   background-color: #ffffff;
   max-width: 1140px;
-  margin: 100px auto;
+  margin: 0 auto;
+  padding: 100px 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -34,7 +35,7 @@
     border: 1px solid #3ab67d;
     border-radius: 10px;
     height: 250px !important;
-    
+
     &:hover {
       box-shadow: 0 0 5px 1px #d8d8d8;
       transition: 500ms;
@@ -92,3 +93,31 @@
   }
 }
 
+:host ::ng-deep {
+  .carousel-arrows {
+    position: relative;
+    bottom: -44px;
+  }
+
+  .slider__carousel .carousel-arrows .carousel-arrow-prev {
+    transition-duration: 500ms;
+    box-shadow: 0 0 0 rgb(0, 0, 0);
+    background-image: url(../../../../../assets/images/reviews-slider/prev.svg);
+    background-size: 40px;
+    left: 44%;
+    &:hover {
+      background-image: url(../../../../../assets/images/reviews-slider/prev-gr.svg);
+    }
+  }
+
+  .slider__carousel .carousel-arrows .carousel-arrow-next {
+    transition-duration: 500ms;
+    box-shadow: 0 0 0 rgb(0, 0, 0);
+    background-size: 40px;
+    background-image: url(../../../../../assets/images/reviews-slider/next.svg);
+    left: 52%;
+    &:hover {
+      background-image: url(../../../../../assets/images/reviews-slider/next-gr.svg);
+    }
+  }
+}

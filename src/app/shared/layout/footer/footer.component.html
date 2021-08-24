@@ -1,15 +1,14 @@
 <footer>
     <div class="container">
-    <div class="mainText">
-        <div class="projectName">
-            <img class="logo" src="./../../../../assets/images/logo_for_footer.png" alt="Logo">
+        <div class="mainText">
+            <a routerLink="/" class="projectName">
+                <img class="logo" src="./../../../../assets/images/logo_for_footer.png" alt="Logo">
+            </a>
+            <div class="footerLinks">
+                <p><a routerLink="/terms">Terms & Conditions</a></p>
+                <p><a routerLink="#">Contact us</a></p>
+            </div>
         </div>
-        <div class="footerLinks">
-            <p><a routerLink="/terms">Terms & Conditions</a></p>
-            <p><a routerLink="#">Contact us</a></p>
-        </div>
+        <div class="textBottom">© <span>{{ getYear() }}</span> Mentor4you All Rights Reserved </div>
     </div>
-    <div class="textBottom">© <span>{{ getYear() }}</span> Mentor4you All Rights Reserved </div>
-</div>
 </footer>
-

@@ -1,15 +1,17 @@
 <app-introduction></app-introduction>
+
 <div class="mentor-list">
   <div class="container">
     <h2 class="mentor-list__title">Mentors</h2>
 
     <div class="rows">
-      <app-mentor-card
-        *ngFor="let mentor of mentors"
-        [mentor]="mentor"
-      ></app-mentor-card>
+      <app-mentor-card *ngFor="let mentor of mentors" [mentor]="mentor"></app-mentor-card>
     </div>
+
+    <a class="mentor-list__btn" (click)="goTo('mentor')">Find Your Mentor</a>
   </div>
 </div>
+
 <app-carousel></app-carousel>
+
 <app-invitation></app-invitation>
