@@ -1,0 +1,150 @@
+@import "variables";
+
+.cards_main_container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 0;
+    box-sizing: border-box;
+    margin-top: 80px;    
+    
+
+    .card_container {
+        width: 25%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+
+        .card_content {
+            width: 100%;
+            background-color: $white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px 0;
+            box-shadow: 1px 2px 3px $grey;
+            height: 100%;
+            box-sizing: border-box;
+
+            .image_container {
+                width: 47%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 100%;
+                overflow: hidden;
+                margin-bottom: 10px;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            h3 {
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 0px;
+                cursor: default;
+                flex: 1 1 auto;
+                margin-bottom: 10px;
+                padding: 0 15px;                
+            }
+
+            .lessons_container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                flex: 1 1 auto;
+                padding: 0 20px;  
+                
+                p {
+                    font-size: 12px;     
+                    margin-right: 4px;
+                    cursor: default;
+                    margin-top: 5px;
+                    margin-bottom: 0; 
+                }
+            }
+
+            .stars_container {
+                margin-top: 25px;
+                margin-bottom: 15px;
+
+                i {
+                    cursor: pointer;
+                    color: $fuschia60;
+                    font-size: 13px;
+                    
+                    &:hover {
+                        color: $fuschia100;
+                    }
+                }
+            }
+        }
+
+        .card_buttons {
+            width: 100%;
+            margin-top: 15px;
+            background-color: $white;
+            box-shadow: 1px 2px 3px $grey;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px 0;
+
+            .mentorship_button {
+                width: 90%;
+                padding: 7px 0;
+                font-size: 16px;
+                background-color: $white;
+                color: $darkblue;
+                border: 2px solid $darkblue;
+                border-radius: 15px;
+                margin-bottom: 25px;
+                cursor: pointer;
+                transition: .3s;
+                
+                &:hover {
+                    color: $white;
+                    background-color: $darkblue;
+                    border: 2px solid $white;
+                }
+            }
+
+            a {
+                width: 90%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-weight: 700;
+                padding: 7px 0;
+                font-size: 16px;
+                background-color: $white;
+                color: $darkblue;
+                border: 1px solid $darkblue;
+                border-radius: 15px;
+                transition: .3s;
+                cursor: pointer;
+                
+                &:hover {
+                    color: $white;
+                    background-color: $darkblue;
+                    border: 1px solid $white;
+                }
+            }
+        }    
+    }
+}
+
+.pagination_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
