@@ -4,7 +4,7 @@
   height: 350px;
   padding: 45px;
 
-  box-shadow: 3px 3px 10px black;
+  box-shadow: 2px 2px 5px black;
 
 
 
@@ -25,6 +25,7 @@
   mat-icon{
     color: #3AB67D;
     margin-bottom: 15px;
+    margin-left:15px;
 
     a{
       width: 24px;
@@ -60,4 +61,11 @@
     box-shadow: 0 0 0 2px #524C6F inset, 0 0 0 4px white inset;
   }
 
+}
+
+.certificates,.links{
+  width: 1020px;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 1px 1px 5px black;
 }
