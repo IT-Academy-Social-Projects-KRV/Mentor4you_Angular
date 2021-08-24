@@ -10,6 +10,7 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
+// import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TermsComponent } from './pages/terms/terms.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    TermsComponent
+    TermsComponent,
+    // MentorDetailsComponent,
   ],
   imports: [
     BrowserModule,

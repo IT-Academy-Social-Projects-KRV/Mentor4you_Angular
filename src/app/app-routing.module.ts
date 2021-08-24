@@ -9,6 +9,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/mentor/mentor.module').then(m => m.MentorModule)
   },
   {
+    path: 'mentor-details',
+    loadChildren: () => import('./pages/mentor-details/mentor-details.module').then(m => m.MentorDetailsModule)
+  },
+  {
     path: 'terms',
     component: TermsComponent
   }
