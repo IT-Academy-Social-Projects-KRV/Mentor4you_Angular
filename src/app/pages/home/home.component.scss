@@ -22,9 +22,25 @@
   }
 }
 
+.mentor-list__btn {
+  width: fit-content;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: $fuschia100;
+  color: #FFF;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  &:hover{
+      @include btn-shadow;
+      transform: scale(1.1, 1.1);
+  }
+}
+
 .rows {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-bottom: 100px;
+  padding-bottom: 45px;
 }
