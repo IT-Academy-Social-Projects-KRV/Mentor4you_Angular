@@ -27,7 +27,7 @@ export class MentorAddREviewSectionComponent implements OnInit {
   submit() {
     console.log(this.formAddReview.get('email'));
     this.formAddReview.reset();
-    
+    this.rating = 0
     // console.log(this.formAddReview['controls'].name);
     
 
