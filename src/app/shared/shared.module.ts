@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { InMemoryDataService } from '../core';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -17,7 +17,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     MaterialModule,
     NgbModule,
     FormsModule,
-    NgSelectModule
+    ReactiveFormsModule,
+    NgSelectModule,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

@@ -10,15 +10,16 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {MatIconModule} from '@angular/material/icon';
+// import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    TermsComponent
+    TermsComponent,
+    // MentorDetailsComponent,
   ],
   imports: [
     BrowserModule,
