@@ -1,0 +1,46 @@
+@import "variables";
+
+footer{
+    .container{
+    background-color: $fuschia80;
+    height: 150px;
+    @extend %base-font;
+    margin: auto;
+    *{
+        color: white;
+    }
+    p{
+        font-size: 18px;
+        padding: 5px;
+    }
+    .mainText {
+        display: flex;
+        justify-content: space-between;
+        justify-items: flex-start;
+        padding: 20px 0 0 0;
+        .projectName {
+            padding-left: 30px;
+            img{
+                width: 300px;
+            }
+        }
+        .footerLinks{
+            padding: 0 30px 0 0;
+            text-align: center;
+            margin: auto 0;
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color: #524C6F;
+        }
+    }
+    }
+    .textBottom{
+        text-align: center;
+        font-size: 16px;
+        padding-top: 20px;
+    }
+}
+}
+
