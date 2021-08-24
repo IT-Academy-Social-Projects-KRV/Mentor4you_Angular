@@ -4,11 +4,9 @@
     <h2 class="mentor-list__title">Mentors</h2>
 
     <div class="rows">
-      <app-mentor-card
-        *ngFor="let mentor of mentors"
-        [mentor]="mentor"
-      ></app-mentor-card>
+      <app-mentor-card *ngFor="let mentor of mentors" [mentor]="mentor"></app-mentor-card>
     </div>
+
   </div>
 </div>
 <app-carousel></app-carousel>
