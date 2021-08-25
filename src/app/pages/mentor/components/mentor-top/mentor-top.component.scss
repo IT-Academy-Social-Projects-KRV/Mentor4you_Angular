@@ -1,3 +1,4 @@
+@import "variables";
 form {
   margin: 40px auto;
   display: flex;
@@ -62,7 +63,8 @@ form {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #F6F9FE;
+  z-index: 5;
   #rangeSlider {
     border-radius: 10px;
     box-shadow: 0 2px 2px 2px grey;
