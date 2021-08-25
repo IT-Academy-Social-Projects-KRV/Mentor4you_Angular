@@ -7,6 +7,7 @@ import { MentorDetailsRoutingModule } from './mentor-details-routing.module';
 import { MentorAddREviewSectionComponent } from './components/mentor-add-review-section/mentor-add-review-section.component';
 import { AppStarRaitingComponent } from '../../shared/sharedComponents/star-raiting/app-star-raiting';
 import { MainSectionComponent } from './components/main-section/main-section.component';
+import { MentorReviewsComponent } from './components/mentor-reviews/mentor-reviews.component';
 
 
 
@@ -15,7 +16,7 @@ import { MainSectionComponent } from './components/main-section/main-section.com
     MentorDetailsComponent,
     MentorAddREviewSectionComponent,
     AppStarRaitingComponent, 
-    MainSectionComponent],
+    MainSectionComponent, MentorReviewsComponent],
     
   imports: [
     SharedModule,
