@@ -11,5 +11,9 @@ export class TermsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  onNavigate(){
+    const url = 'https://www.privacypolicies.com/terms-conditions-generator/';
+    window.open(url, '_blank');
+}
 
 }
