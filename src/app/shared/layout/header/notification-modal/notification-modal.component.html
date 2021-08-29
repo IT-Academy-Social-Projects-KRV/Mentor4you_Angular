@@ -8,9 +8,9 @@
         <hr>
         <ng-container *ngIf="isNewNotification; else NoNotification">
           <div class="mentorship-request__users">
-            
-            <ng-container *ngIf="MentorRole; else MenteeRole">
-              <app-mentorship-request></app-mentorship-request>
+
+            <ng-container *ngIf="mentorRole; else MenteeRole">
+              <app-mentorship-request *ngFor="let mentee of mentees" [mentee]="mentee"></app-mentorship-request>
             </ng-container>
             <ng-template #MenteeRole>
               <app-mentorship-approve></app-mentorship-approve>
