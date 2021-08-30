@@ -20,5 +20,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     NgSelectModule,
   ],
+  declarations: [],
 })
 export class SharedModule { }
