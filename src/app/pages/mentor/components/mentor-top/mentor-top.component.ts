@@ -1,8 +1,7 @@
-import {Component,ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {categories, city, languages} from "./Selected_options";
 import {MentorsFilter} from "./MentorsFilter";
 import {MentorTopService} from "./mentor-top.service";
-import {MentorDataFilter} from "../../../../core";
 
 
 @Component({
@@ -16,7 +15,7 @@ export class MentorTopComponent implements OnInit {
   categories = categories;
   languages = languages;
   city = city;
-  mimNum: number = 1;
+  minNum: number = 1;
   maxNum: number = 1000;
   selectedLanguages: any[] = [];
   selectedCategories: any[] = [];
@@ -24,11 +23,12 @@ export class MentorTopComponent implements OnInit {
   dropList: boolean = true;
   mentorDataFilter: any;
 
+
   @ViewChild('showDiv') showDiv!: ElementRef;
   @ViewChild('rangeSlider') rangeSlider!: ElementRef;
 
 
-  constructor( private mentorService: MentorTopService ) {
+  constructor(private mentorService: MentorTopService) {
   }
 
   ngOnInit(): void {
@@ -73,20 +73,28 @@ export class MentorTopComponent implements OnInit {
 
 
   ChangeMin(event: any) {
-    this.mimNum = event.target.value;
+    this.minNum = event.target.value;
   }
 
   ChangeMax(event: any) {
     this.maxNum = event.target.value;
   }
 
+  setRangeSlider() {
+    if (this.minNum > this.maxNum) {
+      let temp = this.maxNum;
+      this.maxNum = this.minNum;
+      this.minNum = temp;
+    }
+  }
+
   onSubmit() {
-    let fields = new MentorsFilter(this.selectedCategories, this.selectedCity, this.selectedLanguages, this.mimNum, this.maxNum)
+    let fields = new MentorsFilter(this.selectedCategories, this.selectedCity, this.selectedLanguages, this.minNum, this.maxNum)
     this.mentorService.postConfig(fields);
     console.log(fields)
   }
 
-  getMentorData(){
+  getMentorData() {
     this.mentorService.getMentorData().subscribe((data: any) => this.mentorDataFilter = data);
   }
 
