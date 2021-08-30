@@ -10,6 +10,10 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
+import { HttpClient} from "@angular/common/http";
+import { HttpClientModule} from "@angular/common/http";
+import { FormsModule} from "@angular/forms";
+
 // import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
 
 
@@ -26,7 +30,9 @@ import { TermsComponent } from './pages/terms/terms.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
