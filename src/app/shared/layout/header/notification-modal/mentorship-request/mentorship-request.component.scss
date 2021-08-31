@@ -1,0 +1,41 @@
+@import "variables";
+@import "reset";
+
+.user-avatar{
+    @include avatar-round;
+    &__border{
+      @include avatar-round-border;
+    }
+  }
+  .mentorship-request{
+    &__inner{
+      display: grid;
+      grid-template-columns: 60px 1fr 75px 75px;
+      align-items: center;
+      grid-gap: 10px;
+      font-size: 16px;
+    }
+    &__user-name{
+      font-size: 16px;
+      color: $black;
+    }
+    &__btn{
+      border-radius: 10px;
+      padding: 5px;
+      background-color: #fff;
+      cursor: pointer;
+      color: $grey;
+      &:hover{
+        @include btn-shadow;
+        transform: scale(1.1, 1.1);
+      }
+    }
+    &__ignore{
+      border: 2px solid $red;
+      
+    }
+    &__accept{
+      border: 2px solid $fuschia100;
+      color: $fuschia100;
+    }
+  }

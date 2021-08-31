@@ -2,6 +2,7 @@ $darkblue: #524C6F;
 $fuschia100: #3AB67D;
 $fuschia80: #5CC092;
 $fuschia60: #7FC9A7;
+$fuschia40: #99d4b9;
 $green: #52D197;
 $lightgreen: #E2F4EC;
 $grey: #A3A3A3;
@@ -28,4 +29,22 @@ $yellow: #FCD84B;
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+@mixin avatar-round{
+    width: 50px;
+    height: 50px;
+    border: 1px solid $grey;
+    border-radius: 50%; 
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin avatar-round-border{
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: contain;
 }
