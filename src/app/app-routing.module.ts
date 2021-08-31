@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 
 import { TermsComponent } from './pages/terms/terms.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'messages',
     component: MessagesComponent
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent
   }
 ];
 
