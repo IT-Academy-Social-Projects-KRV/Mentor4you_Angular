@@ -15,7 +15,6 @@ import { NotificationModalService } from './core/services/notification-modal.ser
 import { MentorshipRequestComponent } from './shared/layout/header/notification-modal/mentorship-request/mentorship-request.component';
 import { MentorshipApproveComponent } from './shared/layout/header/notification-modal/mentorship-approve/mentorship-approve.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-// import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
 
 
 @NgModule({
@@ -28,7 +27,6 @@ import { MessagesComponent } from './pages/messages/messages.component';
     MentorshipRequestComponent,
     MentorshipApproveComponent,
     MessagesComponent,
-    // MentorDetailsComponent,
   ],
   imports: [
     BrowserModule,

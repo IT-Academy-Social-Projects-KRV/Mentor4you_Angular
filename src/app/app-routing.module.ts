@@ -6,6 +6,10 @@ import { TermsComponent } from './pages/terms/terms.component';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: 'mentor',
     loadChildren: () => import('./pages/mentor/mentor.module').then(m => m.MentorModule)
   },
@@ -20,7 +24,7 @@ const routes: Routes = [
   {
     path: 'messages',
     component: MessagesComponent
-  }
+  },
 ];
 
 @NgModule({
