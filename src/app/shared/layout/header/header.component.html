@@ -45,7 +45,7 @@
               <div class="settings-menu" *ngIf="showSettingsMenu" #menu>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/user.svg" alt="User">
-                  <a class="settings-menu__item__text" routerlink="#">My account</a>
+                  <a class="settings-menu__item__text" (click)="goTo('account')">My account</a>
                 </div>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/settings.svg" alt="Settings">

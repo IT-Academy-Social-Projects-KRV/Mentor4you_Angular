@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MessagesComponent } from './pages/messages/messages.component';
 
+import { MessagesComponent } from './pages/messages/messages.component';
 import { TermsComponent } from './pages/terms/terms.component';
 
 const routes: Routes = [
@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'mentor-details',
     loadChildren: () => import('./pages/mentor-details/mentor-details.module').then(m => m.MentorDetailsModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
   },
   {
     path: 'terms',
