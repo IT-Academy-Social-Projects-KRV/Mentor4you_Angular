@@ -7,12 +7,20 @@ import { TermsComponent } from './pages/terms/terms.component';
 
 const routes: Routes = [
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: 'mentor',
     loadChildren: () => import('./pages/mentor/mentor.module').then(m => m.MentorModule)
   },
   {
     path: 'mentor-details',
     loadChildren: () => import('./pages/mentor-details/mentor-details.module').then(m => m.MentorDetailsModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
   },
   {
     path: 'terms',

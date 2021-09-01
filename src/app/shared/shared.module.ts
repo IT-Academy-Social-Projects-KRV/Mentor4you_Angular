@@ -10,7 +10,7 @@ import { InMemoryDataService } from '../core';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
-  imports: [HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)],
+  // imports: [HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService)],
   exports: [
     CommonModule,
     HttpClientModule,
