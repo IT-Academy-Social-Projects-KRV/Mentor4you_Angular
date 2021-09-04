@@ -6,6 +6,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http'
 
 import { SigninRoutingModule } from './signin-routing.module';
 import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
+import {SigninComponent} from "./signin.component";
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import {NgbDropdownModule} from "@ng-bootstrap/ng-bootstrap";
     CommonModule,
     SigninRoutingModule,
     HttpClientModule,
-    NgbDropdownModule
+    NgbDropdownModule,
   ]
 })
 export class SigninModule { }
