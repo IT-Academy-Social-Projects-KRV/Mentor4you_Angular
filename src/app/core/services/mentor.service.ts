@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import { Observable, of } from 'rxjs';
+
 import { Mentor } from '../interfaces';
+import { mentors } from '../mock/in-memory-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +17,7 @@ export class MentorService {
   ) { }
 
   getMentors(): Observable<Mentor[]> {
-    return this.http.get<Mentor[]>(this.mentorUrl);
+    return of(mentors);
+    // return this.http.get<Mentor[]>(this.mentorUrl);
   }
 }
