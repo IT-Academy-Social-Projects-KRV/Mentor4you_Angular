@@ -1,0 +1,71 @@
+.main-section{
+  font-family: Roboto, sans-serif;
+  width: 1020px;
+  height: 350px;
+  padding: 45px;
+  margin-top: 30px;
+  box-shadow: 2px 2px 5px black;
+
+
+
+  .name{
+    font-size: 16px;
+    margin: 15px;
+  }
+  .description{
+    border: 1px solid #3AB67D;
+  }
+  .btn{
+    background-color: #524C6F;
+    color: white;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  mat-icon{
+    margin-bottom: 15px;
+    margin-left:15px;
+
+    a{
+      color: #3AB67D !important;
+      width: 24px;
+      height: 24px;
+      margin-left: 5px;
+      text-decoration: none;
+    }
+  }
+  .category{
+    margin-bottom: 15px;
+    font-size: 16px;
+
+    span{
+      border: 1px solid #3AB67D;
+      margin-left: 5px;
+      padding: 2px;
+      font-size: 12px;
+      color: #3AB67D;
+    }
+  }
+
+  .info-section>p
+  {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .info-section>p>span{
+    font-family: "Roboto Thin", serif;
+    font-size: 14px;
+  }
+
+  .btn:hover {
+    box-shadow: 0 0 0 2px #524C6F inset, 0 0 0 4px white inset;
+  }
+
+}
+
+.certificates,.links{
+  width: 1020px;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 1px 1px 5px black;
+}
