@@ -1,0 +1,50 @@
+<section class="sign_in container d-flex justify-content-center align-content-center">
+  <form class="row d-flex justify-content-center py-4" [formGroup]="fullGroup" (ngSubmit)="submitFrom()" >
+    <h5 class="col-8 d-flex justify-content-center align-items-center mt-3">Login Into Your Account</h5>
+    <div class="form-group col-9">
+      <label class="form-label mt-4">Email</label>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" [ngClass]="{'is-valid':isValid ,'is-invalid':isInvalid}"id="floatingInput" placeholder="name@example.com" formControlName="email" (ngModelChange)="isValidMail()">
+        <div class="valid-feedback">Success! You've done it.</div>
+        <div class="invalid-feedback">Wrong email!</div>
+        <label for="floatingInput">name@example.com</label>
+      </div>
+      <label class="form-label">Password</label>
+      <div class="form-floating mb-5">
+        <input type="password" class="form-control" [ngClass]="{'is-valid':isValidPass ,'is-invalid':isInvalidPass}" id="floatingPassword" placeholder="Password" formControlName="password" (ngModelChange)="isValidPassword()">
+        <div class="valid-feedback">Success!</div>
+        <div class="invalid-feedback">Wrong Password!</div>
+        <label for="floatingPassword">**************</label>
+      </div>
+      <div class="row my-3">
+          <div class="form-check col-6 checkboxLabel">
+              <input class="form-check-input" formControlName="signed" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Keep me signed in
+              </label>
+          </div>
+        <a routerLink="" class="col-6 forgotPass">Forgot Password?</a>
+      </div>
+      <div class="signin__btn row justify-content-center">
+        <button [disabled]="!isTrueFrom()" class="btn  col-md-10"
+                type="submit">Login</button>
+      </div>
+
+      <div class="row m-5">
+        <p class="col-12">or Login with</p>
+      </div>
+
+      <div class="row justify-content-center">
+        <a routerLink="" class="col-3 soc-link facebook"><img src="../assets/images/facebook-brands.svg" alt="Facebook"></a>
+        <a routerLink="" class="col-3 soc-link google"><img src="../assets/images/google-plus-brands.svg" alt="Google Plus"></a>
+        <a routerLink="" class="col-3 soc-link linkedin"><img src="../assets/images/linkedin-brands.svg" alt="LinkedIn"></a>
+      </div>
+
+      <div class="row justify-content-center my-4">
+        <div class="col-10">
+          <span>Don’t have an account?<a routerLink="">Register Now!</a></span>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

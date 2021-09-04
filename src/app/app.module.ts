@@ -11,9 +11,13 @@ import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
 import { HttpClient} from "@angular/common/http";
-import { HttpClientModule} from "@angular/common/http";
-import { FormsModule} from "@angular/forms";
+import { SigninComponent } from './auth/signin/signin.component';
+import {SigninService} from "./auth/signin/signin.service";
 
+import { HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {CookieService} from "ngx-cookie-service";
 // import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
 
 
@@ -23,6 +27,7 @@ import { FormsModule} from "@angular/forms";
     HeaderComponent,
     FooterComponent,
     TermsComponent,
+    SigninComponent,
     // MentorDetailsComponent,
   ],
   imports: [
@@ -32,9 +37,11 @@ import { FormsModule} from "@angular/forms";
     SharedModule,
     HomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SigninService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -15,7 +15,12 @@ const routes: Routes = [
   {
     path: 'terms',
     component: TermsComponent
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./auth/signin/signin.module').then(m => m.SigninModule)
   }
+
 ];
 
 @NgModule({
