@@ -1,0 +1,105 @@
+@import "variables";
+
+.title {
+  margin-top: 100px;
+
+  .changed{
+    color: #5CC092;
+    font-size: 26px;
+  }
+
+  .inchanged{
+    color: $red;
+    font-size: 26px;
+  }
+
+  .mainsection{
+
+    .aside,.content{
+      background-color: white;
+
+    }
+
+    .aside>ul>li>{
+      margin: 40px;
+
+
+      span{
+        cursor: pointer;
+        display: flex;
+        padding:20px 5px 15px 5px;
+        border-bottom: 1px solid #c6c6c6;
+        i{
+          font-size: 20px;
+        }
+
+        p{
+          font-size: 16px;
+          margin-left: 5px;
+          padding: 4px;
+
+        }
+
+
+      }
+
+      span.option:hover{
+        color: black;
+      }
+
+
+      .delete{
+        color: #FC3665;
+      }
+
+      .delete:hover{
+        color: #ff1616;
+      }
+
+    }
+
+
+  }
+}
+
+.title > p {
+  margin-bottom: 20px;
+  font-size: 25px;
+  color: black;
+  font-family: Roboto, sans-serif;
+  letter-spacing: 1px;
+
+}
+
+button{
+  background-color:$fuschia100;
+  color: $lightgreen;
+  padding: 10px;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  border-radius: 10px;
+  border: none;
+
+}
+
+button:active{
+  background: $fuschia80;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
+}
+
+.selected{
+  color:black;
+}
+
+
+.prog10{
+  width: 10%;
+}
+
+.prog50{
+  width: 50%;
+}
+
+.prog100{
+  width: 100%;
+}
+

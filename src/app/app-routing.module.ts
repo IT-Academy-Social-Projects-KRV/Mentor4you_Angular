@@ -33,6 +33,7 @@ const routes: Routes = [
     path: 'messages',
     component: MessagesComponent
   },
+
 ];
 
 @NgModule({
