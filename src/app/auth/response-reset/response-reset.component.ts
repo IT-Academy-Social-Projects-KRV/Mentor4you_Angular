@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -9,91 +9,52 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./response-reset.component.scss']
 })
 export class ResponseResetComponent implements OnInit {
+  ResponseResetForm: FormGroup = new FormGroup({
+    newPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$')]),
+  });
+  
+  isNewPasswordValid: boolean = true;
 
-  ResponseResetForm!: FormGroup;
-  errorMessage!: string;
-  successMessage!: string;
-  resetToken: null;
-  //CurrentState: any;
-  IsResetFormValid = true;
+  IsResetFormValid = false;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder
-  ) { 
-    // this.CurrentState = 'Wait';
-    // this.route.params.subscribe(params => {
-    //   this.resetToken = params.token;
-    //   console.log(this.resetToken);
-    //   this.VerifyToken();
-    // });
-  }
+  ) { }
 
   ngOnInit(): void {
-   this.Init();
+    
   }
-
-  // VerifyToken() {
-  //   this.authService.ValidPasswordToken({ resettoken: this.resetToken }).subscribe(
-  //     data => {
-  //       this.CurrentState = 'Verified';
-  //     },
-  //     err => {
-  //       this.CurrentState = 'NotVerified';
-  //     }
-  //   );
-  // }
-
-  Init() {
-    this.ResponseResetForm = this.fb.group(
-      {
-        resettoken: [this.resetToken],
-        newPassword: ['', [Validators.required, Validators.minLength(4)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(4)]]
-      }
-    );
-  }
-
-  Validate(passwordFormGroup: FormGroup) {
-    const new_password = passwordFormGroup.controls.newPassword.value;
-    const confirm_password = passwordFormGroup.controls.confirmPassword.value;
-
-    if (confirm_password.length <= 0) {
-      return null;
+  
+  validatePassword(event: any){
+    //console.log(this.ResponseResetForm.get("newPassword")?.status);
+    //console.log(this.ResponseResetForm.get("newPassword")?.value);
+    //console.log(this.ResponseResetForm);
+    if (this.ResponseResetForm.get("newPassword")?.status=="INVALID" && !this.ResponseResetForm.get("newPassword")?.pristine){
+    this.isNewPasswordValid = false;
+    } else {
+      this.isNewPasswordValid = true;
     }
-
-    if (confirm_password !== new_password) {
-      return {
-        doesNotMatch: true
-      };
-    }
-
-    return null;
   }
-
-
-  ResetPassword(form: { get: (arg0: string) => any; valid: any; }) {
-    console.log(form.valid);
-    console.log(form.get('confirmPassword'));
-    if (form.valid) {
+  
+  passwordMatchValidator(event: any) {
+    console.log(this.ResponseResetForm.get('newPassword')?.value);
+    console.log(this.ResponseResetForm.get('confirmPassword')?.value);
+    if (this.ResponseResetForm.get('newPassword')?.value === this.ResponseResetForm.get('confirmPassword')?.value){
       this.IsResetFormValid = true;
-      this.authService.newPassword(this.ResponseResetForm.value).subscribe(
-        data => {
-          this.ResponseResetForm.reset();
-          this.successMessage = data.message;
-          setTimeout(() => {
-            this.successMessage = " ";
-            this.router.navigate(['sign-in']);
-          }, 3000);
-        },
-        err => {
-          if (err.error.message) {
-            this.errorMessage = err.error.message;
-          }
-        }
-      );
-    } else { this.IsResetFormValid = false; }
+    } else {
+      this.IsResetFormValid = false;
+    }
+       
+ }
+  
+
+  ResetPassword() {
+    const verifiedPassword = this.ResponseResetForm.value.newPassword;
+    console.log(verifiedPassword);
+    return verifiedPassword;
   }
 }

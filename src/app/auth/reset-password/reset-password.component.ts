@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
 export class ResetPasswordComponent implements OnInit {
   RequestResetForm!: FormGroup;
   forbiddenEmails: any;
-  errorMessage!: string;
-  successMessage!: string;
+ 
   IsvalidForm = false;
   
 
@@ -42,29 +41,6 @@ validateEmail(event: any){
     const email= this.RequestResetForm.value.email;
     console.log(email);
 
-    // console.log(form.valid);
-    // console.log(this.RequestResetForm.value)
-
-    // if (form.valid) {
-    //   this.IsvalidForm = true;
-    //   this.authService.requestReset(this.RequestResetForm.value).subscribe(
-    //     data => {
-    //       this.RequestResetForm.reset();
-    //       this.successMessage = "Reset password link send to email sucessfully.";
-    //       setTimeout(() => {
-    //         this.successMessage = " ";
-    //         this.router.navigate(['sign-in']);
-    //       }, 3000);
-    //     },
-    //     err => {
-
-    //       if (err.error.message) {
-    //         this.errorMessage = err.error.message;
-    //       }
-    //     }
-    //   );
-    // } else {
-    //   this.IsvalidForm = false;
-    // }
+   
   }
 }

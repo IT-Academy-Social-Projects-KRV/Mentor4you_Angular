@@ -1,49 +1,43 @@
 <div class="container-fluid form">
-    
-    <!-- <div class="row" *ngIf="CurrentState=='Wait'">
-        <div class="col-md-12  close-form">
-            <h2> Please Wait...</h2>
-        </div>
-    </div>
-    <div class="row" *ngIf="CurrentState=='NotVerified'">
-        <div class="col-md-12">
-            <h2> Invalid URL.</h2>
-        </div>
-    </div> -->
     <div class="row" > 
-        <!-- *ngIf="CurrentState=='Verified'" -->
         <div class="col-sm-9 col-md-7 col-lg-6 mx-auto  my-3 p-2">
             <div class="card card-signin my-5">
                 <div class="card-body m-5">
                     <h5 class="card-title text-center">Set New Password</h5>
                     <div>
-                        <div id="errorMsg" *ngIf="errorMessage">
-                            <span>{{errorMessage}}</span>
-                        </div>
-                        <div id="successMsg" *ngIf="successMessage">
-                            <span>{{successMessage}}</span>
-                        </div>
-                        <form action="" [formGroup]="ResponseResetForm" (ngSubmit)="ResetPassword(ResponseResetForm)">
+                        
+                        <form action="" [formGroup]="ResponseResetForm" (ngSubmit)="ResetPassword()">
                             <div class="form-group">
-                                <input _ngcontent-c0="" class="form-control form-control-lg" placeholder="Enter New Password"
-                                    type="password" id="password" formControlName="newPassword" />
-                                <!-- <span *ngIf="!ResponseResetForm.get('newPassword').valid && !IsResetFormValid"
-                                    class="help-block">Password is required with atleast 4 characters.</span> -->
+                                <input _ngcontent-c0="" 
+                                class="form-control form-control-lg"
+                                placeholder="Enter New Password"
+                                type="password" 
+                                id="password" 
+                                formControlName="newPassword"
+                                (input)="validatePassword($event)" 
+                                [ngClass]='{"is-invalid": !isNewPasswordValid}'/>
+                                    <div *ngIf="!isNewPasswordValid" class="invalid-feedback">
+                                        Password must be at least 8 characters long, contains one upper case letter and one number
+                                      </div>
                             </div>
                             <div class="form-group text-center">
-                                <input _ngcontent-c0="" class="form-control form-control-lg"
-                                    placeholder="Confirm Password" type="password" id="cpassword"
-                                    formControlName="confirmPassword" />
-                                <!-- <span *ngIf="!ResponseResetForm.get('confirmPassword').valid && !IsResetFormValid"
-                                    class="help-block">. </span> -->
-                                <!-- <span
-                                    *ngIf="ResponseResetForm.get('confirmPassword').valid && (ResponseResetForm.get('confirmPassword').value != ResponseResetForm.get('newPassword').value) && !IsResetFormValid"
-                                    class="help-block">Confirm Password does not match with password.</span> -->
-                            </div>
+                                <input _ngcontent-c0="" 
+                                class="form-control form-control-lg"
+                                
+                                placeholder="Confirm Password" 
+                                type="password" id="cpassword"
+                                formControlName="confirmPassword" 
+                                (change)="passwordMatchValidator($event)"
+                                [ngClass]='{"is-invalid": !IsResetFormValid && this.ResponseResetForm.get("confirmPassword")?.dirty}'/>
+                                
+                                <div class="invalid-feedback" *ngIf="!IsResetFormValid && this.ResponseResetForm.get('confirmPassword')?.dirty" >
+                                    Passwords don't match!
+                                </div>   
+                            </div>                        
                             <div class="form-group text-center">
                                 <div>
 
-                                    <button type="submit" class="  btn btn-primary">Update
+                                    <button type="submit" [disabled]="!IsResetFormValid" class="btn btn-primary">Update
                                         Password</button>
 
                                 </div>
@@ -54,3 +48,4 @@
             </div>
         </div>
     </div>
+</div>
