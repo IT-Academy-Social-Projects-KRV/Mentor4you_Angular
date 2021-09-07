@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
+import { Routes, RouterModule } from '@angular/router';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 
-const routes = [
+const routes: Routes = [
   {
     path: 'signup',
     component: SignupComponent
@@ -13,6 +13,7 @@ const routes = [
     path: 'signin',
     component: SigninComponent
   },
+  
 ];
 
 @NgModule({

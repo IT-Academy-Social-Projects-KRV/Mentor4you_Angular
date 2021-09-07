@@ -16,6 +16,7 @@ import { MentorshipRequestComponent } from './shared/layout/header/notification-
 import { MentorshipApproveComponent } from './shared/layout/header/notification-modal/mentorship-approve/mentorship-approve.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { ResponseResetComponent } from './auth/response-reset/response-reset.component';
 // import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
 
 
@@ -30,6 +31,7 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
     MentorshipApproveComponent,
     MessagesComponent,
     ResetPasswordComponent,
+    ResponseResetComponent,
     // MentorDetailsComponent,
   ],
   imports: [
