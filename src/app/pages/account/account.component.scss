@@ -10,13 +10,6 @@
   color: $black;
 }
 
-::ng-deep .thumb {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  cursor: default !important;
-}
-
 .mentor-account {
   &__top-line {
     display: flex;
@@ -26,10 +19,10 @@
   }
 
   &__title {
-    color: #141f31;
     font-size: 36px;
-    font-weight: regular;
+    font-weight: 700;
     margin-bottom: 0;
+    color: $black;
   }
 
   &__top-actions {
@@ -40,24 +33,6 @@
   &__slide {
     color: $fuschia100;
     margin-right: 70px;
-  }
-
-  &__btn {
-    display: block;
-    margin-top: 30px;
-    margin: 0 auto;
-    width: 335px;
-    border-radius: 15px;
-    padding: 15px 5px;
-    border-color: $black;
-    background-color: $white;
-    color: $fuschia100;
-    border: 1px solid $fuschia100;
-    transition: 0.3s ease-in-out;
-    &:hover {
-      background-color: $fuschia100;
-      color: $white;
-    }
   }
 
   &__avatar-upload {
@@ -76,12 +51,12 @@
     align-items: center;
     justify-content: center;
     height: 80px;
-    cursor: default;
+    cursor: pointer;
     user-select: none;
 
     span {
-      font-size: 22px;
-      font-weight: regular;
+      font-size: 18px;
+      font-weight: bold;
     }
   }
 
@@ -109,22 +84,30 @@
     padding: 10px 50px;
     user-select: none;
 
-    &:hover,
-    &:focus {
+    &:hover, &:focus {
       background: $fuschia80;
     }
   }
 }
 
-#output {
-  width: 70px;
+.role-account__btn{
+  font-weight: 700;
+  font-size: 18px;
+  color: $fuschia100;
+  background: none;
+  border: 1px solid $fuschia100;
+  border-radius: 15px;
+  padding: 14px 50px;
+  user-select: none;
+  cursor: pointer;
 }
 
-.mentee {
-  text-align: center;
-  padding: 50px;
-  background: $white;
-  box-shadow: 1px 1px 5px 2px $lightgray;
+#output {
+  width: 90px;
+}
+
+.mentor, .mentee {
+  @include account-border;
 }
 
 ::ng-deep {
@@ -137,77 +120,8 @@
       background: $fuschia100;
     }
 
-    .mat-slide-toggle-bar {
+    .mat-slide-toggle-bar{
       background: $lightgray;
     }
   }
-
-  .mat-slide-toggle-content {
-    margin: 3px 15px 0 0;
-  }
-}
-
-.upload-btn {
-  width: 50px;
-  height: 50px;
-  padding-top: 5px;
-  border: 1px solid $fuschia100;
-  background-color: white;
-  border-radius: 50%;
-  &:hover {
-    transition: 0.3s ease-in-out;
-    background-color: $fuschia100;
-  }
-}
-
-::ng-deep .mat-icon {
-  &:hover {
-    color: white;
-  }
-}
-
-@media screen and (max-width: 1140px) {
-  .mentor-account {
-    &__slide {
-      margin-right: 30px;
-    }
-
-    &__upload-photo {
-      padding: 20px 50px;
-    }
-
-    &__fild-upload {
-      width: 255px;
-    }
-  }
-}
-
-@media screen and (max-width: 720px) {
-  .mentor-account {
-    &__top-actions {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    &__slide {
-      margin-bottom: 20px;
-    }
-
-    &__upload-section {
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    &__fild-upload {
-      margin-bottom: 10px;
-    }
-
-    &__upload-photo {
-      padding: 20px 35px;
-    }
-  }
-}
-
-::ng-deep .mat-simple-snackbar {
-  color: white !important;
 }

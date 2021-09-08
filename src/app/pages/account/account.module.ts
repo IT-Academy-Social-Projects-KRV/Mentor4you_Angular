@@ -12,7 +12,14 @@ import { AccountComponent } from './account.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
 
+const maskConfigFunction: () => Partial<IConfig> = () => {
+  return {
+    validation: true,
+  };
+};
 @NgModule({
   declarations: [
     AccountComponent,
@@ -28,7 +35,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatSelectModule,
     MatSnackBarModule,
     MatCheckboxModule,
-    
-  ],
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfigFunction)
+  ]
 })
 export class AccountModule {}

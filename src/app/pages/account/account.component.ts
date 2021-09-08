@@ -10,60 +10,53 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  // mentorData: any = {};
-  isAccountActivated!: boolean;
-  isImage: boolean = false;
+  mentorData: any = {};
   currentRole: string = 'mentor';
-  textFieldUpload: string = 'Upload you photo here';
+  isAccountActivated: boolean = false;
+  isAvatar: boolean = false;
+  textFieldUpload: string = 'Upload your photo here';
   selectedFile!: File;
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
+  constructor(
+    private http: HttpClient
+  ) { }
 
   ngOnInit(): void {
-    this.isAccountActivated = true;
-  }
-
-  setMentorData(mentorData: any): void {
-    this.isAccountActivated = mentorData.isAccountActivated;
-    this.insertBase64Image(mentorData.avatar);
+    Object.keys(this.mentorData).forEach(key => {
+      if (key === 'isAccountActivated') {
+        this.isAccountActivated = this.mentorData[key];
+      }
+    })
   }
 
   toggleAccountActivate(): void {
     this.isAccountActivated = !this.isAccountActivated;
   }
 
-  toggleRole(button: HTMLElement): void {
-    if (button.innerText === 'Move to Mentor Account') {
-      button.innerText = 'Move to Mentee Account';
-      this.currentRole = 'mentor';
-    } else {
-      button.innerText = 'Move to Mentor Account';
-      this.currentRole = 'mentee';
-    }
+  toggleRole(): void {
+    this.currentRole = this.currentRole === 'mentor' ? 'mentee' : 'mentor';
   }
 
   onFileSelected(event: any): void {
-    this.selectedFile = <File>event.target.files[0];
+    this.selectedFile = event.target.files[0];
 
     if (!this.selectedFile.type.match('image/*')) {
-      this.openSnackBar('Please select a photo', 'Got it', 'danger');
+      alert('Please select a photo.');
       return;
     }
-
-    this.isImage = true;
-
-    this.textFieldUpload =
-      this.selectedFile.name.length > 25
-        ? this.selectedFile.name.slice(0, 25) + '...'
-        : this.selectedFile.name;
-
+    const name = this.selectedFile.name;
+    this.textFieldUpload = name.length > 25 ? name.slice(0, 25) + '...' : name;
+  
     this.renderImage(this.selectedFile);
+
+    this.isAvatar = true;
   }
 
-  renderImage(img: any): void {
+  renderImage(img: File): void {
     const reader = new FileReader();
 
-    reader.onload = ((theFile) => (e: any) => {
+    reader.onload = (file => (e: any) => {
+      this.mentorData['avatar'] = e.target.result;
       this.insertBase64Image(e.target.result);
     })(img);
 
@@ -76,12 +69,7 @@ export class AccountComponent implements OnInit {
     }
 
     const span = document.createElement('span');
-    span.innerHTML = [
-      '<img class="thumb" title="',
-      '" src="',
-      img,
-      '" />',
-    ].join('');
+    span.innerHTML = ['<img class="thumb" src="', img, '" alt="user" />'].join('');
     document.getElementById('output')?.insertBefore(span, null);
   }
 
@@ -89,28 +77,20 @@ export class AccountComponent implements OnInit {
     const file = this.selectedFile;
     const fd = new FormData();
 
-    if (!file || !file.type.match('image/*')) {
-      // this.openSnackBar('Please select a photo', 'Got it', 'danger');
+    if (!file.type.match('image/*')) {
+      alert('Please select a photo.');
       return;
     }
 
     // --- send to server
     fd.append('image', file, file.name);
-    this.http
-      .post('api/mentors', fd, {
-        // reportProgress: true,
-        observe: 'events',
-      })
-      .subscribe((events) => {
-        this.textFieldUpload = 'Your photo uploaded successfully!';
-        console.log('Server response: ', events);
-      });
+    this.http.post('api/mentors', fd, {
+      // reportProgress: true,
+      observe: 'events'
+    })
+      .subscribe(response => {
+        this.textFieldUpload = 'Your avatar uploaded successfully';
+        console.log(response);
+    })
   }
-
-  openSnackBar(message: string, action: string, className: string) {
-    this._snackBar.open(message, action, {
-      duration: 5000,
-      panelClass: className,
-    });
-  }
-}
+ }
