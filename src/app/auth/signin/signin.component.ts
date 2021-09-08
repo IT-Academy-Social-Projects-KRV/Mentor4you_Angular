@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service"
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -9,12 +10,13 @@ import {CookieService} from "ngx-cookie-service"
 })
 export class SigninComponent implements OnInit{
   fullGroup!:FormGroup;
-  constructor(private http:HttpClient,private cookie:CookieService) {
+  constructor(private http:HttpClient,private cookie:CookieService,private router:Router) {
 
   }
 
   isValid:boolean=false;
   isInvalid:boolean=false;
+  isDisabled:boolean=false
 
   isValidPass:boolean=false;
   isInvalidPass:boolean=false;
@@ -72,7 +74,7 @@ export class SigninComponent implements OnInit{
     if(this.isValidMail() && this.isValidPassword())
     {
       return true
-      console.log(this.fullGroup.value)
+      // console.log(this.fullGroup.value)
     }
     else{
       return false
@@ -91,23 +93,46 @@ getCookie() {
   {
     this.fullGroup.get('password')?.setValue(this.cookie.get('password'))
   }
-  console.log(this.cookie.get('mail'))
-  console.log(this.cookie.get('password'))
+  // console.log(this.cookie.get('mail'))
+  // console.log(this.cookie.get('password'))
 }
 
 submitFrom(){
-    console.log(this.fullGroup.value)
+    this.isDisabled=true
+    // console.log(this.fullGroup.value)
   let mailValue = this.fullGroup.get('email')?.value
   let passValue = this.fullGroup.get('password')?.value
-    console.log(this.fullGroup.get('signed')?.value)
-    if(this.fullGroup.get('signed')?.value)
+    setTimeout(()=>{if(this.fullGroup.get('signed')?.value)
     {
       this.cookie.set('mail',mailValue)
       this.cookie.set('password',passValue)
-      console.log(mailValue)
-      console.log(passValue)
+      // console.log(mailValue)
+      // console.log(passValue)
+      if(mailValue=='illia.demchishin@gmail.com' && passValue=='123456789')
+      {
+        this.router.navigate(['/'])
+        this.isDisabled=false
+      }
+      else {
+        alert('Wrong email or password')
+        this.isDisabled=false
+      }
 
     }
-}
+    else {
+      if(mailValue=='illia.demchishin@gmail.com' && passValue=='123456789')
+      {
+        this.router.navigate(['/'])
+        this.isDisabled=false
+      }
+      else {
+        alert('Wrong email or password')
+        this.isDisabled=false
+      }
+
+    }},2000)
+    // console.log(this.fullGroup.get('signed')?.value)
+
+          }
 
 }

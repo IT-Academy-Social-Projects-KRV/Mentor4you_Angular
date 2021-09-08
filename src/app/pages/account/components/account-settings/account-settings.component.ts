@@ -12,6 +12,7 @@ export class AccountSettingsComponent implements OnInit {
   constructor(private http:HttpClient) { }
   inputGroup!:FormGroup
 
+  isDisabled:boolean=false
   ismatch:boolean=false
   isChangeTrue:boolean=false
   isChangeFalse:boolean=false
@@ -27,20 +28,22 @@ export class AccountSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.inputGroup=new FormGroup({
         password:new FormControl('',[Validators.required]),
-        newPassword:new FormControl('',[Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$'),Validators.required,Validators.minLength(8)]),
+        newPassword:new FormControl('',[Validators.required,Validators.minLength(8)]),
         confirmPassword:new FormControl('',[Validators.required]),
     })
-    console.log(this.inputGroup.get('newPassword')?.status)
-    this.isValidPass()
+
   }
 
   isValidPass(event:any = null):void{
     const value = event.target.value;
-    const regEXP = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    const regEXP = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$/;
     const strong=regEXP.test(value)
-    console.log(regEXP.test(value));
+    //Medium Pattern
+    // ^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$
+    const regEXP_medium = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    const medium=regEXP_medium.test(value)
 
-    if(this.inputGroup.get('newPassword')?.status=='VALID')
+    if(medium)
     {
       this.warning=true
       this.danger=false
@@ -50,11 +53,6 @@ export class AccountSettingsComponent implements OnInit {
         this.warning=false
         this.danger=false
         this.success=true
-      }
-      else {
-        this.warning=true
-        this.danger=false
-        this.success=false
       }
     }
     else{
@@ -75,6 +73,7 @@ export class AccountSettingsComponent implements OnInit {
       }
       else{
         this.isShort=true
+        this.ismatch = true
         return false
         }
     }
@@ -99,32 +98,36 @@ export class AccountSettingsComponent implements OnInit {
     }
   }
 
-  allChecked():boolean{
-    if(this.isPass())
-    {
-      if(this.isSimplePass()){
-        return true
-      }else {
-        return false
-      }
-    }
-    else {
-      return false
-    }
-  }
+  // allChecked():boolean{
+  //   if(this.isPass())
+  //   {
+  //     if(this.isSimplePass()){
+  //       return true
+  //     }else {
+  //       return false
+  //     }
+  //   }
+  //   else {
+  //     return false
+  //   }
+  // }
 
   onSubmit(){
-        if(this.allChecked())
+        this.isDisabled=true
+        if(this.isPass())
+        {setTimeout(()=>{if(this.inputGroup.get('password')?.value==this.passwor)
         {
-          if(this.inputGroup.get('password')?.value==this.passwor)
-          {
-            this.isChangeTrue=true
-            this.isChangeFalse=false
-          }
-          else{
-            this.isChangeTrue=false
-            this.isChangeFalse=true
-          }
+          this.isChangeTrue=true
+          this.isChangeFalse=false
+          this.isDisabled=false
+
+        }
+        else{
+          this.isChangeTrue=false
+          this.isChangeFalse=true
+          this.isDisabled=false
+        }},2000)
+
         }
 
   }

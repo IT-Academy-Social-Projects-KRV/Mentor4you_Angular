@@ -26,7 +26,7 @@
         <a routerLink="" class="col-6 forgotPass">Forgot Password?</a>
       </div>
       <div class="signin__btn row justify-content-center mt-4">
-        <button [disabled]="!isTrueFrom()" class="btn  col-md-10"
+        <button [disabled]="!isTrueFrom()" [disabled]="isDisabled" class="btn  col-md-10"
                 type="submit">Login</button>
       </div>
 
