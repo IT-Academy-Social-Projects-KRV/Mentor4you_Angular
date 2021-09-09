@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -111,25 +111,32 @@ export class AccountSettingsComponent implements OnInit {
   //     return false
   //   }
   // }
+putPassword:object={
+    'password':"Illia1957"
+}
+
+
 
   onSubmit(){
         this.isDisabled=true
-        if(this.isPass())
-        {setTimeout(()=>{if(this.inputGroup.get('password')?.value==this.passwor)
-        {
-          this.isChangeTrue=true
-          this.isChangeFalse=false
-          this.isDisabled=false
+    let headers;
+    if (this.isPass()) {
+      headers = new HttpHeaders()
+        .set("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpbGxpYS5kZW1jaGlzaGluQGdtYWlsLmNvbSIsInJvbGUiOiJNRU5UT1IiLCJleHAiOjE2MzI0NDE2MDB9.NrERxNfhX0kR2sYBLMkzz8jPY5uenQPE1nZOovhoqCst_HsZnt1dXnpTBwkBldK-L9WtdNoWFBHk4ZZOVgDKIw"
+        )
+      this.http.put("http://localhost:8080/api/users/changePassword", this.putPassword, {headers}).subscribe(value=>console.log(value))
+      this.isChangeTrue = true
+      this.isChangeFalse = false
+      this.isDisabled = false
+
+    } else {
+      this.isChangeTrue = false
+      this.isChangeFalse = true
+      this.isDisabled = false
+    }
 
         }
-        else{
-          this.isChangeTrue=false
-          this.isChangeFalse=true
-          this.isDisabled=false
-        }},2000)
 
-        }
 
-  }
 
 }
