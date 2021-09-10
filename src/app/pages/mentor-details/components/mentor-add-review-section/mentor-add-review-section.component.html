@@ -1,5 +1,5 @@
-<section class="form-review">
-	<div class="form-review__container container">
+<section class="form-review container">
+	<div class="form-review__container">
 		<div class="form-review__row col-md-12">
 			<div class="form-review__title">Add Review</div>
 		</div>
@@ -42,11 +42,11 @@
 				</div>
 				<div class="form-review__row">
 					<div class="form-review__button-wrapper">
-						<button [class.btnClick]="btnCheck" 
-						[disabled]="formAddReview.invalid" 
+						<button [class.btnClick]="btnCheck"
+						[disabled]="formAddReview.invalid"
 						class="form-review__button"
-							type="submit" 
-							[class.disabled]="formAddReview.invalid" 
+							type="submit"
+							[class.disabled]="formAddReview.invalid"
 							(click)="btnClick()">Submit Now</button>
 					</div>
 				</div>

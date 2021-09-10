@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+//@import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 @import "~@ng-select/ng-select/themes/material.theme.css";
 @import "~bootswatch/dist/minty/variables";
-@import "~bootstrap/scss/bootstrap";
-@import "~bootswatch/dist/minty/bootswatch";
+@import "~bootswatch/dist/minty/bootstrap.min.css";
 @import "variables";
 @import "reset";
 
@@ -32,7 +32,7 @@ body {
 .pagination {
   list-style-type: none;
   display: flex;
-  
+
   li {
     cursor: pointer;
     margin-right: 3px;
