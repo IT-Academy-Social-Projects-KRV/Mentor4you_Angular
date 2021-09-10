@@ -31,7 +31,6 @@ import {AuthModule} from "./auth/auth.module";
     HeaderComponent,
     FooterComponent,
     TermsComponent,
-    // MentorDetailsComponent,
     NotificationModalComponent,
     MentorshipRequestComponent,
     MentorshipApproveComponent,
@@ -43,11 +42,6 @@ import {AuthModule} from "./auth/auth.module";
     AppRoutingModule,
     SharedModule,
     HomeModule,
-    HttpClientModule,
-    FormsModule,
-    NgbModule,
-    ReactiveFormsModule,
-    AuthModule
   ],
   providers: [SigninService,CookieService,NotificationModalService],
   bootstrap: [AppComponent]

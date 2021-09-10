@@ -26,10 +26,6 @@ const routes: Routes = [
     component: TermsComponent
   },
   {
-    path: 'login',
-    loadChildren: () => import('./auth/signin/signin.module').then(m => m.SigninModule)
-  },
-  {
     path: 'messages',
     component: MessagesComponent
   },
