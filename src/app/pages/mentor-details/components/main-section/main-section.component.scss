@@ -1,9 +1,11 @@
+
+
 .main-section{
   font-family: Roboto, sans-serif;
   width: 1020px;
   height: 350px;
   padding: 45px;
-
+    margin-top: 30px;
   box-shadow: 2px 2px 5px black;
 
 
@@ -23,11 +25,11 @@
     border-radius: 10px;
   }
   mat-icon{
-    color: #3AB67D;
     margin-bottom: 15px;
     margin-left:15px;
 
     a{
+      color: #3AB67D !important;
       width: 24px;
       height: 24px;
       margin-left: 5px;

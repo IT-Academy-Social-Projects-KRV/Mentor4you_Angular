@@ -9,7 +9,7 @@ import { NotificationModalService } from '../../../core/services/notification-mo
 })
 export class HeaderComponent implements OnInit {
   //TODO should be implement in the next task
-  public isAuth: boolean = true;
+  public isAuth: boolean = false;
   public isNewMessage: boolean = true;
   public isNewNotification: boolean = true;
 
