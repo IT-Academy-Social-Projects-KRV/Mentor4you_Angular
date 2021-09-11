@@ -32,6 +32,7 @@ const routes: Routes = [
     path: 'messages',
     component: MessagesComponent
   },
+<<<<<<< HEAD
   {
     path: 'reset-password',
     component: ResetPasswordComponent
@@ -40,6 +41,9 @@ const routes: Routes = [
     path: 'response-reset',
     component: ResponseResetComponent
   }
+=======
+
+>>>>>>> dev
 ];
 
 @NgModule({

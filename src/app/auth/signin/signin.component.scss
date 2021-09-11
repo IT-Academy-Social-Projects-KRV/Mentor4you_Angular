@@ -1,0 +1,38 @@
+form{
+  background-color: white;
+  margin: 80px;
+
+  h5{
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+  }
+
+  .form-control{
+    max-height: 45px;
+  }
+
+  .forgotPass{
+    text-align: center;
+  }
+
+  .lab{
+    margin-left: 5px;
+  }
+
+  .btn{
+    background-color: #524C6F;
+  }
+
+  .log{
+    text-align: center;
+    color: black;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+  }
+
+  .soc-link{
+    width: 70px;
+    display: flex;
+  }
+}
