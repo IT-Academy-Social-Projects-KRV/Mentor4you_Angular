@@ -30,9 +30,6 @@ export class ResponseResetComponent implements OnInit {
   }
   
   validatePassword(event: any){
-    //console.log(this.ResponseResetForm.get("newPassword")?.status);
-    //console.log(this.ResponseResetForm.get("newPassword")?.value);
-    //console.log(this.ResponseResetForm);
     if (this.ResponseResetForm.get("newPassword")?.status=="INVALID" && !this.ResponseResetForm.get("newPassword")?.pristine){
     this.isNewPasswordValid = false;
     } else {
@@ -41,14 +38,16 @@ export class ResponseResetComponent implements OnInit {
   }
   
   passwordMatchValidator(event: any) {
-    console.log(this.ResponseResetForm.get('newPassword')?.value);
-    console.log(this.ResponseResetForm.get('confirmPassword')?.value);
+   
+    if (this.ResponseResetForm.get("newPassword")?.status=="VALID" && this.ResponseResetForm.get("confirmPassword")?.status=="VALID"){
     if (this.ResponseResetForm.get('newPassword')?.value === this.ResponseResetForm.get('confirmPassword')?.value){
       this.IsResetFormValid = true;
     } else {
       this.IsResetFormValid = false;
     }
-       
+    } else {
+      this.IsResetFormValid = false;
+    }
  }
   
 

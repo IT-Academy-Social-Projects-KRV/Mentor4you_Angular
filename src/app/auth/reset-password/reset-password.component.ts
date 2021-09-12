@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
+import { chainedInstruction } from '@angular/compiler/src/render3/view/util';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class ResetPasswordComponent implements OnInit {
   forbiddenEmails: any;
  
   IsvalidForm = false;
+
+  instructionSend = false;
   
 
   constructor(
@@ -34,13 +37,14 @@ export class ResetPasswordComponent implements OnInit {
 validateEmail(event: any){
   this.IsvalidForm =  this.RequestResetForm.get("email")?.status=== "VALID";
  console.log( this.RequestResetForm.get("email")?.status);
-
+ console.log( this.RequestResetForm.get("email"));
 }
 
   RequestResetUser() {
     const email= this.RequestResetForm.value.email;
     console.log(email);
-
+    this.instructionSend = true;
+    setTimeout( ()=> {this.router.navigate(['/'])}, 5000)
    
   }
 }

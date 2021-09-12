@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { ResponseResetComponent } from './auth/response-reset/response-reset.component';
 
 import { MessagesComponent } from './pages/messages/messages.component';
 
@@ -32,18 +30,7 @@ const routes: Routes = [
     path: 'messages',
     component: MessagesComponent
   },
-<<<<<<< HEAD
-  {
-    path: 'reset-password',
-    component: ResetPasswordComponent
-  },
-  {
-    path: 'response-reset',
-    component: ResponseResetComponent
-  }
-=======
 
->>>>>>> dev
 ];
 
 @NgModule({

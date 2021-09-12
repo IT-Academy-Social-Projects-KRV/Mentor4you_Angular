@@ -22,13 +22,8 @@ import { NotificationModalService } from './core/services/notification-modal.ser
 import { MentorshipRequestComponent } from './shared/layout/header/notification-modal/mentorship-request/mentorship-request.component';
 import { MentorshipApproveComponent } from './shared/layout/header/notification-modal/mentorship-approve/mentorship-approve.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-<<<<<<< HEAD
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { ResponseResetComponent } from './auth/response-reset/response-reset.component';
 // import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
-=======
 import {AuthModule} from "./auth/auth.module";
->>>>>>> dev
 
 
 @NgModule({
@@ -41,8 +36,6 @@ import {AuthModule} from "./auth/auth.module";
     MentorshipRequestComponent,
     MentorshipApproveComponent,
     MessagesComponent,
-    ResetPasswordComponent,
-    ResponseResetComponent,
     // MentorDetailsComponent,
   ],
   imports: [
