@@ -20,7 +20,7 @@
                                     <div *ngIf="!isNewPasswordValid" class="invalid-feedback">
                                         Password must be at least 8 characters long, contains one upper case letter and one number
                                     </div>
-                                    <div *ngIf="isNewPasswordValid && this.ResponseResetForm.get('newPassword')?.status=='VALID'" class="valid-feedback">
+                                    <div *ngIf="isNewPasswordValid && this.ResponseResetForm.get('newPassword')?.status=='VALID' && !isFormSubmited" class="valid-feedback">
                                         Success!
                                     </div>
                             </div>
@@ -38,7 +38,7 @@
                                 <div class="invalid-feedback" *ngIf="!IsResetFormValid && this.ResponseResetForm.get('confirmPassword')?.dirty" >
                                     Passwords don't match!
                                 </div>
-                                <div class="valid-feedback" *ngIf="IsResetFormValid" >
+                                <div class="valid-feedback" *ngIf="IsResetFormValid && !isFormSubmited" >
                                     Success! Passwords match!
                                 </div>   
                             </div>                        
@@ -48,6 +48,9 @@
                                     <button type="submit" [disabled]="!IsResetFormValid" class="btn btn-primary">Update
                                         Password</button>
 
+                                </div>
+                                <div  *ngIf="isFormSubmited" class="infoLine">
+                                    Log in with your new password! 
                                 </div>
                             </div>
                         </form>

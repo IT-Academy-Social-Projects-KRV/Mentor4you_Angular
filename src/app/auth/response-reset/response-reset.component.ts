@@ -18,6 +18,8 @@ export class ResponseResetComponent implements OnInit {
 
   IsResetFormValid = false;
 
+  isFormSubmited = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -54,6 +56,8 @@ export class ResponseResetComponent implements OnInit {
   ResetPassword() {
     const verifiedPassword = this.ResponseResetForm.value.newPassword;
     console.log(verifiedPassword);
+    this.isFormSubmited = true; 
+    setTimeout( ()=> {this.router.navigate(['/auth/login'])}, 5000);
     return verifiedPassword;
   }
 }

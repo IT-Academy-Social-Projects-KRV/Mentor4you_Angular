@@ -37,6 +37,12 @@
                 button:disabled:hover{
                     @include btn-shadow;
                 }
+                .infoLine {
+                    font-size: 18px;
+                    color: $fuschia100;
+                    padding: 5px;
+                    font-weight: 700;
+                }
             }
         }
         

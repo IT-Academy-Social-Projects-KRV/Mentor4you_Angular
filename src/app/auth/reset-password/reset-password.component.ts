@@ -16,7 +16,7 @@ export class ResetPasswordComponent implements OnInit {
  
   IsvalidForm = false;
 
-  instructionSend = false;
+  isInstructionSend = false;
   
 
   constructor(
@@ -43,7 +43,7 @@ validateEmail(event: any){
   RequestResetUser() {
     const email= this.RequestResetForm.value.email;
     console.log(email);
-    this.instructionSend = true;
+    this.isInstructionSend = true;
     setTimeout( ()=> {this.router.navigate(['/'])}, 5000)
    
   }
