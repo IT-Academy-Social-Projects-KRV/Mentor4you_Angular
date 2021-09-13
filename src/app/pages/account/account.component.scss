@@ -1,0 +1,129 @@
+@import 'variables';
+
+.container {
+  padding: 0;
+}
+
+.content {
+  padding: 80px 50px;
+  background: $white;
+  color: $black;
+}
+
+.mentor-account {
+  &__top-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+  }
+
+  &__title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  &__top-actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &__slide {
+    color: $fuschia100;
+    margin-right: 70px;
+  }
+
+  &__btn {
+    font-weight: bold;
+    color: $fuschia100;
+    background: none;
+    border: 1px solid $fuschia100;
+    border-radius: 10px;
+    padding: 10px 60px;
+    user-select: none;
+  }
+
+  &__avatar-upload {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $white;
+    box-shadow: 1px 1px 5px 2px $lightgray;
+    padding: 20px 100px;
+    margin-bottom: 50px;
+  }
+
+  &__avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    cursor: pointer;
+    user-select: none;
+
+    span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  &__upload-section {
+    display: flex;
+    align-items: start;
+
+    input {
+      display: none;
+    }
+  }
+
+  &__upload-field {
+    width: 400px;
+    border: 1px solid $lightgray;
+    padding: 10px 60px 10px 10px;
+    color: $grey;
+  }
+
+  &__upload-btn {
+    font-size: 18px;
+    color: $white;
+    background: $grey;
+    border: none;
+    padding: 10px 50px;
+    user-select: none;
+
+    &:hover, &:focus {
+      background: $fuschia80;
+    }
+  }
+}
+
+#output {
+  width: 70px;
+}
+
+.mentee {
+  text-align: center;
+  padding: 50px;
+  background: $white;
+  box-shadow: 1px 1px 5px 2px $lightgray;
+}
+
+
+
+::ng-deep {
+  .mat-slide-toggle.mat-checked {
+    .mat-slide-toggle-thumb {
+      background: $fuschia100;
+    }
+
+    .mat-ripple-element {
+      background: $fuschia100;
+    }
+
+    .mat-slide-toggle-bar{
+      background: $lightgray;
+    }
+  }
+}

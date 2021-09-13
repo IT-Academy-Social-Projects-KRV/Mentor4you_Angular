@@ -1,1 +1,62 @@
-<p>account-mentor works!</p>
+<div class="content">
+  <form class="mentor" [formGroup]="mentorForm" (ngSubmit)="onSubmit()">
+    <fieldset class="mentor__form-group">
+      <div class="mentor__form-field">
+        <label for="fullName" class="mentor__label">Name and Surname</label>
+        <div class="mentor__control-wrapper">
+          <input 
+            id="fullName" 
+            type="text" 
+            class="mentor__control"
+            formControlName="fullName">
+
+          <div class="error" *ngIf="isControlInvalid('fullName')">
+            At last 3 English letters.
+          </div>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <label for="about" class="mentor__label">About</label>
+        <div class="mentor__control-wrapper">
+          <textarea 
+            id="about"
+            rows="5" 
+            class="mentor__control"
+            formControlName="about">
+          </textarea>
+
+          <div class="error" *ngIf="isControlInvalid('about')">
+            At least one interesting story...
+          </div>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <label for="categories" class="mentor__label">A can teach</label>
+        <div class="mentor__control-wrapper">
+          <app-chips-input
+            categoties="categories"
+            [gettedCategories]="gettedCategories"
+            (sendCategories)="onSendCategories($event)"
+          ></app-chips-input>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <label for="email" class="mentor__label">Email</label>
+        <div class="mentor__control-wrapper">
+          <input 
+            id="email"
+            type="email"
+            formControlName="email"
+            class="mentor__control">
+
+          <div class="error" *ngIf="isControlInvalid('email')">
+            Enter correct email
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
