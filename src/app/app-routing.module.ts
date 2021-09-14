@@ -22,6 +22,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
   },
   {
+    path: 'moderator',
+    loadChildren: () => import('./pages/moderator/moderator.module').then(m => m.ModeratorModule)
+  },
+  {
     path: 'terms',
     component: TermsComponent
   },
