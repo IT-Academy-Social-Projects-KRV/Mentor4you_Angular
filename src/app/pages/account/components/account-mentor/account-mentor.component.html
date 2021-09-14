@@ -1,14 +1,15 @@
 <div class="content">
-  <form class="mentor" [formGroup]="mentorForm" (ngSubmit)="onSubmit()">
+  <form class="mentor" (ngSubmit)="onSubmit()" [formGroup]="mentorForm">
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
-        <label for="fullName" class="mentor__label">Name and Surname</label>
+        <span for="fullName" class="mentor__label">Name and Surname</span>
         <div class="mentor__control-wrapper">
-          <input 
-            id="fullName" 
-            type="text" 
+          <input
+            id="fullName"
+            type="text"
             class="mentor__control"
-            formControlName="fullName">
+            formControlName="fullName"
+          />
 
           <div class="error" *ngIf="isControlInvalid('fullName')">
             At last 3 English letters.
@@ -17,13 +18,14 @@
       </div>
 
       <div class="mentor__form-field">
-        <label for="about" class="mentor__label">About</label>
+        <span for="about" class="mentor__label">About</span>
         <div class="mentor__control-wrapper">
-          <textarea 
+          <textarea
             id="about"
-            rows="5" 
+            rows="5"
             class="mentor__control"
-            formControlName="about">
+            formControlName="about"
+          >
           </textarea>
 
           <div class="error" *ngIf="isControlInvalid('about')">
@@ -33,30 +35,56 @@
       </div>
 
       <div class="mentor__form-field">
-        <label for="categories" class="mentor__label">A can teach</label>
+        <span for="categories" class="mentor__label mentor__teach"
+          >A can teach</span
+        >
         <div class="mentor__control-wrapper">
-          <app-chips-input
-            categoties="categories"
-            [gettedCategories]="gettedCategories"
-            (sendCategories)="onSendCategories($event)"
-          ></app-chips-input>
+          <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select [formControl]="subForm" multiple>
+              <mat-option *ngFor="let item of subjList" [value]="subForm">{{
+                item
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <label for="email" class="mentor__label">Email</label>
+        <span for="email" class="mentor__label">Email</span>
         <div class="mentor__control-wrapper">
-          <input 
+          <input
             id="email"
             type="email"
             formControlName="email"
-            class="mentor__control">
+            class="mentor__control"
+          />
 
           <div class="error" *ngIf="isControlInvalid('email')">
             Enter correct email
           </div>
         </div>
       </div>
+
+      <div class="mentor__form-field">
+        <span for="fullName" class="mentor__label">Rate</span>
+        <div class="mentor__control-wrapper">
+          <input
+            id="rate"
+            type="text"
+            placeholder="$"
+            class="mentor__control mentor__rate-input"
+            formControlName="rate"
+          />
+
+          <div class="error" *ngIf="isControlInvalid('rate')">
+            Input numbers only
+          </div>
+        </div>
+      </div>
+
+      <button class="mentor__btn">Save Profile</button>
+      <button class="mentor__btn">View Public Profile</button>
     </fieldset>
   </form>
 </div>

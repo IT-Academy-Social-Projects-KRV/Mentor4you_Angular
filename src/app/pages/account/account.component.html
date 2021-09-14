@@ -14,7 +14,11 @@
         </div>
 
         <button class="mentor-account__btn" (click)="toggleRole()">
-          {{currentRole == 'mentor' ? 'Move to mentee account' : 'Move to mentor account'}}
+          {{
+            currentRole == "mentor"
+              ? "Move to mentee account"
+              : "Move to mentor account"
+          }}
         </button>
       </div>
     </div>
@@ -22,15 +26,15 @@
     <div class="mentor-account__avatar-upload">
       <div class="mentor-account__avatar-section" (click)="fileInput.click()">
         <span *ngIf="!isAvatar">My photo</span>
-        <span id="output"></span>
-        <img src="./../../../assets/images/file_upload.svg" alt="avatar">
       </div>
 
       <div class="mentor-account__upload-section">
-        <input type="file" #fileInput (change)="onFileSelected($event)">
+        <input type="file" #fileInput (change)="onFileSelected($event)" />
 
-        <div class="mentor-account__upload-field">{{textFieldUpload}}</div>
-        <button class="mentor-account__upload-btn" (click)="onUpload()">Upload</button>
+        <div class="mentor-account__upload-field">{{ textFieldUpload }}</div>
+        <button class="mentor-account__upload-btn" (click)="onUpload()">
+          Upload
+        </button>
       </div>
     </div>
 

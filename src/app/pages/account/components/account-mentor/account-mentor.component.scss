@@ -1,12 +1,16 @@
-@import 'variables';
+@import "variables";
 
 .content {
-  color: $black;
+  color: #141F31;
   background: $white;
   box-shadow: 1px 1px 5px 2px $lightgray;
 }
 
 .mentor {
+  span {
+    display: block;
+    margin: 10px 0;
+  }
   padding: 140px 100px;
 
   &__form-group {
@@ -16,23 +20,26 @@
   &__form-field {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 750px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: regular;
     color: $black;
     margin-bottom: 40px;
-    
+
     &.textarea {
       display: flex;
 
-      label {
+      span {
         margin-top: 15px;
       }
     }
   }
-
-  &__label {
-    width: 35%;
+  &__teach {
+    padding-top: 12px;
+  }
+  &__rate-input {
+    width: 35% !important;
   }
 
   &__control-wrapper {
@@ -42,7 +49,7 @@
 
   &__control {
     width: 100%;
-    border: 2px solid $lightgray;
+    border: 1px solid $lightgray;
     padding: 9px;
 
     &:focus-visible {
@@ -54,6 +61,10 @@
       outline: none;
     }
   }
+
+  &__btn {
+    margin-top: 30px;
+  }
 }
 
 .error {
@@ -63,7 +74,6 @@
   font-size: 14px;
   color: $red;
 }
-
 
 @media screen and (max-width: 1140px) {
   .mentor {
@@ -82,4 +92,48 @@
       width: auto;
     }
   }
+}
+
+button {
+  display: block;
+  margin-top: 30px;
+  margin: 0 auto;
+  width: 335px;
+  border-radius: 15px;
+  padding: 15px 5px;
+  border-color: $black;
+  background-color: $white;
+  color: $fuschia100;
+  border: 1px solid $fuschia100;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    background-color: $fuschia100;
+    color: $white;
+  }
+}
+
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate {
+  background: $fuschia100;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $black !important;
+}
+
+::ng-deep .mat-snack-bar-container .mat-button-wrapper {
+  color: white !important;
+}
+
+::ng-deep .mat-snack-bar-container {
+  min-width: 400px !important;
+}
+
+::ng-deep .danger {
+  background-color: rgb(189, 24, 24);
+}
+
+::ng-deep .success {
+  background-color: $fuschia100;
+  color: $white;
 }

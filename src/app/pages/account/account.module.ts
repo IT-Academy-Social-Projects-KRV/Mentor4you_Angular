@@ -9,6 +9,8 @@ import { AccountMenteeComponent } from './components/account-mentee/account-ment
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AccountComponent } from './account.component';
 import { ChipsInputComponent } from './components/chips-input/chips-input.component';
+import { MatSelectModule } from '@angular/material/select'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -17,12 +19,14 @@ import { ChipsInputComponent } from './components/chips-input/chips-input.compon
     AccountMentorComponent,
     AccountMenteeComponent,
     AccountSettingsComponent,
-    ChipsInputComponent
+    ChipsInputComponent,
   ],
   imports: [
     SharedModule,
     AccountRoutingModule,
-    MatChipsModule
-  ]
+    MatChipsModule,
+    MatSelectModule,
+    MatSnackBarModule
+  ],
 })
-export class AccountModule { }
+export class AccountModule {}
