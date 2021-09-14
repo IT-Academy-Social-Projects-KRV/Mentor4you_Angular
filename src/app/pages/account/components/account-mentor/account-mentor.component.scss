@@ -1,0 +1,85 @@
+@import 'variables';
+
+.content {
+  color: $black;
+  background: $white;
+  box-shadow: 1px 1px 5px 2px $lightgray;
+}
+
+.mentor {
+  padding: 140px 100px;
+
+  &__form-group {
+    margin-bottom: 30px;
+  }
+
+  &__form-field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 750px;
+    font-size: 18px;
+    font-weight: bold;
+    color: $black;
+    margin-bottom: 40px;
+    
+    &.textarea {
+      display: flex;
+
+      label {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  &__label {
+    width: 35%;
+  }
+
+  &__control-wrapper {
+    position: relative;
+    width: 55%;
+  }
+
+  &__control {
+    width: 100%;
+    border: 2px solid $lightgray;
+    padding: 9px;
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &.ng-touched.ng-invalid {
+      border-color: $red;
+      outline: none;
+    }
+  }
+}
+
+.error {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  font-size: 14px;
+  color: $red;
+}
+
+
+@media screen and (max-width: 1140px) {
+  .mentor {
+    padding: 100px 50px;
+
+    &__form-field {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    &__control-wrapper {
+      width: 100%;
+    }
+
+    &__label {
+      width: auto;
+    }
+  }
+}
