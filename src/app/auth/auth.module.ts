@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
+import { SharedModule } from '../shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
 import { SignupComponent } from './signup/signup.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { SharedModule } from '../shared/shared.module';
-import { AuthRoutingModule } from './auth-routing.module';
 import {SigninComponent} from "./signin/signin.component";
 import { ResponseResetComponent } from './response-reset/response-reset.component';
 
@@ -14,8 +14,7 @@ import { ResponseResetComponent } from './response-reset/response-reset.componen
     SigninComponent,
     SignupComponent,
     ResetPasswordComponent,
-    ResponseResetComponent,    SignupComponent,
-    SigninComponent
+    ResponseResetComponent
   ],
   imports: [
     SharedModule,

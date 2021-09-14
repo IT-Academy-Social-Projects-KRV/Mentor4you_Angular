@@ -36,13 +36,10 @@ export class ResetPasswordComponent implements OnInit {
 
 validateEmail(event: any){
   this.IsvalidForm =  this.RequestResetForm.get("email")?.status=== "VALID";
- console.log( this.RequestResetForm.get("email")?.status);
- console.log( this.RequestResetForm.get("email"));
 }
 
   RequestResetUser() {
     const email= this.RequestResetForm.value.email;
-    console.log(email);
     this.isInstructionSend = true;
     setTimeout( ()=> {this.router.navigate(['/'])}, 5000)
    
