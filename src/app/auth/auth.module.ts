@@ -4,6 +4,8 @@ import { SignupComponent } from './signup/signup.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import {SigninComponent} from "./signin/signin.component";
+import { SigninService } from './signin/signin.service';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -14,7 +16,11 @@ import {SigninComponent} from "./signin/signin.component";
   ],
   imports: [
     SharedModule,
-    AuthRoutingModule
-  ]
+    AuthRoutingModule,
+  ],
+  providers: [
+    SigninService,
+    CookieService
+  ],
 })
 export class AuthModule { }
