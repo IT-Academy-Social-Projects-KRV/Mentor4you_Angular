@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +10,8 @@ import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+// import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
+import {AuthModule} from "./auth/auth.module";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MessagesComponent } from './pages/messages/messages.component';
     FooterComponent,
     TermsComponent,
     MessagesComponent,
+    // MentorDetailsComponent,
   ],
   imports: [
     BrowserModule,
