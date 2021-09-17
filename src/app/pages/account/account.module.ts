@@ -9,9 +9,9 @@ import { AccountMenteeComponent } from './components/account-mentee/account-ment
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AccountComponent } from './account.component';
 import { ChipsInputComponent } from './components/chips-input/chips-input.component';
-import { MatSelectModule } from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AccountRoutingModule,
     MatChipsModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule,
   ],
 })
 export class AccountModule {}

@@ -4,6 +4,7 @@
   color: #141F31;
   background: $white;
   box-shadow: 1px 1px 5px 2px $lightgray;
+  padding-bottom: 50px;
 }
 
 .mentor {
@@ -11,7 +12,7 @@
     display: block;
     margin: 10px 0;
   }
-  padding: 140px 100px;
+  padding: 140px 100px 0px;
 
   &__form-group {
     margin-bottom: 30px;
@@ -52,14 +53,14 @@
     border: 1px solid $lightgray;
     padding: 9px;
 
-    &:focus-visible {
-      outline: none;
-    }
+    // &:focus-visible {
+    //   outline: none;
+    // }
 
-    &.ng-touched.ng-invalid {
-      border-color: $red;
-      outline: none;
-    }
+    // &.ng-touched.ng-invalid {
+    //   border-color: $red;
+    //   outline: none;
+    // }
   }
 
   &__btn {
@@ -136,4 +137,24 @@ button {
 ::ng-deep .success {
   background-color: $fuschia100;
   color: $white;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: 250px;
+}
+
+mat-slide-toggle {
+  padding-top: 7px;
+}
+
+mat-checkbox {
+  display: block;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: $fuschia100;
+}
+
+::ng-deep .mat-checkbox-ripple .mat-ripple-element {
+  background-color: $fuschia40 !important;
 }

@@ -24,18 +24,34 @@
     </div>
 
     <div class="mentor-account__avatar-upload">
-      <div class="mentor-account__avatar-section" (click)="fileInput.click()">
-        <span *ngIf="!isAvatar">My photo</span>
+      <div class="mentor-account__avatar-section">
+        <span>My photo</span>
       </div>
+      
+      {{ textFieldUpload || "No file uploaded yet." }}
 
       <div class="mentor-account__upload-section">
-        <input type="file" #fileInput (change)="onFileSelected($event)" />
-
-        <div class="mentor-account__upload-field">{{ textFieldUpload }}</div>
-        <button class="mentor-account__upload-btn" (click)="onUpload()">
-          Upload
-        </button>
+        
+        <input
+          style="display: none"
+          type="file"
+          (change)="onFileSelected($event)"
+          #fileUpload
+        />
+  
+        <div class="file-upload">
+  
+          <button
+            mat-mini-fab
+            color="primary"
+            class="upload-btn"
+            (click)="fileUpload.click()"
+          >
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
       </div>
+
     </div>
 
     <div [ngSwitch]="true">
