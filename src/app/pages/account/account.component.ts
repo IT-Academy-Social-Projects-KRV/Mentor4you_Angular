@@ -10,24 +10,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  mentorData: any = {};
   currentRole: string = 'mentor';
-  isAccountActivated: boolean = false;
+  isAccountActivated: boolean = true;
   isAvatar: boolean = false;
   textFieldUpload: string = '';
   selectedFile!: File;
 
-  fileName = '';
-
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {
-    Object.keys(this.mentorData).forEach((key) => {
-      if (key === 'isAccountActivated') {
-        this.isAccountActivated = this.mentorData[key];
-      }
-    });
-  }
+  ngOnInit(): void {}
 
   toggleAccountActivate(): void {
     this.isAccountActivated = !this.isAccountActivated;
@@ -56,7 +47,7 @@ export class AccountComponent implements OnInit {
     const reader = new FileReader();
 
     reader.onload = ((file) => (e: any) => {
-      this.mentorData['avatar'] = e.target.result;
+      // this.mentorData['avatar'] = e.target.result;
       this.insertBase64Image(e.target.result);
     })(img);
 
@@ -79,22 +70,19 @@ export class AccountComponent implements OnInit {
     const file = this.selectedFile;
     const fd = new FormData();
 
-    if (!file.type.match('image/*')) {
-      
-      return;
-    }
-
-    // // --- send to server
-    // fd.append('image', file, file.name);
-    // this.http.post('api/mentors', fd, {
-    //   // reportProgress: true,
-    //   observe: 'events'
-    // })
-    //   .subscribe(response => {
-    //     this.textFieldUpload = 'Your avatar uploaded successfully';
-    //     console.log(response);
-    // })
+    // --- send to server
+    fd.append('image', file, file.name);
+    this.http
+      .post('api/mentors', fd, {
+        // reportProgress: true,
+        observe: 'events',
+      })
+      .subscribe((response) => {
+        this.textFieldUpload = 'Your avatar uploaded successfully';
+        console.log(response);
+      });
   }
+
   openSnackBar(message: string, action: string, className: string) {
     this._snackBar.open(message, action, {
       duration: 5000,

@@ -3,13 +3,17 @@
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
         <span class="mentor__label">Name and Surname</span>
+
         <div class="mentor__control-wrapper">
-          <input
-            id="fullName"
-            type="text"
-            class="mentor__control"
-            formControlName="fullName"
-          />
+          <div>
+            <input
+              [ngClass]="invalidCheck('fullName')"
+              id="fullName"
+              type="text"
+              class="mentor__control"
+              formControlName="fullName"
+            />
+          </div>
         </div>
       </div>
 
@@ -17,6 +21,7 @@
         <span class="mentor__label">About</span>
         <div class="mentor__control-wrapper">
           <textarea
+            [ngClass]="invalidCheck('fullName')"
             id="about"
             rows="5"
             class="mentor__control"
@@ -31,7 +36,7 @@
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [formControl]="subForm" multiple>
+            <mat-select [required]="true" [formControl]="subForm" multiple>
               <mat-option *ngFor="let item of subjList" [value]="subForm">{{
                 item
               }}</mat-option>
@@ -44,6 +49,7 @@
         <span class="mentor__label">Email</span>
         <div class="mentor__control-wrapper">
           <input
+            [ngClass]="invalidCheck('email')"
             id="email"
             type="email"
             formControlName="email"
@@ -67,6 +73,7 @@
         <span for="fullName" class="mentor__label">Rate</span>
         <div class="mentor__control-wrapper">
           <input
+            [ngClass]="invalidCheck('rate')"
             id="rate"
             type="text"
             placeholder="$"
@@ -79,21 +86,33 @@
       <div class="mentor__form-field">
         <span class="mentor__label">LinkedIn</span>
         <div class="mentor__control-wrapper">
-          <input type="text" formControlName="linkedIn" class="mentor__control" />
+          <input
+            type="text"
+            formControlName="linkedIn"
+            class="mentor__control"
+          />
         </div>
       </div>
 
       <div class="mentor__form-field">
         <span class="mentor__label">Facebook</span>
         <div class="mentor__control-wrapper">
-          <input type="text" formControlName="facebook" class="mentor__control" />
+          <input
+            type="text"
+            formControlName="facebook"
+            class="mentor__control"
+          />
         </div>
       </div>
 
       <div class="mentor__form-field">
         <span class="mentor__label">Youtube</span>
         <div class="mentor__control-wrapper">
-          <input type="text" formControlName="youtube" class="mentor__control" />
+          <input
+            type="text"
+            formControlName="youtube"
+            class="mentor__control"
+          />
         </div>
       </div>
 
@@ -126,8 +145,8 @@
         <span class="mentor__label mentor__teach">Languages</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
-            <mat-label>Languages</mat-label>
-            <mat-select [formControl]="langForm" multiple>
+            <mat-label>Categories</mat-label>
+            <mat-select [required]="true" [formControl]="langForm" multiple>
               <mat-option *ngFor="let item of langList" [value]="langForm">{{
                 item
               }}</mat-option>
@@ -138,7 +157,7 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label">Work</span>
-        <div class="mentor__control-wrapper">
+        <div class="mentor__control-wrapper" [ngClass]="checkBox()">
           <mat-checkbox formControlName="remotely">Remotely</mat-checkbox>
           <mat-checkbox formControlName="offline">Offline</mat-checkbox>
         </div>
@@ -149,7 +168,7 @@
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [formControl]="locForm" >
+            <mat-select [formControl]="locForm">
               <mat-option *ngFor="let item of locList" [value]="locForm">{{
                 item
               }}</mat-option>

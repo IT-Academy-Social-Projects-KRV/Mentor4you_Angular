@@ -12,6 +12,7 @@ import { ChipsInputComponent } from './components/chips-input/chips-input.compon
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [

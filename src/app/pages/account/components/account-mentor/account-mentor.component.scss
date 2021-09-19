@@ -1,7 +1,7 @@
 @import "variables";
 
 .content {
-  color: #141F31;
+  color: #141f31;
   background: $white;
   box-shadow: 1px 1px 5px 2px $lightgray;
   padding-bottom: 50px;
@@ -108,8 +108,17 @@ button {
   border: 1px solid $fuschia100;
   transition: 0.3s ease-in-out;
   &:hover {
-    background-color: $fuschia100;
     color: $white;
+    background-color: $fuschia100;
+  }
+}
+
+::ng-deep .file-upload {
+  &:hover {
+    mat-icon {
+      transition: 0.3s ease-in-out;
+      color: $white;
+    }
   }
 }
 
@@ -127,7 +136,7 @@ button {
 }
 
 ::ng-deep .mat-snack-bar-container {
-  min-width: 400px !important;
+  min-width: 450px !important;
 }
 
 ::ng-deep .danger {
@@ -157,4 +166,28 @@ mat-checkbox {
 
 ::ng-deep .mat-checkbox-ripple .mat-ripple-element {
   background-color: $fuschia40 !important;
+}
+
+.invalidForm {
+  border: 1px solid red;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $fuschia100;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: $fuschia100;
+}
+::ng-deep .mat-form-field-hide-placeholder .mat-select-placeholder {
+  &:focus {
+    color: $fuschia100 !important;
+  }
+}
+
+::ng-deep .mat-focused {
+  color: $fuschia100 !important;
+}
+
+.invalid-checkbox {
+  color: red !important;
 }

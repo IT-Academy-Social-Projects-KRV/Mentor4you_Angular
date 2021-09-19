@@ -56,7 +56,7 @@
 
     <div [ngSwitch]="true">
       <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
-        <app-account-mentor></app-account-mentor>
+        <app-account-mentor [isAccountActivated]="isAccountActivated" [selectedFile]="selectedFile"></app-account-mentor>
       </div>
 
       <div class="mentee" *ngSwitchCase="currentRole === 'mentee'">
