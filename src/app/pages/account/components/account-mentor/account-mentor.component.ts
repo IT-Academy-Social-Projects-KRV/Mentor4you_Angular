@@ -73,7 +73,7 @@ export class AccountMentorComponent implements OnInit {
   
 
   onSubmit(): void {
-    this.btnTouched = !this.btnTouched;
+    this.btnTouched = true;
     
 
     if (
