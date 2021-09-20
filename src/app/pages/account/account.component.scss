@@ -10,6 +10,11 @@
   color: $black;
 }
 
+::ng-deep .thumb{
+  max-height: 90px;
+  cursor: default !important;
+}
+
 .mentor-account {
   &__top-line {
     display: flex;

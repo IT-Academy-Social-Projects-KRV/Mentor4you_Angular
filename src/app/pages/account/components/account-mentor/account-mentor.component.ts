@@ -50,19 +50,19 @@ export class AccountMentorComponent implements OnInit {
     this.mentorForm = this.fb.group({
       avatar: this.selectedFile,
       isAccountActivated: this.isAccountActivated,
-      fullName: ['', Validators.required],
-      about: ['', Validators.required],
+      fullName: ['', [Validators.required]],
+      about: ['', [Validators.required]],
       subjects: this.subForm,
-      email: ['', Validators.required, Validators.email],
-      rate: ['', Validators.required, Validators.pattern('^[0-9]+$')],
+      email: ['', [Validators.required, Validators.email]],
+      rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       languages: this.langForm,
       linkedIn: [''],
       facebook: [''],
       youtube: [''],
       certificates: [''],
       group: this.groupWork,
-      remotely: [false],
-      offline: [false],
+      remotely: [false || true],
+      offline: [false || true],
       location: this.locForm,
     });
   }
@@ -70,14 +70,16 @@ export class AccountMentorComponent implements OnInit {
   OnGroupWork() {
     this.groupWork = !this.groupWork;
   }
+  
 
   onSubmit(): void {
     this.btnTouched = !this.btnTouched;
     
+
     if (
       this.mentorForm.valid &&
-      (this.mentorForm.controls['remotely'] === true ||
-        this.mentorForm.controls['offline'] === true)
+      (this.mentorForm.controls['remotely'].value === true ||
+        this.mentorForm.controls['offline'].value === true)
     ) {
       // const formData = new FormData();
       // formData.append('file', this.mentorForm.get('profile').value);
