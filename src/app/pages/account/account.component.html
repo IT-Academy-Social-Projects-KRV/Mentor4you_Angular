@@ -5,6 +5,7 @@
 
       <div class="mentor-account__top-actions">
         <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">
+<<<<<<< HEAD
           <mat-slide-toggle
             [checked]="isAccountActivated"
             [labelPosition]="'before'"
@@ -19,46 +20,52 @@
               ? "Move to mentee account"
               : "Move to mentor account"
           }}
+=======
+          <mat-slide-toggle 
+            (toggleChange)="toggleAccountActivate()" 
+            [checked]="isAccountActivated"
+            [labelPosition]="'before'"
+            >Account activated
+          </mat-slide-toggle>
+        </div>
+
+        <button class="mentor-account__btn" #button (click)="toggleRole(button)">
+          {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
+>>>>>>> origin/test_account_mentor
         </button>
       </div>
     </div>
 
     <div class="mentor-account__avatar-upload">
       <div class="mentor-account__avatar-section">
-        <span>My photo</span>
+        <span *ngIf="!isImage">My photo</span>
+        <span id="output"></span>
       </div>
-      
-      {{ textFieldUpload || "No file uploaded yet." }}
 
       <div class="mentor-account__upload-section">
-        
-        <input
-          style="display: none"
-          type="file"
-          (change)="onFileSelected($event)"
-          #fileUpload
-        />
-  
-        <div class="file-upload">
-  
-          <button
-            mat-mini-fab
-            color="primary"
-            class="upload-btn"
-            (click)="fileUpload.click()"
-          >
-            <mat-icon>attach_file</mat-icon>
-          </button>
-        </div>
+        <input type="file" (change)="onFileSelected($event)" #fileInput>
+
+        <div class="mentor-account__fild-upload"> {{textFieldUpload}} </div>
       </div>
 
+      <div class="file-upload">
+  
+        <button
+          mat-mini-fab
+          color="primary"
+          class="upload-btn"
+          (click)="fileInput.click()"
+        >
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </div>
     </div>
 
     <div [ngSwitch]="true">
       <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
-        <app-account-mentor [isAccountActivated]="isAccountActivated" [selectedFile]="selectedFile"></app-account-mentor>
+        <app-account-mentor (setMentorData)="setMentorData($event)"></app-account-mentor>
       </div>
-
+      
       <div class="mentee" *ngSwitchCase="currentRole === 'mentee'">
         <h2>Mentee</h2>
         <app-account-mentee></app-account-mentee>

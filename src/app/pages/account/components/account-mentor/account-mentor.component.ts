@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { Router } from '@angular/router';
+
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
@@ -71,29 +73,7 @@ export class AccountMentorComponent implements OnInit {
 
   onSubmit(): void {
     this.btnTouched = !this.btnTouched;
-    // console.log(this.langForm.value);
-    // console.log(this.mentorForm.controls['avatar'].value);
-    // console.log(this.mentorForm.controls['fullName'].value);
-    // console.log(this.mentorForm.controls['isAccountActivated'].value);
-    // console.log(this.mentorForm.controls['about'].value);
-    // console.log(this.mentorForm.controls['subjects'].value);
-    // console.log(this.mentorForm.controls['email'].value);
-    // console.log(this.mentorForm.controls['rate'].value);
-    // console.log(this.mentorForm.controls['languages'].value);
-    // console.log(this.mentorForm.controls['linkedIn'].value);
-    // console.log(this.mentorForm.controls['facebook'].value);
-    // console.log(this.mentorForm.controls['youtube'].value);
-    // console.log(this.mentorForm.controls['certificates'].value);
-    // console.log(this.mentorForm.controls['group'].value);
-    // console.log(this.mentorForm.controls['remotely'].value);
-    // console.log(this.mentorForm.controls['offline'].value);
-    // console.log(this.mentorForm.controls['location'].value);
-    // const file = this.selectedFile;
-    // const fd = new FormData();
-
-    // // --- send to server
-    // this.mentorForm.controls['avarar'] = fd.append('image', file, file.name);
-    // console.log(this.mentorForm.controls['avatar'].value);
+    
     if (
       this.mentorForm.valid &&
       (this.mentorForm.controls['remotely'] === true ||

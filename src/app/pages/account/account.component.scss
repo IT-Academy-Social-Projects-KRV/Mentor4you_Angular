@@ -22,7 +22,10 @@
     color: #141f31;
     font-size: 36px;
     font-weight: regular;
+<<<<<<< HEAD
     margin-bottom: 0;
+=======
+>>>>>>> origin/test_account_mentor
   }
 
   &__top-actions {
@@ -134,6 +137,13 @@
       background: $lightgray;
     }
   }
+<<<<<<< HEAD
+=======
+
+  .mat-slide-toggle-content {
+    margin: 3px 15px 0 0;
+  }
+>>>>>>> origin/test_account_mentor
 }
 
 .upload-btn {
@@ -154,3 +164,50 @@
     color: white;
   }
 }
+<<<<<<< HEAD
+=======
+
+
+@media screen and (max-width: 1140px) {
+  .mentor-account {
+    &__slide {
+      margin-right: 30px;
+    }
+    
+    &__upload-photo {
+      padding: 20px 50px;
+    }
+
+    &__fild-upload {
+      width: 255px;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .mentor-account {
+    &__top-actions {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &__slide {
+      margin-bottom: 20px;
+    }
+
+    &__upload-section {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    &__fild-upload {
+      margin-bottom: 10px;
+    }
+
+    &__upload-photo {
+      padding: 20px 35px;
+     }
+  }
+}
+ 
+>>>>>>> origin/test_account_mentor
