@@ -44,7 +44,7 @@ export class AccountComponent implements OnInit {
     this.selectedFile = <File>event.target.files[0];
 
     if (!this.selectedFile.type.match('image/*')) {
-      alert('Select photo, please.');
+      this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
 
@@ -88,7 +88,7 @@ export class AccountComponent implements OnInit {
     const fd = new FormData();
 
     if (!file || !file.type.match('image/*')) {
-      openSnackBar('Please select a photo', 'Got it', 'danger');
+      this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
 

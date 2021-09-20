@@ -5,22 +5,6 @@
 
       <div class="mentor-account__top-actions">
         <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">
-<<<<<<< HEAD
-          <mat-slide-toggle
-            [checked]="isAccountActivated"
-            [labelPosition]="'before'"
-            (toggleChange)="toggleAccountActivate()"
-            >Account Activated
-          </mat-slide-toggle>
-        </div>
-
-        <button class="mentor-account__btn" (click)="toggleRole()">
-          {{
-            currentRole == "mentor"
-              ? "Move to mentee account"
-              : "Move to mentor account"
-          }}
-=======
           <mat-slide-toggle 
             (toggleChange)="toggleAccountActivate()" 
             [checked]="isAccountActivated"
@@ -31,7 +15,6 @@
 
         <button class="mentor-account__btn" #button (click)="toggleRole(button)">
           {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
->>>>>>> origin/test_account_mentor
         </button>
       </div>
     </div>
