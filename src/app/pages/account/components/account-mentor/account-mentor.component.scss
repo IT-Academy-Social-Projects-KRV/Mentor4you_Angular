@@ -7,6 +7,16 @@
   padding-bottom: 50px;
 }
 
+.dollar-img{
+  z-index: 10;
+  position: absolute;
+  margin: 10px 0 0 10px;
+}
+
+.rate-field{
+  position: relative;
+}
+
 .mentor {
   span {
     display: block;
@@ -40,7 +50,9 @@
     padding-top: 12px;
   }
   &__rate-input {
+    padding-left: 25px !important;
     width: 35% !important;
+    position: relative;
   }
 
   &__control-wrapper {
@@ -157,6 +169,11 @@ mat-checkbox {
 
 ::ng-deep .mat-checkbox-ripple .mat-ripple-element {
   background-color: $fuschia40 !important;
+}
+
+.star {
+  display: inline !important;  
+  color: red;
 }
 
 .invalidForm {

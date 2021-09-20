@@ -2,7 +2,7 @@
   <form class="mentor" (ngSubmit)="onSubmit()" [formGroup]="mentorForm">
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
-        <span class="mentor__label">Name and Surname</span>
+        <span class="mentor__label">Name and Surname <span class="star">*</span></span>
 
         <div class="mentor__control-wrapper">
           <div>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">About</span>
+        <span class="mentor__label">About <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <textarea
             [ngClass]="invalidCheck('fullName')"
@@ -32,7 +32,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">I can teach</span>
+        <span class="mentor__label mentor__teach">I can teach <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -46,7 +46,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Email</span>
+        <span class="mentor__label">Email <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <input
             [ngClass]="invalidCheck('email')"
@@ -69,14 +69,14 @@
         </div>
       </div>
 
-      <div class="mentor__form-field">
-        <span for="fullName" class="mentor__label">Rate</span>
+      <div class="mentor__form-field rate-field">
+        <span for="fullName" class="mentor__label">Rate <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
+          <img class="dollar-img" src="../../../../../assets/images/$.svg" alt="dollar">
           <input
             [ngClass]="invalidCheck('rate')"
             id="rate"
             type="text"
-            placeholder="$"
             class="mentor__control mentor__rate-input"
             formControlName="rate"
           />
@@ -142,7 +142,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">Languages</span>
+        <span class="mentor__label mentor__teach">Languages <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>

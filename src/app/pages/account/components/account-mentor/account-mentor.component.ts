@@ -70,11 +70,9 @@ export class AccountMentorComponent implements OnInit {
   OnGroupWork() {
     this.groupWork = !this.groupWork;
   }
-  
 
   onSubmit(): void {
     this.btnTouched = true;
-    
 
     if (
       this.mentorForm.valid &&
@@ -97,6 +95,7 @@ export class AccountMentorComponent implements OnInit {
       this.openSnackBar('Please check all required fields', 'Got it', 'danger');
     }
   }
+
   openSnackBar(message: string, action: string, className: string) {
     this._snackBar.open(message, action, {
       duration: 5000,
