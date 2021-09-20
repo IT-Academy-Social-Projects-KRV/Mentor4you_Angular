@@ -3,6 +3,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { chainedInstruction } from '@angular/compiler/src/render3/view/util';
+import { HttpClient } from '@angular/common/http';
+import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 
 
 @Component({
@@ -22,6 +24,7 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private http: HttpClient,
    ) {
 
   }
@@ -40,8 +43,20 @@ validateEmail(event: any){
 
   RequestResetUser() {
     const email= this.RequestResetForm.value.email;
+    console.log(email);
     this.isInstructionSend = true;
-    setTimeout( ()=> {this.router.navigate(['/'])}, 5000)
-   
+    // let requestBody = {
+    //   "login": "oksana@gmail.com",
+    //   "password": "Wtf12345"
+    // };
+    //setTimeout( ()=> {this.router.navigate(['/'])}, 5000)
+    // this.http.post("http://localhost:8080/system/auth", requestBody).subscribe(response => console.log(response))
+    let requestBody = {
+     "login": email,
+    }
+     this.http.post("http://localhost:8080/password/request", requestBody).subscribe(response => console.log(response))
+    
+    
   }
+
 }

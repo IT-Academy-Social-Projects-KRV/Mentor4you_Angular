@@ -12,6 +12,7 @@ import { TermsComponent } from './pages/terms/terms.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 // import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
 import {AuthModule} from "./auth/auth.module";
+import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {AuthModule} from "./auth/auth.module";
     FooterComponent,
     TermsComponent,
     MessagesComponent,
+    HowItWorksComponent,
     // MentorDetailsComponent,
   ],
   imports: [
