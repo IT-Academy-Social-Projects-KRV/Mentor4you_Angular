@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Mentor } from 'src/app/core/interfaces';
+import { MentorCard } from 'src/app/core/interfaces';
 import { MentorService } from 'src/app/core/services';
 
 @Component({
@@ -9,7 +9,7 @@ import { MentorService } from 'src/app/core/services';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  mentors: Mentor[] = [];
+  mentors: MentorCard[] = [];
 
   constructor(
     private mentorService: MentorService,
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.mentorService.getMentors().subscribe(
-      (mentors: Mentor[]) => this.mentors = mentors
+      (mentors: MentorCard[]) => this.mentors = mentors
     )
   }
 

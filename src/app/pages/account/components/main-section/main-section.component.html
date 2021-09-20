@@ -1,0 +1,54 @@
+<div class="main-section container">
+  <div class="row">
+    <div class="col-4">
+      <div class="image-wrap">
+        <img class="image" src="https://i.pravatar.cc/120" alt="name">
+      </div>
+
+      <h3 class="name" #name>{{name_surname}}</h3>
+
+      <div class="soc-link" *ngIf="auth">
+        <mat-icon class="d-flex justify-content-start">
+          <a href="#" class="material-icons-outlined">telegram</a>
+          <a href="#" class="material-icons-outlined">mail_outline</a>
+          <a href="#" class="material-icons">phone_in_talk</a>
+        </mat-icon>
+      </div>
+
+      <button class="btn">{{button}}</button>
+    </div>
+
+    <div class="col-4">
+      <div class="category"><b>Category: </b><span>{{Category[0]}}</span><span>{{Category[2]}}</span></div>
+      <br>
+      <div class="info-section d-flex align-items-start flex-column">
+        <p><b>Place:</b><span class="place">{{place}}</span></p>
+        <p><b>Rate:</b><span class="rate">{{rate}}</span></p>
+        <p><b>Group mentoring:</b><span class="grp_ment"> {{grp_ment}}</span></p>
+        <p><b>Languages:</b><span class="language">{{Languages[0]}}</span></p>
+      </div>
+    </div>
+
+    <div class="col-4 description align-self-center">
+      <br>
+      <p>{{description}}</p>
+      <br>
+    </div>
+  </div>
+</div>
+
+<div class="certificatesLinks container d-flex flex-column align-items-center">
+  <div class="certificates">
+    <h5>Certificates:</h5>
+    <br>
+    <p> ISTQB CTF Certification (№ 15-CTFL-72361-03)</p>
+  </div>
+
+  <div class="links">
+    <h5>Additional Links:</h5>
+    <br>
+    <p></p>
+  </div>
+</div>
+
+<button class="edit-btn"  (click)="toggleEditMentor()">Edit</button>

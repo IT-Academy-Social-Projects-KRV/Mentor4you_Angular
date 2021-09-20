@@ -7,6 +7,7 @@
   text-align: center;
   margin: 15px;
   position: relative;
+  cursor: pointer;
   transition: .3s;
 
   &:hover {
@@ -52,6 +53,10 @@
   &__rating {
     display: flex;
     justify-content: center;
+
+    span {
+      color: $fuschia80;
+    }
   }
 }
 

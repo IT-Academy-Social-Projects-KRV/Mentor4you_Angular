@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { MatChipsModule } from '@angular/material/chips';
-// import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -12,6 +11,7 @@ import { AccountComponent } from './account.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MainSectionComponent } from './components/main-section/main-section.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +19,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AccountMentorComponent,
     AccountMenteeComponent,
     AccountSettingsComponent,
+    MainSectionComponent
   ],
   imports: [
     SharedModule,
     AccountRoutingModule,
     MatChipsModule,
-    // MatFormFieldModule,
     MatSelectModule,
     MatSnackBarModule,
     MatCheckboxModule,

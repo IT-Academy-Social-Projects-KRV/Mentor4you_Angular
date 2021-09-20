@@ -18,7 +18,7 @@
         </ul>
       </nav>
       <div class="header__btns">
-        <ng-container *ngIf="isAuth; else unauthorized">
+        <ng-container *ngIf="!isAuth; else unauthorized">
           <div class="header__btns__inner">
             <div class="header__btns-message__inner" (click)="isNewMessage = false">
               <a class="header__btns-message" routerLink="/messages">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/settings.svg" alt="Settings">
-                  <a class="settings-menu__item__text" routerlink="#">Settings</a>
+                  <a class="settings-menu__item__text" routerLink="/account/settings">Settings</a>
                 </div>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/power.svg" alt="logout">

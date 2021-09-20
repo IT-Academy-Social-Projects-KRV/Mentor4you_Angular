@@ -1,12 +1,16 @@
-<div *ngIf="mentor?.img" class="mentor-card">
+<div *ngIf="mentor" class="mentor-card" (click)="goTo('mentor-details')">
   <div class="mentor-card__info">
     <div class="mentor-card__image-wrap">
-      <img class="mentor-card__image" src="{{mentor?.img}}" alt="{{mentor?.name}}">
+      <img class="mentor-card__image" src="{{mentor.avatar}}" alt="{{mentor.fullName}}">
     </div>
-    <p class="mentor-card__name">{{mentor?.name}}</p>
-    <p class="mentor-card__category">{{mentor!.category[0]}}, {{mentor!.category[1]}}</p>
+    <p class="mentor-card__name">{{mentor.fullName}} {{mentor.id}}</p>
+    <p class="mentor-card__category">
+      <span *ngFor="let category of mentor.categories">
+        {{category}}
+      </span>
+    </p>
     <p class="mentor-card__rating">
-      <img *ngFor="let star of stars" src="./../../../../../assets/images/star.svg" alt="star">
+      <span class="material-icons-outlined" *ngFor="let star of stars">grade</span>
     </p>
   </div>
 

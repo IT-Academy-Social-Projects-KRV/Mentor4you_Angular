@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AccountComponent implements OnInit {
   // mentorData: any = {};
+  isEditedMentor: boolean = true;
   isAccountActivated: boolean = false;
   isImage: boolean = false;
   currentRole: string = 'mentor';
@@ -20,6 +21,15 @@ export class AccountComponent implements OnInit {
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {}
+
+  toggleEditMentor(): void {
+    this.isEditedMentor = !this.isEditedMentor;
+    // console.log('this.isEditedMentor', this.isEditedMentor);
+  }
+
+  showEditForm(): void {
+    this.isEditedMentor = !this.isEditedMentor;
+  }
 
   setMentorData(mentorData: any): void {
     this.isAccountActivated = mentorData.isAccountActivated;

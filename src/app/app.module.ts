@@ -10,8 +10,6 @@ import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
 import { MessagesComponent } from './pages/messages/messages.component';
-// import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
-import {AuthModule} from "./auth/auth.module";
 
 
 @NgModule({
@@ -21,7 +19,6 @@ import {AuthModule} from "./auth/auth.module";
     FooterComponent,
     TermsComponent,
     MessagesComponent,
-    // MentorDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { Router } from '@angular/router';
 
@@ -14,6 +14,7 @@ import { HttpClient } from '@angular/common/http';
 export class AccountMentorComponent implements OnInit {
   @Input() isAccountActivated!: boolean;
   @Input() selectedFile!: File;
+  @Output() showProfile: EventEmitter<void> = new EventEmitter();
 
   myColor = '#3AB67D';
 
@@ -119,5 +120,9 @@ export class AccountMentorComponent implements OnInit {
     ) {
       return 'invalid-checkbox';
     } else return '';
+  }
+
+  showProfileMentor(): void {
+    this.showProfile.emit();
   }
 }
