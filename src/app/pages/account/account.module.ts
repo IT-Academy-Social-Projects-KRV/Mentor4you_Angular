@@ -8,8 +8,10 @@ import { AccountMentorComponent } from './components/account-mentor/account-ment
 import { AccountMenteeComponent } from './components/account-mentee/account-mentee.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AccountComponent } from './account.component';
-import { ChipsInputComponent } from './components/chips-input/chips-input.component';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MainSectionComponent } from './components/main-section/main-section.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,16 @@ import { ChipsInputComponent } from './components/chips-input/chips-input.compon
     AccountMentorComponent,
     AccountMenteeComponent,
     AccountSettingsComponent,
-    ChipsInputComponent
+    MainSectionComponent
   ],
   imports: [
     SharedModule,
     AccountRoutingModule,
-    MatChipsModule
-  ]
+    MatChipsModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatCheckboxModule,
+    
+  ],
 })
-export class AccountModule { }
+export class AccountModule {}

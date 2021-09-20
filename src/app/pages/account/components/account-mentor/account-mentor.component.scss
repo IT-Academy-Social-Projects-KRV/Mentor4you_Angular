@@ -1,13 +1,18 @@
-@import 'variables';
+@import "variables";
 
 .content {
-  color: $black;
+  color: #141f31;
   background: $white;
   box-shadow: 1px 1px 5px 2px $lightgray;
+  padding-bottom: 50px;
 }
 
 .mentor {
-  padding: 140px 100px;
+  span {
+    display: block;
+    margin: 10px 0;
+  }
+  padding: 140px 100px 0px;
 
   &__form-group {
     margin-bottom: 30px;
@@ -16,23 +21,26 @@
   &__form-field {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     width: 750px;
     font-size: 18px;
-    font-weight: bold;
+    font-weight: regular;
     color: $black;
     margin-bottom: 40px;
-    
+
     &.textarea {
       display: flex;
 
-      label {
+      span {
         margin-top: 15px;
       }
     }
   }
-
-  &__label {
-    width: 35%;
+  &__teach {
+    padding-top: 12px;
+  }
+  &__rate-input {
+    width: 35% !important;
   }
 
   &__control-wrapper {
@@ -42,17 +50,12 @@
 
   &__control {
     width: 100%;
-    border: 2px solid $lightgray;
+    border: 1px solid $lightgray;
     padding: 9px;
+  }
 
-    &:focus-visible {
-      outline: none;
-    }
-
-    &.ng-touched.ng-invalid {
-      border-color: $red;
-      outline: none;
-    }
+  &__btn {
+    margin-top: 30px;
   }
 }
 
@@ -63,7 +66,6 @@
   font-size: 14px;
   color: $red;
 }
-
 
 @media screen and (max-width: 1140px) {
   .mentor {
@@ -82,4 +84,101 @@
       width: auto;
     }
   }
+}
+
+button {
+  display: block;
+  margin-top: 30px;
+  margin: 0 auto;
+  width: 335px;
+  border-radius: 15px;
+  padding: 15px 5px;
+  border-color: $black;
+  background-color: $white;
+  color: $fuschia100;
+  border: 1px solid $fuschia100;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    color: $white;
+    background-color: $fuschia100;
+  }
+}
+
+::ng-deep .file-upload {
+  &:hover {
+    mat-icon {
+      transition: 0.3s ease-in-out;
+      color: $white;
+    }
+  }
+}
+
+::ng-deep .mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate {
+  background: $fuschia100;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $black !important;
+}
+
+::ng-deep .mat-snack-bar-container .mat-button-wrapper {
+  color: white !important;
+}
+
+::ng-deep .mat-snack-bar-container {
+  min-width: 450px !important;
+}
+
+::ng-deep .danger {
+  background-color: rgb(189, 24, 24);
+}
+
+::ng-deep .success {
+  background-color: $fuschia100;
+  color: $white;
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: 250px;
+}
+
+mat-slide-toggle {
+  padding-top: 7px;
+}
+
+mat-checkbox {
+  display: block;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: $fuschia100;
+}
+
+::ng-deep .mat-checkbox-ripple .mat-ripple-element {
+  background-color: $fuschia40 !important;
+}
+
+.invalidForm {
+  border: 1px solid red;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $fuschia100;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: $fuschia100;
+}
+::ng-deep .mat-form-field-hide-placeholder .mat-select-placeholder {
+  &:focus {
+    color: $fuschia100 !important;
+  }
+}
+
+::ng-deep .mat-focused {
+  color: $fuschia100 !important;
+}
+
+.invalid-checkbox {
+  color: red !important;
 }

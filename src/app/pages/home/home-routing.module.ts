@@ -12,6 +12,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)]
+  imports: [RouterModule.forRoot(routes,  {scrollPositionRestoration: 'top'})]
 })
 export class HomeRoutingModule { }

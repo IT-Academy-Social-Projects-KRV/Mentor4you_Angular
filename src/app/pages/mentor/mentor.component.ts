@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Mentor } from 'src/app/core/interfaces';
+import { MentorCard } from 'src/app/core/interfaces';
 import { MentorService } from 'src/app/core/services';
 
 @Component({
@@ -9,7 +9,7 @@ import { MentorService } from 'src/app/core/services';
   styleUrls: ['./mentor.component.scss']
 })
 export class MentorComponent implements OnInit {
-  mentors: Mentor[] = [];
+  mentors: MentorCard[] = [];
 
   constructor(
     private menrotService: MentorService

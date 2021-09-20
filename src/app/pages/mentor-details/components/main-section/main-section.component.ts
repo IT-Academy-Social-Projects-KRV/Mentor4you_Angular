@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild,AfterViewInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-main-section',
@@ -6,6 +6,7 @@ import {Component, ElementRef, OnInit, ViewChild,AfterViewInit} from '@angular/c
   styleUrls: ['./main-section.component.scss']
 })
 export class MainSectionComponent implements OnInit,AfterViewInit {
+  @Input() mentor: any;
   @ViewChild('name')name?:ElementRef
 
   constructor() { }
@@ -66,7 +67,6 @@ export class MainSectionComponent implements OnInit,AfterViewInit {
     }
 
   }
-
 
 
 }
