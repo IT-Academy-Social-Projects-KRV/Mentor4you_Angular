@@ -1,1 +1,185 @@
-<p>account-mentor works!</p>
+<div class="content">
+  <form class="mentor" (ngSubmit)="onSubmit()" [formGroup]="mentorForm">
+    <fieldset class="mentor__form-group">
+      <div class="mentor__form-field">
+        <span class="mentor__label">Name and Surname</span>
+
+        <div class="mentor__control-wrapper">
+          <div>
+            <input
+              [ngClass]="invalidCheck('fullName')"
+              id="fullName"
+              type="text"
+              class="mentor__control"
+              formControlName="fullName"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">About</span>
+        <div class="mentor__control-wrapper">
+          <textarea
+            [ngClass]="invalidCheck('fullName')"
+            id="about"
+            rows="5"
+            class="mentor__control"
+            formControlName="about"
+          >
+          </textarea>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label mentor__teach">A can teach</span>
+        <div class="mentor__control-wrapper">
+          <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select [required]="true" [formControl]="subForm" multiple>
+              <mat-option *ngFor="let item of subjList" [value]="subForm">{{
+                item
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Email</span>
+        <div class="mentor__control-wrapper">
+          <input
+            [ngClass]="invalidCheck('email')"
+            id="email"
+            type="email"
+            formControlName="email"
+            class="mentor__control"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Phone number</span>
+        <div class="mentor__control-wrapper">
+          <input
+            type="text"
+            formControlName="email"
+            class="mentor__control"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span for="fullName" class="mentor__label">Rate</span>
+        <div class="mentor__control-wrapper">
+          <input
+            [ngClass]="invalidCheck('rate')"
+            id="rate"
+            type="text"
+            placeholder="$"
+            class="mentor__control mentor__rate-input"
+            formControlName="rate"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">LinkedIn</span>
+        <div class="mentor__control-wrapper">
+          <input
+            type="text"
+            formControlName="linkedIn"
+            class="mentor__control"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Facebook</span>
+        <div class="mentor__control-wrapper">
+          <input
+            type="text"
+            formControlName="facebook"
+            class="mentor__control"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Youtube</span>
+        <div class="mentor__control-wrapper">
+          <input
+            type="text"
+            formControlName="youtube"
+            class="mentor__control"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Certificates</span>
+        <div class="mentor__control-wrapper">
+          <textarea
+            id="about"
+            rows="5"
+            class="mentor__control"
+            formControlName="certificates"
+          >
+          </textarea>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">I can work with group</span>
+        <div class="mentor__control-wrapper">
+          <mat-slide-toggle
+            [checked]="groupWork"
+            (toggleChange)="OnGroupWork()"
+            formControlName="group"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label mentor__teach">Languages</span>
+        <div class="mentor__control-wrapper">
+          <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select [required]="true" [formControl]="langForm" multiple>
+              <mat-option *ngFor="let item of langList" [value]="langForm">{{
+                item
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Work</span>
+        <div class="mentor__control-wrapper" [ngClass]="checkBox()">
+          <mat-checkbox formControlName="remotely">Remotely</mat-checkbox>
+          <mat-checkbox formControlName="offline">Offline</mat-checkbox>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label mentor__teach">Location</span>
+        <div class="mentor__control-wrapper">
+          <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select [formControl]="locForm">
+              <mat-option *ngFor="let item of locList" [value]="locForm">{{
+                item
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button class="mentor__btn">Save Profile</button>
+    </fieldset>
+  </form>
+  <button class="mentor__btn">View Public Profile</button>
+</div>
+  
