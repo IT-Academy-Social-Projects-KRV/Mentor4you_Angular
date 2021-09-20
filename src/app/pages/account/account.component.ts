@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AccountComponent implements OnInit {
   // mentorData: any = {};
-  isAccountActivated: boolean = false;
+  isAccountActivated!: boolean;
   isImage: boolean = false;
   currentRole: string = 'mentor';
   textFieldUpload: string = 'Upload you photo here';
@@ -19,7 +19,9 @@ export class AccountComponent implements OnInit {
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAccountActivated = true;
+  }
 
   setMentorData(mentorData: any): void {
     this.isAccountActivated = mentorData.isAccountActivated;

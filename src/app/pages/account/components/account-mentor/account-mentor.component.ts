@@ -61,8 +61,8 @@ export class AccountMentorComponent implements OnInit {
       youtube: [''],
       certificates: [''],
       group: this.groupWork,
-      remotely: [false || true],
-      offline: [false || true],
+      remotely: [false],
+      offline: [false],
       location: this.locForm,
     });
   }
