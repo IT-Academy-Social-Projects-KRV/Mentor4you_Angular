@@ -10,8 +10,10 @@
   color: $black;
 }
 
-::ng-deep .thumb{
-  max-height: 90px;
+::ng-deep .thumb {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
   cursor: default !important;
 }
 
@@ -164,17 +166,16 @@
   }
 }
 
-
 @media screen and (max-width: 1140px) {
   .mentor-account {
     &__slide {
       margin-right: 30px;
     }
-    
+
     &__upload-photo {
       padding: 20px 50px;
     }
-    
+
     &__fild-upload {
       width: 255px;
     }
@@ -203,7 +204,10 @@
 
     &__upload-photo {
       padding: 20px 35px;
-     }
+    }
   }
 }
- 
+
+::ng-deep .mat-simple-snackbar {
+  color: white !important;
+}

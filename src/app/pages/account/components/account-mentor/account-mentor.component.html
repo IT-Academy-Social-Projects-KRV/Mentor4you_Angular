@@ -2,18 +2,22 @@
   <form class="mentor" (ngSubmit)="onSubmit()" [formGroup]="mentorForm">
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
-        <span class="mentor__label">Name and Surname <span class="star">*</span></span>
+        <span class="mentor__label"
+          >Name and Surname <span class="star">*</span></span
+        >
 
         <div class="mentor__control-wrapper">
-          <div>
-            <input
-              [ngClass]="invalidCheck('fullName')"
-              id="fullName"
-              type="text"
-              class="mentor__control"
-              formControlName="fullName"
-            />
-          </div>
+          <input
+            [ngClass]="invalidCheck('fullName')"
+            id="fullName"
+            type="text"
+            class="mentor__control"
+            formControlName="fullName"
+          />
+          <p class="invalid-text" *ngIf="invalidCheck('fullName')">
+            Please input alphabet characters only. Name must be at least 2
+            characters long and max length - 15 characters
+          </p>
         </div>
       </div>
 
@@ -21,18 +25,24 @@
         <span class="mentor__label">About <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <textarea
-            [ngClass]="invalidCheck('fullName')"
+            [ngClass]="invalidCheck('about')"
             id="about"
             rows="5"
             class="mentor__control"
             formControlName="about"
           >
           </textarea>
+          <p class="invalid-text" *ngIf="invalidCheck('about')">
+            Please input alphabet characters only. Name must be at least 2
+            characters long and max length - 15 characters
+          </p>
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">I can teach <span class="star">*</span></span>
+        <span class="mentor__label mentor__teach"
+          >I can teach <span class="star">*</span></span
+        >
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -55,24 +65,39 @@
             formControlName="email"
             class="mentor__control"
           />
+          <p class="invalid-text" *ngIf="invalidCheck('email')">
+            Please provide a valid email address
+          </p>
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Phone number</span>
+        <span class="mentor__label"
+          >Phone number <span class="star">*</span></span
+        >
         <div class="mentor__control-wrapper">
           <input
             type="text"
-            formControlName="email"
+            formControlName="phone"
             class="mentor__control"
+            [ngClass]="invalidCheck('phone')"
           />
+          <p class="invalid-text" *ngIf="invalidCheck('phone')">
+            Input numbers only
+          </p>
         </div>
       </div>
 
       <div class="mentor__form-field rate-field">
-        <span for="fullName" class="mentor__label">Rate <span class="star">*</span></span>
+        <span class="mentor__label"
+          >Rate <span class="star">*</span></span
+        >
         <div class="mentor__control-wrapper">
-          <img class="dollar-img" src="../../../../../assets/images/$.svg" alt="dollar">
+          <img
+            class="dollar-img"
+            src="../../../../../assets/images/$.svg"
+            alt="dollar"
+          />
           <input
             [ngClass]="invalidCheck('rate')"
             id="rate"
@@ -80,6 +105,7 @@
             class="mentor__control mentor__rate-input"
             formControlName="rate"
           />
+          <p class="invalid-text" *ngIf="invalidCheck('rate')">Please input numbers only</p>
         </div>
       </div>
 
@@ -142,7 +168,9 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">Languages <span class="star">*</span></span>
+        <span class="mentor__label mentor__teach"
+          >Languages <span class="star">*</span></span
+        >
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -177,9 +205,8 @@
         </div>
       </div>
 
-      <button class="mentor__btn">Save Profile</button>
+      <button (click)="onBtnClick()" class="mentor__btn">Save Profile</button>
     </fieldset>
   </form>
   <button class="mentor__btn">View Public Profile</button>
 </div>
-  

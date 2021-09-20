@@ -18,6 +18,11 @@
 }
 
 .mentor {
+  input, textarea {
+    padding: 9px;
+    border-radius: 10px;
+    border: 2px solid $lightgray;
+  }
   span {
     display: block;
     margin: 10px 0;
@@ -177,7 +182,7 @@ mat-checkbox {
 }
 
 .invalidForm {
-  border: 1px solid red;
+  border: 2px solid red !important;
 }
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: $fuschia100;
@@ -198,4 +203,11 @@ mat-checkbox {
 
 .invalid-checkbox {
   color: red !important;
+}
+
+.invalid-text {
+  margin-top: 2px;
+  font-family: 'Roboto';
+  font-size: 14px;
+  color: red;
 }
