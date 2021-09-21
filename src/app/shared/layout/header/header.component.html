@@ -49,11 +49,15 @@
                 </div>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/settings.svg" alt="Settings">
-                  <a class="settings-menu__item__text" routerLink="#">Settings</a>
+                  <a class="settings-menu__item__text" routerLink="/account/settings">Settings</a>
                 </div>
-                <div class="settings-menu__item">
+                <div class="settings-menu__item" (click)="logout()">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/power.svg" alt="logout">
+<<<<<<< HEAD
                   <a class="settings-menu__item__text logout" routerLink="#">Logout</a>
+=======
+                  <a class="settings-menu__item__text logout">Logout</a>
+>>>>>>> dev
                 </div>
               </div>
             </div>
@@ -64,6 +68,6 @@
   </div>
 </header>
 <ng-template #unauthorized>
-  <a class="header__btns-signin header__btn" routerlink="#">Sign In</a>
-  <a class="header__btns-signup header__btn" routerlink="#">Sign Up</a>
+  <a class="header__btns-signin header__btn" routerLink="/auth/login">Sign In</a>
+  <a class="header__btns-signup header__btn" routerLink="/auth/signup">Sign Up</a>
 </ng-template>

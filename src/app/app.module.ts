@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,15 +10,15 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
-import { SigninComponent } from './auth/signin/signin.component';
-import {SigninService} from "./auth/signin/signin.service";
 
-import { HttpClientModule} from "@angular/common/http";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import { NotificationModalService } from './core/services/notification-modal.service';
 import { MessagesComponent } from './pages/messages/messages.component';
-// import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
+import {AccountModule} from "./pages/account/account.module";
+import {ChangePasswordService} from "./pages/account/components/account-settings/change-password.service";
+import {TokenInterceptor} from "./core/interceptors/token.interceptor";
+
 import {AuthModule} from "./auth/auth.module";
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 
@@ -30,8 +31,7 @@ import { NotificationModalModule } from './shared/layout/header/notification-mod
     FooterComponent,
     TermsComponent,
     MessagesComponent,
-    HowItWorksComponent,
-    // MentorDetailsComponent,
+    HowItWorksComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +39,16 @@ import { NotificationModalModule } from './shared/layout/header/notification-mod
     AppRoutingModule,
     SharedModule,
     HomeModule,
+    AccountModule,
+    HttpClientModule,
     NotificationModalModule,
   ],
-  providers: [SigninService,CookieService],
+  providers: [CookieService,NotificationModalService,ChangePasswordService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      multi:true,
+      useClass:TokenInterceptor
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

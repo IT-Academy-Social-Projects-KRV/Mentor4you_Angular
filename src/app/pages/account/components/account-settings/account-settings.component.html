@@ -90,7 +90,7 @@
                   </div>
 
                   <div class="col-4">
-                    <input class="form-control form-control" type="password" [ngClass]="{'is-invalid':ismatch}" placeholder="Confirm new Password" id="confirmPass" formControlName="confirmPassword" (ngModelChange)="isSimplePass()">
+                    <input class="form-control form-control" type="password" [ngClass]="{'is-invalid':isMatch}"  placeholder="Confirm new Password" id="confirmPass" formControlName="confirmPassword" (ngModelChange)="isSimplePass()">
                     <div class="invalid-feedback">Passwords don't match!.</div>
                   </div>
 
