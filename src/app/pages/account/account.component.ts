@@ -90,7 +90,7 @@ export class AccountComponent implements OnInit {
     const fd = new FormData();
 
     if (!file || !file.type.match('image/*')) {
-      // this.openSnackBar('Please select a photo', 'Got it', 'danger');
+      this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
 

@@ -3,13 +3,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 
-
 @NgModule({
   imports: [MatRadioModule],
   exports: [
     MatIconModule,
-    MatSlideToggleModule,
-    MatRadioModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }

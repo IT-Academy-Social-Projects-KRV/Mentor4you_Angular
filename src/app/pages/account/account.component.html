@@ -5,11 +5,8 @@
 
       <div class="mentor-account__top-actions">
         <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">
-          <mat-slide-toggle 
-            (toggleChange)="toggleAccountActivate()" 
-            [checked]="isAccountActivated"
-            [labelPosition]="'before'"
-            >Account activated
+          <mat-slide-toggle (toggleChange)="toggleAccountActivate()" [checked]="isAccountActivated"
+            [labelPosition]="'before'">Account activated
           </mat-slide-toggle>
         </div>
 
@@ -32,13 +29,8 @@
       </div>
 
       <div class="file-upload">
-  
-        <button
-          mat-mini-fab
-          color="primary"
-          class="upload-btn"
-          (click)="fileInput.click()"
-        >
+
+        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileInput.click()">
           <mat-icon>attach_file</mat-icon>
         </button>
       </div>
@@ -48,9 +40,8 @@
       <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
         <app-account-mentor (setMentorData)="setMentorData($event)"></app-account-mentor>
       </div>
-      
+
       <div class="mentee" *ngSwitchCase="currentRole === 'mentee'">
-        <h2>Mentee</h2>
         <app-account-mentee></app-account-mentee>
       </div>
     </div>

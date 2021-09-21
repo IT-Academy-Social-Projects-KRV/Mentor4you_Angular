@@ -5,6 +5,7 @@ $fuschia60: #7FC9A7;
 $fuschia40: #99d4b9;
 $green: #52D197;
 $lightgreen: #E2F4EC;
+$darkgrey: #5c5c5f;
 $grey: #A3A3A3;
 $lightgray: #DEDEDE;
 $black: #26242E;
@@ -47,4 +48,37 @@ $yellow: #FCD84B;
     border-radius: 50%;
     overflow: hidden;
     object-fit: contain;
+}
+@mixin account-border {
+    color: #26242E;
+    box-shadow: 1px 1px 5px 2px #dedede;
+    border-radius: 0px 0px 15px 15px;
+}
+
+@mixin account-form {
+    padding: 140px 100px;
+    background-color: $white;
+}
+
+@mixin account-field {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    font-size: 18px;
+    font-weight: bold;
+    color: $darkgrey;
+    margin-bottom: 40px;
+}
+
+@mixin account-input {
+    border: 2px solid $lightgray;
+    padding: 9px;
+    border-radius: 10px;
+}
+
+@mixin placeholder-style{
+    font-size: 14px;
+    line-height: 1;
+    color: $grey;
+    text-overflow: ellipsis;
 }

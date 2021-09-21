@@ -9,10 +9,6 @@ import { InvitationComponent } from './components/invitation/invitation.componen
 import { MentorCardComponent } from 'src/app/shared/sharedComponents/mentor-card/mentor-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { NotificationModalComponent } from 'src/app/shared/layout/header/notification-modal/notification-modal.component';
-import { MentorshipRequestComponent } from 'src/app/shared/layout/header/notification-modal/mentorship-request/mentorship-request.component';
-import { MentorshipApproveComponent } from 'src/app/shared/layout/header/notification-modal/mentorship-approve/mentorship-approve.component';
-import { NotificationModalService } from 'src/app/core';
 
 @NgModule({
   declarations: [
@@ -21,16 +17,13 @@ import { NotificationModalService } from 'src/app/core';
     CarouselComponent,
     InvitationComponent,
     MentorCardComponent,
-    NotificationModalComponent,
-    MentorshipRequestComponent,
-    MentorshipApproveComponent,
   ],
   imports: [
     SharedModule, 
     HomeRoutingModule, 
     IvyCarouselModule
   ],
-  exports: [NotificationModalComponent],
-  providers: [NotificationModalService]
+  exports: [],
+  providers: []
 })
 export class HomeModule {}
