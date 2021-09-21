@@ -36,7 +36,7 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(maskConfigFunction)
+    NgxMaskModule.forRoot(maskConfigFunction),
     AccountRoutingModule,
     MatChipsModule
   ]

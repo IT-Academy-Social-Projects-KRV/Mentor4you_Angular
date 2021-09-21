@@ -47,7 +47,7 @@ import { NotificationModalModule } from './shared/layout/header/notification-mod
     SharedModule,
     HomeModule,
     AccountModule,
-    HttpClientModule
+    HttpClientModule,
     NotificationModalModule,
   ],
   providers: [CookieService,NotificationModalService,ChangePasswordService,
