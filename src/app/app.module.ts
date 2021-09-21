@@ -10,6 +10,8 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import {SigninService} from "./auth/signin/signin.service";
 
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
@@ -22,6 +24,9 @@ import {AccountModule} from "./pages/account/account.module";
 import {ChangePasswordService} from "./pages/account/components/account-settings/change-password.service";
 import {TokenInterceptor} from "./core/interceptors/token.interceptor";
 
+// import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
+import {AuthModule} from "./auth/auth.module";
+import { NotificationModalModule } from './shared/layout/header/notification-modal/notification-modal.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,7 @@ import {TokenInterceptor} from "./core/interceptors/token.interceptor";
     MentorshipRequestComponent,
     MentorshipApproveComponent,
     MessagesComponent,
+    // MentorDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,7 @@ import {TokenInterceptor} from "./core/interceptors/token.interceptor";
     HomeModule,
     AccountModule,
     HttpClientModule
+    NotificationModalModule,
   ],
   providers: [CookieService,NotificationModalService,ChangePasswordService,
     {

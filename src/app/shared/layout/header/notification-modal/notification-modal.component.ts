@@ -11,8 +11,8 @@ import { NotificationModalService } from '../../../../core/services/notification
 export class NotificationModalComponent implements OnInit {
   //TODO should be implement in the next task
   public isNewNotification: boolean = true;
-  public mentorRole:boolean = true;
-  // public MenteeRole:boolean = false;
+  public mentorRole:boolean = false;
+  
   public mentees: Mentee[] = [
     {
       id: 1,

@@ -10,14 +10,14 @@ import { mentors } from '../mock/in-memory-data.service';
   providedIn: 'root'
 })
 export class MentorService {
-  mentorUrl = 'api/mentors';
+  mentorUrl = 'http://localhost:8080/api/mentors';
 
   constructor(
     private http: HttpClient
   ) { }
 
   getMentors(): Observable<Mentor[]> {
-    return of(mentors);
-    // return this.http.get<Mentor[]>(this.mentorUrl);
+    // return of(mentors);
+    return this.http.get<Mentor[]>(this.mentorUrl);
   }
 }

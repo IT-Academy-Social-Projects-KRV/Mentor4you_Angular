@@ -10,7 +10,6 @@ import {SigninService} from "../../../auth/signin/signin.service";
 })
 export class HeaderComponent implements OnInit {
   //TODO should be implement in the next task
-  // public isAuth();
   public isNewMessage: boolean = true;
   public isNewNotification: boolean = true;
 
@@ -55,6 +54,6 @@ export class HeaderComponent implements OnInit {
   }
 
   goTo(path: string): void {
-
+    this.router.navigateByUrl(path);
   }
 }

@@ -8,8 +8,18 @@ import { AccountMentorComponent } from './components/account-mentor/account-ment
 import { AccountMenteeComponent } from './components/account-mentee/account-mentee.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AccountComponent } from './account.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { AccountComponent } from './account.component';
 
-
+const maskConfigFunction: () => Partial<IConfig> = () => {
+  return {
+    validation: true,
+  };
+};
 @NgModule({
   declarations: [
     AccountComponent,
@@ -19,8 +29,16 @@ import { AccountComponent } from './account.component';
   ],
   imports: [
     SharedModule,
+    MatChipsModule,
+    // MatFormFieldModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfigFunction)
     AccountRoutingModule,
     MatChipsModule
   ]
 })
-export class AccountModule { }
+export class AccountModule {}

@@ -1,5 +1,19 @@
 export interface Mentee {
-    id: number;
+    id?: number;
     name: string;
-    img: string;
+    img?: string;
   }
+
+export interface MenteeProfile{
+    id?: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    socialMap: {
+      PhoneNumFirst: string;
+      Telegram: string;
+      LinkedIn: string;
+      Skype: string;
+      GitHub: string;
+    }
+}
