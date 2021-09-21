@@ -1,6 +1,6 @@
 import {Component, OnInit,} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators,} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service"
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SigninService} from "./signin.service";

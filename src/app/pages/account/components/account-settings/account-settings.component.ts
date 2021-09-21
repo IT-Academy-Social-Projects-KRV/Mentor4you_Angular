@@ -15,13 +15,12 @@ export class AccountSettingsComponent implements OnInit {
   inputGroup!:FormGroup
 
   isDisabled:boolean=false
-  ismatch:boolean=false
+  isMatch:boolean=false
   isChangeTrue:boolean=false
   isChangeFalse:boolean=false
   isEnter:boolean=false
   isShort:boolean=false
 
-  passwor:string="123123";
   valuePass:any='';
   valueOldPass:any='';
 
@@ -74,22 +73,22 @@ export class AccountSettingsComponent implements OnInit {
     {
       if(this.inputGroup.get('newPassword')?.status=='VALID')
       {
-        this.ismatch = false
+        this.isMatch = false
         this.isShort=false
         return true
       }
       else{
         this.isShort=true
-        this.ismatch = true
+        this.isMatch = true
         return false
         }
     }
     else if(this.inputGroup.get('newPassword')?.value=='' && this.inputGroup.get('newPassword')?.value=='' && this.inputGroup.get('newPassword')?.value.trim()=='' && this.inputGroup.get('confirmPassword')?.value.trim()==''){
-      this.ismatch=true
+      this.isMatch=true
       return false
     }
     else {
-      this.ismatch=true
+      this.isMatch=true
       return false
     }
   }
