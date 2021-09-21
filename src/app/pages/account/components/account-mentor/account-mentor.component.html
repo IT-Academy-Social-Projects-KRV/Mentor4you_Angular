@@ -8,13 +8,13 @@
 
         <div class="mentor__control-wrapper">
           <input
-            [ngClass]="invalidCheck('fullName')"
-            id="fullName"
+            [ngClass]="invalidCheck('firstName')"
+            id="firstName"
             type="text"
             class="mentor__control"
-            formControlName="fullName"
+            formControlName="firstName"
           />
-          <p class="invalid-text" *ngIf="invalidCheck('fullName')">
+          <p class="invalid-text" *ngIf="invalidCheck('firstName')">
             Please input alphabet characters only. Name must be at least 2
             characters long and max length - 15 characters
           </p>

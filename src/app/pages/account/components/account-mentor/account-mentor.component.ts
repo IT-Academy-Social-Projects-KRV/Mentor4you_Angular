@@ -14,7 +14,7 @@ import { T } from '@angular/cdk/keycodes';
 })
 export class AccountMentorComponent implements OnInit {
   @Input() mentor: any;
-  // @Input() isAccountActivated!: boolean;
+  @Input() isAccountActivated!: boolean;
   // @Input() selectedFile!: File;
   @Output() showProfile: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<any> = new EventEmitter();
@@ -56,7 +56,7 @@ export class AccountMentorComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phoneNumberLink: [''],
       // avatar: this.selectedFile,
-      // isAccountActivated: this.isAccountActivated,
+      isAccountActivated: this.isAccountActivated,
       fullName: ['', [Validators.required]],
       // about: ['', [Validators.required]],
       // subjects: this.subForm,
@@ -140,7 +140,7 @@ export class AccountMentorComponent implements OnInit {
   showProfileMentor(): void {
     this.showProfile.emit();
   }
-  
+
   onBtnClick() {
     this.btnTouched = true;
   }
