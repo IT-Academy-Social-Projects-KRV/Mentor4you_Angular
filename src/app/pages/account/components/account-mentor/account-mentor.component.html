@@ -7,11 +7,11 @@
         <div class="mentor__control-wrapper">
           <div>
             <input
-              [ngClass]="invalidCheck('fullName')"
-              id="fullName"
+              [ngClass]="invalidCheck('firstName')"
+              id="firstName"
               type="text"
               class="mentor__control"
-              formControlName="fullName"
+              formControlName="firstName"
             />
           </div>
         </div>
@@ -21,7 +21,7 @@
         <span class="mentor__label">About</span>
         <div class="mentor__control-wrapper">
           <textarea
-            [ngClass]="invalidCheck('fullName')"
+            [ngClass]="invalidCheck('about')"
             id="about"
             rows="5"
             class="mentor__control"
@@ -63,14 +63,14 @@
         <div class="mentor__control-wrapper">
           <input
             type="text"
-            formControlName="email"
+            formControlName="phoneNumberLink"
             class="mentor__control"
           />
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span for="fullName" class="mentor__label">Rate</span>
+        <span for="firstName" class="mentor__label">Rate</span>
         <div class="mentor__control-wrapper">
           <input
             [ngClass]="invalidCheck('rate')"
@@ -135,7 +135,7 @@
           <mat-slide-toggle
             [checked]="groupWork"
             (toggleChange)="OnGroupWork()"
-            formControlName="group"
+            formControlName="groupServices"
           >
           </mat-slide-toggle>
         </div>

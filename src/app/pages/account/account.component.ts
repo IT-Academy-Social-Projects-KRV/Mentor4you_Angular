@@ -22,6 +22,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   selectedFile!: File;
   subscription!: Subscription;
   mentor: any;
+  tempMentorId: number = 9;
 
   constructor(
     private http: HttpClient, 
@@ -30,9 +31,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const id = 9;
-
-    this.subscription = this.mentorService.getMentorById(id).subscribe(
+    this.subscription = this.mentorService.getMentorById(this.tempMentorId).subscribe(
       (mentor: any) => {
         console.log('mentor', mentor);
         this.mentor = mentor;
@@ -50,7 +49,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   setMentorData(mentorData: any): void {
-    this.isAccountActivated = mentorData.isAccountActivated;
+    // this.isAccountActivated = mentorData.isAccountActivated;
     this.insertBase64Image(mentorData.avatar);
   }
 

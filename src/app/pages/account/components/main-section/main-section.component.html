@@ -30,9 +30,11 @@
       </div>
       <br>
       <div class="info-section d-flex align-items-start flex-column">
-        <p><b>Place:</b><span class="place"> {{place}}</span></p>
-        <p><b>Rate:</b><span class="rate"> {{rate}}</span></p>
-        <p><b>Group mentoring:</b><span class="grp_ment"> {{grp_ment}}</span></p>
+        <p><b>Place:</b><span class="place"> {{mentor.place}}</span></p>
+        <p><b>Rate:</b><span class="rate"> {{mentor.rate}}$</span></p>
+        <p><b>Group mentoring:</b>
+          <span class="grp_ment"> {{mentor.groupServices ? 'Yes' : 'No'}}</span>
+        </p>
         <p><b>Languages:</b>
           <span class="language" *ngFor="let language of mentor.languagesList">
             {{language}}

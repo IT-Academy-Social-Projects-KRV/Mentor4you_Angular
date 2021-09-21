@@ -73,8 +73,9 @@
     user-select: none;
 
     span {
-      font-size: 22px;
+      font-size: 16px;
       font-weight: regular;
+      position: absolute;
     }
   }
 
@@ -111,6 +112,7 @@
 
 #output {
   width: 70px;
+  background: $white;
 }
 
 .mentee {

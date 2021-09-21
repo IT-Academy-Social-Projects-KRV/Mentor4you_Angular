@@ -52,8 +52,9 @@
 
       <div [ngSwitch]="true">
         <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
-          <app-account-mentor 
-            (setMentorData)="setMentorData($event)" 
+          <app-account-mentor
+            [mentor]="mentor"
+            (setMentorData)="setMentorData($event)"
             (showProfile)="toggleEditMentor()"
           ></app-account-mentor>
         </div>

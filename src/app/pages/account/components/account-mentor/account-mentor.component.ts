@@ -12,11 +12,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./account-mentor.component.scss'],
 })
 export class AccountMentorComponent implements OnInit {
-  @Input() isAccountActivated!: boolean;
-  @Input() selectedFile!: File;
+  @Input() mentor: any;
+  // @Input() isAccountActivated!: boolean;
+  // @Input() selectedFile!: File;
   @Output() showProfile: EventEmitter<void> = new EventEmitter();
-
-  myColor = '#3AB67D';
+  @Output() setMentorData: EventEmitter<any> = new EventEmitter();
 
   subjList: string[] = [
     'Assembler',
@@ -29,7 +29,7 @@ export class AccountMentorComponent implements OnInit {
 
   langList: string[] = ['Ukrainian', 'English', 'Russian', 'Polish'];
   locList: string[] = ['Kyiv', 'Rivne', 'New York', 'London', 'Lviv'];
-  subForm = new FormControl('');
+  subForm = new FormControl([]);
   langForm = new FormControl('');
   locForm = new FormControl('');
 
@@ -49,23 +49,46 @@ export class AccountMentorComponent implements OnInit {
     this.groupWork = false;
 
     this.mentorForm = this.fb.group({
-      avatar: this.selectedFile,
-      isAccountActivated: this.isAccountActivated,
-      fullName: ['', Validators.required],
+      // avatar: this.selectedFile,
+      avatar: [''],
+      // isAccountActivated: this.isAccountActivated,
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       about: ['', Validators.required],
       subjects: this.subForm,
-      email: ['', Validators.required, Validators.email],
-      rate: ['', Validators.required, Validators.pattern('^[0-9]+$')],
+      email: ['', [Validators.required, Validators.email]],
+      phoneNumberLink: [''],
+      rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       languages: this.langForm,
       linkedIn: [''],
       facebook: [''],
       youtube: [''],
       certificates: [''],
-      group: this.groupWork,
+      // groupServices: [false],
+      groupServices: this.groupWork,
       remotely: [false],
       offline: [false],
-      location: this.locForm,
+      place: this.locForm,
     });
+
+    this.initForm();
+  }
+
+  initForm(): void {
+    const controls = this.mentorForm.controls;
+
+    console.log(' this.mentor - 1',  this.mentor)
+
+    Object.keys(controls).forEach(controlName => {
+      // console.log('this.mentor - 2', this.mentor[controlName])
+      controls[controlName].setValue(this.mentor[controlName]);
+    })
+
+    const mentorData = {
+      avatar: controls['avatar'].value,
+      // isAccountActivated: controls['isAccountActivated'].value
+    }
+    this.setMentorData.emit(mentorData);
   }
 
   OnGroupWork() {
@@ -104,10 +127,12 @@ export class AccountMentorComponent implements OnInit {
   }
 
   invalidCheck(controlName: string): string {
+    // console.log('invalid', this.mentorForm.controls[controlName])
+    // console.log('invalid', this.mentorForm.controls[controlName].invalid)
     if (
       this.mentorForm.controls[controlName].invalid &&
       this.btnTouched === true
-    ) {
+      ) {
       return 'invalidForm';
     } else return '';
   }
