@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
+import {SigninService} from "../../../auth/signin/signin.service";
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,6 @@ import { NotificationModalService } from '../../../core/services/notification-mo
 })
 export class HeaderComponent implements OnInit {
   //TODO should be implement in the next task
-  public isAuth: boolean = true;
   public isNewMessage: boolean = true;
   public isNewNotification: boolean = true;
 
@@ -22,15 +22,24 @@ export class HeaderComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private router: Router,
-    private NotificationModalService: NotificationModalService
+    private NotificationModalService: NotificationModalService,
+    private auth:SigninService
   ) { }
 
+    public isAuth = this.auth.isAuth();
   ngOnInit(): void {
     this.closeMenu();
+    this.isAuth = this.auth.isAuth();
   }
   open() {
     this.NotificationModalService.open();
   }
+
+  logout()
+  {
+    this.auth.logout()
+  }
+
 
   closeMenu(): void {
     this.renderer.listen('window', 'click', (e: Event) => {
