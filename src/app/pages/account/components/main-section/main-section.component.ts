@@ -1,4 +1,5 @@
-import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Output, EventEmitter} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Output, EventEmitter, Input} from '@angular/core';
+import { MentorProfile } from 'src/app/core';
 
 @Component({
   selector: 'app-main-section',
@@ -8,6 +9,7 @@ import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Output, EventEmi
 // export class MainSectionComponent implements OnInit,AfterViewInit {
 export class MainSectionComponent implements OnInit {
   @ViewChild('name')name?:ElementRef;
+  @Input() mentor: any;
   @Output() editMentor: EventEmitter<any> = new EventEmitter();
   
   description: string = 

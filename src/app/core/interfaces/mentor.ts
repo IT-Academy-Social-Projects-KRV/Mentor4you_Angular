@@ -12,11 +12,11 @@ export interface Category {
 
 export interface MentorProfile {
   id: number;
+  email: string;
   firstName: string;
   lastName: string;
   avatar: string;
-  // email: string;
-  // phoneNumber: string;
+  phoneNumberLink: string;
   categories: Array<Category>;
   place: string;
   rate: number;
@@ -24,7 +24,6 @@ export interface MentorProfile {
   languagesList: Array<string>;
   about: string;
 }
-
 
 // -------------------------------
 export interface MentorDataFilter {

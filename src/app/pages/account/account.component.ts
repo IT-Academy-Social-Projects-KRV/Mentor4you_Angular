@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+
+import { MentorProfile, MentorService } from 'src/app/core';
 
 
 @Component({
@@ -9,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
   // mentorData: any = {};
   isEditedMentor: boolean = true;
   isAccountActivated: boolean = false;
@@ -17,10 +20,25 @@ export class AccountComponent implements OnInit {
   currentRole: string = 'mentor';
   textFieldUpload: string = 'Upload you photo here';
   selectedFile!: File;
+  subscription!: Subscription;
+  mentor: any;
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
+  constructor(
+    private http: HttpClient, 
+    private _snackBar: MatSnackBar,
+    private mentorService: MentorService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const id = 9;
+
+    this.subscription = this.mentorService.getMentorById(id).subscribe(
+      (mentor: any) => {
+        console.log('mentor', mentor);
+        this.mentor = mentor;
+      }
+    );
+  }
 
   toggleEditMentor(): void {
     this.isEditedMentor = !this.isEditedMentor;
@@ -120,5 +138,9 @@ export class AccountComponent implements OnInit {
       duration: 5000,
       panelClass: className,
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

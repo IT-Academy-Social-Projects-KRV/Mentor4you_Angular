@@ -2,8 +2,7 @@
 <div class="container">
   <div class="content">
     <div *ngIf="isEditedMentor">
-      <app-main-section (editMentor)="toggleEditMentor()"></app-main-section>
-      <button class="edit-btn"  (click)="showEditForm()">Edit</button>
+      <app-main-section [mentor]="mentor" (editMentor)="toggleEditMentor()"></app-main-section>
     </div>
 
     <div *ngIf="!isEditedMentor">
