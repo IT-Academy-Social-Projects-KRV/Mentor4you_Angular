@@ -1,0 +1,17 @@
+<mat-chip-list #chipList area-label="Categories selecton">
+  <mat-chip
+    *ngFor="let category of categories"
+    [selectable]="selectable"
+    [removable]="removable"
+    (removed)="remove(category)"
+    >{{category.name}}
+    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+  </mat-chip>
+  <input 
+    id="categories"
+    placeholder="New categories"
+    [matChipInputFor]="chipList"
+    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+    [matChipInputAddOnBlur]="addOnBlur"
+    (matChipInputTokenEnd)="add($event)">
+</mat-chip-list>
