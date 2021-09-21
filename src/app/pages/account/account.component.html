@@ -9,6 +9,17 @@
             [labelPosition]="'before'">Account activated
           </mat-slide-toggle>
         </div>
+
+        <button class="mentor-account__btn" #button (click)="toggleRole(button)">
+          {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
+        </button>
+      </div>
+    </div>
+
+    <div class="mentor-account__avatar-upload">
+      <div class="mentor-account__avatar-section">
+        <span *ngIf="!isImage">My photo</span>
+        <span id="output"></span>
       </div>
 
       <div class="mentor-account__upload-section">
@@ -35,3 +46,4 @@
       </div>
     </div>
   </div>
+</div>

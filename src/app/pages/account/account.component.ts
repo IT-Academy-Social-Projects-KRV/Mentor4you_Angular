@@ -10,53 +10,60 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  mentorData: any = {};
+  // mentorData: any = {};
+  isAccountActivated!: boolean;
+  isImage: boolean = false;
   currentRole: string = 'mentor';
-  isAccountActivated: boolean = false;
-  isAvatar: boolean = false;
-  textFieldUpload: string = 'Upload your photo here';
+  textFieldUpload: string = 'Upload you photo here';
   selectedFile!: File;
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    Object.keys(this.mentorData).forEach(key => {
-      if (key === 'isAccountActivated') {
-        this.isAccountActivated = this.mentorData[key];
-      }
-    })
+    this.isAccountActivated = true;
+  }
+
+  setMentorData(mentorData: any): void {
+    this.isAccountActivated = mentorData.isAccountActivated;
+    this.insertBase64Image(mentorData.avatar);
   }
 
   toggleAccountActivate(): void {
     this.isAccountActivated = !this.isAccountActivated;
   }
 
-  toggleRole(): void {
-    this.currentRole = this.currentRole === 'mentor' ? 'mentee' : 'mentor';
+  toggleRole(button: HTMLElement): void {
+    if (button.innerText === 'Move to Mentor Account') {
+      button.innerText = 'Move to Mentee Account';
+      this.currentRole = 'mentor';
+    } else {
+      button.innerText = 'Move to Mentor Account';
+      this.currentRole = 'mentee';
+    }
   }
 
   onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
+    this.selectedFile = <File>event.target.files[0];
 
     if (!this.selectedFile.type.match('image/*')) {
-      alert('Please select a photo.');
+      this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
-    const name = this.selectedFile.name;
-    this.textFieldUpload = name.length > 25 ? name.slice(0, 25) + '...' : name;
-  
-    this.renderImage(this.selectedFile);
 
-    this.isAvatar = true;
+    this.isImage = true;
+
+    this.textFieldUpload =
+      this.selectedFile.name.length > 25
+        ? this.selectedFile.name.slice(0, 25) + '...'
+        : this.selectedFile.name;
+
+    this.renderImage(this.selectedFile);
   }
 
-  renderImage(img: File): void {
+  renderImage(img: any): void {
     const reader = new FileReader();
 
-    reader.onload = (file => (e: any) => {
-      this.mentorData['avatar'] = e.target.result;
+    reader.onload = ((theFile) => (e: any) => {
       this.insertBase64Image(e.target.result);
     })(img);
 
@@ -69,7 +76,12 @@ export class AccountComponent implements OnInit {
     }
 
     const span = document.createElement('span');
-    span.innerHTML = ['<img class="thumb" src="', img, '" alt="user" />'].join('');
+    span.innerHTML = [
+      '<img class="thumb" title="',
+      '" src="',
+      img,
+      '" />',
+    ].join('');
     document.getElementById('output')?.insertBefore(span, null);
   }
 
@@ -77,20 +89,28 @@ export class AccountComponent implements OnInit {
     const file = this.selectedFile;
     const fd = new FormData();
 
-    if (!file.type.match('image/*')) {
-      alert('Please select a photo.');
+    if (!file || !file.type.match('image/*')) {
+      this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
 
     // --- send to server
     fd.append('image', file, file.name);
-    this.http.post('api/mentors', fd, {
-      // reportProgress: true,
-      observe: 'events'
-    })
-      .subscribe(response => {
-        this.textFieldUpload = 'Your avatar uploaded successfully';
-        console.log(response);
-    })
+    this.http
+      .post('api/mentors', fd, {
+        // reportProgress: true,
+        observe: 'events',
+      })
+      .subscribe((events) => {
+        this.textFieldUpload = 'Your photo uploaded successfully!';
+        console.log('Server response: ', events);
+      });
   }
- }
+
+  openSnackBar(message: string, action: string, className: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000,
+      panelClass: className,
+    });
+  }
+}
