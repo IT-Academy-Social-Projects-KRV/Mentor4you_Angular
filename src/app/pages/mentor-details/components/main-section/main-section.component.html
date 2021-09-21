@@ -1,9 +1,10 @@
-<div class="main-section container">
+<div *ngIf="mentor" class="main-section container">
 
   <div class="row">
     <div class="col-4">
       <div class="image-wrap">
-        <img class="image" src="https://i.pravatar.cc/120" alt="name">
+        <!-- <img class="image" src="https://i.pravatar.cc/120" alt="name"> -->
+        <img class="image" src="{{mentor.avatar}}" alt="{{mentor.firstName}}">
       </div>
 
       <h3 *ngIf="mentor" class="name" #name>

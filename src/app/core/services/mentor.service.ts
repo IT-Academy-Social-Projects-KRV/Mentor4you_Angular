@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
+import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MentorCard } from '../interfaces';
+import { MentorCard, MentorProfile } from '../interfaces';
 import mockAvatar from './../mock/avatar';
 // import { mentors } from '../mock/in-memory-data.service';
 
@@ -42,17 +43,20 @@ export class MentorService {
       }));
   }
 
-  getMentorById(id: number) {
+  getMentorById(id: number): any {
+  // getMentorById(id: number): Observable<MentorProfile> {
     return this.http
-      .get(this.mentorUrl + `/${id}`)
+      .get<any>(this.mentorUrl + `/${id}`)
       .pipe(map((mentor: any) => {
         const user = mentor.accounts.user;
 
         return {
           id: user.id,
+          email: user.email || '',
           firstName: user.first_name,
           lastName: user.last_name,
           avatar: user.avatar || this.tempAvatar,
+          phoneNumberLink: user.phoneNumberLink || '',
           categories: user.categories || this.tempCategories,
           place: user.place || 'Remote',
           rate: user.rate || 100, 

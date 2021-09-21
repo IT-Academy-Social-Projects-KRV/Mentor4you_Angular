@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
+
 import { MentorCard } from 'src/app/core/interfaces';
 import { MentorService } from 'src/app/core/services';
 
@@ -8,8 +11,9 @@ import { MentorService } from 'src/app/core/services';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   mentors: MentorCard[] = [];
+  subscription!: Subscription;
 
   constructor(
     private mentorService: MentorService,
@@ -17,7 +21,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.mentorService.getMentors().subscribe(
+    this.subscription = this.mentorService.getMentors().subscribe(
       (mentors: MentorCard[]) => this.mentors = mentors
     )
   }
@@ -25,4 +29,8 @@ export class HomeComponent implements OnInit {
   goTo(path: string): void {
     this.router.navigateByUrl(path);
   }
-}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+ }

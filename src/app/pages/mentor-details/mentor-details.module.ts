@@ -8,7 +8,6 @@ import { MentorAddREviewSectionComponent } from './components/mentor-add-review-
 import { AppStarRaitingComponent } from '../../shared/sharedComponents/star-raiting/app-star-raiting';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { MentorReviewsComponent } from './components/mentor-reviews/mentor-reviews.component';
-// import { MainSectionComponent } from 'src/app/shared/sharedComponents/main-section/main-section.component';
 
 
 @NgModule({
