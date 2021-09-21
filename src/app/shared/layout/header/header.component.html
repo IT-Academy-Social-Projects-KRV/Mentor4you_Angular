@@ -64,6 +64,6 @@
   </div>
 </header>
 <ng-template #unauthorized>
-  <a class="header__btns-signin header__btn" routerlink="#">Sign In</a>
-  <a class="header__btns-signup header__btn" routerlink="#">Sign Up</a>
+  <a class="header__btns-signin header__btn" (click)="goTo('auth/login')">Sign In</a>
+  <a class="header__btns-signup header__btn" (click)="goTo('auth/signup')">Sign Up</a>
 </ng-template>
