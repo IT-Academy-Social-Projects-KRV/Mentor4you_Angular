@@ -1,0 +1,29 @@
+@import 'variables';
+
+input.mat-chip-input {
+  border: none;
+  border-bottom: 1px solid $fuschia100;
+  color: $fuschia60;
+  font-size: 16px;
+  outline: none;
+}
+
+:host ::ng-deep {
+  .mat-chip-list-wrapper {
+    width: 100%;
+    border: 2px solid $lightgray;
+    padding: 10px;
+    margin: 0;
+
+    .mat-chip.mat-standard-chip {
+      color: $fuschia100;
+      background: $white;
+      border: 2px solid $fuschia100;
+      border-radius: 0;
+
+      .mat-chip-remove {
+        color: $fuschia100;
+      }
+    }
+  }
+}

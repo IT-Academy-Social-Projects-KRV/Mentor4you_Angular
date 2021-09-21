@@ -9,11 +9,19 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HomeModule } from './pages/home/home.module';
 import { TermsComponent } from './pages/terms/terms.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import {SigninService} from "./auth/signin/signin.service";
+
+import { HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {CookieService} from "ngx-cookie-service";
 import { MessagesComponent } from './pages/messages/messages.component';
 // import { MentorDetailsComponent } from './pages/mentor-details/mentor-details.component';
 import {AuthModule} from "./auth/auth.module";
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 
+import { NotificationModalModule } from './shared/layout/header/notification-modal/notification-modal.module';
 
 @NgModule({
   declarations: [
@@ -31,8 +39,9 @@ import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component
     AppRoutingModule,
     SharedModule,
     HomeModule,
+    NotificationModalModule,
   ],
-  providers: [],
+  providers: [SigninService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
