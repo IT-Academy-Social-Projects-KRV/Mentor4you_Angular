@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SigninService} from "../../../../auth/signin/signin.service";
+import {ChangePasswordService} from "./change-password.service";
 
 @Component({
   selector: 'app-account-settings',
@@ -9,17 +11,18 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class AccountSettingsComponent implements OnInit {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private serviceToken:SigninService,private change:ChangePasswordService) { }
   inputGroup!:FormGroup
 
   isDisabled:boolean=false
-  ismatch:boolean=false
+  isMatch:boolean=false
   isChangeTrue:boolean=false
   isChangeFalse:boolean=false
   isEnter:boolean=false
   isShort:boolean=false
 
-  passwor:string="123123"
+  valuePass:any='';
+  valueOldPass:any='';
 
   danger:boolean=false
   warning:boolean=false
@@ -32,7 +35,10 @@ export class AccountSettingsComponent implements OnInit {
         confirmPassword:new FormControl('',[Validators.required]),
     })
 
+    this.inputGroup.get('password')?.valueChanges.subscribe(value=>this.valueOldPass=value)
+    this.inputGroup.get('newPassword')?.valueChanges.subscribe(value=>this.valuePass=value)
   }
+
 
   isValidPass(event:any = null):void{
     const value = event.target.value;
@@ -67,22 +73,22 @@ export class AccountSettingsComponent implements OnInit {
     {
       if(this.inputGroup.get('newPassword')?.status=='VALID')
       {
-        this.ismatch = false
+        this.isMatch = false
         this.isShort=false
         return true
       }
       else{
         this.isShort=true
-        this.ismatch = true
+        this.isMatch = true
         return false
         }
     }
     else if(this.inputGroup.get('newPassword')?.value=='' && this.inputGroup.get('newPassword')?.value=='' && this.inputGroup.get('newPassword')?.value.trim()=='' && this.inputGroup.get('confirmPassword')?.value.trim()==''){
-      this.ismatch=true
+      this.isMatch=true
       return false
     }
     else {
-      this.ismatch=true
+      this.isMatch=true
       return false
     }
   }
@@ -111,24 +117,32 @@ export class AccountSettingsComponent implements OnInit {
   //     return false
   //   }
   // }
-putPassword:object={
-    'password':"Illia1957"
-}
+
+
+  // putPassword:object={
+  //     'oldPassword':this.valueOldPass,
+  //     'newPassword':this.valuePass
+  // }
 
 
 
   onSubmit(){
+         const putPassword:object={
+            'oldPassword':this.valueOldPass,
+            'newPassword':this.valuePass
+          }
+
         this.isDisabled=true
-    let headers;
+    // let headers;
     if (this.isPass()) {
-      headers = new HttpHeaders()
-        .set("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpbGxpYS5kZW1jaGlzaGluQGdtYWlsLmNvbSIsInJvbGUiOiJNRU5UT1IiLCJleHAiOjE2MzI0NDE2MDB9.NrERxNfhX0kR2sYBLMkzz8jPY5uenQPE1nZOovhoqCst_HsZnt1dXnpTBwkBldK-L9WtdNoWFBHk4ZZOVgDKIw"
-        )
-      this.http.put("http://localhost:8080/api/users/changePassword", this.putPassword, {headers}).subscribe(value=>console.log(value))
+      // headers = new HttpHeaders()
+      //   .set("Authorization", this.serviceToken.getToken()
+      //   )
+      this.change.changePassword(putPassword).subscribe(response=>console.log(response))
       this.isChangeTrue = true
       this.isChangeFalse = false
       this.isDisabled = false
-
+      console.log(this.serviceToken.getToken())
     } else {
       this.isChangeTrue = false
       this.isChangeFalse = true

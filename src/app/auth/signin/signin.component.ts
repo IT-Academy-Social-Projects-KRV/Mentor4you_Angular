@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators,} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service"
-import {Router} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {SigninService} from "./signin.service";
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -10,9 +11,11 @@ import {Router} from "@angular/router";
 })
 export class SigninComponent implements OnInit{
   fullGroup!:FormGroup;
-  constructor(private http:HttpClient,private cookie:CookieService,private router:Router) {
+  constructor(private http:SigninService,private router:Router) {}
 
-  }
+  emailValue!:string
+  passwordValue!:string
+  errorData:boolean=false
 
   isValid:boolean=false;
   isInvalid:boolean=false;
@@ -27,13 +30,17 @@ export class SigninComponent implements OnInit{
       password:new FormControl('',[Validators.minLength(8),Validators.required]),
       signed:new FormControl(''),
     })
-    this.getCookie()
+
+    this.fullGroup.get('email')?.valueChanges.subscribe(value=>this.emailValue=value)
+    this.fullGroup.get('password')?.valueChanges.subscribe(value=>this.passwordValue=value)
+
   }
 
 
 
+
   isValidMail():boolean{
-    if(this.fullGroup.get('email')?.status=='VALID')
+    if(this.fullGroup.get('email')?.status=='VALID' || this.errorData)
     {
       this.isValid=true
       this.isInvalid=false
@@ -51,13 +58,13 @@ export class SigninComponent implements OnInit{
   };
 
   isValidPassword():boolean{
-    if(this.fullGroup.get('password')?.status=='VALID')
+    if(this.fullGroup.get('password')?.status=='VALID' || this.errorData)
     {
       this.isValidPass=true
       this.isInvalidPass=false
       return true
     }
-    else if(this.fullGroup.get('password')?.status=='INVALID'&& this.fullGroup.get('password')?.touched)
+    else if(this.fullGroup.get('password')?.status=='INVALID'&& this.fullGroup.get('password')?.touched || this.errorData)
     {
       this.isValidPass=false
       this.isInvalidPass=true
@@ -74,65 +81,42 @@ export class SigninComponent implements OnInit{
     if(this.isValidMail() && this.isValidPassword())
     {
       return true
-      // console.log(this.fullGroup.value)
     }
     else{
       return false
     }
   }
 
-getCookie() {
-  this.cookie.get('mail')
-  this.cookie.get('password')
-  if(this.cookie.get('mail')!='')
-  {
-    this.fullGroup.get('email')?.setValue(this.cookie.get('mail'))
-  }
-
-  if(this.cookie.get('password')!='')
-  {
-    this.fullGroup.get('password')?.setValue(this.cookie.get('password'))
-  }
-  // console.log(this.cookie.get('mail'))
-  // console.log(this.cookie.get('password'))
-}
 
 submitFrom(){
-    this.isDisabled=true
-    // console.log(this.fullGroup.value)
-  let mailValue = this.fullGroup.get('email')?.value
-  let passValue = this.fullGroup.get('password')?.value
-    setTimeout(()=>{if(this.fullGroup.get('signed')?.value)
+  this.isDisabled=false
+  // this.http.postData(this.emailValue,this.passwordValue)
+  let login = this.http.authRedirect(this.emailValue,this.passwordValue)
+
+  login.subscribe(response=>{
+
+    if(response)
     {
-      this.cookie.set('mail',mailValue)
-      this.cookie.set('password',passValue)
-      // console.log(mailValue)
-      // console.log(passValue)
-      if(mailValue=='illia.demchishin@gmail.com' && passValue=='123456789')
-      {
-        this.router.navigate(['/'])
-        this.isDisabled=false
-      }
-      else {
-        alert('Wrong email or password')
-        this.isDisabled=false
-      }
+      this.router.navigate(['/'])
+      // console.log(this.http.isAuth())
+      this.isDisabled=true
+      this.errorData=false
+    }
+
+  },error=>{
+    if(error)
+    {
+      this.errorData=true
+      this.isValidPass=false
+      this.isDisabled=true
+    }
+  })
+
+  this.isDisabled=true
 
     }
-    else {
-      if(mailValue=='illia.demchishin@gmail.com' && passValue=='123456789')
-      {
-        this.router.navigate(['/'])
-        this.isDisabled=false
-      }
-      else {
-        alert('Wrong email or password')
-        this.isDisabled=false
-      }
 
-    }},2000)
-    // console.log(this.fullGroup.get('signed')?.value)
 
-          }
+
 
 }

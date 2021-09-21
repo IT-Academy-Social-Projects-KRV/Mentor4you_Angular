@@ -9,7 +9,7 @@ import { NotificationModalComponent } from './notification-modal.component';
     declarations: [
       NotificationModalComponent,
       MentorshipRequestComponent,
-      MentorshipApproveComponent,
+      MentorshipApproveComponent
     ],
     imports: [
         SharedModule,
@@ -18,4 +18,3 @@ import { NotificationModalComponent } from './notification-modal.component';
     providers: [NotificationModalService],
   })
   export class NotificationModalModule { }
-  
