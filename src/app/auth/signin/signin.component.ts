@@ -97,8 +97,8 @@ submitFrom(){
 
     if(response)
     {
-      // this.router.navigate(['/'])
-      console.log(this.http.isAuth())
+      this.router.navigate(['/'])
+      // console.log(this.http.isAuth())
       this.isDisabled=true
       this.errorData=false
     }
