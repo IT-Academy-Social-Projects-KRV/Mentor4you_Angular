@@ -51,12 +51,14 @@ validateEmail(event: any){
     // };
     //setTimeout( ()=> {this.router.navigate(['/'])}, 5000)
     // this.http.post("http://localhost:8080/system/auth", requestBody).subscribe(response => console.log(response))
+    const smth = {
+        next: (x: any) => console.log("success"),
+        error: (err: any) => console.log(err)
+    };
     let requestBody = {
      "login": email,
-    }
-     this.http.post("http://localhost:8080/password/request", requestBody).subscribe(response => console.log(response))
-    
-    
+    };
+     this.http.post("http://localhost:8080/password/request", requestBody).subscribe(smth);
   }
 
 }
