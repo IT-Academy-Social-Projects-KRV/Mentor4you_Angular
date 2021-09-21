@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
+import { T } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-account-mentor',
@@ -17,6 +18,9 @@ export class AccountMentorComponent implements OnInit {
   // @Input() selectedFile!: File;
   @Output() showProfile: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<any> = new EventEmitter();
+
+  btnTouched!: boolean;
+  myColor = '#3AB67D';
 
   subjList: string[] = [
     'Assembler',
@@ -36,18 +40,11 @@ export class AccountMentorComponent implements OnInit {
   groupWork!: boolean;
   mentorForm!: any;
 
-  btnTouched!: boolean;
-
-  constructor(
-    private fb: FormBuilder,
-    private _snackBar: MatSnackBar,
-    private httpClient: HttpClient
-  ) {}
+  constructor(private fb: FormBuilder, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.btnTouched = false;
     this.groupWork = false;
-
     this.mentorForm = this.fb.group({
       // avatar: this.selectedFile,
       avatar: [''],
@@ -58,6 +55,13 @@ export class AccountMentorComponent implements OnInit {
       subjects: this.subForm,
       email: ['', [Validators.required, Validators.email]],
       phoneNumberLink: [''],
+      // avatar: this.selectedFile,
+      // isAccountActivated: this.isAccountActivated,
+      fullName: ['', [Validators.required]],
+      // about: ['', [Validators.required]],
+      // subjects: this.subForm,
+      // email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       languages: this.langForm,
       linkedIn: [''],
@@ -96,12 +100,11 @@ export class AccountMentorComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.btnTouched = !this.btnTouched;
-    
+    this.btnTouched = true;
     if (
       this.mentorForm.valid &&
-      (this.mentorForm.controls['remotely'] === true ||
-        this.mentorForm.controls['offline'] === true)
+      (this.mentorForm.controls['remotely'].value === true ||
+        this.mentorForm.controls['offline'].value === true)
     ) {
       // const formData = new FormData();
       // formData.append('file', this.mentorForm.get('profile').value);
@@ -110,20 +113,7 @@ export class AccountMentorComponent implements OnInit {
       //   (err: any) => console.log(err)
       // );
       // console.log(this.mentorForm.controls.value);
-      this.openSnackBar(
-        'Your profile was successfully saved',
-        'Okey',
-        'success'
-      );
-    } else {
-      this.openSnackBar('Please check all required fields', 'Got it', 'danger');
     }
-  }
-  openSnackBar(message: string, action: string, className: string) {
-    this._snackBar.open(message, action, {
-      duration: 5000,
-      panelClass: className,
-    });
   }
 
   invalidCheck(controlName: string): string {
@@ -131,17 +121,17 @@ export class AccountMentorComponent implements OnInit {
     // console.log('invalid', this.mentorForm.controls[controlName].invalid)
     if (
       this.mentorForm.controls[controlName].invalid &&
-      this.btnTouched === true
-      ) {
+      (this.mentorForm.controls[controlName].touched ||
+        this.btnTouched === true)
+    ) {
       return 'invalidForm';
     } else return '';
   }
-
   checkBox() {
     if (
+      this.btnTouched === true &&
       this.mentorForm.controls['remotely'].value === false &&
-      this.mentorForm.controls['offline'].value === false &&
-      this.btnTouched === true
+      this.mentorForm.controls['offline'].value === false
     ) {
       return 'invalid-checkbox';
     } else return '';
@@ -149,5 +139,9 @@ export class AccountMentorComponent implements OnInit {
 
   showProfileMentor(): void {
     this.showProfile.emit();
+  }
+  
+  onBtnClick() {
+    this.btnTouched = true;
   }
 }

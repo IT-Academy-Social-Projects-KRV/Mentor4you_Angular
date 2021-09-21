@@ -10,6 +10,13 @@
   color: $black;
 }
 
+::ng-deep .thumb {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  cursor: default !important;
+}
+
 .mentor-account {
   &__top-line {
     display: flex;
@@ -69,7 +76,7 @@
     align-items: center;
     justify-content: center;
     height: 80px;
-    cursor: pointer;
+    cursor: default;
     user-select: none;
 
     span {
@@ -161,17 +168,16 @@
   }
 }
 
-
 @media screen and (max-width: 1140px) {
   .mentor-account {
     &__slide {
       margin-right: 30px;
     }
-    
+
     &__upload-photo {
       padding: 20px 50px;
     }
-    
+
     &__fild-upload {
       width: 255px;
     }
@@ -200,7 +206,10 @@
 
     &__upload-photo {
       padding: 20px 35px;
-     }
+    }
   }
 }
- 
+
+::ng-deep .mat-simple-snackbar {
+  color: white !important;
+}

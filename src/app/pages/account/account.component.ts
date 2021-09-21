@@ -37,15 +37,16 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.mentor = mentor;
       }
     );
+    this.isAccountActivated = true;
+  }
+
+  showEditForm(): void {
+    this.isEditedMentor = !this.isEditedMentor;
   }
 
   toggleEditMentor(): void {
     this.isEditedMentor = !this.isEditedMentor;
     // console.log('this.isEditedMentor', this.isEditedMentor);
-  }
-
-  showEditForm(): void {
-    this.isEditedMentor = !this.isEditedMentor;
   }
 
   setMentorData(mentorData: any): void {
@@ -115,7 +116,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     const fd = new FormData();
 
     if (!file || !file.type.match('image/*')) {
-      this.openSnackBar('Please select a photo', 'Got it', 'danger');
+      // this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
 
