@@ -9,8 +9,13 @@ import { Page500Component } from './page500/page500.component';
 
 const routs:Routes = [
 	{
-		path:'',
+		path:'404',
 		component: PageNotFoundComponent,
+	},
+	{
+		path:'',
+		redirectTo:'404',
+		pathMatch:'full'
 	},
 	{
 		path:'401',
