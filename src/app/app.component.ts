@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit, DoCheck} from '@angular/core';
+import { Router } from '@angular/router';
 import {SigninService} from "./auth/signin/signin.service";
 
 @Component({
@@ -6,8 +7,10 @@ import {SigninService} from "./auth/signin/signin.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  constructor(private auth:SigninService) {
+export class AppComponent implements OnInit, DoCheck{
+  title = 'mentor4you';
+  hiddenFooter: boolean = true;
+  constructor(private auth: SigninService, private router: Router) {
   }
   ngOnInit() {
     const potencialToken=localStorage.getItem('token')
@@ -15,7 +18,17 @@ export class AppComponent implements OnInit{
     {
       this.auth.setToken(potencialToken)
     }
+    this.onHiddenFooter();
   }
-
-  title = 'mentor4you';
+  onHiddenFooter() {
+    if (this.router.url == '/auth/signup' || '/404') {
+      this.hiddenFooter = false;
+    } else {
+      this.hiddenFooter = true
+    }
+  }
+  ngDoCheck() {
+    this.onHiddenFooter();
+  }
+  
 }
