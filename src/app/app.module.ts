@@ -20,6 +20,8 @@ import {ChangePasswordService} from "./pages/account/components/account-settings
 import {TokenInterceptor} from "./core/interceptors/token.interceptor";
 
 import {AuthModule} from "./auth/auth.module";
+import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
+
 import { NotificationModalModule } from './shared/layout/header/notification-modal/notification-modal.module';
 
 @NgModule({
@@ -29,6 +31,7 @@ import { NotificationModalModule } from './shared/layout/header/notification-mod
     FooterComponent,
     TermsComponent,
     MessagesComponent,
+    HowItWorksComponent
   ],
   imports: [
     BrowserModule,
