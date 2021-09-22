@@ -15,12 +15,12 @@ export class SigninService {
   error!:any
   private token:string|null=null
 
-  private url ='http://localhost:8080/system/auth'
+  private url ='http://localhost:8080/api/auth/login'
 
   authRedirect(email:any,password:any):Observable<{token:string}>{
 
     const data:object={
-      'login':email,
+      'email':email,
       'password':password
     }
 
