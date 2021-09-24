@@ -1,1 +1,117 @@
-<p>signup works!</p>
+<section class="signup">
+	<div class="signup-container container">
+		<div class="signup__row">
+			<form action="" [formGroup]="signUpGroup" (ngSubmit)="submitSignUpGroup()">
+				<div class="signup__inner">
+					<h2 class="signup__title">Create Your Account</h2>
+					<div class="signup__email form-floating">
+						<div for="exampleFormControlInput1" class="form-label"><span>E-mail</span></div>
+						<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email"
+							[class.is-invalid]="signUpGroup.get('email')?.errors&&signUpGroup.get('email')?.touched"
+							[class.is-valid]="signUpGroup.get('email')?.valid" formControlName="email">
+						<div class="valid-feedback">Success! You've done it.</div>
+						<div class="invalid-feedback">Wrong email!</div>
+						<label for="floatingInput">name@example.com</label>
+						<div *ngIf="showTooltip" class="input-tooltip">
+							<div class="toast">
+								<div class="toast-body">
+									{{tooltipMessage}}
+								</div>
+								<button type="button" class="btn-close ms-2 mb-1" (click)="showTooltip=false"></button>
+							</div>
+						</div>
+					</div>
+					<div class="signup__password form-floating">
+						<input [class.is-invalid]="signUpGroup.get('password')?.errors&&signUpGroup.get('password')?.touched"
+							[class.is-valid]="signUpGroup.get('password')?.valid" type="password" class="form-control"
+							id="floatingPassword" placeholder="Password" formControlName="password">
+						<div class="valid-feedback">Success!</div>
+						<div class="invalid-feedback">Minimum 8 characters, uppercase letters and numbers</div>
+						<label for="floatingPassword">**************</label>
+					</div>
+					<div class="signup__radios">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" id="exampleRadios1" value="mentee" checked
+								formControlName="checkRole">
+							<label class="form-check-label" for="exampleRadios1">
+								I’m looking for Mentor
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" id="exampleRadios2" value="mentor"
+								formControlName="checkRole">
+							<label class="form-check-label" for="exampleRadios2">
+								I’m Mentor
+							</label>
+						</div>
+					</div>
+					<div class="signup__checkbox">
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value=""
+								formControlName="rules">
+							<label class="form-check-label" for="inlineCheckbox1">
+								<span class="signup__checkbox-text">By Signing Up I agree with </span>
+								<a href="#" class="signup__checkbox-rules">Terms & Conditions</a>
+							</label>
+						</div>
+					</div>
+					<div class="signup__btn">
+						<button [disabled]="signUpGroup.invalid||btnDisabled" class="btn" type="submit">Register
+							Now</button>
+						<div class="btn-label-disabled"></div>
+					</div>
+					<div class="signup__subtitle">
+						<span class="signup__subtitle-text">Register Using Social Network</span>
+					</div>
+					<div class="signup__social-icons">
+						<div class="signup__social-icon-wrapper" disabled>
+							<a href="#" class="signup__social-icon">
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"
+									fill="#fff">
+									<title>facebook</title>
+									<path
+										d="M19 6h5v-6h-5c-3.86 0-7 3.14-7 7v3h-4v6h4v16h6v-16h5l1-6h-6v-3c0-0.542 0.458-1 1-1z">
+									</path>
+								</svg>
+							</a>
+						</div>
+						<div class="signup__social-icon-wrapper" disabled>
+							<a href="#" class="signup__social-icon">
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"
+									fill="#fff">
+									<title>google-plus</title>
+									<path
+										d="M10.181 14.294v3.494h5.775c-0.231 1.5-1.744 4.394-5.775 4.394-3.475 0-6.313-2.881-6.313-6.431s2.838-6.431 6.313-6.431c1.981 0 3.3 0.844 4.056 1.569l2.762-2.662c-1.775-1.656-4.075-2.662-6.819-2.662-5.631 0.006-10.181 4.556-10.181 10.188s4.55 10.181 10.181 10.181c5.875 0 9.775-4.131 9.775-9.95 0-0.669-0.075-1.181-0.163-1.688h-9.613z">
+									</path>
+									<path d="M32 14h-3v-3h-3v3h-3v3h3v3h3v-3h3z"></path>
+								</svg>
+							</a>
+						</div>
+						<div class="signup__social-icon-wrapper" disabled>
+							<a href="#" class="signup__social-icon">
+								<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 32 32"
+									fill="#fff">
+									<title>linkedin2</title>
+									<path
+										d="M12 12h5.535v2.837h0.079c0.77-1.381 2.655-2.837 5.464-2.837 5.842 0 6.922 3.637 6.922 8.367v9.633h-5.769v-8.54c0-2.037-0.042-4.657-3.001-4.657-3.005 0-3.463 2.218-3.463 4.509v8.688h-5.767v-18z">
+									</path>
+									<path d="M2 12h6v18h-6v-18z"></path>
+									<path d="M8 7c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
+								</svg>
+							</a>
+						</div>
+
+					</div>
+					<div class="signup__member">
+						<span class="signup__member-text">
+							I’m already member?
+						</span>
+						<a [routerLink]="['/auth/login']" class="signup__member-login">
+							Login
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>

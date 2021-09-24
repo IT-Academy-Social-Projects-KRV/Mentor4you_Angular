@@ -1,3 +1,4 @@
+import { AuthSignupServices } from './../core/services/auth-signup.services';
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
@@ -28,7 +29,8 @@ import {ResponseResetComponent} from "./response-reset/response-reset.component"
   ],
   providers: [
     SigninService,
-    CookieService
+    CookieService,
+    AuthSignupServices
   ]
 })
 export class AuthModule { }
