@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AccountComponent } from './account.component';
+import { ChangeRoleComponent } from './components/account-settings/change-role/change-role.component';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -24,7 +25,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AccountComponent,
     AccountMentorComponent,
     AccountMenteeComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    ChangeRoleComponent
   ],
   imports: [
     SharedModule,
