@@ -14,7 +14,7 @@ export class AccountComponent implements OnInit {
   isAccountActivated!: boolean;
   isImage: boolean = false;
   currentRole: string = 'mentor';
-  textFieldUpload: string = 'Upload you photo here';
+  textFieldUpload: string = 'Upload you photo here (<2 MB)';
   selectedFile!: File;
 
   constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
@@ -44,11 +44,22 @@ export class AccountComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.selectedFile = <File>event.target.files[0];
+    console.log(this.selectedFile.size);
 
-    if (!this.selectedFile.type.match('image/*')) {
+    let ext = this.selectedFile.name.substring(this.selectedFile.name.lastIndexOf('.') + 1).toLowerCase();
+    
+    let sizeInKB = Math.round(this.selectedFile.size/1024);
+    console.log(sizeInKB);
+    if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
       this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
+    } 
+
+    if (sizeInKB >= 2048){
+      this.openSnackBar('Size of picture should be less than 2MB', 'Got it', 'danger');
+      return;
     }
+
 
     this.isImage = true;
 
