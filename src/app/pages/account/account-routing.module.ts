@@ -2,26 +2,24 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AccountComponent } from './account.component';
-import {AccountSettingsComponent} from "./components/account-settings/account-settings.component";
-import { ChangeRoleComponent } from './components/account-settings/change-role/change-role.component';
+import { SettingsModule } from './components/account-settings/settings.module';
 
 const routes = [
   {
     path: '',
-    component: AccountComponent
+    component: AccountComponent,
   },
   {
-    path: 'settings',
-    component: AccountSettingsComponent
+    path: 'account/settings',
+    loadChildren: () =>
+      import('./components/account-settings/settings.module').then(
+        (m) => m.SettingsModule
+      ),
   },
-  {
-    path: 'settings/change-role',
-    component: ChangeRoleComponent
-  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AccountRoutingModule { }
+export class AccountRoutingModule {}
