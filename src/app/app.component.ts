@@ -13,10 +13,11 @@ export class AppComponent implements OnInit, DoCheck{
   constructor(private auth: SigninService, private router: Router) {
   }
   ngOnInit() {
-    const potencialToken=localStorage.getItem('token')
+    const potencialToken=localStorage.getItem('token');
     if(potencialToken!==null)
     {
-      this.auth.setToken(potencialToken)
+      this.auth.setToken(potencialToken);
+      this.auth.setTokenO(potencialToken);
     }
     this.onHiddenFooter();
   }

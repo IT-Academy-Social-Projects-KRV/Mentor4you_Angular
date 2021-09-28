@@ -46,8 +46,8 @@ import { NotificationModalModule } from './shared/layout/header/notification-mod
   providers: [CookieService,NotificationModalService,ChangePasswordService,
     {
       provide:HTTP_INTERCEPTORS,
-      multi:true,
-      useClass:TokenInterceptor
+      useClass:TokenInterceptor,
+      multi:true
     }],
   bootstrap: [AppComponent]
 })

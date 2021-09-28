@@ -26,10 +26,12 @@ export class HeaderComponent implements OnInit {
     private auth:SigninService
   ) { }
 
-    public isAuth = this.auth.isAuth();
+  get isAuth() {
+    return this.auth.isAuth();
+  }
+  
   ngOnInit(): void {
     this.closeMenu();
-    this.isAuth = this.auth.isAuth();
   }
   open() {
     this.NotificationModalService.open();

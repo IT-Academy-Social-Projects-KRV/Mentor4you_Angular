@@ -13,8 +13,6 @@ export class AccountMenteeComponent implements OnInit, OnDestroy {
 
   menteeForm: FormGroup;
 
-
-
   public userMentee: MenteeProfile = {
     firstName: "",
     lastName: "",
@@ -49,7 +47,6 @@ export class AccountMenteeComponent implements OnInit, OnDestroy {
     if(this.menteeForm.valid){
       this.menteeService.sendData(this.userMentee)
       .subscribe((res) => {
-
       })
     }
   }
@@ -59,8 +56,7 @@ export class AccountMenteeComponent implements OnInit, OnDestroy {
   }
 
   getData(){
-    const id = 24;
-    this.menteeService.getData(id)
+    this.menteeService.getData()
     .subscribe((res)=> {
       this.userMentee = res;
     })

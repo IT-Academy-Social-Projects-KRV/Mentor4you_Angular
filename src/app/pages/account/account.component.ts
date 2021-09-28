@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SigninService } from 'src/app/auth/signin/signin.service';
 
 
 @Component({
@@ -13,11 +14,15 @@ export class AccountComponent implements OnInit {
   // mentorData: any = {};
   isAccountActivated!: boolean;
   isImage: boolean = false;
-  currentRole: string = 'mentor';
+  currentRole: string = ' ';
   textFieldUpload: string = 'Upload you photo here (<2 MB)';
   selectedFile!: File;
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {}
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private auth:SigninService) {}
+
+  get isAuth() {
+    return this.auth.isAuth();
+  }
 
   ngOnInit(): void {
     this.isAccountActivated = true;

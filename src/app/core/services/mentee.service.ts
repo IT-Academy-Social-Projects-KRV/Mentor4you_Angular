@@ -10,14 +10,14 @@ import { mentors } from '../mock/in-memory-data.service';
   providedIn: 'root'
 })
 export class MenteeService {
-  menteeGetDataUrl = 'http://localhost:8080/api/mentees/getMenteeDTO';
+  menteeGetDataUrl = 'http://localhost:8080/api/mentees/getMenteeDTO/';
   menteeSendDataUrl = 'http://localhost:8080/api/mentees/updateMenteeByEmail';
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getData(id: number): Observable<any> {
+  getData(): Observable<any> {
     return this.http.get<any>(`${this.menteeGetDataUrl}`);
   }
 

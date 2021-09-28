@@ -25,6 +25,7 @@ export class SigninComponent implements OnInit{
   isInvalidPass:boolean=false;
 
   ngOnInit(): void {
+
     this.fullGroup= new FormGroup({
       email:new FormControl('',[Validators.email,Validators.required]),
       password:new FormControl('',[Validators.minLength(8),Validators.required]),
@@ -35,9 +36,6 @@ export class SigninComponent implements OnInit{
     this.fullGroup.get('password')?.valueChanges.subscribe(value=>this.passwordValue=value)
 
   }
-
-
-
 
   isValidMail():boolean{
     if(this.fullGroup.get('email')?.status=='VALID' || this.errorData)
@@ -87,10 +85,8 @@ export class SigninComponent implements OnInit{
     }
   }
 
-
 submitFrom(){
   this.isDisabled=false
-  // this.http.postData(this.emailValue,this.passwordValue)
   let login = this.http.authRedirect(this.emailValue,this.passwordValue)
 
   login.subscribe(response=>{
@@ -98,9 +94,9 @@ submitFrom(){
     if(response)
     {
       this.router.navigate(['/'])
-      // console.log(this.http.isAuth())
       this.isDisabled=true
       this.errorData=false
+      this.http.setTokenO(response.token);
     }
 
   },error=>{
@@ -115,8 +111,4 @@ submitFrom(){
   this.isDisabled=true
 
     }
-
-
-
-
 }

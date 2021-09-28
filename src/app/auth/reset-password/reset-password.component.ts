@@ -43,7 +43,6 @@ validateEmail(event: any){
 
   RequestResetUser() {
     const email= this.RequestResetForm.value.email;
-    console.log(email);
     this.isInstructionSend = true;
     // let requestBody = {
     //   "login": "oksana@gmail.com",
