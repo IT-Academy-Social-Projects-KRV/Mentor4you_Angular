@@ -13,7 +13,7 @@
                 *ngIf="editingState; else recordingData">
               <div class="validity-notification"
                 *ngIf="menteeForm.get('firstName')?.invalid && (menteeForm.get('firstName')?.dirty || menteeForm.get('firstName')?.touched)">
-                Please input alphabet characters only. Name must be at least 2 characters long and max lenght - 15
+                Please input latin alphabet characters only. Name must be at least 2 characters long and max lenght - 15
                 characters.
               </div>
             </div>
@@ -28,7 +28,7 @@
                 *ngIf="editingState; else recordingData">
               <div class="validity-notification"
                 *ngIf="menteeForm.get('lastName')?.invalid && (menteeForm.get('lastName')?.dirty || menteeForm.get('lastName')?.touched)">
-                Please input alphabet characters only. Name must be at least 2 characters long and max lenght - 15
+                Please input latin alphabet characters only. Name must be at least 2 characters long and max lenght - 15
                 characters.
               </div>
             </div>
@@ -49,7 +49,7 @@
           <div class="phone fild">
             <label class="personal-data__block" for="tel">
               <img class="icon" src="./../../../../../assets/images/phone.svg" alt="Phone number">
-              Phone number:<span>*</span>
+              Phone number:<span></span>
             </label>
             <div class="personal-data__input">
               <input formControlName="phone" id="tel" type="text" placeholder="(000) 000-0000"

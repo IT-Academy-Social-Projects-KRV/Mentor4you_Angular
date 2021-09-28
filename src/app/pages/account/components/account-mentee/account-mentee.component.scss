@@ -29,16 +29,16 @@
         color: $fuschia100;
         background-color: $white;
         border-radius: 15px;
-        position: relative;
-        left: 50%;
-        transform: translate(-42%, 0);
+        // position: relative;
+        // left: 50%;
+        // transform: translate(-42%, 0);
         &:not(.account__btn--disabled):hover{
             @include btn-shadow;
             background-color: $fuschia100;
             color: $white;
-            position: relative;
-            left: 50%;
-            transform: translate(-42%, 0);
+            // position: relative;
+            // left: 50%;
+            // transform: translate(-42%, 0);
         }
         &--disabled{
             opacity: 0.4;

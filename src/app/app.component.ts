@@ -10,10 +10,11 @@ export class AppComponent implements OnInit{
   constructor(private auth:SigninService) {
   }
   ngOnInit() {
-    const potencialToken=localStorage.getItem('token')
+    const potencialToken=localStorage.getItem('token');
     if(potencialToken!==null)
     {
-      this.auth.setToken(potencialToken)
+      this.auth.setToken(potencialToken);
+      this.auth.setTokenO(potencialToken);
     }
   }
 
