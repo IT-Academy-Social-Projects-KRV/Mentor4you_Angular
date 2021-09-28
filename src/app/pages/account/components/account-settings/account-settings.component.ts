@@ -104,53 +104,23 @@ export class AccountSettingsComponent implements OnInit {
     }
   }
 
-  // allChecked():boolean{
-  //   if(this.isPass())
-  //   {
-  //     if(this.isSimplePass()){
-  //       return true
-  //     }else {
-  //       return false
-  //     }
-  //   }
-  //   else {
-  //     return false
-  //   }
-  // }
-
-
-  // putPassword:object={
-  //     'oldPassword':this.valueOldPass,
-  //     'newPassword':this.valuePass
-  // }
-
-
-
   onSubmit(){
-         const putPassword:object={
-            'oldPassword':this.valueOldPass,
-            'newPassword':this.valuePass
-          }
+      const putPassword:object={
+        'oldPassword':this.valueOldPass,
+        'newPassword':this.valuePass
+      }
 
         this.isDisabled=true
-    // let headers;
+
     if (this.isPass()) {
-      // headers = new HttpHeaders()
-      //   .set("Authorization", this.serviceToken.getToken()
-      //   )
       this.change.changePassword(putPassword).subscribe(response=>console.log(response))
       this.isChangeTrue = true
       this.isChangeFalse = false
       this.isDisabled = false
-      console.log(this.serviceToken.getToken())
     } else {
       this.isChangeTrue = false
       this.isChangeFalse = true
       this.isDisabled = false
     }
-
-        }
-
-
-
+  }
 }
