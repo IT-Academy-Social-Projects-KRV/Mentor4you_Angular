@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { T } from '@angular/cdk/keycodes';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-mentor',
@@ -40,7 +41,11 @@ export class AccountMentorComponent implements OnInit {
   groupWork!: boolean;
   mentorForm!: any;
 
-  constructor(private fb: FormBuilder, private httpClient: HttpClient) {}
+  constructor(
+    private fb: FormBuilder, 
+    private httpClient: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.btnTouched = false;
@@ -143,5 +148,6 @@ export class AccountMentorComponent implements OnInit {
 
   onBtnClick() {
     this.btnTouched = true;
+    this.router.navigate(['/']);
   }
 }
