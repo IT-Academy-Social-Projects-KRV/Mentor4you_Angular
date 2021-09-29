@@ -4,6 +4,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { TermsComponent } from './pages/terms/terms.component';
+import {AuthGuard} from "./core/interceptors/auth.guard";
+import {NotAuthGuard} from "./core/interceptors/not-auth.guard";
 
 const routes: Routes = [
   {
@@ -12,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate:[NotAuthGuard]
   },
   {
     path: 'mentor',
@@ -24,11 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'moderator',
-    loadChildren: () => import('./pages/moderator/moderator.module').then(m => m.ModeratorModule)
+    loadChildren: () => import('./pages/moderator/moderator.module').then(m => m.ModeratorModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'terms',
@@ -36,11 +41,13 @@ const routes: Routes = [
   },
   {
     path: 'messages',
-    component: MessagesComponent
+    component: MessagesComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'how-it-works',
-    component: HowItWorksComponent
+    component: HowItWorksComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'error-page',

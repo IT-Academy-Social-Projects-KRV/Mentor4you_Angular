@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
       );
     this.signinService.token$.subscribe(value =>{
     })
+    console.log(this.signinService.isExpToken(this.signinService.token$.value))
   }
 
   goTo(path: string): void {

@@ -6,6 +6,7 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {CookieService} from "ngx-cookie-service";
 import {tap} from "rxjs/operators";
 import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class SigninService {
   }
   error!:any
   public user: any = {}
-  private token:string|null = null;
+  // private token:string|null = null;
   public token$ = new BehaviorSubject<any>(null);
 
   private url ='http://localhost:8080/api/auth/login'
@@ -33,31 +34,34 @@ export class SigninService {
           ({token})=>{
             localStorage.setItem('token',token);
             this.setTokenO(token);
-            this.setToken(token);
+            // this.setToken(token);
             this.user = this.parseJwt(token);
           }
         )
       )
   }
 
-  setToken(token:any){
-    this.token = token;
-  }
+
 
   setTokenO(token:any) : void{
     this.token$.next(token);
   }
 
-  get getToken():any{
-    return localStorage.getItem('token');
-  }
+  // get getToken():any{
+  //   return localStorage.getItem('token');
+  // }
+  //
+  // get getToken0():any{
+  //   return this.token$.subscribe(value =>{
+  //   })
+  // }
 
   public isAuth(): boolean {
     return localStorage.getItem('token') ? true : false;
   }
 
   logout(){
-    this.setToken(null);
+    this.setTokenO(null);
     localStorage.clear();
   }
 
@@ -70,5 +74,13 @@ export class SigninService {
 
     return JSON.parse(jsonPayload);
   };
+
+  isExpToken(token:any){
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+    const expirationDate = helper.getTokenExpirationDate(token);
+    const isExpired = helper.isTokenExpired(token);
+    return isExpired
+  }
 
 }

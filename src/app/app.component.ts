@@ -16,7 +16,6 @@ export class AppComponent implements OnInit, DoCheck{
     const potencialToken=localStorage.getItem('token');
     if(potencialToken!==null)
     {
-      this.auth.setToken(potencialToken);
       this.auth.setTokenO(potencialToken);
     }
     this.onHiddenFooter();
@@ -31,5 +30,5 @@ export class AppComponent implements OnInit, DoCheck{
   ngDoCheck() {
     this.onHiddenFooter();
   }
-  
+
 }
