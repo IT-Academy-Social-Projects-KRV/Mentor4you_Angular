@@ -35,27 +35,6 @@ export class SigninService {
       )
   }
 
-  // postData(email:any,password:any){
-  //
-  //   const data:object={
-  //     'login':email,
-  //     'password':password
-  //   }
-  //
-  //    this.http.post(this.url,data).subscribe(response=>{
-  //       const {token}:any=response;
-  //       if(token){
-  //
-  //         localStorage.setItem('token',token);
-  //         this.setToken(token);
-  //       };
-  //
-  //     },
-  //     error => {this.error=error.status;}
-  //     )
-  //
-  //
-  // }
 
   setToken(token:any){
       this.token=token//?????
