@@ -23,6 +23,12 @@ const routes: Routes = [
     path: 'response-reset',
     component: ResponseResetComponent
   }
+  ,
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

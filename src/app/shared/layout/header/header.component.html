@@ -1,19 +1,19 @@
 <header class="header">
   <div class="container">
     <div class="header__inner">
-      <a class="header__logo" (click)="goTo('/')">
+      <div class="header__logo" (click)="goTo('/')">
         <img class="logo" src="./../../../../assets/images/Logo.png" alt="Logo">
-      </a>
+      </div>
       <nav class="header__menu">
         <ul class="header__menu__list">
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" routerlink="#">How it works?</a>
+            <a class="header__menu__list-link" routerLink="/how-it-works">How it works?</a>
           </li>
           <li class="header__menu__list-item">
             <a class="header__menu__list-link" (click)="goTo('mentor')">Find mentor</a>
           </li>
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" routerlink="#">Contacts</a>
+            <a class="header__menu__list-link" routerLink="#">Contacts</a>
           </li>
         </ul>
       </nav>

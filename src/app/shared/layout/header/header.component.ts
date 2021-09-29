@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
-import {SigninService} from "../../../auth/signin/signin.service";
+import { SigninService } from 'src/app/auth/signin/signin.service';
 
 @Component({
   selector: 'app-header',
@@ -26,10 +26,12 @@ export class HeaderComponent implements OnInit {
     private auth:SigninService
   ) { }
 
-    public isAuth = this.auth.isAuth();
+  get isAuth() {
+    return this.auth.isAuth();
+  }
+  
   ngOnInit(): void {
     this.closeMenu();
-    this.isAuth = this.auth.isAuth();
   }
   open() {
     this.NotificationModalService.open();
