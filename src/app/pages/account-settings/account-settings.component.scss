@@ -1,17 +1,10 @@
 @import "variables";
 
+.wrapper{
+  margin-bottom: 100px;
+}
 .title {
   margin-top: 100px;
-
-  .changed{
-    color: #5CC092;
-    font-size: 26px;
-  }
-
-  .inchanged{
-    color: $red;
-    font-size: 26px;
-  }
 
   .mainsection{
 
@@ -27,7 +20,7 @@
       span{
         cursor: pointer;
         display: flex;
-        padding:20px 5px 15px 5px;
+        padding: 20px 5px 15px 5px;
         border-bottom: 1px solid #c6c6c6;
         i{
           font-size: 20px;
