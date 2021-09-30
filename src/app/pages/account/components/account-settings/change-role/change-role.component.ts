@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./change-role.component.scss'],
 })
 export class ChangeRoleComponent implements OnInit {
+  currentRole!: string;
   constructor() {}
 
   ngOnInit(): void {}
