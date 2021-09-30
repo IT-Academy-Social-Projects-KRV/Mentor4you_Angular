@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AccountComponent } from './account.component';
-import { SettingsModule } from './components/account-settings/settings.module';
+import { SettingsModule } from '../account-settings/settings.module';
 
 const routes = [
   {
@@ -12,7 +12,7 @@ const routes = [
   {
     path: 'account/settings',
     loadChildren: () =>
-      import('./components/account-settings/settings.module').then(
+      import('../account-settings/settings.module').then(
         (m) => m.SettingsModule
       ),
   },

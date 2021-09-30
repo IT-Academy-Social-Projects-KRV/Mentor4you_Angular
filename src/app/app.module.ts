@@ -16,7 +16,7 @@ import {CookieService} from "ngx-cookie-service";
 import { NotificationModalService } from './core/services/notification-modal.service';
 import { MessagesComponent } from './pages/messages/messages.component';
 import {AccountModule} from "./pages/account/account.module";
-import {ChangePasswordService} from "./pages/account/components/account-settings/change-password.service";
+import {ChangePasswordService} from "./pages/account-settings/change-password.service";
 import {TokenInterceptor} from "./core/interceptors/token.interceptor";
 
 import {AuthModule} from "./auth/auth.module";

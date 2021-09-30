@@ -8,10 +8,6 @@ const routes = [
     path: '',
     component: AccountSettingsComponent,
   },
-  {
-    path: 'change-role',
-    component: ChangeRoleComponent,
-  },
 ];
 
 @NgModule({
