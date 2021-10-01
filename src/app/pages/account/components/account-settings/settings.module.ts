@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AccountSettingsComponent } from './account-settings.component';
 import { SettingsRoutingModule } from './settings-routing.module';

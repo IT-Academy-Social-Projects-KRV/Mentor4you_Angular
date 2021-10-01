@@ -1,21 +1,23 @@
 @import "variables";
+@import "reset";
 
 .wrapper{
   margin-bottom: 100px;
 }
 .title {
-  margin-top: 100px;
+  padding-top: 100px;
 
   .mainsection{
-
+    margin: 0px auto!important;
     .aside,.content{
       background-color: white;
-
+      @include border;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .aside>ul>li>{
       margin: 40px;
-
 
       span{
         cursor: pointer;
@@ -30,16 +32,12 @@
           font-size: 16px;
           margin-left: 5px;
           padding: 4px;
-
         }
-
-
       }
 
       span.option:hover{
         color: black;
       }
-
 
       .delete{
         color: #FC3665;
@@ -68,7 +66,6 @@ button{
   background-color:$fuschia100;
   color: $lightgreen;
   padding: 10px;
-  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
   border-radius: 10px;
   border: none;
 
@@ -77,6 +74,11 @@ button{
 button:active{
   background: $fuschia80;
   box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
+}
+
+button:hover{
+  @include btn-shadow;
+  transform: scale(1.1, 1.1);
 }
 
 .selected{
@@ -95,4 +97,3 @@ button:active{
 .prog100{
   width: 100%;
 }
-
