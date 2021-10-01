@@ -9,6 +9,13 @@ const routes = [
     path: '',
     component: AccountComponent,
   },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import(
+        './components/account-settings/settings.module'
+      ).then((m) => m.SettingsModule),
+  },
 ];
 
 @NgModule({

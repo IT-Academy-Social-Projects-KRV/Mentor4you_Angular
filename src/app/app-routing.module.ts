@@ -32,11 +32,6 @@ const routes: Routes = [
       import('./pages/account/account.module').then((m) => m.AccountModule),
   },
   {
-    path: 'settings',
-    loadChildren: () =>
-      import('./pages/account/components/account-settings/settings.module').then((m) => m.SettingsModule),
-  },
-  {
     path: 'moderator',
     loadChildren: () =>
       import('./pages/moderator/moderator.module').then(
