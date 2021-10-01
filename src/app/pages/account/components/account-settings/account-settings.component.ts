@@ -12,7 +12,25 @@ import {ChangePasswordService} from "./change-password.service";
 export class AccountSettingsComponent implements OnInit {
   switchCase!: number;
 
-  constructor() {}
+  constructor(
+    private http:HttpClient,
+    private serviceToken:SigninService,
+    private change:ChangePasswordService) { }
+  inputGroup!:FormGroup
+
+  isDisabled:boolean=false
+  isMatch:boolean=false
+  isChangeTrue:boolean=false
+  isChangeFalse:boolean=false
+  isEnter:boolean=false
+  isShort:boolean=false
+
+  valuePass:any='';
+  valueOldPass:any='';
+
+  danger:boolean=false
+  warning:boolean=false
+  success:boolean=false
 
   ngOnInit(): void {
     this.switchCase = 2;
@@ -53,4 +71,5 @@ export class AccountSettingsComponent implements OnInit {
       return 'selected';
     } else return '';
   }
+
 }
