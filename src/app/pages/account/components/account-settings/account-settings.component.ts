@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SigninService} from "../../auth/signin/signin.service";
+import {SigninService} from "../../../../auth/signin/signin.service";
 import {ChangePasswordService} from "./change-password.service";
 
 @Component({

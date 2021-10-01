@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AccountComponent } from './account.component';
-import { SettingsModule } from '../account-settings/settings.module';
+import { SettingsModule } from './components/account-settings/settings.module';
 
 const routes = [
   {

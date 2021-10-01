@@ -30,7 +30,7 @@ const routes: Routes = [
   {
     path: 'settings',
     loadChildren: () =>
-      import('./pages/account-settings/settings.module').then((m) => m.SettingsModule),
+      import('./pages/account/components/account-settings/settings.module').then((m) => m.SettingsModule),
   },
   {
     path: 'moderator',
