@@ -34,13 +34,15 @@
           padding: 4px;
         }
       }
-
+      span.option{
+        color: $darkgrey;
+      }
       span.option:hover{
-        color: black;
+        color: $black;
       }
 
       .delete{
-        color: #FC3665;
+        color: $red;
       }
 
       .delete:hover{
