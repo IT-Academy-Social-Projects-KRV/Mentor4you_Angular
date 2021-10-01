@@ -11,7 +11,10 @@ const routes = [
   },
   {
     path: 'settings',
-    component: AccountSettingsComponent,
+    loadChildren: () =>
+      import(
+        './components/account-settings/settings.module'
+      ).then((m) => m.SettingsModule),
   },
 ];
 
