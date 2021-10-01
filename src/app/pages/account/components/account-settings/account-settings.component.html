@@ -1,108 +1,48 @@
 <div class="container">
-  <div class="row title">
+  <div class="row title wrapper">
     <p class="d-flex ms-5 col-2">Settings</p>
-    <span class="d-flex ms-5 col-4 changed"><p [hidden]="!isChangeTrue">Password changed successfully!</p></span>
-    <span class="d-flex ms-5 col-4 inchanged"><p [hidden]="!isChangeFalse">Current password is wrong!</p></span>
-      <div class="row mainsection mx-4">
-        <div class="col-2 me-3 aside">
-            <ul>
-              <li>
-                  <span class="option">
-                      <i class="fas fa-user"></i>
-                      <p>Change role</p>
-                  </span>
-              </li>
-              <li>
-                  <span class="option selected">
-                    <i class="fas fa-lock"></i>
-                      <p>Change password</p>
-                   </span>
-              </li>
-              <li>
-                  <span class="option">
-                    <i class="fas fa-globe"></i>
-                      <p>Language</p>
-                   </span>
-              </li>
-              <li>
-                  <span class="delete">
-                      <i class="fas fa-trash-alt"></i>
-                      <p>Delete Account</p>
-                  </span>
-              </li>
-          </ul>
-        </div>
-
-
-        <div class="col-8 content">
-          <div class="Password">
-            <form (ngSubmit)="onSubmit()" [formGroup]="inputGroup">
-                <div class="row px-3 pt-3">
-
-                  <div class="col-3">
-                    <div class="form-group">
-                      <label class="col-form-label col-form-label" for="currPass">Password:</label>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <input class="form-control form-control" [ngClass]="{'is-invalid':isEnter}" type="password" placeholder="Current Password" id="currPass" formControlName="password" (ngModelChange)="isPass()">
-                    <div class="invalid-feedback">Please,enter your password.</div>
-                  </div>
-
-                </div>
-
-                <div class="row px-3 pt-3">
-                    <div class="col-3">
-                      <div class="form-group">
-                        <label class="col-form-label col-form-label" for="newPass">New Password:</label>
-                      </div>
-                    </div>
-
-                    <div class="col-4">
-                      <span class="text-danger" [hidden]="!isShort">Password must contain at least 8</span>
-                      <input class="form-control form-control mb-1" type="password" placeholder="New Password" (input)="isValidPass($event)" id="newPass" formControlName="newPassword" (ngModelChange)="isValidPass()" (focusout)="isSimplePass()">
-                      <div class="row align-items-center">
-
-                          <div class="col-8">
-                            <div class="progress">
-                             <div class="progress-bar" [ngClass]="{'bg-danger prog10':danger,'bg-warning prog50':warning,'bg-success prog100':success}"  role="progressbar"  aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-
-                          <div class="col">
-                            <span class="badge bg-success" [hidden]="!success">Strong</span>
-                            <span class="badge bg-danger" [hidden]="!danger">Easy</span>
-                            <span class="badge bg-warning" [hidden]="!warning">Medium</span>
-                          </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                <div class="row px-3 pt-3">
-
-                  <div class="col-3">
-                    <div class="form-group">
-                      <label class="col-form-label col-form-label" for="confirmPass">Confirm Password:</label>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <input class="form-control form-control" type="password" [ngClass]="{'is-invalid':isMatch}"  placeholder="Confirm new Password" id="confirmPass" formControlName="confirmPassword" (ngModelChange)="isSimplePass()">
-                    <div class="invalid-feedback">Passwords don't match!.</div>
-                  </div>
-
-                </div>
-
-              <div class="row justify-content-end me-5">
-                <button class="col-2 me-3 mb-3" [disabled]="isDisabled">Change</button>
-              </div>
-
-              </form>
-            </div>
-        </div>
+    <!-- <span class="d-flex ms-5 col-4 changed hidden-success"
+      ><p [hidden]="!isChangeTrue">Password changed successfully!</p></span
+    >
+    <span class="d-flex ms-5 col-4 inchanged hidden-danger"
+      ><p [hidden]="!isChangeFalse">Current password is wrong!</p></span
+    > -->
+    <div class="row mainsection mx-4">
+      <div class="col-2 me-3 aside">
+        <ul>
+          <li (click)="caseClick('role')">
+            <span class="option" [ngClass]="case1()">
+              <i class="fas fa-user"></i>
+              <p>Change role</p>
+            </span>
+          </li>
+          <li (click)="caseClick('password')">
+            <span class="option" [ngClass]="case2()">
+              <i class="fas fa-lock"></i>
+              <p>Change password</p>
+            </span>
+          </li>
+          <li (click)="caseClick('language')">
+            <span class="option" [ngClass]="case3()">
+              <i class="fas fa-globe"></i>
+              <p>Language</p>
+            </span>
+          </li>
+          <li (click)="caseClick('delete')">
+            <span class="delete" [ngClass]="case4()">
+              <i class="fas fa-trash-alt"></i>
+              <p>Delete Account</p>
+            </span>
+          </li>
+        </ul>
       </div>
+
+      <div class="col-8 content" [ngSwitch]="switchCase">
+        <app-change-role *ngSwitchCase="1"></app-change-role>
+        <app-change-password *ngSwitchCase="2"></app-change-password>
+        <app-languages *ngSwitchCase="3"></app-languages>
+        <app-delete-account *ngSwitchCase="4"></app-delete-account>
+      </div>
+    </div>
   </div>
 </div>

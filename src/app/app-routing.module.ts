@@ -12,35 +12,43 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'mentor',
-    loadChildren: () => import('./pages/mentor/mentor.module').then(m => m.MentorModule)
+    loadChildren: () =>
+      import('./pages/mentor/mentor.module').then((m) => m.MentorModule),
   },
   {
     path: 'mentor-details',
-    loadChildren: () => import('./pages/mentor-details/mentor-details.module').then(m => m.MentorDetailsModule)
+    loadChildren: () =>
+      import('./pages/mentor-details/mentor-details.module').then(
+        (m) => m.MentorDetailsModule
+      ),
   },
   {
     path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+    loadChildren: () =>
+      import('./pages/account/account.module').then((m) => m.AccountModule),
   },
   {
     path: 'moderator',
-    loadChildren: () => import('./pages/moderator/moderator.module').then(m => m.ModeratorModule)
+    loadChildren: () =>
+      import('./pages/moderator/moderator.module').then(
+        (m) => m.ModeratorModule
+      ),
   },
   {
     path: 'terms',
-    component: TermsComponent
+    component: TermsComponent,
   },
   {
     path: 'messages',
-    component: MessagesComponent
+    component: MessagesComponent,
   },
   {
     path: 'how-it-works',
-    component: HowItWorksComponent
+    component: HowItWorksComponent,
   },
   {
     path: 'error-page',
