@@ -144,18 +144,14 @@ export class ChangePasswordComponent implements OnInit {
     };
 
     this.isDisabled = true;
-    // let headers;
+
     if (this.isPass()) {
-      // headers = new HttpHeaders()
-      //   .set("Authorization", this.serviceToken.getToken()
-      //   )
       this.change
         .changePassword(putPassword)
         .subscribe((response) => console.log(response));
       this.isChangeTrue = true;
       this.isChangeFalse = false;
       this.isDisabled = false;
-      console.log(this.serviceToken.getToken());
     } else {
       this.isChangeTrue = false;
       this.isChangeFalse = true;

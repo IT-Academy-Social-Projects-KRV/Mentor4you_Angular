@@ -13,35 +13,41 @@ $red: #FC3665;
 $bg: #F6F9FE;
 $white: #FFFFFF;
 $yellow: #FCD84B;
+$inputFormFocus:#18D1A5;
+$inputRadioFocus:#5D5EEF;
 
-%base-font{
+%base-font {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 20px;
 }
-@mixin title{
+
+@mixin title {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 38px;
     line-height: 44px;
     color: $black;
 }
-@mixin btn-shadow{
+
+@mixin btn-shadow {
     -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
-@mixin avatar-round{
+
+@mixin avatar-round {
     width: 50px;
     height: 50px;
     border: 1px solid $grey;
-    border-radius: 50%; 
+    border-radius: 50%;
     padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-@mixin avatar-round-border{
+
+@mixin avatar-round-border {
     width: 40px;
     height: 40px;
     margin: 0 auto;
@@ -49,6 +55,7 @@ $yellow: #FCD84B;
     overflow: hidden;
     object-fit: contain;
 }
+
 @mixin account-border {
     color: #26242E;
     box-shadow: 1px 1px 5px 2px #dedede;
@@ -76,7 +83,7 @@ $yellow: #FCD84B;
     border-radius: 10px;
 }
 
-@mixin placeholder-style{
+@mixin placeholder-style {
     font-size: 14px;
     line-height: 1;
     color: $grey;

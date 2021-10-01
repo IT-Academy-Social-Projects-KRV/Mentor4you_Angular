@@ -10,10 +10,10 @@ export interface MenteeProfile{
     lastName: string;
     email: string;
     socialMap: {
-      PhoneNumFirst: string;
-      Telegram: string;
-      LinkedIn: string;
-      Skype: string;
-      GitHub: string;
+      PhoneNumFirst: string,
+      Telegram: string,
+      LinkedIn: string,
+      Skype: string,
+      GitHub: string
     }
 }

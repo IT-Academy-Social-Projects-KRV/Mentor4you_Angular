@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
-
 import { MessagesComponent } from './pages/messages/messages.component';
 import { TermsComponent } from './pages/terms/terms.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
@@ -51,6 +55,14 @@ const routes: Routes = [
     path: 'how-it-works',
     component: HowItWorksComponent,
   },
+  {
+    path: 'error-page',
+    loadChildren: () => import('./pages/error-pages/error-pages.module').then(m => m.ErrorPagesModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'error-page',
+  }
 ];
 
 @NgModule({
