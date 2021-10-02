@@ -1,4 +1,4 @@
-<div *ngIf="mentor" class="main-section container">
+<div class="main-section container">
   <div class="row">
     <div class="col-4">
       <div class="image-wrap">
@@ -7,8 +7,7 @@
       </div>
 
       <h3 class="name" #name>
-        <p>{{mentor.firstName}}</p>
-        <p>{{mentor.lastName}}</p>
+        {{mentor.firstName}} {{mentor.lastName}}
       </h3>
 
       <div class="soc-link" *ngIf="auth">
@@ -31,13 +30,13 @@
       <br>
       <div class="info-section d-flex align-items-start flex-column">
         <p><b>Place:</b><span class="place"> {{mentor.place}}</span></p>
-        <p><b>Rate:</b><span class="rate"> {{mentor.rate}}$</span></p>
+        <p><b>Rate:</b><span class="rate"> {{mentor.rate}} <small>{{mentor.currency}}</small></span></p>
         <p><b>Group mentoring:</b>
           <span class="grp_ment"> {{mentor.groupServices ? 'Yes' : 'No'}}</span>
         </p>
         <p><b>Languages:</b>
-          <span class="language" *ngFor="let language of mentor.languagesList">
-            {{language}}
+          <span class="language" *ngFor="let language of mentor.languagesList last as isLast">
+            {{language.name}} <span *ngIf="!isLast">, </span>
           </span>
         </p>
       </div>
@@ -64,5 +63,3 @@
     <p></p>
   </div>
 </div>
-
-<!-- <button class="edit-btn"  (click)="toggleEditMentor()">Edit</button> -->

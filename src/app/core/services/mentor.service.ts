@@ -28,6 +28,7 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorUrl)
       .pipe(map(mentors => {
+        // console.log('m', mentors);
         return mentors.map((mentor: any) => {
           const user = mentor.accounts.user;
 
@@ -49,18 +50,22 @@ export class MentorService {
       .pipe(map((mentor: any) => {
         const user = mentor.accounts.user;
 
+        console.log('m - server', mentor);
+
         return {
           id: user.id,
-          email: user.email || '',
+          email: user.email,
           firstName: user.first_name,
           lastName: user.last_name,
-          avatar: user.avatar || this.tempAvatar,
+          avatar: user.avatar,
           phoneNumberLink: user.phoneNumberLink || '',
-          categories: user.categories || this.tempCategories,
+          // categories: mentor.mentors_to_categories[0].categories, // expecting a change in structure of the data
+          category: mentor.mentors_to_categories[0].categories, // expecting a change in structure of the data
           place: user.place || 'Remote',
-          rate: user.rate || 100, 
-          groupServices: mentor.group_services || false,
-          languagesList: mentor.accounts.languagesList.length !== 0 || this.templanguagesList,
+          currency: mentor.mentors_to_categories[0].currency,     // expecting a change in structure of the data
+          rate: mentor.mentors_to_categories[0].rate, 
+          groupServ: mentor.group_services || false,
+          languagesList: mentor.accounts.languagesList,
           about: mentor.description
         }
       }))

@@ -21,7 +21,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   currentRole: string = '';
   textFieldUpload: string = 'Upload you photo here';
   selectedFile!: File;
-  subscription!: Subscription;
+  subscriptionMentor!: Subscription;
   mentor: any;
 
   constructor(
@@ -37,11 +37,11 @@ export class AccountComponent implements OnInit, OnDestroy {
   // }
 
   ngOnInit(): void {
-    const tempMentorId: number = 9;
+    const tempMentorId: number = 5;
 
-    this.subscription = this.mentorService.getMentorById(tempMentorId).subscribe(
+    this.subscriptionMentor = this.mentorService.getMentorById(tempMentorId).subscribe(
       (mentor: any) => {
-        console.log('mentor', mentor);
+        console.log('m - account', mentor);
         this.mentor = mentor;
       }
     );
@@ -149,6 +149,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptionMentor.unsubscribe();
   }
 }

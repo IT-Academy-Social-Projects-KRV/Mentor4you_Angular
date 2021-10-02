@@ -2,9 +2,10 @@
 <div class="container">
   <div class="content">
     <div *ngIf="!isMentorForm">
-      <app-main-section [mentor]="mentor"></app-main-section>
-    
-      <button (click)="isMentorForm = true">Edit</button>
+      <div *ngIf="mentor">
+        <app-main-section [mentor]="mentor"></app-main-section>
+        <button class="edit-btn" (click)="isMentorForm = true">Edit</button>
+      </div>
   <!-- <div class="content" *ngIf="isAuth">
     <div class="mentor-account__top-line">
       <h2 class="mentor-account__title">My Account</h2>

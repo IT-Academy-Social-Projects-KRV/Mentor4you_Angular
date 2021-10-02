@@ -1,11 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Input} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Input, DoCheck} from '@angular/core';
 
 @Component({
   selector: 'app-main-section',
   templateUrl: './main-section.component.html',
   styleUrls: ['./main-section.component.scss']
 })
-export class MainSectionComponent implements OnInit,AfterViewInit {
+export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
   @Input() mentor: any;
   @ViewChild('name')name?:ElementRef
 
@@ -54,8 +54,13 @@ export class MainSectionComponent implements OnInit,AfterViewInit {
     else {
       this.grp_ment='No'
     }
+
   }
 
+  ngDoCheck() {
+    // console.log('m - details', this.mentor);
+  }
+  
   ngAfterViewInit() {
     if(this.auth)
     {

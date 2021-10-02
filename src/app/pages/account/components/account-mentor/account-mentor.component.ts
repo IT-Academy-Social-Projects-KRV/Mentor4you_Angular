@@ -93,6 +93,9 @@ export class AccountMentorComponent implements OnInit {
       controls[controlName].setValue(this.mentor[controlName]);
     })
 
+    const rate = this.mentor['rate'] + ' ' + this.mentor['currency'];
+    controls['rate'].setValue(rate);
+
     const mentorData = {
       avatar: controls['avatar'].value,
       // isAccountActivated: controls['isAccountActivated'].value
@@ -106,6 +109,7 @@ export class AccountMentorComponent implements OnInit {
 
   onSubmit(): void {
     this.btnTouched = true;
+    
     if (
       this.mentorForm.valid &&
       (this.mentorForm.controls['remotely'].value === true ||
@@ -132,6 +136,7 @@ export class AccountMentorComponent implements OnInit {
       return 'invalidForm';
     } else return '';
   }
+
   checkBox() {
     if (
       this.btnTouched === true &&

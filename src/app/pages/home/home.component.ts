@@ -15,7 +15,7 @@ import { MentorService } from 'src/app/core/services';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   mentors: MentorCard[] = [];
-  subscription!: Subscription;
+  subscriptionMentors!: Subscription;
 
   constructor(
     private mentorService: MentorService,
@@ -24,13 +24,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.mentorService.getAllMentors().subscribe(
+    this.subscriptionMentors = this.mentorService.getAllMentors().subscribe(
       (mentors: MentorCard[]) => this.mentors = mentors
     )
-
-    // this.mentorService.getMentors().subscribe(
-    //   (mentors: Mentor[]) => this.mentors = mentors
-    //   );
 
     // this.signinService.token$.subscribe(value =>{
     // })
@@ -41,6 +37,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptionMentors.unsubscribe();
   }
  }
