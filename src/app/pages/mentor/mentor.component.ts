@@ -16,7 +16,7 @@ export class MentorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.menrotService.getMentors().subscribe(
+    this.menrotService.getAllMentors().subscribe(
       mentors => this.mentors = mentors
     )
   }

@@ -1,11 +1,13 @@
 
 <div class="container">
   <div class="content">
-    <div *ngIf="isEditedMentor">
-      <app-main-section [mentor]="mentor" (editMentor)="toggleEditMentor()"></app-main-section>
+    <div *ngIf="!isMentorForm">
+      <app-main-section [mentor]="mentor"></app-main-section>
+    
+      <button (click)="isMentorForm = true">Edit</button>
     </div>
 
-    <div *ngIf="!isEditedMentor">
+    <div *ngIf="isMentorForm">
       <div class="mentor-account__top-line">
         <h2 class="mentor-account__title">My Account</h2>
 
@@ -55,7 +57,7 @@
           <app-account-mentor
             [mentor]="mentor"
             (setMentorData)="setMentorData($event)"
-            (showProfile)="toggleEditMentor()"
+            (closeForm)="isMentorForm = false"
           ></app-account-mentor>
         </div>
         

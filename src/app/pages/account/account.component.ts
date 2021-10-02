@@ -14,7 +14,7 @@ import { MentorProfile, MentorService } from 'src/app/core';
 })
 export class AccountComponent implements OnInit, OnDestroy {
   // mentorData: any = {};
-  isEditedMentor: boolean = true;
+  isMentorForm: boolean = false;
   isAccountActivated: boolean = false;
   isImage: boolean = false;
   currentRole: string = 'mentor';
@@ -22,7 +22,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   selectedFile!: File;
   subscription!: Subscription;
   mentor: any;
-  tempMentorId: number = 9;
 
   constructor(
     private http: HttpClient, 
@@ -31,7 +30,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.mentorService.getMentorById(this.tempMentorId).subscribe(
+    const tempMentorId: number = 9;
+
+    this.subscription = this.mentorService.getMentorById(tempMentorId).subscribe(
       (mentor: any) => {
         console.log('mentor', mentor);
         this.mentor = mentor;
@@ -40,14 +41,14 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.isAccountActivated = true;
   }
 
-  showEditForm(): void {
-    this.isEditedMentor = !this.isEditedMentor;
-  }
+  // showEditForm(): void {
+  //   this.isEditedMentor = !this.isEditedMentor;
+  // }
 
-  toggleEditMentor(): void {
-    this.isEditedMentor = !this.isEditedMentor;
-    // console.log('this.isEditedMentor', this.isEditedMentor);
-  }
+  // toggleEditMentor(): void {
+  //   this.isEditedMentor = !this.isEditedMentor;
+  //   // console.log('this.isEditedMentor', this.isEditedMentor);
+  // }
 
   setMentorData(mentorData: any): void {
     // this.isAccountActivated = mentorData.isAccountActivated;

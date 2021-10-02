@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.subscription = this.mentorService.getMentors().subscribe(
+    this.subscription = this.mentorService.getAllMentors().subscribe(
       (mentors: MentorCard[]) => this.mentors = mentors
     )
   }

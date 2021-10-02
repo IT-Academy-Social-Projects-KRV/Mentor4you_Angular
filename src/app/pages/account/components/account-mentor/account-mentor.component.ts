@@ -17,7 +17,7 @@ export class AccountMentorComponent implements OnInit {
   @Input() mentor: any;
   @Input() isAccountActivated!: boolean;
   // @Input() selectedFile!: File;
-  @Output() showProfile: EventEmitter<void> = new EventEmitter();
+  @Output() closeForm: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<any> = new EventEmitter();
 
   btnTouched!: boolean;
@@ -142,8 +142,8 @@ export class AccountMentorComponent implements OnInit {
     } else return '';
   }
 
-  showProfileMentor(): void {
-    this.showProfile.emit();
+  onShowProfile(): void {
+    this.closeForm.emit();
   }
 
   onBtnClick() {

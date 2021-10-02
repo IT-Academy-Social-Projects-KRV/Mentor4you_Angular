@@ -15,7 +15,7 @@ import mockAvatar from './../mock/avatar';
 export class MentorService {
   mentorUrl = 'http://localhost:8080/api/mentors';
 
-  // temp data
+  // temporary data
   tempAvatar = mockAvatar;
   tempCategories = ['HTML', 'CSS'];
   templanguagesList = ['Ukrainian'];
@@ -24,8 +24,7 @@ export class MentorService {
     private http: HttpClient
   ) { }
 
-  getMentors(): Observable<MentorCard[]> {
-    // return of(mentors);
+  getAllMentors(): Observable<MentorCard[]> {
     return this.http
       .get<any>(this.mentorUrl)
       .pipe(map(mentors => {
@@ -35,7 +34,7 @@ export class MentorService {
           return {
             id: user.id,
             fullName: user.first_name + ' ' + user.last_name,
-            avatar: user.avatar || this.tempAvatar,
+            avatar: user.avatar,
             categories: user.categories || this.tempCategories,
             rating: Number(user.rating) || 5
           }
