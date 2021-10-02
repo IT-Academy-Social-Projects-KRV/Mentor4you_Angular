@@ -1,0 +1,95 @@
+@import "variables";
+@import "reset";
+
+.container{
+    background-color: $white;
+    border-radius: 0px 0px 15px 15px;
+}
+.account{
+    &-mentee__inner{
+        @include account-form;
+    }
+    &__contact-info{
+        &__inner{
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+    }
+    &-avatar{
+        height: 120px;
+        border: 1px solid $lightgray;
+        margin-bottom: 25px;
+        padding: 100px 5%;
+    }
+    &__btn{
+        padding: 15px 120px;
+        // margin-left: 35%;
+        border: 1px solid $fuschia100;
+        color: $fuschia100;
+        background-color: $white;
+        border-radius: 15px;
+        // position: relative;
+        // left: 50%;
+        // transform: translate(-42%, 0);
+        &:not(.account__btn--disabled):hover{
+            @include btn-shadow;
+            background-color: $fuschia100;
+            color: $white;
+            // position: relative;
+            // left: 50%;
+            // transform: translate(-42%, 0);
+        }
+        &--disabled{
+            opacity: 0.4;
+        }
+    }
+}
+.personal-data{
+    &__block{
+        display: flex;
+        width: 35%;
+        span{
+            color: $red;
+        }  
+    }
+    &__input{
+        width: 55%;
+        input{
+            width: 100%!important;
+        }
+    }
+}
+.icon{
+    display: inline-block;
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+}
+.validity-notification{
+    color: $red;
+    font-size: 14px;
+    line-height: 16px;
+    margin-top: 10px;
+}
+.info{
+    display: inline-block;
+    line-height: 41px;
+    color: $black;
+    width: 55%;
+    height: 44px;
+    padding-left: 10px;
+    align-items: center;
+    border-bottom: 1px solid $green;
+    text-align: left;
+}
+.fild{
+    @include account-field;
+    display: flex;
+    align-items: center;
+    input{
+        @include account-input;
+        width: 55%;
+        outline: 0;
+    }
+}

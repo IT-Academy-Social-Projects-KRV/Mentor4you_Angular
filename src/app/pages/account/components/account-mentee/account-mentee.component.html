@@ -1,1 +1,153 @@
-<p>account-mentee works!</p>
+<div class="container">
+  <div class="account-mentee__inner">
+    <ng-container *ngIf="editingState; else recordingData">
+      <form class="account__form" [formGroup]="menteeForm" (ngSubmit)="onSubmit(menteeForm)">
+        <fieldset class="personal-data">
+          <div class="name fild">
+            <label class="personal-data__block" for="first-name">
+              <img class="icon" src="./../../../../../assets/images/user-name.svg" alt="First name">
+              First name:<span>*</span>
+            </label>
+            <div class="personal-data__input">
+              <input formControlName="firstName" id="first-name" placeholder="Your first name" [(ngModel)]="userMentee.firstName"
+                *ngIf="editingState; else recordingData">
+              <div class="validity-notification"
+                *ngIf="menteeForm.get('firstName')?.invalid && (menteeForm.get('firstName')?.dirty || menteeForm.get('firstName')?.touched)">
+                Please input latin alphabet characters only. Name must be at least 2 characters long and max lenght - 15
+                characters.
+              </div>
+            </div>
+          </div>
+          <div class="name fild">
+            <label class="personal-data__block" for="last-name">
+              <img class="icon" src="./../../../../../assets/images/user-name.svg" alt="Last name">
+              Last name:<span>*</span>
+            </label>
+            <div class="personal-data__input">
+              <input formControlName="lastName" id="last-name" placeholder="Your last name" [(ngModel)]="userMentee.lastName"
+                *ngIf="editingState; else recordingData">
+              <div class="validity-notification"
+                *ngIf="menteeForm.get('lastName')?.invalid && (menteeForm.get('lastName')?.dirty || menteeForm.get('lastName')?.touched)">
+                Please input latin alphabet characters only. Name must be at least 2 characters long and max lenght - 15
+                characters.
+              </div>
+            </div>
+          </div>
+          <div class="email fild">
+            <label class="personal-data__block" for="email">
+              <img class="icon" src="./../../../../../assets/images/mail.svg" alt="Email">
+              E-mail:<span>*</span>
+            </label>
+            <div class="personal-data__input">
+              <input formControlName="email" id="email" placeholder="Your email" [(ngModel)]="userMentee.email">
+              <div class="validity-notification"
+                *ngIf="menteeForm.get('email')?.invalid && (menteeForm.get('email')?.dirty || menteeForm.get('email')?.touched)">
+                Please provide a valid email address. <br> ATTENTION: In case you change the email, you will logout.
+              </div>
+            </div>
+          </div>
+          <div class="phone fild">
+            <label class="personal-data__block" for="tel">
+              <img class="icon" src="./../../../../../assets/images/phone.svg" alt="Phone number">
+              Phone number:<span></span>
+            </label>
+            <div class="personal-data__input">
+              <input formControlName="phone" id="tel" type="text" placeholder="(000) 000-0000"
+                mask="(000) 000-0000" [(ngModel)]="userMentee.socialMap.PhoneNumFirst">
+              <div class="validity-notification"
+                *ngIf="menteeForm.get('phone')?.invalid && (menteeForm.get('phone')?.dirty || menteeForm.get('phone')?.touched)">
+                Please provide your valid phone number.
+              </div>
+            </div>
+          </div>
+          <div class="skype fild">
+            <label class="personal-data__block" for="skype">
+              <img class="icon" src="./../../../../../assets/images/skype.svg" alt="Skype">
+              Skype:
+            </label>
+            <input formControlName="skype" id="skype" placeholder="Your skype" [(ngModel)]="userMentee.socialMap.Skype">
+          </div>
+          <div class="telegram fild">
+            <label class="personal-data__block" for="telegram">
+              <img class="icon" src="./../../../../../assets/images/telegram.svg" alt="Telegram">
+              Telegram:
+            </label>
+            <input formControlName="telegram" id="telegram" placeholder="Your telegram" [(ngModel)]="userMentee.socialMap.Telegram">
+          </div>
+          <div class="linkedin fild">
+            <label class="personal-data__block" for="linkedin">
+              <img class="icon" src="./../../../../../assets/images/linkedin.svg" alt="LinkedIn">
+              linkedIn:
+            </label>
+            <input formControlName="linkedin" id="linkedin" placeholder="Your linkedIn" [(ngModel)]="userMentee.socialMap.LinkedIn">
+          </div>
+          <div class="github fild">
+            <label class="personal-data__block" for="github">
+              <img class="icon" src="./../../../../../assets/images/github.svg" alt="GitHub">
+              GitHub:
+            </label>
+            <input formControlName="github" id="github" placeholder="Your github" [(ngModel)]="userMentee.socialMap.GitHub">
+          </div>
+        </fieldset>
+        <button class="account__save-btn account__btn" [ngClass]="{'account__btn--disabled' : menteeForm.invalid}"
+          type="submit" [disabled]="menteeForm.invalid">Save Profile</button>
+      </form>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #recordingData>
+  <div class="account__contact-info">
+    <div class="account__contact-info__inner fild">
+      <div class="personal-data__block">
+        <img class="icon" src="./../../../../../assets/images/user-name.svg" alt="Full name">
+        <p>Full name:</p>
+      </div>
+      <p class="info name-info">{{userMentee.firstName}} {{userMentee.lastName}}</p>
+    </div>
+    <div class="account__contact-info__inner fild">
+      <div class="personal-data__block">
+        <img class="icon" src="./../../../../../assets/images/mail.svg" alt="Email">
+        <p>E-mail:</p>
+      </div>
+      <p class="info email-info">{{userMentee.email}}</p>
+    </div>
+    <div class="account__contact-info__inner fild">
+      <div class="personal-data__block">
+        <img class="icon" src="./../../../../../assets/images/phone.svg" alt="Phone number">
+        <p>Phone number:</p>
+      </div>
+      <p class="info phone-info">{{userMentee.socialMap.PhoneNumFirst}}</p>
+    </div>
+    <div class="account__contact-info__inner fild">
+      <div class="personal-data__block">
+        <img class="icon" src="./../../../../../assets/images/skype.svg" alt="Skype">
+        <p>Skype:</p>
+      </div>
+      <p class="info skype-info">{{userMentee.socialMap.Skype}}</p>
+    </div>
+    <div class="account__contact-info__inner fild">
+      <div class="personal-data__block">
+        <img class="icon" src="./../../../../../assets/images/telegram.svg" alt="Telegram">
+        <p>Telegram:</p>
+      </div>
+      <p class="info telegram-info">{{userMentee.socialMap.Telegram}}</p>
+    </div>
+    <div class="account__contact-info__inner fild">
+      <div class="personal-data__block">
+        <img class="icon" src="./../../../../../assets/images/linkedin.svg" alt="LinkedIn">
+        <p>linkedIn:</p>
+      </div>
+      <p class="info linkedin-info">{{userMentee.socialMap.LinkedIn}}</p>
+    </div>
+    <div class="account__contact-info__inner fild">
+      <div class="personal-data__block">
+        <img class="icon" src="./../../../../../assets/images/github.svg" alt="GitHub">
+        <p>GitHub:</p>
+      </div>
+      <p class="info github-info">{{userMentee.socialMap.GitHub}}</p>
+    </div>
+    <button class="account__edit-btn account__btn" (click)="editingState = true">Edit
+      Profile</button>
+  </div>
+</ng-template>

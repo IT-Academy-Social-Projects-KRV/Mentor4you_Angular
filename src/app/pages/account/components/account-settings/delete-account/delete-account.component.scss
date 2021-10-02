@@ -1,0 +1,41 @@
+@import "variables";
+@import "reset";
+
+.account-deleting{
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    &__title{
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+    &__text{
+      flex: 1 1 auto;
+      color: $red;
+      font-size: 18px;
+      line-height: 20px;
+      & .warning{
+        color: $black;
+        display: inline-block;
+        padding: 10px 0;
+      }
+    }
+    &__btn{
+      width: fit-content;
+      background-color: $red;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      color: $white;
+      font-weight: 700;
+      &:hover{
+        @include btn-shadow;
+        transform: scale(1.1, 1.1);
+        background-color: $darkblue;
+      }
+    }
+  }

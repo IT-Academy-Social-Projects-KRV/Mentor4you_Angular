@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 import { MentorProfile, MentorService } from 'src/app/core';
+import { SigninService } from 'src/app/auth/signin/signin.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   isMentorForm: boolean = false;
   isAccountActivated: boolean = false;
   isImage: boolean = false;
-  currentRole: string = 'mentor';
+  currentRole: string = '';
   textFieldUpload: string = 'Upload you photo here';
   selectedFile!: File;
   subscription!: Subscription;
@@ -26,8 +27,14 @@ export class AccountComponent implements OnInit, OnDestroy {
   constructor(
     private http: HttpClient, 
     private _snackBar: MatSnackBar,
-    private mentorService: MentorService
+    private mentorService: MentorService,
+    private auth: SigninService
   ) {}
+  // constructor(private http: HttpClient, private _snackBar: MatSnackBar, private auth:SigninService) {}
+
+  // get isAuth() {
+  //   return this.auth.isAuth();
+  // }
 
   ngOnInit(): void {
     const tempMentorId: number = 9;
@@ -117,7 +124,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     const fd = new FormData();
 
     if (!file || !file.type.match('image/*')) {
-      // this.openSnackBar('Please select a photo', 'Got it', 'danger');
+      this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
 

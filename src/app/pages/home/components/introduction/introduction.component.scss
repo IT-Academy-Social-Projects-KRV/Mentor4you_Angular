@@ -3,14 +3,13 @@
 
 .container{
     padding: 0;
-    // min-width: 1140px;
 }
 .introduction{
     margin: 0 auto;
     &__bg-wrapper{
-        // max-width: 1140px;
         height: 420px;
-        background-color: #fff;
+        background-color: $white;
+        margin: 0px -12px;
     }
     &__inner{
         background: -webkit-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));

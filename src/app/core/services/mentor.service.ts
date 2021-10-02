@@ -64,5 +64,8 @@ export class MentorService {
           about: mentor.description
         }
       }))
+  // getMentors(): Observable<Mentor[]> {
+  //   // return of(mentors);
+  //   return this.http.get<Mentor[]>(this.mentorUrl);
   }
 }

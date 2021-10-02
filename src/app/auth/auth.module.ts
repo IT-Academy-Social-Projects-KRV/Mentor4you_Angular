@@ -1,4 +1,6 @@
+import { AuthSignupServices } from './../core/services/auth-signup.services';
 import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { CookieService } from 'ngx-cookie-service';
 
@@ -7,15 +9,18 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { SigninComponent } from "./signin/signin.component";
 import { SigninService } from './signin/signin.service';
 import { SignupComponent } from './signup/signup.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { ResponseResetComponent } from './response-reset/response-reset.component';
+import { TokenInterceptor } from "../core/interceptors/token.interceptor";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { ResponseResetComponent } from "./response-reset/response-reset.component";
+
+
 
 @NgModule({
   declarations: [
-    SigninComponent,
     SignupComponent,
+    SigninComponent,
     ResetPasswordComponent,
-    ResponseResetComponent
+    ResponseResetComponent,
   ],
   imports: [
     SharedModule,
@@ -23,7 +28,8 @@ import { ResponseResetComponent } from './response-reset/response-reset.componen
   ],
   providers: [
     SigninService,
-    CookieService
+    CookieService,
+    AuthSignupServices
   ]
 })
 export class AuthModule { }
