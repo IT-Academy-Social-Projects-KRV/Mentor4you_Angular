@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-<<<<<<< HEAD
 import { ImageCropperModule } from 'ngx-image-cropper';
 
-=======
->>>>>>> dev
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
@@ -43,13 +40,10 @@ import { ToastrModule } from 'ngx-toastr';
     AccountModule,
     HttpClientModule,
     NotificationModalModule,
-<<<<<<< HEAD
-    ImageCropperModule
-=======
+    ImageCropperModule,
     ToastrModule.forRoot({
       timeOut: 8000,
     })
->>>>>>> dev
   ],
   providers: [CookieService,NotificationModalService,ChangePasswordService,
     {
