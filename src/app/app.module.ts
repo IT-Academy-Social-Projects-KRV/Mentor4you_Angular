@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -42,6 +43,7 @@ import { NotificationModalModule } from './shared/layout/header/notification-mod
     AccountModule,
     HttpClientModule,
     NotificationModalModule,
+    ImageCropperModule
   ],
   providers: [CookieService,NotificationModalService,ChangePasswordService,
     {

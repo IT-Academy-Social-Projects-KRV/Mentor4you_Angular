@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MatChipsModule } from '@angular/material/chips';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -37,7 +38,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfigFunction),
     AccountRoutingModule,
-    MatChipsModule
+    MatChipsModule,
+    ImageCropperModule
   ]
 })
 export class AccountModule {}

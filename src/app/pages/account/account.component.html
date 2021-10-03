@@ -17,25 +17,55 @@
     </div>
 
     <div class="mentor-account__avatar-upload">
+      
       <div class="mentor-account__avatar-section">
-        <span *ngIf="!isImage" class="thumb"><img src="../../../assets/images/owl-icon.png"></span>
-        <span id="output"></span>
+        <p *ngIf="isImage">Preview</p>
+        <span id="output" class="thumb"><img [src]="croppedImage" /></span>
       </div>
 
+      <div class="mentor-account__submit-section">
+        <button type="button" (click)="fileInput.click()" class="upload-btn"><span class="material-icons">
+          edit
+          </span></button>
+      </div>
+    
       <div class="mentor-account__upload-section">
         <input type="file" (change)="onFileSelected($event)" #fileInput>
 
-        <div class="mentor-account__fild-upload"> {{textFieldUpload}} </div>
+        <div class="mentor-account__field-upload"> 
+          <ng-template #justText>
+            <p> {{textFieldUpload}}</p>
+          </ng-template>
+        </div>
       </div>
+      <div  *ngIf="isImage; then imgCrop else justText" class="cropperPlace"></div>
+
+      <ng-template #imgCrop>
+        <div class="mentor-account__cropper-inside">
+          <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="1 / 1"
+            [resizeToWidth]=90
+            [cropperMinWidth]=90
+            [roundCropper]=true
+                       
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            
+          ></image-cropper>
+          <button (click)="imgReady()">Save</button>
+        </div>
+      </ng-template>
 
       <div class="file-upload">
-
-        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileInput.click()">
+        <button mat-mini-fab color="primary" class="upload-btn" (click)="onUpload()" >
           <mat-icon>attach_file</mat-icon>
         </button>
       </div>
     </div>
-
+    
+    
     <div [ngSwitch]="true">
       <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
         <app-account-mentor (setMentorData)="setMentorData($event)"></app-account-mentor>
