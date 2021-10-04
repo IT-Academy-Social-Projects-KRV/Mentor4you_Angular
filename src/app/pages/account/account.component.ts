@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ImageCroppedEvent, LoadedImage, base64ToFile } from 'ngx-image-cropper';
 
@@ -116,12 +116,16 @@ export class AccountComponent implements OnInit {
       return;
     }
 
+    const httpHeaders = new HttpHeaders({
+      Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtY2h1ay5va3NhbmFAZ21haWwuY29tIiwiaWF0IjoxNjMzMzc0NjM1LCJleHAiOjE2MzM5Nzk0MzV9.H8HV3vS0bFNYRgJXeluBAIrnqZDXRel-1RIECTKOi1iyiOfYiWcvIkLxey6OpUVB8sA9N8qaSiD3kE0cszCw5Q'
+    }); 
+
     // --- send to server
     fd.append('image', file, file.name);
     this.http
       .post('http://localhost:8080/api/users/uploadAvatar', fd, {
-        observe: 'events',
-      })
+        observe: 'events', headers: httpHeaders,
+      }, )
       .subscribe((events) => {
         console.log('Server response: ', events);
       }, 
