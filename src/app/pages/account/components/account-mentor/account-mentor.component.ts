@@ -1,27 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
-
-import { FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
-import { T } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
+
+import { Subscription } from 'rxjs';
+
+import { MentorService } from 'src/app/core';
+
+
+export interface AdditionalMentorData {
+  avatar: string;
+}
 
 @Component({
   selector: 'app-account-mentor',
   templateUrl: './account-mentor.component.html',
   styleUrls: ['./account-mentor.component.scss'],
 })
-export class AccountMentorComponent implements OnInit {
+export class AccountMentorComponent implements OnInit, OnDestroy {
   @Input() mentor: any;
   @Input() isAccountActivated!: boolean;
-  // @Input() selectedFile!: File;
-  @Output() closeForm: EventEmitter<void> = new EventEmitter();
-  @Output() setMentorData: EventEmitter<any> = new EventEmitter();
 
-  btnTouched!: boolean;
-  myColor = '#3AB67D';
+  @Output() closeForm: EventEmitter<void> = new EventEmitter();
+  @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
 
   subjList: string[] = [
     'Assembler',
@@ -34,17 +35,20 @@ export class AccountMentorComponent implements OnInit {
 
   langList: string[] = ['Ukrainian', 'English', 'Russian', 'Polish'];
   locList: string[] = ['Kyiv', 'Rivne', 'New York', 'London', 'Lviv'];
+
   subForm = new FormControl([]);
   langForm = new FormControl('');
   locForm = new FormControl('');
 
+  btnTouched!: boolean;
   groupWork!: boolean;
-  mentorForm!: any;
+  mentorForm!: FormGroup;
+  mentorSubscription?: Subscription;
 
   constructor(
     private fb: FormBuilder, 
-    private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private mentorService: MentorService
   ) {}
 
   ngOnInit(): void {
@@ -53,21 +57,17 @@ export class AccountMentorComponent implements OnInit {
     this.mentorForm = this.fb.group({
       // avatar: this.selectedFile,
       avatar: [''],
-      // isAccountActivated: this.isAccountActivated,
+      isAccountActivated: [false],
       firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      about: ['', Validators.required],
+      // lastName: ['', Validators.required],
+      description: ['', Validators.required],
+      categoriesList: [],
       subjects: this.subForm,
       email: ['', [Validators.required, Validators.email]],
-      phoneNumberLink: [''],
-      // avatar: this.selectedFile,
-      isAccountActivated: this.isAccountActivated,
-      fullName: ['', [Validators.required]],
-      // about: ['', [Validators.required]],
-      // subjects: this.subForm,
-      // email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      phoneNumFirst: ['', [Validators.required]],
+      // phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      rate: ['', [Validators.required]],
+      // rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       languages: this.langForm,
       linkedIn: [''],
       facebook: [''],
@@ -86,19 +86,18 @@ export class AccountMentorComponent implements OnInit {
   initForm(): void {
     const controls = this.mentorForm.controls;
 
-    console.log(' this.mentor - 1',  this.mentor)
+    // console.log('mentorForm - data comes into the form',  this.mentor)
 
     Object.keys(controls).forEach(controlName => {
-      // console.log('this.mentor - 2', this.mentor[controlName])
       controls[controlName].setValue(this.mentor[controlName]);
+      // console.log('smentor - 2', controlName, this.mentor[controlName])
     })
 
     const rate = this.mentor['rate'] + ' ' + this.mentor['currency'];
     controls['rate'].setValue(rate);
-
+    
     const mentorData = {
       avatar: controls['avatar'].value,
-      // isAccountActivated: controls['isAccountActivated'].value
     }
     this.setMentorData.emit(mentorData);
   }
@@ -109,6 +108,10 @@ export class AccountMentorComponent implements OnInit {
 
   onSubmit(): void {
     this.btnTouched = true;
+    // console.log('mentorForm - data is out from the form', this.mentorForm.value);
+
+    // console.log('mentorForm - valid - 0', this.mentorForm.valid);
+
     
     if (
       this.mentorForm.valid &&
@@ -121,13 +124,19 @@ export class AccountMentorComponent implements OnInit {
       //   (res: any) => console.log(res),
       //   (err: any) => console.log(err)
       // );
-      // console.log(this.mentorForm.controls.value);
+      // console.log('mentorForm', this.mentorForm.controls.value);
+      console.log('mentorForm - valid - 1', this.mentorForm.valid);
+
+      this.mentorSubscription = this.mentorService
+        .updateMentor(this.mentorForm.value)
+        .subscribe();
+      
+      this.btnTouched = true;
+      // this.router.navigate(['/']);
     }
   }
 
   invalidCheck(controlName: string): string {
-    // console.log('invalid', this.mentorForm.controls[controlName])
-    // console.log('invalid', this.mentorForm.controls[controlName].invalid)
     if (
       this.mentorForm.controls[controlName].invalid &&
       (this.mentorForm.controls[controlName].touched ||
@@ -151,8 +160,7 @@ export class AccountMentorComponent implements OnInit {
     this.closeForm.emit();
   }
 
-  onBtnClick() {
-    this.btnTouched = true;
-    this.router.navigate(['/']);
+  ngOnDestroy(): void {
+    this.mentorSubscription?.unsubscribe();
   }
 }

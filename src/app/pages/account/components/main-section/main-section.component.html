@@ -22,21 +22,30 @@
     </div>
 
     <div class="col-4">
-      <div class="category"><b>Category: </b>
-        <span *ngFor="let category of mentor.categories">
-          {{category}}
-        </span>
+      <div class="d-flex">
+        <b>Category: </b>
+        <div class="category-list" >
+          <div *ngFor="let category of mentor.categoriesList">
+            <div class="category-rate">
+              <span class="category">
+                {{category.categories.name}}
+              </span>
+              <span class="rate"> {{category.rate}} <small>{{category.currency}}</small></span>
+            </div>
+        </div>
+      </div>
+
       </div>
       <br>
       <div class="info-section d-flex align-items-start flex-column">
         <p><b>Place:</b><span class="place"> {{mentor.place}}</span></p>
-        <p><b>Rate:</b><span class="rate"> {{mentor.rate}} <small>{{mentor.currency}}</small></span></p>
+        <!-- <p><b>Rate:</b><span class="rate"> {{mentor.rate}} <small>{{mentor.currency}}</small></span></p> -->
         <p><b>Group mentoring:</b>
           <span class="grp_ment"> {{mentor.groupServices ? 'Yes' : 'No'}}</span>
         </p>
         <p><b>Languages:</b>
-          <span class="language" *ngFor="let language of mentor.languagesList last as isLast">
-            {{language.name}} <span *ngIf="!isLast">, </span>
+          <span class="language" *ngFor="let language of mentor.languages last as isLast">
+            {{language}} <span *ngIf="!isLast">, </span>
           </span>
         </p>
       </div>
@@ -44,7 +53,7 @@
 
     <div class="col-4 description">
       <br>
-      <p>{{mentor.about}}</p>
+      <p>{{mentor.description}}</p>
       <br>
     </div>
   </div>

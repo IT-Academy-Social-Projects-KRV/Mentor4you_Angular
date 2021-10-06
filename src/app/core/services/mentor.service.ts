@@ -1,22 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { stringify } from '@angular/compiler/src/util';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 import { MentorCard, MentorProfile } from '../interfaces';
 import mockAvatar from './../mock/avatar';
-// import { mentors } from '../mock/in-memory-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MentorService {
-  mentorUrl = 'http://localhost:8080/api/mentors';
+  mentorBaseUrl = 'http://localhost:8080/api/mentors';
 
   // temporary data
   tempAvatar = mockAvatar;
+  tempAvatar_2 = 'https://i.pravatar.cc/120';
   tempCategories = ['HTML', 'CSS'];
   templanguagesList = ['Ukrainian'];
 
@@ -26,51 +25,147 @@ export class MentorService {
 
   getAllMentors(): Observable<MentorCard[]> {
     return this.http
-      .get<any>(this.mentorUrl)
+      .get<any>(this.mentorBaseUrl)
       .pipe(map(mentors => {
         // console.log('m', mentors);
-        return mentors.map((mentor: any) => {
-          const user = mentor.accounts.user;
+        return mentors
+          .filter((m: any) => m.accounts.user.first_name !== null)
+          .map((mentor: any) => {
+            const user = mentor.accounts.user;
 
-          return {
-            id: user.id,
-            fullName: user.first_name + ' ' + user.last_name,
-            avatar: user.avatar,
-            categories: user.categories || this.tempCategories,
-            rating: Number(user.rating) || 5
-          }
+            return {
+              id: user.id,
+              fullName: user.first_name + ' ' + user.last_name,
+              avatar: this.tempAvatar_2,                        // expecting a change in structure of the data
+              // avatar: user.avatar,
+              categories: user.categories || this.tempCategories,
+              rating: Number(user.rating) || 5
+            }
         })
       }));
   }
 
-  getMentorById(id: number): any {
-  // getMentorById(id: number): Observable<MentorProfile> {
+  getMentorById(id: number): Observable<any> {
     return this.http
-      .get<any>(this.mentorUrl + `/${id}`)
-      .pipe(map((mentor: any) => {
-        const user = mentor.accounts.user;
+      .get<any>(this.mentorBaseUrl + `/${id}`)
+      .pipe(map((mentorById: any) => {
 
-        console.log('m - server', mentor);
+        // console.log('m - server', mentorById);
+
+        const mentor = mentorById.accountInfo;
+        const socialMap = mentorById.accountInfo.socialMap;
 
         return {
-          id: user.id,
-          email: user.email,
-          firstName: user.first_name,
-          lastName: user.last_name,
-          avatar: user.avatar,
-          phoneNumberLink: user.phoneNumberLink || '',
-          // categories: mentor.mentors_to_categories[0].categories, // expecting a change in structure of the data
-          category: mentor.mentors_to_categories[0].categories, // expecting a change in structure of the data
-          place: user.place || 'Remote',
-          currency: mentor.mentors_to_categories[0].currency,     // expecting a change in structure of the data
-          rate: mentor.mentors_to_categories[0].rate, 
+          id: mentor.id,
+          email: mentor.email,
+          firstName: mentor.firstName,
+          lastName: mentor.lastName,
+          avatar: this.tempAvatar_2,      // expecting a change in structure of the data
+          // avatar: mentor.avatar,
+          phoneNumFirst: socialMap.PhoneNumFirst || '',
+          categoriesList: mentorById.categoriesList,
+          certificats: mentor.certificats,
+          place: mentor.place || 'Remote',
           groupServ: mentor.group_services || false,
-          languagesList: mentor.accounts.languagesList,
-          about: mentor.description
+          languages: mentorById.languages,
+          description: mentorById.description,
         }
       }))
-  // getMentors(): Observable<Mentor[]> {
-  //   // return of(mentors);
-  //   return this.http.get<Mentor[]>(this.mentorUrl);
+  }
+
+  getMentorDTO(): Observable<any> {
+    return this.http
+      .get<any>(this.mentorBaseUrl + '/getMentorDTO/')
+      .pipe(map((mentorDTO: any) => {
+
+        // console.log('mDTO - server', mentorDTO);
+
+        const mentor = mentorDTO.accountInfo;
+        const socialMap = mentorDTO.accountInfo.socialMap;
+
+        return {
+          id: mentor.id,
+          email: mentor.email,
+          firstName: mentor.firstName,
+          lastName: mentor.lastName,
+          avatar: this.tempAvatar_2,         // expecting a change in structure of the data
+          // avatar: mentor.avatar,
+          phoneNumFirst: socialMap.PhoneNumFirst,
+          categoriesList: mentorDTO.categoriesList,
+          certificats: mentor.certificats,
+          place: mentor.place || 'Remote',
+          groupServ: mentor.group_services || false,
+          languages: mentorDTO.languages,
+          description: mentorDTO.description,
+          isAccountActivated: mentorDTO.showable_status
+        }
+      }))
+  }
+
+  updateMentor(mentor: any): Observable<any> {
+    const updatedMentor = this.transformData(mentor);
+
+    return this.http.put<any>(this.mentorBaseUrl + '/UpdateMentor/', updatedMentor);
+  }
+
+  transformData(mentor: any): Object {
+    return {
+      accountInfo: {
+        firstName: mentor.firstName || '',
+        lastName: mentor.lastName || '',
+        email: mentor.email || '',
+        avatar: mentor.avatar || '',
+        socialMap: {
+          // LinkedIn: mentor.linkedIn || null,
+          // Email: mentor.email || null,
+          // GitHub: mentor.github || null,
+          // PhoneNumFirst: mentor.phoneNumFirst || null
+        }
+      },
+      description: mentor.description || '',
+      showable_status: mentor.isAccountActivated || true,
+      groupServ: null,
+      // groupServ: mentor.groupServ || null,
+      // rating: mentor.rate || 1,
+      rating: 1,
+      educations: [
+        // {
+        //   name: null,
+        //   description: null
+        // }
+      ],
+      certificates: [
+        // {
+        //   name: null,
+        //   description: null,
+        //   link: null
+        // }
+      ],
+      categoriesList: [
+        // {
+        //   categories: {
+        //     id: 0,
+        //     name: mentor.categoriesList.categories.name || null
+        //   },
+        //   rate: mentor.categoriesList.rate || null,
+        //   currency: mentor.categoriesList.currency || null
+        // }
+
+        // {categories: null}  // temporary category
+
+      ],
+      languages: [
+        mentor.languages.language || ''
+      ],
+      cities: [
+        // {
+        //   id: 0,
+        //   name: null
+        // }
+      ],
+      online: true,
+      offlineIn: true,
+      offlineOut: true
+    }
   }
 }

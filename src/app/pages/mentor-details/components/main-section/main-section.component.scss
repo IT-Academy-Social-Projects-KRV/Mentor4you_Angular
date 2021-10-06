@@ -53,17 +53,26 @@
     }
   }
 
+  .category-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .category-rate {
+    margin-bottom: 7px;
+  }
+
   .category {
     margin-bottom: 15px;
     font-size: 16px;
-
-    span {
-      border: 1px solid #3AB67D;
-      margin-left: 5px;
-      padding: 2px 5px;
-      font-size: 12px;
-      color: #3AB67D;
-    }
+    border: 1px solid #3AB67D;
+    margin: 0 5px;
+    padding: 2px 5px;
+    font-size: 12px;
+    // margin-left: 5px;
+    color: #3AB67D;
   }
 
   .info-section > p {

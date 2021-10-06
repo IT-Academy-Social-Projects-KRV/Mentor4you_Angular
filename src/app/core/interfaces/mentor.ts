@@ -2,7 +2,8 @@ export interface MentorCard {
   id: number;
   fullName: string;
   avatar: string;
-  categories: Array<Category>;
+  categoriesList: CategoriesList;
+  // currency?: string;
   rating: number;
 }
 
@@ -12,20 +13,23 @@ export interface MentorProfile {
   firstName: string;
   lastName: string;
   avatar: string;
-  phoneNumberLink: string;
+  phoneNumFirst: string;
   // categories: Array<Category>;  // expecting a change in structure of the data
-  category: Category;
+  categoriesList: CategoriesList;
   place: string;
   currency: string;
   rate: number;
   // groupServ: boolean;   // expecting a change in structure of the data
   groupServ: string;
   languagesList: Array<LanguagesList>;
-  about: string;
+  description: string;
+  isAccountActivated: boolean;
 }
 
-export interface Category {
-  title: string;
+export interface CategoriesList {
+  categories: { id: number, name: string };
+  currency: string;
+  rate: number;
 }
 
 export interface LanguagesList {

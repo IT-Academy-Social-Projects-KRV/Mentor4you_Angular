@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 
 import { MentorProfile, MentorService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
+import { AdditionalMentorData } from './components/account-mentor/account-mentor.component';
 
 
 @Component({
@@ -14,15 +15,14 @@ import { SigninService } from 'src/app/auth/signin/signin.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit, OnDestroy {
-  // mentorData: any = {};
   isMentorForm: boolean = false;
-  isAccountActivated: boolean = false;
+  isAccountActivated!: boolean;
   isImage: boolean = false;
-  currentRole: string = '';
-  textFieldUpload: string = 'Upload you photo here';
+  currentRole: string = 'mentor';
+  textFieldUpload: string = 'Upload your photo here';
   selectedFile!: File;
-  subscriptionMentor!: Subscription;
-  mentor: any;
+  mentorSubscription!: Subscription;
+  mentor?: MentorProfile;
 
   constructor(
     private http: HttpClient, 
@@ -30,35 +30,24 @@ export class AccountComponent implements OnInit, OnDestroy {
     private mentorService: MentorService,
     private auth: SigninService
   ) {}
-  // constructor(private http: HttpClient, private _snackBar: MatSnackBar, private auth:SigninService) {}
 
   // get isAuth() {
   //   return this.auth.isAuth();
   // }
 
   ngOnInit(): void {
-    const tempMentorId: number = 5;
+    this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
+      (mentor: MentorProfile) => {
+        // console.log('m - avatar', mentor.avatar);
+        // this.insertBase64Image(mentor.avatar);
 
-    this.subscriptionMentor = this.mentorService.getMentorById(tempMentorId).subscribe(
-      (mentor: any) => {
-        console.log('m - account', mentor);
         this.mentor = mentor;
+        this.isAccountActivated = mentor.isAccountActivated;
       }
     );
-    this.isAccountActivated = true;
   }
 
-  // showEditForm(): void {
-  //   this.isEditedMentor = !this.isEditedMentor;
-  // }
-
-  // toggleEditMentor(): void {
-  //   this.isEditedMentor = !this.isEditedMentor;
-  //   // console.log('this.isEditedMentor', this.isEditedMentor);
-  // }
-
-  setMentorData(mentorData: any): void {
-    // this.isAccountActivated = mentorData.isAccountActivated;
+  setMentorData(mentorData: AdditionalMentorData): void {
     this.insertBase64Image(mentorData.avatar);
   }
 
@@ -68,11 +57,11 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   toggleRole(button: HTMLElement): void {
     if (button.innerText === 'Move to Mentor Account') {
-      button.innerText = 'Move to Mentee Account';
       this.currentRole = 'mentor';
+      button.innerText = 'Move to Mentee Account';
     } else {
-      button.innerText = 'Move to Mentor Account';
       this.currentRole = 'mentee';
+      button.innerText = 'Move to Mentor Account';
     }
   }
 
@@ -94,7 +83,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.renderImage(this.selectedFile);
   }
 
-  renderImage(img: any): void {
+  renderImage(img: Blob): void {
     const reader = new FileReader();
 
     reader.onload = ((theFile) => (e: any) => {
@@ -108,14 +97,9 @@ export class AccountComponent implements OnInit, OnDestroy {
     if (document.querySelector('.thumb')) {
       document.querySelector('.thumb')?.remove();
     }
-
+    
     const span = document.createElement('span');
-    span.innerHTML = [
-      '<img class="thumb" title="',
-      '" src="',
-      img,
-      '" />',
-    ].join('');
+    span.innerHTML = ['<img class="thumb" src="', img, '" />'].join('');
     document.getElementById('output')?.insertBefore(span, null);
   }
 
@@ -123,7 +107,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     const file = this.selectedFile;
     const fd = new FormData();
 
-    if (!file || !file.type.match('image/*')) {
+    if (!file) {
       this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
@@ -149,6 +133,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptionMentor.unsubscribe();
+    this.mentorSubscription.unsubscribe();
   }
 }

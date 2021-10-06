@@ -25,14 +25,14 @@
         <span class="mentor__label">About <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <textarea
-            [ngClass]="invalidCheck('about')"
-            id="about"
+            [ngClass]="invalidCheck('description')"
+            id="description"
             rows="5"
             class="mentor__control"
-            formControlName="about"
+            formControlName="description"
           >
           </textarea>
-          <p class="invalid-text" *ngIf="invalidCheck('about')">
+          <p class="invalid-text" *ngIf="invalidCheck('description')">
             Please input alphabet characters only. Name must be at least 2
             characters long and max length - 15 characters
           </p>
@@ -78,12 +78,11 @@
         <div class="mentor__control-wrapper">
           <input
             type="text"
-            formControlName="phoneNumberLink"
-            formControlNames="phone"
+            formControlName="phoneNumFirst"
             class="mentor__control"
-            [ngClass]="invalidCheck('phone')"
+            [ngClass]="invalidCheck('phoneNumFirst')"
           />
-          <p class="invalid-text" *ngIf="invalidCheck('phone')">
+          <p class="invalid-text" *ngIf="invalidCheck('phoneNumFirst')">
             Input numbers only
           </p>
         </div>
@@ -147,7 +146,7 @@
         <span class="mentor__label">Certificates</span>
         <div class="mentor__control-wrapper">
           <textarea
-            id="about"
+            id="certificates"
             rows="5"
             class="mentor__control"
             formControlName="certificates"
@@ -198,15 +197,15 @@
           <mat-form-field>
             <mat-label>Categories</mat-label>
             <mat-select [formControl]="locForm">
-              <mat-option *ngFor="let item of locList" [value]="locForm">{{
-                item
-              }}</mat-option>
+              <mat-option *ngFor="let item of locList" [value]="locForm">
+                {{item}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
 
-      <button (click)="onBtnClick()" class="mentor__btn">Save Profile</button>
+      <button class="mentor__btn">Save Profile</button>
     </fieldset>
   </form>
   <button class="mentor__btn" (click)="onShowProfile()">View Public Profile</button>

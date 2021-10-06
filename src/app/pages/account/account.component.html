@@ -1,26 +1,13 @@
 
 <div class="container">
+  <!-- <div class="content" *ngIf="isAuth"> -->
   <div class="content">
     <div *ngIf="!isMentorForm">
       <div *ngIf="mentor">
         <app-main-section [mentor]="mentor"></app-main-section>
+
         <button class="edit-btn" (click)="isMentorForm = true">Edit</button>
       </div>
-  <!-- <div class="content" *ngIf="isAuth">
-    <div class="mentor-account__top-line">
-      <h2 class="mentor-account__title">My Account</h2>
-
-      <div class="mentor-account__top-actions">
-        <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">
-          <mat-slide-toggle (toggleChange)="toggleAccountActivate()" [checked]="isAccountActivated"
-            [labelPosition]="'before'">Account activated
-          </mat-slide-toggle>
-        </div>
-
-        <button class="mentor-account__btn" #button (click)="toggleRole(button)">
-          {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
-        </button>
-      </div> -->
     </div>
 
     <div *ngIf="isMentorForm">
@@ -54,16 +41,8 @@
 
           <div class="mentor-account__fild-upload"> {{textFieldUpload}} </div>
         </div>
-      <!-- <div class="file-upload">
 
-        <button mat-mini-fab color="primary" class="upload-btn" (click)="fileInput.click()">
-          <mat-icon>attach_file</mat-icon>
-        </button>
-      </div>
-    </div> -->
-
-        <div class="file-upload">
-    
+        <div class="file-upload">    
           <button
             mat-mini-fab
             color="primary"
@@ -85,11 +64,8 @@
         </div>
         
         <div class="mentee" *ngSwitchCase="currentRole === 'mentee'">
-          <h2>Mentee</h2>
           <app-account-mentee></app-account-mentee>
         </div>
-      <!-- <div class="mentee" *ngSwitchCase="currentRole === 'mentee'">
-        <app-account-mentee></app-account-mentee> -->
       </div>
     </div>
   </div>

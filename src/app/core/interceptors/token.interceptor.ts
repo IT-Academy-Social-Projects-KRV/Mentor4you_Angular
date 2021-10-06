@@ -14,14 +14,12 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private  auth:SigninService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // console.log('token ----- ');
-    // if(this.auth.isAuth())
+    if(this.auth.isAuth())
+    console.log('token ----- ', this.auth.getToken);
     {
       request = request.clone({
         setHeaders:{
-    
-          Authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJNZW50b3IxQGdtYWlsLmNvbSIsImlhdCI6MTYzMjkyNzMwNiwiZXhwIjoxNjMzNTMyMTA2fQ.RPB2gbaN6FDvoHREVoY8qdcZqy8hzGXjYx6CvxEPtQ6Bk0HxkAWdVnEZ09cqCVu0Ut1u-J8Sb4RVdIZtVoFQcw"
-          // Authorization: this.auth.getToken
+          Authorization: this.auth.getToken
         }
       })
     }
