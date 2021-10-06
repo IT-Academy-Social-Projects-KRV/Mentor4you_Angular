@@ -21,6 +21,10 @@ export class AccountComponent implements OnInit {
   imageChangedEvent: any = '';
   croppedImage: any = '../../../assets/images/owl-icon.png';
   fileC: any;
+  myFile!: File;
+  newName: any = "";
+  imgType: any = '';
+  isBtnDisabled: boolean = true;
  
     
   constructor(private http: HttpClient, private _snackBar: MatSnackBar, private auth:SigninService) {}
@@ -74,40 +78,30 @@ export class AccountComponent implements OnInit {
       this.selectedFile.name.length > 35
         ? this.selectedFile.name.slice(0, 35) + '...'
         : this.selectedFile.name; 
-
+    this.newName = this.selectedFile.name;
+    this.imgType = this.selectedFile.type;
+    console.log(this.newName, this.imgType);
     this.selectedFile = this.imageChangedEvent;
     this.imageChangedEvent = event;
     this.isImage = true;
     
-    // this.renderImage(this.croppedImage);
-    // console.log(this.selectedFile);
   }
 
    
   imageCropped(event: ImageCroppedEvent) {
-   this.croppedImage = event.base64;
-    console.log(this.croppedImage);
+    this.croppedImage = event.base64;
     this.fileC = base64ToFile(this.croppedImage);
-    console.log(this.fileC.type, this.fileC.size/1024);
-    return this.fileC;
+    this.myFile = new File([this.fileC], this.newName, {lastModified:  Date.now(), type:  this.imgType});
+    console.log(this.myFile);
   }
 
   imgReady() {
     this.isImage = false;
+    this.isBtnDisabled = false;
   }
-  // renderImage(img: any): void {
-  //   const reader = new FileReader();
-
-  //   reader.onload = ((theFile) => (e: any) => {
-  //     this.imageCropped(img);
-  //   })(img);
-
-  //   reader.readAsDataURL(img);
-  //  // console.log(img);
-  // }
-
+ 
   onUpload(): void {
-    const file = this.croppedImage;
+    const file = this.myFile;
     console.log(file);
     const fd = new FormData();
 
@@ -116,45 +110,19 @@ export class AccountComponent implements OnInit {
       return;
     }
 
-    const httpHeaders = new HttpHeaders({
-      Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtY2h1ay5va3NhbmFAZ21haWwuY29tIiwiaWF0IjoxNjMzNDM0MDM2LCJleHAiOjE2MzQwMzg4MzZ9.HkcSVz8cLMBqfbis40W3B5Frb29uwF8_zFCHHSeZ9mDpbOvqpPGZPIMwP4rd8Ac8zjvphNlczsSPQx78FT2Ckw',
-      ContentType: 'multipart/form-data'
-    }); 
-    let options = {
-      headers: httpHeaders
-    }
-    // --- send to server
-    file && fd.append('file', file);
-    this.http
-      .post('http://localhost:8080/api/users/uploadAvatar', fd, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtY2h1ay5va3NhbmFAZ21haWwuY29tIiwiaWF0IjoxNjMzNDM0MDM2LCJleHAiOjE2MzQwMzg4MzZ9.HkcSVz8cLMBqfbis40W3B5Frb29uwF8_zFCHHSeZ9mDpbOvqpPGZPIMwP4rd8Ac8zjvphNlczsSPQx78FT2Ckw'
-        }}).subscribe((events) => {
-        console.log('Server response: ', events);
-      }, 
-      error => console.log(error),
-      () => this.textFieldUpload = 'Your photo uploaded successfully!'
-      );
+    fd.append('file', file);
+   
+   const httpHeaders = new HttpHeaders({
+        Authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtY2h1ay5va3NhbmFAZ21haWwuY29tIiwiaWF0IjoxNjMzNTU0MDIxLCJleHAiOjE2MzQxNTg4MjF9.GAN9M0xy4wZpMgqfEVElzfpscW8e-kAHa_UOaznhZgucTix_ho67_XoS94zGE1VS2LoLVwktd47HYQvlPjQl_A"
+      });
+  this.http.post('http://localhost:8080/api/users/uploadAvatar', fd, {headers: httpHeaders}).subscribe(res => {
+    console.log(res);
+  }, error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
+  () => this.textFieldUpload = 'Your photo uploaded successfully!'
+  );
+
   }
 
-  sendFile (event: any){
-    let fff = event.target.files[0];
-    console.log(fff);
-    const fd = new FormData();
-    fd.append('file', fff);
-    this.http
-      .post('http://localhost:8080/api/users/uploadAvatar', fd, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtY2h1ay5va3NhbmFAZ21haWwuY29tIiwiaWF0IjoxNjMzNDM0MDM2LCJleHAiOjE2MzQwMzg4MzZ9.HkcSVz8cLMBqfbis40W3B5Frb29uwF8_zFCHHSeZ9mDpbOvqpPGZPIMwP4rd8Ac8zjvphNlczsSPQx78FT2Ckw'
-        }}).subscribe((events) => {
-        console.log('Server response: ', events);
-      }, 
-      error => console.log(error),
-      () => this.textFieldUpload = 'Your photo uploaded successfully!'
-      );
-  }
   openSnackBar(message: string, action: string, className: string) {
     this._snackBar.open(message, action, {
       duration: 5000,

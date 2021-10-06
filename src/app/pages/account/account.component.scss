@@ -101,22 +101,20 @@
     input {
       display: none;
     }
+    p.infoBlock {
+        font-size: 1.6rem;
+        color: $darkblue;
+    }
   }
+  
 
-  &__upload-field {
-    width: 400px;
-    border: 1px solid $lightgray;
-    padding: 10px 60px 10px 10px;
-    color: $grey;
-  }
   &__cropper-inside{
     text-align: center;
-    max-width: 50vw; 
+    max-width: 35vw; 
     ::ng-deep image-cropper {
       div {
         img {
           width: 100%; 
-          border: 2px solid black;
         }
       }
     }
@@ -146,6 +144,9 @@
     &:hover,
     &:focus {
       background: $fuschia80;
+    }
+    &:hover:disabled, &:focus:disabled{
+      background: gainsboro;
     }
   }
 }

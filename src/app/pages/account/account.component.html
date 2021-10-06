@@ -34,7 +34,7 @@
 
         <div class="mentor-account__field-upload"> 
           <ng-template #justText>
-            <p> {{textFieldUpload}}</p>
+            <p class="infoBlock"> {{textFieldUpload}}</p>
           </ng-template>
         </div>
       </div>
@@ -52,14 +52,13 @@
                        
             format="png"
             (imageCropped)="imageCropped($event)"
-            
           ></image-cropper>
           <button (click)="imgReady()">Save</button>
         </div>
       </ng-template>
 
       <div class="file-upload">
-        <button mat-mini-fab color="primary" class="upload-btn" (click)="onUpload()" >
+        <button mat-mini-fab color="primary" class="upload-btn" (click)="onUpload()" [disabled]="isBtnDisabled">
           <mat-icon>attach_file</mat-icon>
         </button>
       </div>
@@ -78,5 +77,4 @@
   </div>
 </div>
 
-<input type="file" (change)="sendFile($event)" multiple> 
 
