@@ -33,6 +33,11 @@
     margin-bottom: 30px;
   }
 
+  &__rate-wrapper {
+    display: flex;
+    width: 285px;
+  }
+
   &__form-field {
     display: flex;
     flex-wrap: wrap;
@@ -55,8 +60,7 @@
     padding-top: 12px;
   }
   &__rate-input {
-    // padding-left: 25px !important;
-    width: 35% !important;
+    margin-right: 10px;
     position: relative;
   }
 
@@ -120,6 +124,14 @@ button {
     background-color: $fuschia100;
   }
 }
+
+::ng-deep .mat-form-field-infix {
+  border-top: 0;
+}
+
+::ng-deep .mentor__rate-wrapper .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: 85px;
+} 
 
 ::ng-deep .file-upload {
   &:hover {

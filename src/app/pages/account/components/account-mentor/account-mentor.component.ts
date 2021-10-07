@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
+import { categoriesData, currencyData } from 'src/app/core';
 
 
 export interface AdditionalMentorData {
@@ -24,19 +25,13 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   @Output() closeForm: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
 
-  subjList: string[] = [
-    'Assembler',
-    'JavaScript',
-    'C++',
-    'TypeScript',
-    'Python',
-    'Django',
-  ];
-
   langList: string[] = ['Ukrainian', 'English', 'Russian', 'Polish'];
   locList: string[] = ['Kyiv', 'Rivne', 'New York', 'London', 'Lviv'];
+  categories = categoriesData;
+  currency = currencyData;
 
-  subForm = new FormControl([]);
+  categoryForm = new FormControl([]);
+  carrencyForm = new FormControl([]);
   langForm = new FormControl('');
   locForm = new FormControl('');
 
@@ -59,15 +54,15 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       avatar: [''],
       isAccountActivated: [false],
       firstName: ['', Validators.required],
-      // lastName: ['', Validators.required],
+      lastName: [''],
       description: ['', Validators.required],
-      categoriesList: [],
-      subjects: this.subForm,
       email: ['', [Validators.required, Validators.email]],
       phoneNumFirst: ['', [Validators.required]],
       // phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      rate: ['', [Validators.required]],
-      // rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      // rate: ['', [Validators.required]],
+      categoriesList: this.categoryForm,
+      currency: this.carrencyForm,
+      rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       languages: this.langForm,
       linkedIn: [''],
       facebook: [''],
@@ -81,20 +76,23 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     });
 
     this.initForm();
+
+    // console.log('categories', this.categories);
   }
 
   initForm(): void {
     const controls = this.mentorForm.controls;
 
-    // console.log('mentorForm - data comes into the form',  this.mentor)
+    console.log('mentorForm - data comes into the form',  this.mentor)
 
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName]);
-      // console.log('smentor - 2', controlName, this.mentor[controlName])
+      // console.log('mentor', controlName, this.mentor[controlName]);
+      // console.log('controls', controlName, controls[controlName].value);
     })
 
-    const rate = this.mentor['rate'] + ' ' + this.mentor['currency'];
-    controls['rate'].setValue(rate);
+    // const rate = this.mentor['rate'] + ' ' + this.mentor['currency'];
+    // controls['rate'].setValue(rate);
     
     const mentorData = {
       avatar: controls['avatar'].value,
@@ -108,7 +106,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.btnTouched = true;
-    // console.log('mentorForm - data is out from the form', this.mentorForm.value);
+    console.log('mentorForm - data is out from the form', this.mentorForm.value);
 
     // console.log('mentorForm - valid - 0', this.mentorForm.valid);
 
@@ -116,7 +114,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     if (
       this.mentorForm.valid &&
       (this.mentorForm.controls['remotely'].value === true ||
-        this.mentorForm.controls['offline'].value === true)
+        !this.mentorForm.controls['offline'].value === true)
     ) {
       // const formData = new FormData();
       // formData.append('file', this.mentorForm.get('profile').value);

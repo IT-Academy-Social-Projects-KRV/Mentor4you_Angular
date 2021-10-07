@@ -2,8 +2,8 @@
   <form class="mentor" (ngSubmit)="onSubmit()" [formGroup]="mentorForm">
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
-        <span class="mentor__label"
-          >First Name <span class="star">*</span>
+        <span class="mentor__label">First Name 
+          <span class="star">*</span>
         </span>
 
         <div class="mentor__control-wrapper">
@@ -22,9 +22,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label"
-          >Last Name<span class="star">*</span>
-        </span>
+        <span class="mentor__label">Last Name</span>
 
         <div class="mentor__control-wrapper">
           <input
@@ -66,12 +64,45 @@
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [required]="true" [formControl]="subForm" multiple>
-              <mat-option *ngFor="let item of subjList" [value]="subForm">{{
-                item
-              }}</mat-option>
+            <mat-select [required]="true" [formControl]="categoryForm" multiple>
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{ category.categories.name }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+      </div>
+
+      <div class="mentor__form-field rate-field">
+        <div class="mentor__rate-wrapper">
+          <div>
+            <span class="mentor__label"
+              >Rate <span class="star">*</span>
+            </span>
+            <div class="mentor__control-wrapper">
+              <input
+                [ngClass]="invalidCheck('rate')"
+                id="rate"
+                type="text"
+                class="mentor__control mentor__rate-input"
+                formControlName="rate"
+              />
+              <p class="invalid-text" *ngIf="invalidCheck('rate')">Please input numbers only</p>
+            </div>
+          </div>
+
+          <div>
+            <span class="mentor__label"
+              >Currency <span class="star">*</span>
+            </span>
+            <mat-form-field>
+              <mat-select [required]="true" [formControl]="carrencyForm">
+                <mat-option *ngFor="let item of currency" [value]="item">
+                  {{ item }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </div>
 
@@ -105,27 +136,6 @@
           <p class="invalid-text" *ngIf="invalidCheck('phoneNumFirst')">
             Input numbers only
           </p>
-        </div>
-      </div>
-
-      <div class="mentor__form-field rate-field">
-        <span class="mentor__label"
-          >Rate <span class="star">*</span></span
-        >
-        <div class="mentor__control-wrapper">
-          <!-- <img
-            class="dollar-img"
-            src="../../../../../assets/images/$.svg"
-            alt="dollar"
-          /> -->
-          <input
-            [ngClass]="invalidCheck('rate')"
-            id="rate"
-            type="text"
-            class="mentor__control mentor__rate-input"
-            formControlName="rate"
-          />
-          <p class="invalid-text" *ngIf="invalidCheck('rate')">Please input numbers only</p>
         </div>
       </div>
 

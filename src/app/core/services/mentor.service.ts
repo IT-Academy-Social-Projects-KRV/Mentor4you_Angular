@@ -78,7 +78,7 @@ export class MentorService {
       .get<any>(this.mentorBaseUrl + '/getMentorDTO/')
       .pipe(map((mentorDTO: any) => {
 
-        // console.log('mDTO - server', mentorDTO);
+        console.log('mDTO - server', mentorDTO);
 
         const mentor = mentorDTO.accountInfo;
         const socialMap = mentorDTO.accountInfo.socialMap;
@@ -92,6 +92,8 @@ export class MentorService {
           // avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst,
           categoriesList: mentorDTO.categoriesList,
+          rate: 0,
+          currency: '',
           certificats: mentor.certificats,
           place: mentor.place || 'Remote',
           groupServ: mentor.group_services || false,
@@ -109,6 +111,14 @@ export class MentorService {
   }
 
   transformData(mentor: any): Object {
+
+    // console.log('mentor - to Server', mentor);
+
+    mentor.categoriesList.map((category: any) => {
+      category.rate = mentor.rate
+      category.currency = mentor.currency
+    });
+
     return {
       accountInfo: {
         firstName: mentor.firstName || '',
@@ -128,12 +138,7 @@ export class MentorService {
       // groupServ: mentor.groupServ || null,
       // rating: mentor.rate || 1,
       rating: 1,
-      educations: [
-        // {
-        //   name: null,
-        //   description: null
-        // }
-      ],
+      educations: [],
       certificates: [
         // {
         //   name: null,
@@ -141,19 +146,7 @@ export class MentorService {
         //   link: null
         // }
       ],
-      categoriesList: [
-        // {
-        //   categories: {
-        //     id: 0,
-        //     name: mentor.categoriesList.categories.name || null
-        //   },
-        //   rate: mentor.categoriesList.rate || null,
-        //   currency: mentor.categoriesList.currency || null
-        // }
-
-        // {categories: null}  // temporary category
-
-      ],
+      categoriesList: mentor.categoriesList,
       languages: [
         mentor.languages.language || ''
       ],
