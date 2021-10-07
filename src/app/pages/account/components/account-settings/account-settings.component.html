@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row title">
-    <p class="d-flex ms-5 col-2">Settings</p>
+    <p class="d-flex ms-5 col-2">{{"ACCOUNT.SETTINGS.TITLE" | translate }}</p>
     <span class="d-flex ms-5 col-4 changed"><p [hidden]="!isChangeTrue">Password changed successfully!</p></span>
     <span class="d-flex ms-5 col-4 inchanged"><p [hidden]="!isChangeFalse">Current password is wrong!</p></span>
       <div class="row mainsection mx-4">
@@ -9,25 +9,25 @@
               <li>
                   <span class="option">
                       <i class="fas fa-user"></i>
-                      <p>Change role</p>
+                      <p>{{"ACCOUNT.SETTINGS.ROLE.ROLE" | translate }}</p>
                   </span>
               </li>
               <li>
                   <span class="option selected">
                     <i class="fas fa-lock"></i>
-                      <p>Change password</p>
+                      <p>{{"ACCOUNT.SETTINGS.PASS.PASS" | translate }}</p>
                    </span>
               </li>
               <li>
                   <span class="option">
                     <i class="fas fa-globe"></i>
-                      <p>Language</p>
+                      <p>{{"ACCOUNT.SETTINGS.LANG.LANG" | translate }}</p>
                    </span>
               </li>
               <li>
                   <span class="delete">
                       <i class="fas fa-trash-alt"></i>
-                      <p>Delete Account</p>
+                      <p>{{"ACCOUNT.SETTINGS.DELETE" | translate }}</p>
                   </span>
               </li>
           </ul>
@@ -41,12 +41,12 @@
 
                   <div class="col-3">
                     <div class="form-group">
-                      <label class="col-form-label col-form-label" for="currPass">Password:</label>
+                      <label class="col-form-label col-form-label" for="currPass">{{"ACCOUNT.SETTINGS.PASS.CUR1" | translate }}:</label>
                     </div>
                   </div>
 
                   <div class="col-4">
-                    <input class="form-control form-control" [ngClass]="{'is-invalid':isEnter}" type="password" placeholder="Current Password" id="currPass" formControlName="password" (ngModelChange)="isPass()">
+                    <input class="form-control form-control" [ngClass]="{'is-invalid':isEnter}" type="password" placeholder="{{'ACCOUNT.SETTINGS.PASS.CUR2' | translate }}" id="currPass" formControlName="password" (ngModelChange)="isPass()">
                     <div class="invalid-feedback">Please,enter your password.</div>
                   </div>
 
@@ -55,13 +55,13 @@
                 <div class="row px-3 pt-3">
                     <div class="col-3">
                       <div class="form-group">
-                        <label class="col-form-label col-form-label" for="newPass">New Password:</label>
+                        <label class="col-form-label col-form-label" for="newPass">{{'ACCOUNT.SETTINGS.PASS.NEW1' | translate }}:</label>
                       </div>
                     </div>
 
                     <div class="col-4">
                       <span class="text-danger" [hidden]="!isShort">Password must contain at least 8</span>
-                      <input class="form-control form-control mb-1" type="password" placeholder="New Password" (input)="isValidPass($event)" id="newPass" formControlName="newPassword" (ngModelChange)="isValidPass()" (focusout)="isSimplePass()">
+                      <input class="form-control form-control mb-1" type="password" placeholder="{{'ACCOUNT.SETTINGS.PASS.NEW1' | translate }}" (input)="isValidPass($event)" id="newPass" formControlName="newPassword" (ngModelChange)="isValidPass()" (focusout)="isSimplePass()">
                       <div class="row align-items-center">
 
                           <div class="col-8">
@@ -85,19 +85,19 @@
 
                   <div class="col-3">
                     <div class="form-group">
-                      <label class="col-form-label col-form-label" for="confirmPass">Confirm Password:</label>
+                      <label class="col-form-label col-form-label" for="confirmPass">{{'ACCOUNT.SETTINGS.PASS.CONFIRM1' | translate }}:</label>
                     </div>
                   </div>
 
                   <div class="col-4">
-                    <input class="form-control form-control" type="password" [ngClass]="{'is-invalid':isMatch}"  placeholder="Confirm new Password" id="confirmPass" formControlName="confirmPassword" (ngModelChange)="isSimplePass()">
+                    <input class="form-control form-control" type="password" [ngClass]="{'is-invalid':isMatch}"  placeholder="{{'ACCOUNT.SETTINGS.PASS.CONFIRM2' | translate }}" id="confirmPass" formControlName="confirmPassword" (ngModelChange)="isSimplePass()">
                     <div class="invalid-feedback">Passwords don't match!.</div>
                   </div>
 
                 </div>
 
               <div class="row justify-content-end me-5">
-                <button class="col-2 me-3 mb-3" [disabled]="isDisabled">Change</button>
+                <button class="col-2 me-3 mb-3" [disabled]="isDisabled">{{'ACCOUNT.SETTINGS.PASS.CHANGE' | translate }}</button>
               </div>
 
               </form>

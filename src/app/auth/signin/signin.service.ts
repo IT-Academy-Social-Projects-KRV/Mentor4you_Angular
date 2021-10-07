@@ -57,10 +57,19 @@ export class SigninService {
   // }
 
   public isAuth(): boolean {
-    return localStorage.getItem('token') ? true : false;
+    if(localStorage.getItem('token'))
+    {
+      if(!this.isExpToken(this.token$.value))
+      {
+        return true
+      }else return false
+    }
+    else return false
+    // return localStorage.getItem('token') ? true : false;
   }
 
   logout(){
+    this.http.put('http://localhost:8080/api/auth/logout',{}).subscribe(value=>{})
     this.setTokenO(null);
     localStorage.clear();
   }
@@ -77,8 +86,6 @@ export class SigninService {
 
   isExpToken(token:any){
     const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(token);
-    const expirationDate = helper.getTokenExpirationDate(token);
     const isExpired = helper.isTokenExpired(token);
     return isExpired
   }

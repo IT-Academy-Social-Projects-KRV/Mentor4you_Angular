@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
-
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -23,13 +23,14 @@ export class HeaderComponent implements OnInit {
     private renderer: Renderer2,
     private router: Router,
     private NotificationModalService: NotificationModalService,
-    private auth:SigninService
-  ) { }
+    private auth:SigninService,
+    private translate:TranslateService
+  ) {}
 
   get isAuth() {
     return this.auth.isAuth();
   }
-  
+
   ngOnInit(): void {
     this.closeMenu();
   }

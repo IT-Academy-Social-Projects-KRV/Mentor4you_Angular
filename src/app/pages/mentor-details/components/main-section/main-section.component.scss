@@ -2,13 +2,12 @@
 
 .main-section{
   font-family: Roboto, sans-serif;
-  width: 1020px;
   height: 350px;
   padding: 45px;
     margin-top: 30px;
   border: .5px solid $green;
   border-radius: 6px;
-
+  margin: 30px auto 0 auto;
 
 
   .name{
@@ -68,7 +67,7 @@
 }
 
 .certificates,.links{
-  width: 1020px;
+  width: 100%;
   margin-top: 20px;
   padding: 20px;
   border: .5px solid $green;

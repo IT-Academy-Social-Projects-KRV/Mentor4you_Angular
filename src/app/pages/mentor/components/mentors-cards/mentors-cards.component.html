@@ -8,16 +8,16 @@
             <h3>{{mentor.name}}</h3>
             <div class="lessons_container">
                 <p *ngFor="let lesson of mentor.lessons">{{lesson}}</p>
-            </div>            
+            </div>
             <div class="stars_container">
-                <i class="far fa-star" *ngFor="let star of createRait(mentor.rait)"></i>                                
+                <i class="far fa-star" *ngFor="let star of createRait(mentor.rait)"></i>
             </div>
         </div>
         <div class="card_buttons">
-            <button class="mentorship_button">Ask for a mentorship<br> project</button>
-            <a routerlink="/">View more</a>
+            <button class="mentorship_button">{{ "MENTOR.ASK1" | translate }}<br> {{ "MENTOR.ASK2" | translate }}</button>
+            <a routerlink="/">{{ "MENTOR.VIEW" | translate }}</a>
         </div>
-    </div>    
+    </div>
 </div>
 
 <div class="pagination_container">

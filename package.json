@@ -24,6 +24,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@ng-select/ng-select": "^7.2.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^4.5.0",
     "bootswatch": "^5.1.0",

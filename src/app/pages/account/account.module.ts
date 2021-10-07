@@ -13,6 +13,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AccountComponent } from './account.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -26,18 +27,19 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AccountMenteeComponent,
     AccountSettingsComponent
   ],
-  imports: [
-    SharedModule,
-    MatChipsModule,
-    // MatFormFieldModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatCheckboxModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxMaskModule.forRoot(maskConfigFunction),
-    AccountRoutingModule,
-    MatChipsModule
-  ]
+    imports: [
+        SharedModule,
+        MatChipsModule,
+        // MatFormFieldModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        MatCheckboxModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxMaskModule.forRoot(maskConfigFunction),
+        AccountRoutingModule,
+        MatChipsModule,
+        TranslateModule
+    ]
 })
 export class AccountModule {}

@@ -46,8 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'how-it-works',
-    component: HowItWorksComponent,
-    canActivate:[AuthGuard]
+    component: HowItWorksComponent
   },
   {
     path: 'error-page',
