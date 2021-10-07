@@ -74,7 +74,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       youtube: [''],
       certificates: [''],
       // groupServices: [false],
-      groupServices: this.groupWork,
+      groupServ: this.groupWork,
       remotely: [false],
       offline: [false],
       place: this.locForm,

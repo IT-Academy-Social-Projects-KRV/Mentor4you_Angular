@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { MentorCard, MentorProfile } from '../interfaces';
 import mockAvatar from './../mock/avatar';
@@ -17,7 +17,7 @@ export class MentorService {
   tempAvatar = mockAvatar;
   tempAvatar_2 = 'https://i.pravatar.cc/120';
   tempCategories = ['HTML', 'CSS'];
-  templanguagesList = ['Ukrainian'];
+  // templanguagesList = ['Ukrainian'];
 
   constructor(
     private http: HttpClient
@@ -36,9 +36,9 @@ export class MentorService {
             return {
               id: user.id,
               fullName: user.first_name + ' ' + user.last_name,
-              avatar: this.tempAvatar_2,                        // expecting a change in structure of the data
-              // avatar: user.avatar,
-              categories: user.categories || this.tempCategories,
+              avatar: this.tempAvatar_2,                          // expecting a change in structure of the data
+              // avatar: user.avatar,                           
+              categories: user.categories || this.tempCategories, // expecting a change in structure of the data
               rating: Number(user.rating) || 5
             }
         })

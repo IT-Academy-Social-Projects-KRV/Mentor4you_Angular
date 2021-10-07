@@ -2,7 +2,7 @@ export interface MentorCard {
   id: number;
   fullName: string;
   avatar: string;
-  categoriesList: CategoriesList;
+  categoriesList: Array<CategoriesList>;
   // currency?: string;
   rating: number;
 }
@@ -14,8 +14,7 @@ export interface MentorProfile {
   lastName: string;
   avatar: string;
   phoneNumFirst: string;
-  // categories: Array<Category>;  // expecting a change in structure of the data
-  categoriesList: CategoriesList;
+  categoriesList: Array<CategoriesList>;
   place: string;
   currency: string;
   rate: number;

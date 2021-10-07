@@ -3,8 +3,8 @@
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
         <span class="mentor__label"
-          >Name and Surname <span class="star">*</span></span
-        >
+          >First Name <span class="star">*</span>
+        </span>
 
         <div class="mentor__control-wrapper">
           <input
@@ -15,6 +15,26 @@
             formControlName="firstName"
           />
           <p class="invalid-text" *ngIf="invalidCheck('firstName')">
+            Please input alphabet characters only. Name must be at least 2
+            characters long and max length - 15 characters
+          </p>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label"
+          >Last Name<span class="star">*</span>
+        </span>
+
+        <div class="mentor__control-wrapper">
+          <input
+            [ngClass]="invalidCheck('lastName')"
+            id="lastName"
+            type="text"
+            class="mentor__control"
+            formControlName="lastName"
+          />
+          <p class="invalid-text" *ngIf="invalidCheck('lastName')">
             Please input alphabet characters only. Name must be at least 2
             characters long and max length - 15 characters
           </p>
@@ -161,7 +181,7 @@
           <mat-slide-toggle
             [checked]="groupWork"
             (toggleChange)="OnGroupWork()"
-            formControlName="groupServices"
+            formControlName="groupServ"
           >
           </mat-slide-toggle>
         </div>

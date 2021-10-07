@@ -5,8 +5,8 @@
     </div>
     <p class="mentor-card__name">{{mentor.fullName}} {{mentor.id}}</p>
     <p class="mentor-card__category">
-      <span *ngFor="let category of mentor.categories">
-        {{category}}
+      <span *ngFor="let category of mentor.categoriesList">
+        {{category.categories.name}}
       </span>
     </p>
     <p class="mentor-card__rating">
