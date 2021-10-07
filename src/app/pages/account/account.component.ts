@@ -80,7 +80,7 @@ export class AccountComponent implements OnInit {
         : this.selectedFile.name; 
     this.newName = this.selectedFile.name;
     this.imgType = this.selectedFile.type;
-    console.log(this.newName, this.imgType);
+    //console.log(this.newName, this.imgType);
     this.selectedFile = this.imageChangedEvent;
     this.imageChangedEvent = event;
     this.isImage = true;
@@ -92,7 +92,7 @@ export class AccountComponent implements OnInit {
     this.croppedImage = event.base64;
     this.fileC = base64ToFile(this.croppedImage);
     this.myFile = new File([this.fileC], this.newName, {lastModified:  Date.now(), type:  this.imgType});
-    console.log(this.myFile);
+    //console.log(this.myFile);
   }
 
   imgReady() {
@@ -102,7 +102,7 @@ export class AccountComponent implements OnInit {
  
   onUpload(): void {
     const file = this.myFile;
-    console.log(file);
+    //console.log(file);
     const fd = new FormData();
 
     if (!file) {
@@ -112,10 +112,7 @@ export class AccountComponent implements OnInit {
 
     fd.append('file', file);
    
-   const httpHeaders = new HttpHeaders({
-        Authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZGFtY2h1ay5va3NhbmFAZ21haWwuY29tIiwiaWF0IjoxNjMzNTU0MDIxLCJleHAiOjE2MzQxNTg4MjF9.GAN9M0xy4wZpMgqfEVElzfpscW8e-kAHa_UOaznhZgucTix_ho67_XoS94zGE1VS2LoLVwktd47HYQvlPjQl_A"
-      });
-  this.http.post('http://localhost:8080/api/users/uploadAvatar', fd, {headers: httpHeaders}).subscribe(res => {
+  this.http.post('http://localhost:8080/api/users/uploadAvatar', fd).subscribe(res => {
     console.log(res);
   }, error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
   () => this.textFieldUpload = 'Your photo uploaded successfully!'

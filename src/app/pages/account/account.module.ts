@@ -13,6 +13,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AccountComponent } from './account.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -36,7 +38,13 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NgxMaskModule.forRoot(maskConfigFunction),
     AccountRoutingModule,
     MatChipsModule,
-    ImageCropperModule
-  ]
+    ImageCropperModule,
+    HttpClientModule
+  ],
+  providers: [ {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }],
 })
 export class AccountModule {}
