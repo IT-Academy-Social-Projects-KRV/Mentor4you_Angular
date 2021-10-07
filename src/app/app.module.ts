@@ -26,6 +26,7 @@ import {AuthModule} from "./auth/auth.module";
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 
 import { NotificationModalModule } from './shared/layout/header/notification-modal/notification-modal.module';
+import { ToastrModule } from 'ngx-toastr';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -49,6 +50,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccountModule,
     HttpClientModule,
     NotificationModalModule,
+    ToastrModule.forRoot({
+      timeOut: 8000,
+    })
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

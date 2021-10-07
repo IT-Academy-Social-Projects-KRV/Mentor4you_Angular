@@ -19,11 +19,15 @@ const routes: Routes = [
   },
   {
     path: 'mentor',
-    loadChildren: () => import('./pages/mentor/mentor.module').then(m => m.MentorModule)
+    loadChildren: () =>
+      import('./pages/mentor/mentor.module').then((m) => m.MentorModule),
   },
   {
     path: 'mentor-details',
-    loadChildren: () => import('./pages/mentor-details/mentor-details.module').then(m => m.MentorDetailsModule)
+    loadChildren: () =>
+      import('./pages/mentor-details/mentor-details.module').then(
+        (m) => m.MentorDetailsModule
+      ),
   },
   {
     path: 'account',
@@ -32,12 +36,15 @@ const routes: Routes = [
   },
   {
     path: 'moderator',
-    loadChildren: () => import('./pages/moderator/moderator.module').then(m => m.ModeratorModule),
-    canActivate:[AuthGuard]
+    loadChildren: () =>
+      import('./pages/moderator/moderator.module').then(
+        (m) => m.ModeratorModule
+      ),
+      canActivate:[AuthGuard]
   },
   {
     path: 'terms',
-    component: TermsComponent
+    component: TermsComponent,
   },
   {
     path: 'messages',
@@ -46,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'how-it-works',
-    component: HowItWorksComponent
+    component: HowItWorksComponent,
   },
   {
     path: 'error-page',

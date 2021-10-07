@@ -36,6 +36,11 @@ $inputRadioFocus:#5D5EEF;
     box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 }
 
+@mixin border {
+    color: #26242E;
+    box-shadow: 1px 1px 5px 2px #dedede;
+}
+
 @mixin avatar-round {
     width: 50px;
     height: 50px;

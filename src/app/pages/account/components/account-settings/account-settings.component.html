@@ -1,108 +1,48 @@
 <div class="container">
-  <div class="row title">
+  <div class="row title wrapper">
     <p class="d-flex ms-5 col-2">{{"ACCOUNT.SETTINGS.TITLE" | translate }}</p>
-    <span class="d-flex ms-5 col-4 changed"><p [hidden]="!isChangeTrue">Password changed successfully!</p></span>
-    <span class="d-flex ms-5 col-4 inchanged"><p [hidden]="!isChangeFalse">Current password is wrong!</p></span>
-      <div class="row mainsection mx-4">
-        <div class="col-2 me-3 aside">
-            <ul>
-              <li>
-                  <span class="option">
-                      <i class="fas fa-user"></i>
-                      <p>{{"ACCOUNT.SETTINGS.ROLE.ROLE" | translate }}</p>
-                  </span>
-              </li>
-              <li>
-                  <span class="option selected">
-                    <i class="fas fa-lock"></i>
-                      <p>{{"ACCOUNT.SETTINGS.PASS.PASS" | translate }}</p>
-                   </span>
-              </li>
-              <li>
-                  <span class="option">
-                    <i class="fas fa-globe"></i>
-                      <p>{{"ACCOUNT.SETTINGS.LANG.LANG" | translate }}</p>
-                   </span>
-              </li>
-              <li>
-                  <span class="delete">
-                      <i class="fas fa-trash-alt"></i>
-                      <p>{{"ACCOUNT.SETTINGS.DELETE" | translate }}</p>
-                  </span>
-              </li>
-          </ul>
-        </div>
-
-
-        <div class="col-8 content">
-          <div class="Password">
-            <form (ngSubmit)="onSubmit()" [formGroup]="inputGroup">
-                <div class="row px-3 pt-3">
-
-                  <div class="col-3">
-                    <div class="form-group">
-                      <label class="col-form-label col-form-label" for="currPass">{{"ACCOUNT.SETTINGS.PASS.CUR1" | translate }}:</label>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <input class="form-control form-control" [ngClass]="{'is-invalid':isEnter}" type="password" placeholder="{{'ACCOUNT.SETTINGS.PASS.CUR2' | translate }}" id="currPass" formControlName="password" (ngModelChange)="isPass()">
-                    <div class="invalid-feedback">Please,enter your password.</div>
-                  </div>
-
-                </div>
-
-                <div class="row px-3 pt-3">
-                    <div class="col-3">
-                      <div class="form-group">
-                        <label class="col-form-label col-form-label" for="newPass">{{'ACCOUNT.SETTINGS.PASS.NEW1' | translate }}:</label>
-                      </div>
-                    </div>
-
-                    <div class="col-4">
-                      <span class="text-danger" [hidden]="!isShort">Password must contain at least 8</span>
-                      <input class="form-control form-control mb-1" type="password" placeholder="{{'ACCOUNT.SETTINGS.PASS.NEW1' | translate }}" (input)="isValidPass($event)" id="newPass" formControlName="newPassword" (ngModelChange)="isValidPass()" (focusout)="isSimplePass()">
-                      <div class="row align-items-center">
-
-                          <div class="col-8">
-                            <div class="progress">
-                             <div class="progress-bar" [ngClass]="{'bg-danger prog10':danger,'bg-warning prog50':warning,'bg-success prog100':success}"  role="progressbar"  aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                          </div>
-
-                          <div class="col">
-                            <span class="badge bg-success" [hidden]="!success">Strong</span>
-                            <span class="badge bg-danger" [hidden]="!danger">Easy</span>
-                            <span class="badge bg-warning" [hidden]="!warning">Medium</span>
-                          </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                <div class="row px-3 pt-3">
-
-                  <div class="col-3">
-                    <div class="form-group">
-                      <label class="col-form-label col-form-label" for="confirmPass">{{'ACCOUNT.SETTINGS.PASS.CONFIRM1' | translate }}:</label>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <input class="form-control form-control" type="password" [ngClass]="{'is-invalid':isMatch}"  placeholder="{{'ACCOUNT.SETTINGS.PASS.CONFIRM2' | translate }}" id="confirmPass" formControlName="confirmPassword" (ngModelChange)="isSimplePass()">
-                    <div class="invalid-feedback">Passwords don't match!.</div>
-                  </div>
-
-                </div>
-
-              <div class="row justify-content-end me-5">
-                <button class="col-2 me-3 mb-3" [disabled]="isDisabled">{{'ACCOUNT.SETTINGS.PASS.CHANGE' | translate }}</button>
-              </div>
-
-              </form>
-            </div>
-        </div>
+    <!-- <span class="d-flex ms-5 col-4 changed hidden-success"
+      ><p [hidden]="!isChangeTrue">Password changed successfully!</p></span
+    >
+    <span class="d-flex ms-5 col-4 inchanged hidden-danger"
+      ><p [hidden]="!isChangeFalse">Current password is wrong!</p></span
+    > -->
+    <div class="row mainsection mx-4">
+      <div class="col-2 me-3 aside">
+        <ul>
+          <li (click)="caseClick('role')">
+            <span class="option" [ngClass]="case1()">
+              <i class="fas fa-user"></i>
+              <p>{{"ACCOUNT.SETTINGS.ROLE.ROLE" | translate }}</p>
+            </span>
+          </li>
+          <li (click)="caseClick('password')">
+            <span class="option" [ngClass]="case2()">
+              <i class="fas fa-lock"></i>
+              <p>{{"ACCOUNT.SETTINGS.PASS.PASS" | translate }}</p>
+            </span>
+          </li>
+          <li (click)="caseClick('language')">
+            <span class="option" [ngClass]="case3()">
+              <i class="fas fa-globe"></i>
+              <p>{{"ACCOUNT.SETTINGS.LANG.LANG" | translate }}</p>
+            </span>
+          </li>
+          <li (click)="caseClick('delete')">
+            <span class="delete" [ngClass]="case4()">
+              <i class="fas fa-trash-alt"></i>
+              <p>{{"ACCOUNT.SETTINGS.DELETE" | translate }}</p>
+            </span>
+          </li>
+        </ul>
       </div>
+
+      <div class="col-8 content" [ngSwitch]="switchCase">
+        <app-change-role *ngSwitchCase="1"></app-change-role>
+        <app-change-password *ngSwitchCase="2"></app-change-password>
+        <app-languages *ngSwitchCase="3"></app-languages>
+        <app-delete-account *ngSwitchCase="4"></app-delete-account>
+      </div>
+    </div>
   </div>
 </div>

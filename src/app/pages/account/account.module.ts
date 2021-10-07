@@ -6,7 +6,6 @@ import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AccountMentorComponent } from './components/account-mentor/account-mentor.component';
 import { AccountMenteeComponent } from './components/account-mentee/account-mentee.component';
-import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -27,19 +26,17 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AccountMenteeComponent,
     AccountSettingsComponent
   ],
-    imports: [
-        SharedModule,
-        MatChipsModule,
-        // MatFormFieldModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        MatCheckboxModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgxMaskModule.forRoot(maskConfigFunction),
-        AccountRoutingModule,
-        MatChipsModule,
-        TranslateModule
-    ]
+  imports: [
+    SharedModule,
+    MatChipsModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxMaskModule.forRoot(maskConfigFunction),
+    AccountRoutingModule,
+    MatChipsModule
+  ]
 })
 export class AccountModule {}
