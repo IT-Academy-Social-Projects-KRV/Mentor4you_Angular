@@ -1,3 +1,4 @@
+import { DialogBoardComponent } from './pages/messages/dialog-board/dialog-board.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
@@ -50,6 +51,9 @@ const routes: Routes = [
   {
     path: 'messages',
     component: MessagesComponent,
+    children:[
+      {path:':id',component:DialogBoardComponent}
+    ]
   },
   {
     path: 'how-it-works',

@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck} from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import {SigninService} from "./auth/signin/signin.service";
 
 @Component({
@@ -10,6 +11,7 @@ import {SigninService} from "./auth/signin/signin.service";
 export class AppComponent implements OnInit, DoCheck{
   title = 'mentor4you';
   hiddenFooter: boolean = true;
+  hiddenHeader: boolean = true;
   constructor(private auth: SigninService, private router: Router) {
   }
   ngOnInit() {
@@ -20,16 +22,21 @@ export class AppComponent implements OnInit, DoCheck{
       this.auth.setTokenO(potencialToken);
     }
     this.onHiddenFooter();
+
+   
   }
   onHiddenFooter() {
-    if (this.router.url == '/auth/signup' || '/404') {
+    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' ) {
       this.hiddenFooter = false;
     } else {
       this.hiddenFooter = true
     }
   }
+
   ngDoCheck() {
     this.onHiddenFooter();
+   
   }
+  
   
 }
