@@ -64,7 +64,7 @@
   .category {
     margin-bottom: 15px;
     font-size: 16px;
-    border: 1px solid #3AB67D;
+    border: 1px solid #3AB67D;;
     margin: 0 5px;
     padding: 2px 5px;
     font-size: 12px;
@@ -88,7 +88,39 @@
 
 }
 
-.certificates,.links{
+.link {
+  margin-top: 20px;
+
+  .fab {
+    font-size: 40px;
+    cursor: pointer;
+    margin: 0 7px;
+    border-radius: 50%;
+    transition: all .3s;
+
+    &:hover {
+      color: #3AB67D;
+    }
+  }
+
+  .fa-telegram {
+    color: #3A8BF5;
+  }
+
+  .fa-github {
+    color: #524C6F;
+  }
+
+  .fa-skype {
+    color: #00A0E6
+  }
+
+  .fa-linkedin {
+    color: #0A66C2;
+  }
+}
+
+.certificates{
   width: 1020px;
   margin-top: 20px;
   padding: 20px;
@@ -96,8 +128,8 @@
   border-radius: 6px;
 }
 
-.certificatesLinks {
-  margin-bottom: 50px;
+.cartificateLink {
+  text-decoration: underline;
 }
 
 .edit-btn {

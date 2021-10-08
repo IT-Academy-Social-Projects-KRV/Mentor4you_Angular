@@ -18,7 +18,6 @@ export interface MentorProfile {
   place: string;
   currency: string;
   rate: number;
-  // groupServ: boolean;   // expecting a change in structure of the data
   groupServ: string;
   languagesList: Array<LanguagesList>;
   description: string;

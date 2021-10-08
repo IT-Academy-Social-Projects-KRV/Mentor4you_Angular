@@ -98,17 +98,17 @@ export class MentorService {
           skype: socialMap.Skype,
           linkedIn: socialMap.LinkedIn,
           gitHub: socialMap.GitHub,
-          certificats: mentor.certificats,
+          certificates: mentorDTO.certificates,
           place: mentor.place || 'Remote',
-          groupServ: mentor.group_services || false,
+          groupServ: mentorDTO.groupServ,
           languages: mentorDTO.languages,
           description: mentorDTO.description,
           isAccountActivated: mentorDTO.showable_status,
           cities: mentorDTO.cities,
-          rating: mentor.rating,
-          online: mentor.online,
-          offlineOut: mentor.offlineOut,
-          offlineIn: mentor.offlineIn
+          rating: mentorDTO.rating,
+          online: mentorDTO.online,
+          offlineOut: mentorDTO.offlineOut,
+          offlineIn: mentorDTO.offlineIn
         }
       }))
   }
@@ -123,10 +123,10 @@ export class MentorService {
 
     console.log('mentor - to Server', mentor);
 
-    mentor.categoriesList.map((category: any) => {
-      category.rate = mentor.rate
-      category.currency = mentor.currency
-    });
+    // mentor.categoriesList.map((category: any) => {
+    //   category.rate = mentor.rate;
+    //   category.currency = mentor.currency;
+    // });
 
     return {
       accountInfo: {
@@ -144,23 +144,16 @@ export class MentorService {
       },
       description: mentor.description,
       showable_status: mentor.isAccountActivated || true,
-      groupServ: null,
-      // groupServ: mentor.groupServ || null,
-      rating: mentor.rating,
+      groupServ: mentor.groupServ,
+      rating: mentor.rating || 0,
       educations: [],
-      certificates: [
-        // {
-        //   name: null,
-        //   description: null,
-        //   link: null
-        // }
-      ],
+      certificates: mentor.certificates,
       categoriesList: mentor.categoriesList,
       languages: mentor.languages,
       cities: mentor.cities,
-      online: true,
-      offlineOut: true,
-      offlineIn: (mentor.online && mentor.offlineOut) || false,
+      online: mentor.online,
+      offlineOut: mentor.offlineOut,
+      offlineIn: mentor.online && mentor.offlineOut,
     }
   }
 }

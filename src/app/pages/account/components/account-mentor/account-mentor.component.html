@@ -85,6 +85,7 @@
                 id="rate"
                 type="text"
                 class="mentor__control mentor__rate-input"
+                [value]="rate"
                 formControlName="rate"
               />
               <p class="invalid-text" *ngIf="invalidCheck('rate')">Please input numbers only</p>
@@ -184,15 +185,16 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Certificates</span>
+        <span class="mentor__label mentor__teach">Certificates</span>
         <div class="mentor__control-wrapper">
-          <textarea
-            id="certificates"
-            rows="5"
-            class="mentor__control"
-            formControlName="certificates"
-          >
-          </textarea>
+          <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select [formControl]="certificatesForm" multiple>
+              <mat-option *ngFor="let certificate of certificates" [value]="certificate">
+                {{ certificate.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
 
@@ -224,7 +226,7 @@
         <span class="mentor__label">Work</span>
         <div class="mentor__control-wrapper" [ngClass]="checkBox(online, offlineOut)">
           <mat-checkbox formControlName="online" #online>Remotely</mat-checkbox>
-          <mat-checkbox formControlName="offlineOut" #offlineOut>Offline</mat-checkbox>
+          <mat-checkbox formControlName="offlineOut" #offlineOut >Offline</mat-checkbox>
         </div>
       </div>
 
@@ -233,7 +235,7 @@
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [formControl]="citiesForm">
+            <mat-select [formControl]="citiesForm" multiple>
               <mat-option *ngFor="let city of cities" [value]="city">
                 {{ city.name }}
               </mat-option>
@@ -243,7 +245,7 @@
       </div>
 
       <button class="mentor__btn">Save Profile</button>
+      <button class="mentor__btn" (click)="onShowProfile()">View Public Profile</button>
     </fieldset>
   </form>
-  <button class="mentor__btn" (click)="onShowProfile()">View Public Profile</button>
 </div>

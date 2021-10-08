@@ -49,6 +49,8 @@ export class MainSectionComponent implements OnInit {
     } else {
       this.grp_ment='No'
     }
+
+    // console.log('mentor-main', this.mentor);
   }
 
   ngAfterViewInit(): void {

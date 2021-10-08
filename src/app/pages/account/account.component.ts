@@ -38,7 +38,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
       (mentor: MentorProfile) => {
-        // console.log('m - avatar', mentor.avatar);
+        // console.log('m', mentor);
         // this.insertBase64Image(mentor.avatar);
 
         this.mentor = mentor;
@@ -49,6 +49,10 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   setMentorData(mentorData: AdditionalMentorData): void {
     this.insertBase64Image(mentorData.avatar);
+  }
+
+  viewMentorData(mentorData: any): void {
+    this.mentor = mentorData;
   }
 
   toggleAccountActivate(): void {

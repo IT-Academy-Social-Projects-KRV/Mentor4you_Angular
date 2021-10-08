@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
-import { categoriesData, citiesData, currencyData, languagesData } from './data';
+import { categoriesData, certificatesData, citiesData, currencyData, languagesData } from './data';
 
 
 export interface AdditionalMentorData {
@@ -24,21 +24,25 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
   @Output() closeForm: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
+  @Output() viewMentorData: EventEmitter<any> = new EventEmitter();
 
   categories = categoriesData;
   currency = currencyData;
   languages = languagesData;
   cities = citiesData;
+  certificates = certificatesData;
 
   categoriesForm = new FormControl([]);
   carrencyForm = new FormControl([]);
   languagesForm = new FormControl([]);
   citiesForm = new FormControl([]);
+  certificatesForm = new FormControl([]);
 
   btnTouched!: boolean;
   groupWork!: boolean;
   mentorForm!: FormGroup;
   mentorSubscription?: Subscription;
+  rate = 0;
 
   constructor(
     private fb: FormBuilder, 
@@ -66,14 +70,13 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       skype: [''],
       linkedIn: [''],
       gitHub: [''],
-      certificates: [''],
-      // groupServices: [false],
-      groupServ: this.groupWork,
+      certificates: this.certificatesForm,
+      groupServ: '',
       personal: [false],
       group: [false],
-      online: [true],
-      offlineOut: [true],
-      offlineIn: [true],
+      online: [false],
+      offlineOut: [false],
+      offlineIn: [false],
       cities: this.citiesForm,
       rating: [0]
     });
@@ -82,15 +85,29 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   }
 
   initForm(): void {
+    this.rate = this.mentor['categoriesList'][0].rate;
+
+    // this.online = this.mentor['online'];
+    
     const controls = this.mentorForm.controls;
-
+    
     console.log('mentorForm - data comes into the form',  this.mentor)
-
+    console.log('groupServ',  this.mentor['groupServ'])
+    
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');
       // console.log('mentor', controlName, this.mentor[controlName]);
       // console.log('controls', controlName, controls[controlName].value);
     })
+    
+    const MAX = this.mentor['groupServ'];
+    const YES = this.mentor['groupServ'];
+    controls['personal'].setValue(MAX === 'MAX');
+    controls['group'].setValue(YES === 'YES');
+
+    // this.rate = controls['categoriesList'].value[0].rate;
+    console.log('group',controls['group'].value);
+    // console.log('rate - mentor', this.mentor['categoriesList'][0].rate);
     
     const mentorData = {
       avatar: controls['avatar'].value,
@@ -107,6 +124,17 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     console.log('mentorForm - data is out from the form', this.mentorForm.value);
 
     // console.log('mentorForm - valid - 0', this.mentorForm.valid);
+
+    const controls = this.mentorForm.controls;
+    const isMix = controls['group'].value && controls['personal'].value;
+    const isGroup = controls['group'].value ? true : false;
+    const isGroupSevice = isMix ? 'MIX' : isGroup ? 'YES' : 'NO';
+
+    controls['groupServ'].setValue(isGroupSevice);
+
+    // // controls['currency'].setValue(controls['currency'].value[0]);
+    // // console.log('currency', );
+
 
     this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
@@ -125,7 +153,8 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       //   (err: any) => console.log(err)
       // );
       // console.log('mentorForm', this.mentorForm.controls.value);
-      console.log('mentorForm - valid - 1', this.mentorForm.valid);
+
+      // console.log('mentorForm - valid - 1', this.mentorForm.valid);
 
       // this.mentorSubscription = this.mentorService
       //   .updateMentor(this.mentorForm.value)
@@ -165,7 +194,14 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   }
 
   onShowProfile(): void {
+    this.mentor.categoriesList.map((category: any) => {
+      category.rate = this.mentor.rate;
+      category.currency = this.mentor.currency;
+    });
+
     this.closeForm.emit();
+    this.viewMentorData.next(this.mentorForm.value);
+    console.log('this.mentorForm.value', this.mentorForm.value);
   }
 
   ngOnDestroy(): void {
