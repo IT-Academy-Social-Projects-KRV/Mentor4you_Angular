@@ -12,15 +12,6 @@ export class SendFormComponent implements OnInit {
   constructor(private http: HttpClient){}  
 
 
-
- 
-
-  constructor(
-    private http: HttpClient
-  ) {
-  
-  }
-
   ngOnInit() { }
 
 

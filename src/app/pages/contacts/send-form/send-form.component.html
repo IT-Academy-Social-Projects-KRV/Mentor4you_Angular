@@ -1,2 +1,26 @@
 
 <app-contacts></app-contacts>
+<div class="container">
+    <div class="row d-flex justify-content-between">
+        <div class="col-sm-5">
+            <h1>We want to <strong>GET IN TOUCH</strong> with you.</h1>
+            <p>Fill in our form and we will be pleased to answer your questions.</p>
+            <p>You can check our How It Works page to find out how to receive the best experience using our web-site. </p>
+        </div>
+        <div class="col-sm-5">
+            <form>
+                <div class="form-group">
+                    <label for="fullName" class="form-label" [style.color]="'black'">FULL NAME</label>
+                    <input _ngcontent-c0="" required
+                    class="form-control form-control-lg"
+                    type="text" 
+                    #fullName
+                    formControlName="fullName"  />
+                    <!-- [class.is-invalid] = "fullName.invalid && fullName.touched" -->
+                  
+                   <!-- <small [class.d-none] = "fullName.valid || fullName.untouched" > Name is required</small>   -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
