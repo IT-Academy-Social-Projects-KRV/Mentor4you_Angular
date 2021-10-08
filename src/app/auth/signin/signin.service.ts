@@ -6,16 +6,17 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {CookieService} from "ngx-cookie-service";
 import {tap} from "rxjs/operators";
 import { CloseScrollStrategy } from '@angular/cdk/overlay';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SigninService {
-    constructor(private http:HttpClient) {
-    }
+  constructor(private http:HttpClient) {
+  }
   error!:any
   public user: any = {}
-  private token:string|null = null;
+  // private token:string|null = null;
   public token$ = new BehaviorSubject<any>(null);
 
   private url ='http://localhost:8080/api/auth/login'
@@ -33,42 +34,60 @@ export class SigninService {
           ({token})=>{
             localStorage.setItem('token',token);
             this.setTokenO(token);
-            this.setToken(token);
+            // this.setToken(token);
             this.user = this.parseJwt(token);
           }
         )
       )
   }
 
-  setToken(token:any){
-      this.token = token;
-  }
+
 
   setTokenO(token:any) : void{
-    this.token$.next(token); 
-  } 
-
-  get getToken():any{
-    return localStorage.getItem('token');
+    this.token$.next(token);
   }
 
+  // get getToken():any{
+  //   return localStorage.getItem('token');
+  // }
+  //
+  // get getToken0():any{
+  //   return this.token$.subscribe(value =>{
+  //   })
+  // }
+
   public isAuth(): boolean {
-    return localStorage.getItem('token') ? true : false;
+    if(localStorage.getItem('token'))
+    {
+      if(!this.isExpToken(this.token$.value))
+      {
+        return true
+      }else return false
+    }
+    else return false
+    // return localStorage.getItem('token') ? true : false;
   }
 
   logout(){
-      this.setToken(null);
-      localStorage.clear();
+    this.http.put('http://localhost:8080/api/auth/logout',{}).subscribe(value=>{})
+    this.setTokenO(null);
+    localStorage.clear();
   }
 
   parseJwt (token: string) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
     return JSON.parse(jsonPayload);
-};
+  };
+
+  isExpToken(token:any){
+    const helper = new JwtHelperService();
+    const isExpired = helper.isTokenExpired(token);
+    return isExpired
+  }
 
 }

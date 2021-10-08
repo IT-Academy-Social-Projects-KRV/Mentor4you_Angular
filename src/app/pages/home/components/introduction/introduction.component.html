@@ -4,11 +4,11 @@
       <div class="introduction__inner">
         <div class="introduction__info">
           <h1 class="introduction__info-exhortation">
-            <span class="introduction__info-start">Start</span><span class="introduction__info-your">your</span>
-            Learning
+            <span class="introduction__info-start">{{ 'HOME.TEXT.START1' | translate }}</span><span class="introduction__info-your">{{ 'HOME.TEXT.START2' | translate }}</span>
+            {{ 'HOME.TEXT.START3' | translate }}
           </h1>
-          <p class="introduction__info-slogan">Build Your Skills</p>
-          <a class="introduction__info-btn" (click)="goTo('mentor')">Find Mentor</a>
+          <p class="introduction__info-slogan">{{ 'HOME.TEXT.BUILD' | translate }}</p>
+          <a class="introduction__info-btn" (click)="goTo('mentor')">{{ 'HOME.BUTTON.FINDMENTOR' | translate }}</a>
         </div>
         <img class="introduction__img" src="./../../../../../assets/images/mentor_puzzle.png" alt="Mentor">
       </div>

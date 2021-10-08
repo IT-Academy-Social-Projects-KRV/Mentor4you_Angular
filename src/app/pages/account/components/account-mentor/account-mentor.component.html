@@ -3,7 +3,7 @@
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
         <span class="mentor__label"
-          >Name and Surname <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTOR.NS" | translate }}<span class="star">*</span></span
         >
 
         <div class="mentor__control-wrapper">
@@ -22,7 +22,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">About <span class="star">*</span></span>
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.ABOUT" | translate }} <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <textarea
             [ngClass]="invalidCheck('about')"
@@ -41,7 +41,7 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label mentor__teach"
-          >I can teach <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTOR.TEACH" | translate }}<span class="star">*</span></span
         >
         <div class="mentor__control-wrapper">
           <mat-form-field>
@@ -73,7 +73,7 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label"
-          >Phone number <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTEE.PHONE" | translate }}<span class="star">*</span></span
         >
         <div class="mentor__control-wrapper">
           <input
@@ -90,7 +90,7 @@
 
       <div class="mentor__form-field rate-field">
         <span class="mentor__label"
-          >Rate <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTOR.RATE" | translate }} <span class="star">*</span></span
         >
         <div class="mentor__control-wrapper">
           <img
@@ -143,7 +143,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Certificates</span>
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.CER" | translate }}</span>
         <div class="mentor__control-wrapper">
           <textarea
             id="about"
@@ -156,7 +156,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">I can work with a group</span>
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-slide-toggle
             [checked]="groupWork"
@@ -169,7 +169,7 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label mentor__teach"
-          >Languages <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTOR.LANG" | translate }} <span class="star">*</span></span
         >
         <div class="mentor__control-wrapper">
           <mat-form-field>
@@ -184,7 +184,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Work</span>
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK1" | translate }}</span>
         <div class="mentor__control-wrapper" [ngClass]="checkBox()">
           <mat-checkbox formControlName="remotely">Remotely</mat-checkbox>
           <mat-checkbox formControlName="offline">Offline</mat-checkbox>
@@ -192,7 +192,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">Location</span>
+        <span class="mentor__label mentor__teach">{{ "ACCOUNT.MENTOR.LOCATION" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -205,8 +205,8 @@
         </div>
       </div>
 
-      <button (click)="onBtnClick()" class="mentor__btn">Save Profile</button>
+      <button (click)="onBtnClick()" class="mentor__btn">{{ "ACCOUNT.MENTEE.SAVE" | translate }}</button>
     </fieldset>
   </form>
-  <button class="mentor__btn">View Public Profile</button>
+  <button class="mentor__btn">{{ "ACCOUNT.MENTOR.VIEWM" | translate }}</button>
 </div>
