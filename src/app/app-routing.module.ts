@@ -53,7 +53,7 @@ const routes: Routes = [
   },
   {
     path: 'how-it-works',
-    component: HowItWorksComponent,
+    component: HowItWorksComponent
   },
   {
     path: 'error-page',

@@ -24,7 +24,6 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AccountComponent,
     AccountMentorComponent,
     AccountMenteeComponent,
-    AccountSettingsComponent
   ],
   imports: [
     SharedModule,
@@ -36,7 +35,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfigFunction),
     AccountRoutingModule,
-    MatChipsModule
+    MatChipsModule,
+    TranslateModule
   ]
 })
 export class AccountModule {}
