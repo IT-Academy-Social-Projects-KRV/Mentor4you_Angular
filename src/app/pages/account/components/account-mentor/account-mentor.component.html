@@ -64,7 +64,7 @@
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [required]="true" [formControl]="categoryForm" multiple>
+            <mat-select [required]="true" [formControl]="categoriesForm" multiple>
               <mat-option *ngFor="let category of categories" [value]="category">
                 {{ category.categories.name }}
               </mat-option>
@@ -140,6 +140,28 @@
       </div>
 
       <div class="mentor__form-field">
+        <span class="mentor__label">Telegram</span>
+        <div class="mentor__control-wrapper">
+          <input
+            type="text"
+            formControlName="telegram"
+            class="mentor__control"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Skype</span>
+        <div class="mentor__control-wrapper">
+          <input
+            type="text"
+            formControlName="skype"
+            class="mentor__control"
+          />
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
         <span class="mentor__label">LinkedIn</span>
         <div class="mentor__control-wrapper">
           <input
@@ -151,22 +173,11 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Facebook</span>
+        <span class="mentor__label">GitHub</span>
         <div class="mentor__control-wrapper">
           <input
             type="text"
-            formControlName="facebook"
-            class="mentor__control"
-          />
-        </div>
-      </div>
-
-      <div class="mentor__form-field">
-        <span class="mentor__label">YouTube</span>
-        <div class="mentor__control-wrapper">
-          <input
-            type="text"
-            formControlName="youtube"
+            formControlName="gitHub"
             class="mentor__control"
           />
         </div>
@@ -187,13 +198,9 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label">I can work with a group</span>
-        <div class="mentor__control-wrapper">
-          <mat-slide-toggle
-            [checked]="groupWork"
-            (toggleChange)="OnGroupWork()"
-            formControlName="groupServ"
-          >
-          </mat-slide-toggle>
+        <div class="mentor__control-wrapper" [ngClass]="checkBox(personal, group)">
+          <mat-checkbox formControlName="personal" #personal>Personal</mat-checkbox>
+          <mat-checkbox formControlName="group" #group>Group</mat-checkbox>
         </div>
       </div>
 
@@ -204,10 +211,10 @@
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [required]="true" [formControl]="langForm" multiple>
-              <mat-option *ngFor="let item of langList" [value]="langForm">{{
-                item
-              }}</mat-option>
+            <mat-select [required]="true" [formControl]="languagesForm" multiple>
+              <mat-option *ngFor="let item of languages" [value]="item">
+                {{ item }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -215,9 +222,9 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label">Work</span>
-        <div class="mentor__control-wrapper" [ngClass]="checkBox()">
-          <mat-checkbox formControlName="remotely">Remotely</mat-checkbox>
-          <mat-checkbox formControlName="offline">Offline</mat-checkbox>
+        <div class="mentor__control-wrapper" [ngClass]="checkBox(online, offlineOut)">
+          <mat-checkbox formControlName="online" #online>Remotely</mat-checkbox>
+          <mat-checkbox formControlName="offlineOut" #offlineOut>Offline</mat-checkbox>
         </div>
       </div>
 
@@ -226,9 +233,9 @@
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [formControl]="locForm">
-              <mat-option *ngFor="let item of locList" [value]="locForm">
-                {{item}}
+            <mat-select [formControl]="citiesForm">
+              <mat-option *ngFor="let city of cities" [value]="city">
+                {{ city.name }}
               </mat-option>
             </mat-select>
           </mat-form-field>

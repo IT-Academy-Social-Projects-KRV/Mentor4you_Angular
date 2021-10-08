@@ -88,18 +88,27 @@ export class MentorService {
           email: mentor.email,
           firstName: mentor.firstName,
           lastName: mentor.lastName,
-          avatar: this.tempAvatar_2,         // expecting a change in structure of the data
-          // avatar: mentor.avatar,
+          // avatar: this.tempAvatar_2,         // expecting a change in structure of the data
+          avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst,
           categoriesList: mentorDTO.categoriesList,
           rate: 0,
           currency: '',
+          telegram: socialMap.Telegram,
+          skype: socialMap.Skype,
+          linkedIn: socialMap.LinkedIn,
+          gitHub: socialMap.GitHub,
           certificats: mentor.certificats,
           place: mentor.place || 'Remote',
           groupServ: mentor.group_services || false,
           languages: mentorDTO.languages,
           description: mentorDTO.description,
-          isAccountActivated: mentorDTO.showable_status
+          isAccountActivated: mentorDTO.showable_status,
+          cities: mentorDTO.cities,
+          rating: mentor.rating,
+          online: mentor.online,
+          offlineOut: mentor.offlineOut,
+          offlineIn: mentor.offlineIn
         }
       }))
   }
@@ -112,7 +121,7 @@ export class MentorService {
 
   transformData(mentor: any): Object {
 
-    // console.log('mentor - to Server', mentor);
+    console.log('mentor - to Server', mentor);
 
     mentor.categoriesList.map((category: any) => {
       category.rate = mentor.rate
@@ -121,23 +130,23 @@ export class MentorService {
 
     return {
       accountInfo: {
-        firstName: mentor.firstName || '',
-        lastName: mentor.lastName || '',
-        email: mentor.email || '',
-        avatar: mentor.avatar || '',
+        firstName: mentor.firstName,
+        lastName: mentor.lastName,
+        email: mentor.email,
+        avatar: mentor.avatar,
         socialMap: {
-          // LinkedIn: mentor.linkedIn || null,
-          // Email: mentor.email || null,
-          // GitHub: mentor.github || null,
-          // PhoneNumFirst: mentor.phoneNumFirst || null
+          LinkedIn: mentor.linkedIn,
+          Telegram: mentor.telegram,
+          Skype: mentor.skype,
+          GitHub: mentor.gitHub,
+          PhoneNumFirst: mentor.phoneNumFirst
         }
       },
-      description: mentor.description || '',
+      description: mentor.description,
       showable_status: mentor.isAccountActivated || true,
       groupServ: null,
       // groupServ: mentor.groupServ || null,
-      // rating: mentor.rate || 1,
-      rating: 1,
+      rating: mentor.rating,
       educations: [],
       certificates: [
         // {
@@ -147,18 +156,11 @@ export class MentorService {
         // }
       ],
       categoriesList: mentor.categoriesList,
-      languages: [
-        mentor.languages.language || ''
-      ],
-      cities: [
-        // {
-        //   id: 0,
-        //   name: null
-        // }
-      ],
+      languages: mentor.languages,
+      cities: mentor.cities,
       online: true,
-      offlineIn: true,
-      offlineOut: true
+      offlineOut: true,
+      offlineIn: (mentor.online && mentor.offlineOut) || false,
     }
   }
 }

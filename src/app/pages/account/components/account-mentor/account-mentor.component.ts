@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
-import { categoriesData, currencyData } from 'src/app/core';
+import { categoriesData, citiesData, currencyData, languagesData } from './data';
 
 
 export interface AdditionalMentorData {
@@ -25,15 +25,15 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   @Output() closeForm: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
 
-  langList: string[] = ['Ukrainian', 'English', 'Russian', 'Polish'];
-  locList: string[] = ['Kyiv', 'Rivne', 'New York', 'London', 'Lviv'];
   categories = categoriesData;
   currency = currencyData;
+  languages = languagesData;
+  cities = citiesData;
 
-  categoryForm = new FormControl([]);
+  categoriesForm = new FormControl([]);
   carrencyForm = new FormControl([]);
-  langForm = new FormControl('');
-  locForm = new FormControl('');
+  languagesForm = new FormControl([]);
+  citiesForm = new FormControl([]);
 
   btnTouched!: boolean;
   groupWork!: boolean;
@@ -57,27 +57,28 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       lastName: [''],
       description: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumFirst: ['', [Validators.required]],
-      // phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      // rate: ['', [Validators.required]],
-      categoriesList: this.categoryForm,
+      phoneNumFirst: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      categoriesList: this.categoriesForm,
       currency: this.carrencyForm,
       rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      languages: this.langForm,
+      languages: this.languagesForm,
+      telegram: [''],
+      skype: [''],
       linkedIn: [''],
-      facebook: [''],
-      youtube: [''],
+      gitHub: [''],
       certificates: [''],
       // groupServices: [false],
       groupServ: this.groupWork,
-      remotely: [false],
-      offline: [false],
-      place: this.locForm,
+      personal: [false],
+      group: [false],
+      online: [true],
+      offlineOut: [true],
+      offlineIn: [true],
+      cities: this.citiesForm,
+      rating: [0]
     });
 
     this.initForm();
-
-    // console.log('categories', this.categories);
   }
 
   initForm(): void {
@@ -86,13 +87,10 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     console.log('mentorForm - data comes into the form',  this.mentor)
 
     Object.keys(controls).forEach(controlName => {
-      controls[controlName].setValue(this.mentor[controlName]);
+      controls[controlName].setValue(this.mentor[controlName] || '');
       // console.log('mentor', controlName, this.mentor[controlName]);
       // console.log('controls', controlName, controls[controlName].value);
     })
-
-    // const rate = this.mentor['rate'] + ' ' + this.mentor['currency'];
-    // controls['rate'].setValue(rate);
     
     const mentorData = {
       avatar: controls['avatar'].value,
@@ -110,11 +108,15 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
     // console.log('mentorForm - valid - 0', this.mentorForm.valid);
 
+    this.mentorSubscription = this.mentorService
+        .updateMentor(this.mentorForm.value)
+        .subscribe();
+
     
     if (
       this.mentorForm.valid &&
-      (this.mentorForm.controls['remotely'].value === true ||
-        !this.mentorForm.controls['offline'].value === true)
+      (this.mentorForm.controls['online'].value === true ||
+        !this.mentorForm.controls['offlineOut'].value === true)
     ) {
       // const formData = new FormData();
       // formData.append('file', this.mentorForm.get('profile').value);
@@ -125,9 +127,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       // console.log('mentorForm', this.mentorForm.controls.value);
       console.log('mentorForm - valid - 1', this.mentorForm.valid);
 
-      this.mentorSubscription = this.mentorService
-        .updateMentor(this.mentorForm.value)
-        .subscribe();
+      // this.mentorSubscription = this.mentorService
+      //   .updateMentor(this.mentorForm.value)
+      //   .subscribe();
       
       this.btnTouched = true;
       // this.router.navigate(['/']);
@@ -144,12 +146,20 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     } else return '';
   }
 
-  checkBox() {
-    if (
-      this.btnTouched === true &&
-      this.mentorForm.controls['remotely'].value === false &&
-      this.mentorForm.controls['offline'].value === false
-    ) {
+  // checkBox_2(online: any) {
+  //   // console.log('online', online._checked)
+  //   console.log('online', online)
+  //   if (
+  //     this.btnTouched === true &&
+  //     this.mentorForm.controls['online'].value === false &&
+  //     this.mentorForm.controls['offlineOut'].value === false
+  //   ) {
+  //     return 'invalid-checkbox';
+  //   } else return '';
+  // }
+
+  checkBox(box1: any, box2: any) {
+    if (this.btnTouched === true && box1._checked === false && box2._checked === false) {
       return 'invalid-checkbox';
     } else return '';
   }

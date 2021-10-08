@@ -37,3 +37,24 @@ export const categoriesData = [
 ];
 
 export const currencyData = ['\u20B4', '\u20BD', '$', '\u20AC'];
+
+export const languagesData = ['Ukrainian', 'English', 'Russian', 'Polish'];
+
+export const citiesData = [
+  { 
+    id: 1, 
+    name: 'Poltava' 
+  },
+  { 
+    id: 2, 
+    name: 'Ostroh' 
+  },
+  { 
+    id: 3, 
+    name: 'Lviv' 
+  },
+  { 
+    id: 4, 
+    name: 'Kyiv' 
+  },
+]
