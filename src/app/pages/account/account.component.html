@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content" *ngIf="isAuth">
     <div class="mentor-account__top-line">
-      <h2 class="mentor-account__title">My Account</h2>
+      <h2 class="mentor-account__title">{{ "HEADER.MENU.ACCOUNT" | translate }}</h2>
 
       <div class="mentor-account__top-actions">
         <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">

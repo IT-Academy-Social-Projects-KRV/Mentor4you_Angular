@@ -4,6 +4,7 @@ import { NotificationModalService } from '../../../core/services/notification-mo
 import { SigninService } from 'src/app/auth/signin/signin.service';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -25,13 +26,15 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private NotificationModalService: NotificationModalService,
     private auth:SigninService,
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+    private translate:TranslateService
+  ) {}
+
 
   get isAuth() {
     return this.auth.isAuth();
   }
-  
+
   ngOnInit(): void {
     this.closeMenu();
   }

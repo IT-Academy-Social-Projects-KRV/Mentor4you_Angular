@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-languages',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private language :TranslateService) { }
+
+
+  changeLanguage(language:any)
+  {
+    this.language.setDefaultLang(language)
+  }
 
   ngOnInit(): void {
   }

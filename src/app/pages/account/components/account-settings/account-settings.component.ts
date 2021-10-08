@@ -33,7 +33,7 @@ export class AccountSettingsComponent implements OnInit {
   success:boolean=false
 
   ngOnInit(): void {
-    this.switchCase = 2;
+    this.switchCase = 3;
   }
 
   caseClick(caseName: string): void {

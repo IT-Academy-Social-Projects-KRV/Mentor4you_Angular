@@ -15,6 +15,7 @@ import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AccountComponent } from './account.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
+import {TranslateModule} from "@ngx-translate/core";
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -39,7 +40,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AccountRoutingModule,
     MatChipsModule,
     ImageCropperModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule
   ],
   providers: [ {
       provide:HTTP_INTERCEPTORS,

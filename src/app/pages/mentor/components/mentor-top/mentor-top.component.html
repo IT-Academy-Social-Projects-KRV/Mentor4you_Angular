@@ -4,7 +4,7 @@
                [items]="categories"
                bindLabel="name"
                bindValue="id"
-               placeholder="Choose category"
+               placeholder="{{ 'MENTOR.CATEGORY' | translate }}"
                [multiple]="true"
                [maxSelectedItems]="2"
                (add)="AddCategory($event)"
@@ -16,7 +16,7 @@
                [items]="languages"
                bindLabel="name"
                bindValue="id"
-               placeholder="Choose language"
+               placeholder="{{ 'MENTOR.LANGUAGE' | translate }}"
                [multiple]="true"
                [maxSelectedItems]="2"
                (add)="AddLanguage($event)"
@@ -27,7 +27,7 @@
     <ng-select class="custom"
                [items]="city"
                bindLabel="name"
-               placeholder="Choose city"
+               placeholder="{{ 'MENTOR.CITY' | translate }}"
                [multiple]="true"
                [maxSelectedItems]="2"
                (add)="AddCity($event)"
@@ -35,7 +35,7 @@
     </ng-select>
   </div>
   <div class="dropButton">
-    <div class="showList" (click)="showSlider()"><span>Choose Rate</span></div>
+    <div class="showList" (click)="showSlider()"><span>{{ 'MENTOR.RATE' | translate }}</span></div>
   <ng-container class="dropList" *ngIf="dropList">
     <div class="range-slider">
         <div id="rangeSlider" class="range-slider">
@@ -56,7 +56,7 @@
   </ng-container>
   </div>
   <div class="Submit-button">
-    <button type="submit" class="btn" (click)="getMentorData()">Search</button>
+    <button type="submit" class="btn" (click)="getMentorData()">{{ 'MENTOR.SEARCH' | translate }}</button>
   </div>
 </form>
 <!--<div>Имя: {{myForm.value.name}}</div>-->
