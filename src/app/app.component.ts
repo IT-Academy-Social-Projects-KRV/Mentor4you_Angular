@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, DoCheck{
     this.onHiddenFooter();
   }
   onHiddenFooter() {
-    if (this.router.url == '/auth/signup' || '/404') {
+    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' ) {
       this.hiddenFooter = false;
     } else {
       this.hiddenFooter = true

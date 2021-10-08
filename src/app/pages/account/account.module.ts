@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MatChipsModule } from '@angular/material/chips';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -12,6 +13,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { AccountComponent } from './account.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 import {TranslateModule} from "@ngx-translate/core";
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
@@ -36,7 +39,14 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     NgxMaskModule.forRoot(maskConfigFunction),
     AccountRoutingModule,
     MatChipsModule,
+    ImageCropperModule,
+    HttpClientModule,
     TranslateModule
-  ]
+  ],
+  providers: [ {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }],
 })
 export class AccountModule {}

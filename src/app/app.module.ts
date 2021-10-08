@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -51,6 +52,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccountModule,
     HttpClientModule,
     NotificationModalModule,
+    ImageCropperModule,
     SettingsModule,
     ToastrModule.forRoot({
       timeOut: 8000,
@@ -61,7 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       },
-      defaultLanguage:'ua'
+      defaultLanguage:'en'
     })
   ],
   providers: [CookieService,NotificationModalService,ChangePasswordService,
