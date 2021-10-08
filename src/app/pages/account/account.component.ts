@@ -19,7 +19,7 @@ export class AccountComponent implements OnInit {
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   selectedFile!: File;
   imageChangedEvent: any = '';
-  croppedImage: any = '../../../assets/images/owl-icon.png';
+  croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
   fileC: any;
   myFile!: File;
   newName: any = "";
