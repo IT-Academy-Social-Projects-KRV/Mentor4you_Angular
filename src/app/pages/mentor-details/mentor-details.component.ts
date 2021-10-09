@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class MentorDetailsComponent implements OnInit, OnDestroy {
   mentor: any;
-  subscriptionMentor!: Subscription;
+  mentorSubscription!: Subscription;
 
   constructor(
     private mentorService: MentorService,
@@ -21,12 +21,13 @@ export class MentorDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.subscriptionMentor = this.mentorService.getMentorById(id).subscribe(
+    // this.mentorSubscription = this.mentorService.getMentorById(id).subscribe(
+    this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
       (mentor: any) => this.mentor = mentor
     )
   }
 
   ngOnDestroy(): void {
-    this.subscriptionMentor.unsubscribe();
+    this.mentorSubscription.unsubscribe();
   }
  }

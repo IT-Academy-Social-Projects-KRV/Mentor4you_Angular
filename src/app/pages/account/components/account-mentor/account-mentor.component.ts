@@ -193,12 +193,19 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     } else return '';
   }
 
+  // onSaveRate(): void {
+  //   this.mentor.categoriesList.map((category: any) => {
+  //     category.rate = this.mentor.rate;
+  //     category.currency = this.mentor.currency;
+  //   });
+  // }
+
   onShowProfile(): void {
     this.mentor.categoriesList.map((category: any) => {
       category.rate = this.mentor.rate;
       category.currency = this.mentor.currency;
     });
-
+    
     this.closeForm.emit();
     this.viewMentorData.next(this.mentorForm.value);
     console.log('this.mentorForm.value', this.mentorForm.value);
