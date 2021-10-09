@@ -13,16 +13,14 @@ import { isAvatar } from 'src/app/pages/account/components/account-mentor/accoun
 })
 export class MentorService {
   mentorBaseUrl = 'http://localhost:8080/api/mentors';
-  // isTempAvatar: BehaviorSubject<any> = new BehaviorSubject(false);
   isTempAvatar = false;
 
   // temporary data
   tempAvatar = mockAvatar;
   // tempAvatar_2 = 'https://i.pravatar.cc/120';
   tempAvatar_2 = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
-  currentAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+  currentAvatar = this.tempAvatar_2;
   tempCategories = ['HTML', 'CSS'];
-  // templanguagesList = ['Ukrainian'];
 
   constructor(
     private http: HttpClient,
@@ -72,7 +70,6 @@ export class MentorService {
           firstName: mentor.firstName,
           lastName: mentor.lastName,
           avatar: this.tempAvatar,      // expecting a change in structure of the data
-          // avatar: this.tempAvatar_2,      // expecting a change in structure of the data
           // avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst || '',
           categoriesList: mentorById.categoriesList,

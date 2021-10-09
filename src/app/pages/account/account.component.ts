@@ -7,8 +7,6 @@ import { Subscription } from 'rxjs';
 
 import { MentorProfile, MentorService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
-import { AdditionalMentorData, isAvatar } from './components/account-mentor/account-mentor.component';
-import mockAvatar from './../../core/mock/avatar';
 
 @Component({
   selector: 'app-account',
@@ -16,16 +14,18 @@ import mockAvatar from './../../core/mock/avatar';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit, OnDestroy {
-  currentRole: string = 'mentor';
-  isMentorForm: boolean = false; // !!!!!!!!!!!!!!!!!!!!!!!! mast be false default
+  currentRole = localStorage.getItem('role');
+  isMentorForm: boolean = false;
   isAccountActivated!: boolean;
   isImage: boolean = false;
   selectedFile!: File;
   mentorSubscription!: Subscription;
+  avatarSubscription!: Subscription;
   mentor?: MentorProfile;
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   imageChangedEvent: any = '';
   croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+  avatarUrl: string = 'http://localhost:8080/api/users/uploadAvatar';
   fileC: any;
   myFile!: File;
   newName: any = "";
@@ -47,44 +47,14 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
       (mentor: MentorProfile) => {
         // console.log('m', mentor);
-        // this.insertBase64Image(mentor.avatar);
 
         this.mentor = mentor;
         this.isAccountActivated = mentor.isAccountActivated;
       }
     );
 
-    isAvatar.subscribe(res => {
-      // this.imageChangedEvent = res ? mockAvatar : '';
-      // this.croppedImage = event.base64;
-      this.croppedImage = res ? mockAvatar : this.croppedImage;
-      console.log('avatar ---------', this.croppedImage)
-      // this.fileC = base64ToFile(this.croppedImage);
-      // this.myFile = new File([this.fileC], this.newName, {lastModified:  Date.now(), type:  this.imgType});
-
-      // insertBase64Image(img: string): void {
-      //   if (document.querySelector('.thumb')) {
-      //     document.querySelector('.thumb')?.remove();
-      //   }
-        
-      //   const span = document.createElement('span');
-      //   span.innerHTML = ['<img class="thumb" src="', img, '" />'].join('');
-      //   document.getElementById('output')?.insertBefore(span, null);
-      // }
-
-      // this.insertBase64Image(mockAvatar);
-    })
+    console.log('currentRole', this.currentRole);
   }
-
-  // insertBase64Image(img: string): void {
-  //   if (document.querySelector('.thumb')) {
-  //     document.querySelector('.thumb')?.remove();
-  //   }
-
-  //   const span = document.createElement('span');
-  //   span.innerHTML = ['<img class="thumb" title="', '" src="', img, '" />'].join('');
-  //   document.getElementById('output')?.insertBefore(span, null);
-  // }
 
   setMentorData(mentorData: any): void {
     this.isAccountActivated = mentorData.isAccountActivated;
@@ -140,32 +110,11 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.isImage = true;
     
   }
-
-  // renderImage(img: Blob): void {
-  //   const reader = new FileReader();
-
-  //   reader.onload = ((theFile) => (e: any) => {
-  //     this.insertBase64Image(e.target.result);
-  //   })(img);
-
-  //   reader.readAsDataURL(img);
-  // }
-
-  // insertBase64Image(img: string): void {
-  //   if (document.querySelector('.thumb')) {
-  //     document.querySelector('.thumb')?.remove();
-  //   }
-    
-  //   const span = document.createElement('span');
-  //   span.innerHTML = ['<img class="thumb" src="', img, '" />'].join('');
-  //   document.getElementById('output')?.insertBefore(span, null);
    
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.fileC = base64ToFile(this.croppedImage);
-    // console.log('fileC ---------', this.fileC)
     this.myFile = new File([this.fileC], this.newName, {lastModified:  Date.now(), type:  this.imgType});
-    // console.log('------myFile-------', this.myFile);
   }
 
   imgReady() {
@@ -175,7 +124,6 @@ export class AccountComponent implements OnInit, OnDestroy {
  
   onUpload(): void {
     const file = this.myFile;
-    //console.log(file);
     const fd = new FormData();
 
     if (!file) {
@@ -185,7 +133,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     fd.append('file', file);
    
-  this.http.post('http://localhost:8080/api/users/uploadAvatar', fd).subscribe(res => {
+  this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(res => {
     console.log('responce', res);
   }, error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
   () => this.textFieldUpload = 'Your photo uploaded successfully!'
@@ -202,5 +150,6 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mentorSubscription.unsubscribe();
+    // this.avatarSubscription.unsubscribe();
   }
 }

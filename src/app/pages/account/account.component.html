@@ -1,7 +1,7 @@
 
   <!-- <div class="content" *ngIf="isAuth"> -->
   <div class="content">
-    <div *ngIf="!isMentorForm">
+    <div *ngIf="!isMentorForm && currentRole === 'mentor'">
       <div *ngIf="mentor">
         <app-main-section [mentor]="mentor"></app-main-section>
 
@@ -9,7 +9,7 @@
       </div>
     </div>
       
-    <div *ngIf="isMentorForm">
+    <div *ngIf="isMentorForm || currentRole === 'mentee'">
       <div class="mentor-account__top-line">
         <h2 class="mentor-account__title">{{ "HEADER.MENU.ACCOUNT" | translate }}</h2>
 

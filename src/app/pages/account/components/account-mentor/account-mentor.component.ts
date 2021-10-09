@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
 import { categoriesData, certificatesData, citiesData, currencyData, languagesData } from './data';
@@ -27,8 +27,6 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   @Output() closeForm: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
   @Output() viewMentorData: EventEmitter<any> = new EventEmitter();
-
-  // isAvatar: Subject<boolean> = new Subject();
 
   categories = categoriesData;
   currency = currencyData;
@@ -89,14 +87,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   }
 
   initForm(): void {
-    // this.rate = this.mentor['categoriesList'][0].rate;
-
-    // this.online = this.mentor['online'];
-    
     const controls = this.mentorForm.controls;
     
-    console.log('mentorForm - data comes into the form',  this.mentor)
-    // console.log('groupServ',  this.mentor['groupServ'])
+    // console.log('mentorForm - data comes into the form',  this.mentor)
     
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');
@@ -109,13 +102,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     controls['personal'].setValue(MAX === 'MAX');
     controls['group'].setValue(YES === 'YES');
 
-    // this.rate = controls['categoriesList'].value[0].rate;
-    // console.log('group',controls['group'].value);
-    // console.log('rate - mentor', this.mentor['categoriesList'][0].rate);
-    
-    const mentorData = {
+    // const mentorData = {
       // avatar: controls['avatar'].value,
-    }
+    // }
     // this.setMentorData.emit(mentorData);
   }
 
@@ -125,6 +114,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.btnTouched = true;
+
     console.log('mentorForm - data is out from the form', this.mentorForm.value);
 
     // console.log('mentorForm - valid - 0', this.mentorForm.valid);
@@ -136,38 +126,23 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
     controls['groupServ'].setValue(isGroupSevice);
 
-    // // controls['currency'].setValue(controls['currency'].value[0]);
-    // // console.log('currency', );
-
-
     this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
         .subscribe();
 
-    
     if (
       this.mentorForm.valid &&
       (this.mentorForm.controls['online'].value === true ||
         !this.mentorForm.controls['offlineOut'].value === true)
     ) {
-      // const formData = new FormData();
-      // formData.append('file', this.mentorForm.get('profile').value);
-      // this.httpClient.post<any>('', formData).subscribe(
-      //   (res: any) => console.log(res),
-      //   (err: any) => console.log(err)
-      // );
-      // console.log('mentorForm', this.mentorForm.controls.value);
-
-      // console.log('mentorForm - valid - 1', this.mentorForm.valid);
-
       // this.mentorSubscription = this.mentorService
       //   .updateMentor(this.mentorForm.value)
       //   .subscribe();
-      
+
       this.btnTouched = true;
       // this.router.navigate(['/']);
-
     }
+
     isAvatar.next(true);
   }
 
@@ -181,30 +156,11 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     } else return '';
   }
 
-  // checkBox_2(online: any) {
-  //   // console.log('online', online._checked)
-  //   console.log('online', online)
-  //   if (
-  //     this.btnTouched === true &&
-  //     this.mentorForm.controls['online'].value === false &&
-  //     this.mentorForm.controls['offlineOut'].value === false
-  //   ) {
-  //     return 'invalid-checkbox';
-  //   } else return '';
-  // }
-
   checkBox(box1: any, box2: any) {
     if (this.btnTouched === true && box1._checked === false && box2._checked === false) {
       return 'invalid-checkbox';
     } else return '';
   }
-
-  // onSaveRate(): void {
-  //   this.mentor.categoriesList.map((category: any) => {
-  //     category.rate = this.mentor.rate;
-  //     category.currency = this.mentor.currency;
-  //   });
-  // }
 
   onShowProfile(event: Event): void {
     event.preventDefault();
@@ -216,9 +172,6 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     
     this.closeForm.emit();
     this.viewMentorData.next(this.mentorForm.value);
-    console.log('this.mentorForm.value', this.mentorForm.value);
-
-    // isAvatar.next(true);
   }
 
   ngOnDestroy(): void {

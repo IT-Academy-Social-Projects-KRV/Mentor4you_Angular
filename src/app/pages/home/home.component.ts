@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit, OnDestroy {
       (mentors: MentorCard[]) => this.mentors = mentors
     )
 
+    // console.log('Hello !!!!!!!!!!!!');
+
     // this.signinService.token$.subscribe(value =>{
     // })
     // console.log(this.signinService.isAuth())
