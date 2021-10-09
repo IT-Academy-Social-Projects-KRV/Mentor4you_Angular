@@ -28,7 +28,7 @@
     }
   }
   span {
-    display: block;
+    display: inline-block;
     margin: 10px 0;
   }
   padding: 140px 100px 0px;
@@ -107,6 +107,10 @@
 
     &__label {
       width: auto;
+    }
+
+    &__currency {
+      margin-left: 50px;
     }
   }
 }

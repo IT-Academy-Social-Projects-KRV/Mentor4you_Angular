@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
@@ -15,7 +16,6 @@ import { AccountMentorComponent } from './components/account-mentor/account-ment
 import { AccountMenteeComponent } from './components/account-mentee/account-mentee.component';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { AccountComponent } from './account.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {

@@ -2,7 +2,7 @@
 
 .main-section {
   font-family: Roboto, sans-serif;
-  width: 1020px;
+  width: 100%;
   height: 350px;
   padding: 45px;
   box-shadow: 1px 1px 5px 2px #dedede;
@@ -21,7 +21,7 @@
   }
 
   .name {
-    font-size: 16px;
+    font-size: 20px;
     margin: 15px 0;
   }
 
@@ -121,7 +121,7 @@
 }
 
 .certificates{
-  width: 1020px;
+  width: 100%;
   margin-top: 20px;
   padding: 20px;
   border: 0.5px solid #52D197;

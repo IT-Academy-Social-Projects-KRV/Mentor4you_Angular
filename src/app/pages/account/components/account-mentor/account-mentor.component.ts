@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
 import { categoriesData, certificatesData, citiesData, currencyData, languagesData } from './data';
@@ -12,6 +12,8 @@ import { categoriesData, certificatesData, citiesData, currencyData, languagesDa
 export interface AdditionalMentorData {
   avatar: string;
 }
+
+export const isAvatar: Subject<boolean> = new Subject();
 
 @Component({
   selector: 'app-account-mentor',
@@ -25,6 +27,8 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   @Output() closeForm: EventEmitter<void> = new EventEmitter();
   @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
   @Output() viewMentorData: EventEmitter<any> = new EventEmitter();
+
+  // isAvatar: Subject<boolean> = new Subject();
 
   categories = categoriesData;
   currency = currencyData;
@@ -85,14 +89,14 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   }
 
   initForm(): void {
-    this.rate = this.mentor['categoriesList'][0].rate;
+    // this.rate = this.mentor['categoriesList'][0].rate;
 
     // this.online = this.mentor['online'];
     
     const controls = this.mentorForm.controls;
     
     console.log('mentorForm - data comes into the form',  this.mentor)
-    console.log('groupServ',  this.mentor['groupServ'])
+    // console.log('groupServ',  this.mentor['groupServ'])
     
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');
@@ -106,13 +110,13 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     controls['group'].setValue(YES === 'YES');
 
     // this.rate = controls['categoriesList'].value[0].rate;
-    console.log('group',controls['group'].value);
+    // console.log('group',controls['group'].value);
     // console.log('rate - mentor', this.mentor['categoriesList'][0].rate);
     
     const mentorData = {
-      avatar: controls['avatar'].value,
+      // avatar: controls['avatar'].value,
     }
-    this.setMentorData.emit(mentorData);
+    // this.setMentorData.emit(mentorData);
   }
 
   OnGroupWork() {
@@ -162,7 +166,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       
       this.btnTouched = true;
       // this.router.navigate(['/']);
+
     }
+    isAvatar.next(true);
   }
 
   invalidCheck(controlName: string): string {
@@ -200,7 +206,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   //   });
   // }
 
-  onShowProfile(): void {
+  onShowProfile(event: Event): void {
+    event.preventDefault();
+
     this.mentor.categoriesList.map((category: any) => {
       category.rate = this.mentor.rate;
       category.currency = this.mentor.currency;
@@ -209,6 +217,8 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     this.closeForm.emit();
     this.viewMentorData.next(this.mentorForm.value);
     console.log('this.mentorForm.value', this.mentorForm.value);
+
+    // isAvatar.next(true);
   }
 
   ngOnDestroy(): void {

@@ -7,8 +7,8 @@ import { Subscription } from 'rxjs';
 
 import { MentorProfile, MentorService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
-import { AdditionalMentorData } from './components/account-mentor/account-mentor.component';
-
+import { AdditionalMentorData, isAvatar } from './components/account-mentor/account-mentor.component';
+import mockAvatar from './../../core/mock/avatar';
 
 @Component({
   selector: 'app-account',
@@ -17,7 +17,7 @@ import { AdditionalMentorData } from './components/account-mentor/account-mentor
 })
 export class AccountComponent implements OnInit, OnDestroy {
   currentRole: string = 'mentor';
-  isMentorForm: boolean = false;
+  isMentorForm: boolean = false; // !!!!!!!!!!!!!!!!!!!!!!!! mast be false default
   isAccountActivated!: boolean;
   isImage: boolean = false;
   selectedFile!: File;
@@ -53,7 +53,38 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.isAccountActivated = mentor.isAccountActivated;
       }
     );
+
+    isAvatar.subscribe(res => {
+      // this.imageChangedEvent = res ? mockAvatar : '';
+      // this.croppedImage = event.base64;
+      this.croppedImage = res ? mockAvatar : this.croppedImage;
+      console.log('avatar ---------', this.croppedImage)
+      // this.fileC = base64ToFile(this.croppedImage);
+      // this.myFile = new File([this.fileC], this.newName, {lastModified:  Date.now(), type:  this.imgType});
+
+      // insertBase64Image(img: string): void {
+      //   if (document.querySelector('.thumb')) {
+      //     document.querySelector('.thumb')?.remove();
+      //   }
+        
+      //   const span = document.createElement('span');
+      //   span.innerHTML = ['<img class="thumb" src="', img, '" />'].join('');
+      //   document.getElementById('output')?.insertBefore(span, null);
+      // }
+
+      // this.insertBase64Image(mockAvatar);
+    })
   }
+
+  // insertBase64Image(img: string): void {
+  //   if (document.querySelector('.thumb')) {
+  //     document.querySelector('.thumb')?.remove();
+  //   }
+
+  //   const span = document.createElement('span');
+  //   span.innerHTML = ['<img class="thumb" title="', '" src="', img, '" />'].join('');
+  //   document.getElementById('output')?.insertBefore(span, null);
+  // }
 
   setMentorData(mentorData: any): void {
     this.isAccountActivated = mentorData.isAccountActivated;
@@ -104,8 +135,8 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.newName = this.selectedFile.name;
     this.imgType = this.selectedFile.type;
     //console.log(this.newName, this.imgType);
-    this.selectedFile = this.imageChangedEvent;
     this.imageChangedEvent = event;
+    this.selectedFile = this.imageChangedEvent;
     this.isImage = true;
     
   }
@@ -132,8 +163,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
     this.fileC = base64ToFile(this.croppedImage);
+    // console.log('fileC ---------', this.fileC)
     this.myFile = new File([this.fileC], this.newName, {lastModified:  Date.now(), type:  this.imgType});
-    //console.log(this.myFile);
+    // console.log('------myFile-------', this.myFile);
   }
 
   imgReady() {
@@ -154,7 +186,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     fd.append('file', file);
    
   this.http.post('http://localhost:8080/api/users/uploadAvatar', fd).subscribe(res => {
-    console.log(res);
+    console.log('responce', res);
   }, error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
   () => this.textFieldUpload = 'Your photo uploaded successfully!'
   );

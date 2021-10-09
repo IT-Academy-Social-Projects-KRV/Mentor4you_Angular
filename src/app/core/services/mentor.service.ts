@@ -6,22 +6,29 @@ import { map } from 'rxjs/operators';
 
 import { MentorCard, MentorProfile } from '../interfaces';
 import mockAvatar from './../mock/avatar';
+import { isAvatar } from 'src/app/pages/account/components/account-mentor/account-mentor.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MentorService {
   mentorBaseUrl = 'http://localhost:8080/api/mentors';
+  // isTempAvatar: BehaviorSubject<any> = new BehaviorSubject(false);
+  isTempAvatar = false;
 
   // temporary data
   tempAvatar = mockAvatar;
-  tempAvatar_2 = 'https://i.pravatar.cc/120';
+  // tempAvatar_2 = 'https://i.pravatar.cc/120';
+  tempAvatar_2 = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+  currentAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
   tempCategories = ['HTML', 'CSS'];
   // templanguagesList = ['Ukrainian'];
 
   constructor(
-    private http: HttpClient
-  ) { }
+    private http: HttpClient,
+  ) { 
+    isAvatar.subscribe((res) => this.isTempAvatar = res);
+  }
 
   getAllMentors(): Observable<MentorCard[]> {
     return this.http
@@ -33,10 +40,14 @@ export class MentorService {
           .map((mentor: any) => {
             const user = mentor.accounts.user;
 
+            if (this.isTempAvatar) {
+              this.currentAvatar = (user.id === 7) ? this.tempAvatar : this.tempAvatar_2;
+            }
+
             return {
               id: user.id,
               fullName: user.first_name + ' ' + user.last_name,
-              avatar: this.tempAvatar_2,                          // expecting a change in structure of the data
+              avatar: this.currentAvatar,                          // expecting a change in structure of the data
               // avatar: user.avatar,                           
               categories: user.categories || this.tempCategories, // expecting a change in structure of the data
               rating: Number(user.rating) || 5
@@ -60,7 +71,8 @@ export class MentorService {
           email: mentor.email,
           firstName: mentor.firstName,
           lastName: mentor.lastName,
-          avatar: this.tempAvatar_2,      // expecting a change in structure of the data
+          avatar: this.tempAvatar,      // expecting a change in structure of the data
+          // avatar: this.tempAvatar_2,      // expecting a change in structure of the data
           // avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst || '',
           categoriesList: mentorById.categoriesList,
@@ -80,6 +92,8 @@ export class MentorService {
 
         console.log('mDTO - server', mentorDTO);
 
+        this.currentAvatar = this.isTempAvatar ? this.tempAvatar : this.tempAvatar_2;
+
         const mentor = mentorDTO.accountInfo;
         const socialMap = mentorDTO.accountInfo.socialMap;
 
@@ -88,8 +102,8 @@ export class MentorService {
           email: mentor.email,
           firstName: mentor.firstName,
           lastName: mentor.lastName,
-          // avatar: this.tempAvatar_2,         // expecting a change in structure of the data
-          avatar: mentor.avatar,
+          avatar: this.currentAvatar,         // expecting a change in structure of the data
+          // avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst,
           categoriesList: mentorDTO.categoriesList,
           rate: 0,
@@ -123,10 +137,10 @@ export class MentorService {
 
     console.log('mentor - to Server', mentor);
 
-    // mentor.categoriesList.map((category: any) => {
-    //   category.rate = mentor.rate;
-    //   category.currency = mentor.currency;
-    // });
+    mentor.categoriesList.map((category: any) => {
+      category.rate = mentor.rate;
+      category.currency = mentor.currency;
+    });
 
     return {
       accountInfo: {

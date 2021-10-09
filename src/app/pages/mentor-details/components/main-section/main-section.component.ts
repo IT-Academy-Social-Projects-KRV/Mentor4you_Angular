@@ -55,10 +55,10 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
       this.grp_ment='No'
     }
 
+    console.log('m - details - ngOnInit', this.mentor);
   }
 
   ngDoCheck() {
-    // console.log('m - details', this.mentor);
   }
   
   ngAfterViewInit() {

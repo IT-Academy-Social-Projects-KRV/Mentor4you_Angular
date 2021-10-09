@@ -7,29 +7,30 @@
 
         <button class="edit-btn" (click)="isMentorForm = true">Edit</button>
       </div>
+    </div>
       
-      <div *ngIf="isMentorForm">
-        <div class="mentor-account__top-line">
-          <h2 class="mentor-account__title">{{ "HEADER.MENU.ACCOUNT" | translate }}</h2>
+    <div *ngIf="isMentorForm">
+      <div class="mentor-account__top-line">
+        <h2 class="mentor-account__title">{{ "HEADER.MENU.ACCOUNT" | translate }}</h2>
 
-          <div class="mentor-account__top-actions">
-            <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">
-              <mat-slide-toggle 
-                (toggleChange)="toggleAccountActivate()" 
-                [checked]="isAccountActivated"
-                [labelPosition]="'before'"
-                >Account activated
-              </mat-slide-toggle>
-            </div>
-
-            <button class="mentor-account__btn" #button (click)="toggleRole(button)">
-              {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
-            </button>
+        <div class="mentor-account__top-actions">
+          <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">
+            <mat-slide-toggle 
+              (toggleChange)="toggleAccountActivate()" 
+              [checked]="isAccountActivated"
+              [labelPosition]="'before'"
+              >Account activated
+            </mat-slide-toggle>
           </div>
-        </div>
 
-        <div class="mentor-account__avatar-upload">
-      
+          <!-- <button class="mentor-account__btn" #button (click)="toggleRole(button)">
+            {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
+          </button> -->
+        </div>
+      </div>
+
+      <div class="mentor-account__avatar-upload">
+    
         <div class="mentor-account__avatar-section">
           <p *ngIf="isImage">Preview</p>
           <span id="output" class="thumb"><img [src]="croppedImage" /></span>
@@ -47,7 +48,7 @@
           <div class="mentor-account__field-upload"> 
             <ng-template #justText>
               <p class="infoBlock"> {{textFieldUpload}}</p>
-            </ng-template> -->
+            </ng-template>
           </div>
         </div>
         <div  *ngIf="isImage; then imgCrop else justText" class="cropperPlace"></div>
@@ -75,12 +76,7 @@
           </button>
         </div>
       </div>
-    
-    
-    <div [ngSwitch]="true">
-      <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
-        <app-account-mentor (setMentorData)="setMentorData($event)"></app-account-mentor>
-      </div>
+      
 
       <div [ngSwitch]="true">
         <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
@@ -96,8 +92,8 @@
           <app-account-mentee></app-account-mentee>
         </div>
       </div>
-    </div>
+    </div> 
   </div>
-</div>
+  
 
 

@@ -3,7 +3,8 @@
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
         <span class="mentor__label">
-          {{ "ACCOUNT.MENTOR.NS" | translate }}<span class="star">*</span>
+          <!-- {{ "ACCOUNT.MENTOR.NS" | translate }} <span class="star">*</span> -->
+          <span class="mentor__label">First Name </span><span class="star"> *</span>
         </span>
 
         <div class="mentor__control-wrapper">
@@ -40,7 +41,10 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">{{ "ACCOUNT.MENTOR.ABOUT" | translate }} <span class="star">*</span></span>
+        <span class="mentor__label">
+          {{ "ACCOUNT.MENTOR.ABOUT" | translate }} <span class="star">*</span>
+        </span>
+
         <div class="mentor__control-wrapper">
           <textarea
             [ngClass]="invalidCheck('description')"
@@ -58,9 +62,10 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach"
-          >{{ "ACCOUNT.MENTOR.TEACH" | translate }}<span class="star">*</span></span
-        >
+        <span class="mentor__label mentor__teach">
+          {{ "ACCOUNT.MENTOR.TEACH" | translate }} <span class="star">*</span>
+        </span>
+
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -76,8 +81,7 @@
       <div class="mentor__form-field rate-field">
         <div class="mentor__rate-wrapper">
           <div>
-            <span class="mentor__label"
-              >Rate <span class="star">*</span>
+            <span class="mentor__label">Rate <span class="star">*</span>
             </span>
             <div class="mentor__control-wrapper">
               <input
@@ -92,9 +96,8 @@
             </div>
           </div>
 
-          <div>
-            <span class="mentor__label"
-              >Currency <span class="star">*</span>
+          <div class="mentor__currency">
+            <span class="mentor__label">Currency <span class="star">*</span>
             </span>
             <mat-form-field>
               <mat-select [required]="true" [formControl]="carrencyForm">
@@ -124,9 +127,9 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label"
-          >{{ "ACCOUNT.MENTEE.PHONE" | translate }}<span class="star">*</span></span
-        >
+        <span class="mentor__label">
+          {{ "ACCOUNT.MENTEE.PHONE" | translate }} <span class="star">*</span>
+        </span>
         <div class="mentor__control-wrapper">
           <input
             type="text"
@@ -140,12 +143,10 @@
         </div>
       </div>
 
-      <!-- <div class="mentor__form-field">
-        <span class="mentor__label">Telegram</span> -->
-      <div class="mentor__form-field rate-field">
-        <span class="mentor__label"
-          >{{ "ACCOUNT.MENTOR.RATE" | translate }} <span class="star">*</span></span
-        >
+        <div class="mentor__form-field rate-field">
+            <!-- {{ "ACCOUNT.MENTOR.RATE" | translate }}  -->
+        <span class="mentor__label">Telegram <span class="star">*</span></span>
+        
         <div class="mentor__control-wrapper">
           <input
             type="text"
@@ -209,20 +210,14 @@
         <div class="mentor__control-wrapper" [ngClass]="checkBox(personal, group)">
           <mat-checkbox formControlName="personal" #personal>Personal</mat-checkbox>
           <mat-checkbox formControlName="group" #group>Group</mat-checkbox>
-        <!-- <div class="mentor__control-wrapper">
-          <mat-slide-toggle
-            [checked]="groupWork"
-            (toggleChange)="OnGroupWork()"
-            formControlName="group"
-          >
-          </mat-slide-toggle> -->
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach"
-          >{{ "ACCOUNT.MENTOR.LANG" | translate }} <span class="star">*</span></span
-        >
+        <span class="mentor__label mentor__teach">
+          {{ "ACCOUNT.MENTOR.LANG" | translate }} <span class="star">*</span>
+        </span>
+
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -241,9 +236,6 @@
         <div class="mentor__control-wrapper" [ngClass]="checkBox(online, offlineOut)">
           <mat-checkbox formControlName="online" #online>Remotely</mat-checkbox>
           <mat-checkbox formControlName="offlineOut" #offlineOut >Offline</mat-checkbox>
-        <!-- <div class="mentor__control-wrapper" [ngClass]="checkBox()">
-          <mat-checkbox formControlName="remotely">Remotely</mat-checkbox>
-          <mat-checkbox formControlName="offline">Offline</mat-checkbox> -->
         </div>
       </div>
 
@@ -261,11 +253,9 @@
         </div>
       </div>
 
-      <button class="mentor__btn">Save Profile</button>
-      <button class="mentor__btn" (click)="onShowProfile()">View Public Profile</button>
-      <!-- <button (click)="onBtnClick()" class="mentor__btn">{{ "ACCOUNT.MENTEE.SAVE" | translate }}</button> -->
+      <button type="submit" class="mentor__btn">{{ "ACCOUNT.MENTEE.SAVE" | translate }}</button>
+      <button class="mentor__btn" (click)="onShowProfile($event)">{{ "ACCOUNT.MENTOR.VIEWM" | translate }}</button>
     </fieldset>
   </form>
 
-  <button class="mentor__btn">{{ "ACCOUNT.MENTOR.VIEWM" | translate }}</button>
 </div>
