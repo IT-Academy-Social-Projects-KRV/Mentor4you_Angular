@@ -1,0 +1,41 @@
+@import "variables";
+@import "reset";
+*{
+    color: black;       
+}
+.container{
+    h1{
+        strong{
+            color:$darkblue;
+        }
+    }
+    p{
+    font-size: 1.2rem;
+    }
+    form{
+        label{
+            padding-top: 10px;
+            font-weight: 600;
+        }
+        input, textarea{
+            background: whitesmoke;
+        }
+        button{
+            background-color: $fuschia100;
+            padding: 15px;
+            cursor: pointer;
+        }
+        button:not(:disabled){
+            @include btn-shadow;
+            cursor: pointer;
+            color: white;
+        }
+        button:hover{
+            color: black;
+        }
+    }
+}
+
+input.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
