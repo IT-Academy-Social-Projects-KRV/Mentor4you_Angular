@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MentorDetailsComponent } from './mentor-details.component';
 import { RouterModule } from '@angular/router';
+import { MessagesComponent } from '../messages/messages.component';
 
 const routes = [
   {
-    path: '',
-    component: MentorDetailsComponent
+    path: ':id',
+    component: MentorDetailsComponent,
+  
   }
 ]
 

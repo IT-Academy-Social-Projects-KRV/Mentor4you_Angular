@@ -68,8 +68,8 @@ export class MainSectionComponent implements OnInit,AfterViewInit {
 
   }
 
-  navigateToChat(){
-    this.router.navigate(['/messages/1'])
+  navigateToChat(id:any){
+    this.router.navigate([`/messages/${id}`])
   }
 
 }

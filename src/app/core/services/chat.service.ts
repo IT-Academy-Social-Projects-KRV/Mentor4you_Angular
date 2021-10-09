@@ -2,20 +2,30 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+interface userChat{
+	avatar:string,
+	id:string,
+	name:string,
+	recipientId:string,
+	senderId:string,
+}
+
 @Injectable({
 	providedIn:'root'
 })
 export class Chat{
+
  constructor(private http:HttpClient){}
 
  getAllChats():Observable<any>{
 	 return this.http.get<any>('http://localhost:8080/chat')
  }
- qwerty1():Observable<any>{
-	 return this.http.get<any>('http://localhost:8080/api/mentees/1')
+	getMessage(sendid:string, recivid:string):Observable<any>{
+	 return this.http.get<any>(`http://localhost:8080/findmessage/${sendid}/${recivid}`)
  }
- qwerty():Observable<any>{
-	 return this.http.post<any>('http://localhost:8080/chat/user/1',{})
+
+  createChat(user:any):Observable<any>{
+	 return this.http.post<any>(`http://localhost:8080/chat/user/${user}`,{})
  }
 
 }

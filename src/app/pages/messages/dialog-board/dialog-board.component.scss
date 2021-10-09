@@ -218,3 +218,51 @@ img {
    height: 516px;
    overflow-y: auto;
 }
+
+.write-message {
+
+   // .write-message__box
+
+   &__box {
+      width: 100%;
+      height: 55px;
+      // background-color: #05728f;
+
+   }
+
+   // .write-message__label
+
+   &__label {
+      width: 100%;
+      position: relative;
+      bottom: 13px;
+   }
+
+   // .write-message__input
+
+   &__input {
+      border-radius: 30px;
+      border: none;
+      padding: 22px;
+      padding-left: 25px;
+      min-width: 100%;
+      background-color: $lightgreen;
+      font-size: 16px;
+      outline: none;
+      &::placeholder{
+        color: $grey; 
+      }
+   }
+
+   &__btn{
+    position: absolute;
+    top:0;
+    right:0;
+    background-color: green;
+    height: 100%;
+    border-radius: 30px;
+    width: 100px;
+    border: none;
+    color: #fff;
+   }
+}

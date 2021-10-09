@@ -20,6 +20,7 @@ import {AuthModule} from "./auth/auth.module";
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { NotificationModalModule } from './shared/layout/header/notification-modal/notification-modal.module';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ToastrModule } from 'ngx-toastr';
     AccountModule,
     HttpClientModule,
     NotificationModalModule,
+    FormsModule,
     ToastrModule.forRoot({
       timeOut: 8000,
     })

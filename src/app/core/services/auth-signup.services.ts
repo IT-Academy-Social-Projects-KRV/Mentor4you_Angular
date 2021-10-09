@@ -15,10 +15,8 @@ export interface signupUserDateOutput {
 @Injectable()
 export class AuthSignupServices {
 	constructor(private http: HttpClient) { }
-	signupUser(userDate: signupUserDateInput): Observable<signupUserDateOutput>{
-		return this.http.post<signupUserDateInput>('http://localhost:8080/api/registration', userDate).pipe(
-			tap(console.log)
-		)
+	signupUser(userDate: signupUserDateInput): Observable<any>{
+		return this.http.post<signupUserDateInput>('http://localhost:8080/api/registration', userDate)
 	}
 }
 

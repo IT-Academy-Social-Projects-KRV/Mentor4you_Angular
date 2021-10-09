@@ -49,7 +49,7 @@ const routes: Routes = [
     component: TermsComponent,
   },
   {
-    path: 'messages',
+    path: 'messages/:id',
     component: MessagesComponent,
     children:[
       {path:':id',component:DialogBoardComponent}
@@ -64,7 +64,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/error-pages/error-pages.module').then(m => m.ErrorPagesModule)
   },
   {
-    path: '**',
+    path: '**1',
     redirectTo: 'error-page',
   }
 ];

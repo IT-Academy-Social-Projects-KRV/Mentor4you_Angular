@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mentor-details',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(routerParam: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // console.log()
   }
 
 }
