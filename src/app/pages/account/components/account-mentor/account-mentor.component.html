@@ -2,8 +2,8 @@
   <form class="mentor" (ngSubmit)="onSubmit()" [formGroup]="mentorForm">
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
-        <span class="mentor__label">First Name 
-          <span class="star">*</span>
+        <span class="mentor__label">
+          {{ "ACCOUNT.MENTOR.NS" | translate }}<span class="star">*</span>
         </span>
 
         <div class="mentor__control-wrapper">
@@ -40,7 +40,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">About <span class="star">*</span></span>
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.ABOUT" | translate }} <span class="star">*</span></span>
         <div class="mentor__control-wrapper">
           <textarea
             [ngClass]="invalidCheck('description')"
@@ -59,7 +59,7 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label mentor__teach"
-          >I can teach <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTOR.TEACH" | translate }}<span class="star">*</span></span
         >
         <div class="mentor__control-wrapper">
           <mat-form-field>
@@ -125,7 +125,7 @@
 
       <div class="mentor__form-field">
         <span class="mentor__label"
-          >Phone number <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTEE.PHONE" | translate }}<span class="star">*</span></span
         >
         <div class="mentor__control-wrapper">
           <input
@@ -140,8 +140,12 @@
         </div>
       </div>
 
-      <div class="mentor__form-field">
-        <span class="mentor__label">Telegram</span>
+      <!-- <div class="mentor__form-field">
+        <span class="mentor__label">Telegram</span> -->
+      <div class="mentor__form-field rate-field">
+        <span class="mentor__label"
+          >{{ "ACCOUNT.MENTOR.RATE" | translate }} <span class="star">*</span></span
+        >
         <div class="mentor__control-wrapper">
           <input
             type="text"
@@ -185,7 +189,8 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">Certificates</span>
+        <!-- <span class="mentor__label mentor__teach">Certificates</span> -->
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.CER" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -199,16 +204,24 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">I can work with a group</span>
+        <!-- <span class="mentor__label">I can work with a group</span> -->
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK" | translate }}</span>
         <div class="mentor__control-wrapper" [ngClass]="checkBox(personal, group)">
           <mat-checkbox formControlName="personal" #personal>Personal</mat-checkbox>
           <mat-checkbox formControlName="group" #group>Group</mat-checkbox>
+        <!-- <div class="mentor__control-wrapper">
+          <mat-slide-toggle
+            [checked]="groupWork"
+            (toggleChange)="OnGroupWork()"
+            formControlName="group"
+          >
+          </mat-slide-toggle> -->
         </div>
       </div>
 
       <div class="mentor__form-field">
         <span class="mentor__label mentor__teach"
-          >Languages <span class="star">*</span></span
+          >{{ "ACCOUNT.MENTOR.LANG" | translate }} <span class="star">*</span></span
         >
         <div class="mentor__control-wrapper">
           <mat-form-field>
@@ -223,15 +236,19 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Work</span>
+        <!-- <span class="mentor__label">Work</span> -->
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK1" | translate }}</span>
         <div class="mentor__control-wrapper" [ngClass]="checkBox(online, offlineOut)">
           <mat-checkbox formControlName="online" #online>Remotely</mat-checkbox>
           <mat-checkbox formControlName="offlineOut" #offlineOut >Offline</mat-checkbox>
+        <!-- <div class="mentor__control-wrapper" [ngClass]="checkBox()">
+          <mat-checkbox formControlName="remotely">Remotely</mat-checkbox>
+          <mat-checkbox formControlName="offline">Offline</mat-checkbox> -->
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">Location</span>
+        <span class="mentor__label mentor__teach">{{ "ACCOUNT.MENTOR.LOCATION" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
@@ -246,6 +263,9 @@
 
       <button class="mentor__btn">Save Profile</button>
       <button class="mentor__btn" (click)="onShowProfile()">View Public Profile</button>
+      <!-- <button (click)="onBtnClick()" class="mentor__btn">{{ "ACCOUNT.MENTEE.SAVE" | translate }}</button> -->
     </fieldset>
   </form>
+
+  <button class="mentor__btn">{{ "ACCOUNT.MENTOR.VIEWM" | translate }}</button>
 </div>

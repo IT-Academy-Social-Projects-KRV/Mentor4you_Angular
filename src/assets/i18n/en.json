@@ -1,0 +1,92 @@
+{
+  "HEADER": {
+    "LINKS":{
+      "HOWORKS": "How it works ?",
+      "FINDMENTOR": "Find mentor",
+      "CONTACTS": "Contacts"
+    },
+    "MENU": {
+      "ACCOUNT": "My Account",
+      "SETTINGS": "Settings",
+      "LOGOUT": "Logout"
+    }
+  },
+
+  "HOME": {
+    "TEXT": {
+      "START1": "Start",
+      "START2": "your",
+      "START3": "Learning",
+      "BUILD": "Build Your Skills",
+      "MENTORS": "Mentors",
+      "WHAT1": "What our Mentees say",
+      "WHAT2": "About Us",
+      "INTERES": "Are you interested in becoming a mentor?",
+      "SHARE": "Share Your Expertise"
+    },
+    "BUTTON": {
+      "FINDMENTOR": "Find mentor"
+    }
+  },
+  "MENTOR": {
+    "CATEGORY": "Choose category",
+    "LANGUAGE": "Choose language",
+    "CITY": "Choose city",
+    "RATE": "Choose Rate",
+    "SEARCH": "Search",
+    "ASK1": "Ask for a mentorship",
+    "ASK2": "project",
+    "VIEW": "View more"
+  },
+
+  "ACCOUNT": {
+    "PHOTO": {
+      "1": "My photo",
+      "2": "Upload you photo here"
+    },
+    "MENTEE": {
+      "FNAME1": "Your first name",
+      "FNAME2": "First Name:",
+      "LNAME1": "Your last name",
+      "LNAME2": "Last Name:",
+      "EMAIL": "Your email",
+      "PHONE": "Phone number:",
+      "SAVE": "Save Profile",
+      "EDIT": "Edit Profile",
+      "FULL": "Full name:"
+
+    },
+    "MENTOR": {
+      "NS": "Name and Surname",
+      "ABOUT": "About",
+      "TEACH": "I can teach",
+      "CER": "Certificates",
+      "WORK": "I can work with a group",
+      "WORK1": "Work",
+      "LOCATION": "Location",
+      "VIEWM": "View Public Profile",
+      "RATE": "Rate",
+      "LANG": "Language"
+    },
+    "SETTINGS": {
+      "TITLE": "Settings",
+      "ROLE":{
+        "ROLE": "Change role"
+            },
+      "PASS": {
+        "PASS": "Change password",
+        "CUR1": "Password",
+        "CUR2": "Current Password",
+        "NEW1": "New Password",
+        "CONFIRM1": "Confirm Password",
+        "CONFIRM2": "Confirm new Password",
+        "CHANGE": "Change"
+      },
+      "LANG": {
+        "LANG": "Language"
+      },
+      "DELETE": "Delete Account"
+
+    }
+  }
+}

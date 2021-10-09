@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     // this.signinService.token$.subscribe(value =>{
     // })
+    // console.log(this.signinService.isAuth())
   }
 
   goTo(path: string): void {

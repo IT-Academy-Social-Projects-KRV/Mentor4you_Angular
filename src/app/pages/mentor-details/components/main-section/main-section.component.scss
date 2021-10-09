@@ -2,7 +2,6 @@
 
 .main-section {
   font-family: Roboto, sans-serif;
-  width: 1020px;
   height: 350px;
   padding: 45px;
   box-shadow: 1px 1px 5px 2px #dedede;
@@ -15,6 +14,10 @@
     overflow: hidden;
     background-color: $lightgreen;
   }
+  //   margin-top: 30px;
+  // border: .5px solid $green;
+  // border-radius: 6px;
+  // margin: 30px auto 0 auto;
 
   .image {
     position: absolute;
@@ -121,7 +124,7 @@
 }
 
 .certificates{
-  width: 1020px;
+  width: 100%;
   margin-top: 20px;
   padding: 20px;
   border: 0.5px solid #52D197;
