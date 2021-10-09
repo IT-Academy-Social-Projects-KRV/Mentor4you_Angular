@@ -1,1 +1,21 @@
-<p>languages works!</p>
+<div class="row justify-content-center pb-5">
+
+  <div class="col-8 d-flex title justify-content-center">
+    <p>Change Language:</p>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="row">
+    <div class="col-6 d-flex justify-content-center li-lang" (click)="changeLanguage('en')">
+      <img src="../assets/images/eng1.png" alt="">
+      <p class="d-flex align-items-center ms-2 lang">English</p>
+    </div>
+    <div class="col-6 d-flex justify-content-center li-lang" (click)="changeLanguage('ua')">
+      <img src="../assets/images/ukr.png" alt="">
+      <p class="d-flex align-items-center ms-2 lang">Українська</p>
+    </div>
+  </div>
+</div>
+

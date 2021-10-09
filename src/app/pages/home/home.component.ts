@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
       );
     this.signinService.token$.subscribe(value =>{
     })
+    console.log(this.signinService.isAuth())
   }
 
   goTo(path: string): void {

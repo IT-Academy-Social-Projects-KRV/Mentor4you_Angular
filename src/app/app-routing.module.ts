@@ -5,6 +5,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { TermsComponent } from './pages/terms/terms.component';
+import {AuthGuard} from "./core/interceptors/auth.guard";
+import {NotAuthGuard} from "./core/interceptors/not-auth.guard";
 
 const routes: Routes = [
   {
@@ -13,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate:[NotAuthGuard]
   },
   {
     path: 'mentor',
@@ -29,13 +32,8 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    loadChildren: () =>
-      import('./pages/account/account.module').then((m) => m.AccountModule),
-  },
-  {
-    path: 'settings',
-    loadChildren: () =>
-      import('./pages/account/components/account-settings/settings.module').then((m) => m.SettingsModule),
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule),
+    canActivate:[AuthGuard]
   },
   {
     path: 'moderator',
@@ -43,6 +41,7 @@ const routes: Routes = [
       import('./pages/moderator/moderator.module').then(
         (m) => m.ModeratorModule
       ),
+      canActivate:[AuthGuard]
   },
   {
     path: 'terms',
@@ -50,21 +49,22 @@ const routes: Routes = [
   },
   {
     path: 'messages/:id',
-    component: MessagesComponent,
+    component: MessagesComponent,canActivate:[AuthGuard],
     children:[
       {path:':id',component:DialogBoardComponent}
     ]
+    
   },
   {
     path: 'how-it-works',
-    component: HowItWorksComponent,
+    component: HowItWorksComponent
   },
   {
     path: 'error-page',
     loadChildren: () => import('./pages/error-pages/error-pages.module').then(m => m.ErrorPagesModule)
   },
   {
-    path: '**1',
+    path: '**',
     redirectTo: 'error-page',
   }
 ];
