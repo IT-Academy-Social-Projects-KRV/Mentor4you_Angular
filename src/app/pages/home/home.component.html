@@ -5,7 +5,7 @@
     <h2 class="mentor-list__title">{{ 'HOME.TEXT.MENTORS' | translate }}</h2>
 
     <div class="rows">
-      <app-mentor-card *ngFor="let mentor of mentors" [mentor]="mentor"></app-mentor-card>
+      <app-mentor-card *ngFor="let mentor of mentors | slice : 0 : 8" [mentor]="mentor"></app-mentor-card>
     </div>
 
     <a class="mentor-list__btn" (click)="goTo('mentor')">{{ 'HOME.BUTTON.FINDMENTOR' | translate }}</a>

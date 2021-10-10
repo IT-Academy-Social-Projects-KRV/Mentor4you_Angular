@@ -1,66 +1,102 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
-
+import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
-import { T } from '@angular/cdk/keycodes';
+
+import { Subject, Subscription } from 'rxjs';
+
+import { MentorService } from 'src/app/core';
+import { categoriesData, certificatesData, citiesData, currencyData, languagesData } from './data';
+
+
+export interface AdditionalMentorData {
+  avatar: string;
+}
+
+export const isAvatar: Subject<boolean> = new Subject();
 
 @Component({
   selector: 'app-account-mentor',
   templateUrl: './account-mentor.component.html',
   styleUrls: ['./account-mentor.component.scss'],
 })
-export class AccountMentorComponent implements OnInit {
+export class AccountMentorComponent implements OnInit, OnDestroy {
+  @Input() mentor: any;
   @Input() isAccountActivated!: boolean;
-  @Input() selectedFile!: File;
+
+  @Output() closeForm: EventEmitter<void> = new EventEmitter();
+  @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
+  @Output() viewMentorData: EventEmitter<any> = new EventEmitter();
+
+  categories = categoriesData;
+  currency = currencyData;
+  languages = languagesData;
+  cities = citiesData;
+  certificates = certificatesData;
+
+  categoriesForm = new FormControl([]);
+  carrencyForm = new FormControl([]);
+  languagesForm = new FormControl([]);
+  citiesForm = new FormControl([]);
+  certificatesForm = new FormControl([]);
 
   btnTouched!: boolean;
-  myColor = '#3AB67D';
-
-  subjList: string[] = [
-    'Assembler',
-    'JavaScript',
-    'C++',
-    'TypeScript',
-    'Python',
-    'Django',
-  ];
-
-  langList: string[] = ['Ukrainian', 'English', 'Russian', 'Polish'];
-  locList: string[] = ['Kyiv', 'Rivne', 'New York', 'London', 'Lviv'];
-  subForm = new FormControl('');
-  langForm = new FormControl('');
-  locForm = new FormControl('');
-
   groupWork!: boolean;
-  mentorForm!: any;
+  mentorForm!: FormGroup;
+  mentorSubscription?: Subscription;
+  rate = 0;
 
-  constructor(private fb: FormBuilder, private httpClient: HttpClient) {}
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router,
+    private mentorService: MentorService
+  ) {}
 
   ngOnInit(): void {
     this.btnTouched = false;
     this.groupWork = false;
     this.mentorForm = this.fb.group({
-      avatar: this.selectedFile,
-      isAccountActivated: this.isAccountActivated,
-      fullName: ['', [Validators.required]],
-      about: ['', [Validators.required]],
-      subjects: this.subForm,
+      // avatar: this.selectedFile,
+      avatar: [''],
+      isAccountActivated: [false],
+      firstName: ['', Validators.required],
+      lastName: [''],
+      description: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      phoneNumFirst: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      categoriesList: this.categoriesForm,
+      currency: this.carrencyForm,
       rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      languages: this.langForm,
+      languages: this.languagesForm,
+      telegram: [''],
+      skype: [''],
       linkedIn: [''],
-      facebook: [''],
-      youtube: [''],
-      certificates: [''],
-      group: this.groupWork,
-      remotely: [false],
-      offline: [false],
-      location: this.locForm,
+      gitHub: [''],
+      certificates: this.certificatesForm,
+      groupServ: '',
+      personal: [false],
+      group: [false],
+      online: [false],
+      offlineOut: [false],
+      offlineIn: [false],
+      cities: this.citiesForm,
+      rating: [0]
     });
+
+    this.initForm();
+  }
+
+  initForm(): void {
+    const controls = this.mentorForm.controls;
+    
+    Object.keys(controls).forEach(controlName => {
+      controls[controlName].setValue(this.mentor[controlName] || '');
+    })
+    
+    const MAX = this.mentor['groupServ'];
+    const YES = this.mentor['groupServ'];
+    controls['personal'].setValue(MAX === 'MAX');
+    controls['group'].setValue(YES === 'YES');
   }
 
   OnGroupWork() {
@@ -69,19 +105,28 @@ export class AccountMentorComponent implements OnInit {
 
   onSubmit(): void {
     this.btnTouched = true;
+
+    const controls = this.mentorForm.controls;
+    const isMix = controls['group'].value && controls['personal'].value;
+    const isGroup = controls['group'].value ? true : false;
+    const isGroupSevice = isMix ? 'MIX' : isGroup ? 'YES' : 'NO';
+
+    controls['groupServ'].setValue(isGroupSevice);
+
     if (
       this.mentorForm.valid &&
-      (this.mentorForm.controls['remotely'].value === true ||
-        this.mentorForm.controls['offline'].value === true)
+      (this.mentorForm.controls['online'].value === true ||
+        !this.mentorForm.controls['offlineOut'].value === true)
     ) {
-      // const formData = new FormData();
-      // formData.append('file', this.mentorForm.get('profile').value);
-      // this.httpClient.post<any>('', formData).subscribe(
-      //   (res: any) => console.log(res),
-      //   (err: any) => console.log(err)
-      // );
-      // console.log(this.mentorForm.controls.value);
+      this.mentorSubscription = this.mentorService
+        .updateMentor(this.mentorForm.value)
+        .subscribe();
+
+      this.btnTouched = true;
+      this.router.navigate(['/']);
     }
+
+    isAvatar.next(true);
   }
 
   invalidCheck(controlName: string): string {
@@ -93,16 +138,26 @@ export class AccountMentorComponent implements OnInit {
       return 'invalidForm';
     } else return '';
   }
-  checkBox() {
-    if (
-      this.btnTouched === true &&
-      this.mentorForm.controls['remotely'].value === false &&
-      this.mentorForm.controls['offline'].value === false
-    ) {
+
+  checkBox(box1: any, box2: any) {
+    if (this.btnTouched === true && box1._checked === false && box2._checked === false) {
       return 'invalid-checkbox';
     } else return '';
   }
-  onBtnClick() {
-    this.btnTouched = true;
+
+  onShowProfile(event: Event): void {
+    event.preventDefault();
+
+    this.mentor.categoriesList.map((category: any) => {
+      category.rate = this.mentor.rate;
+      category.currency = this.mentor.currency;
+    });
+    
+    this.closeForm.emit();
+    this.viewMentorData.next(this.mentorForm.value);
+  }
+
+  ngOnDestroy(): void {
+    this.mentorSubscription?.unsubscribe();
   }
 }

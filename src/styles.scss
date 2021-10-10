@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 //@import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import 'material-icons/iconfont/material-icons.scss';
 @import "~@ng-select/ng-select/themes/material.theme.css";
 @import "~bootswatch/dist/minty/variables";
 @import "~bootswatch/dist/minty/bootstrap.min.css";
@@ -75,3 +76,5 @@ input:focus:-ms-input-placeholder{
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

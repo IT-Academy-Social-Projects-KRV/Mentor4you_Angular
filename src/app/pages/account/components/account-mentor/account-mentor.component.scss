@@ -22,15 +22,24 @@
     padding: 9px;
     border-radius: 10px;
     border: 2px solid $lightgray;
+
+    &:focus-visible {
+      outline: 2px solid $fuschia100;
+    }
   }
   span {
-    display: block;
+    display: inline-block;
     margin: 10px 0;
   }
   padding: 140px 100px 0px;
 
   &__form-group {
     margin-bottom: 30px;
+  }
+
+  &__rate-wrapper {
+    display: flex;
+    width: 285px;
   }
 
   &__form-field {
@@ -55,8 +64,7 @@
     padding-top: 12px;
   }
   &__rate-input {
-    padding-left: 25px !important;
-    width: 35% !important;
+    margin-right: 10px;
     position: relative;
   }
 
@@ -100,6 +108,10 @@
     &__label {
       width: auto;
     }
+
+    &__currency {
+      margin-left: 50px;
+    }
   }
 }
 
@@ -120,6 +132,14 @@ button {
     background-color: $fuschia100;
   }
 }
+
+::ng-deep .mat-form-field-infix {
+  border-top: 0;
+}
+
+::ng-deep .mentor__rate-wrapper .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  width: 85px;
+} 
 
 ::ng-deep .file-upload {
   &:hover {
@@ -150,6 +170,13 @@ button {
 ::ng-deep .danger {
   background-color: rgb(189, 24, 24);
 }
+::ng-deep .mat-select-panel {
+  max-width: none !important;
+}
+
+// ::-webkit-scrollbar {
+//   width: 7 px;
+// }
 
 ::ng-deep .success {
   background-color: $fuschia100;

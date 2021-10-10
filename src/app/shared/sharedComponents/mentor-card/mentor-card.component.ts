@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Mentor } from 'src/app/core/interfaces';
+import { MentorCard } from 'src/app/core/interfaces';
 
 @Component({
   selector: 'app-mentor-card',
@@ -8,7 +8,7 @@ import { Mentor } from 'src/app/core/interfaces';
   styleUrls: ['./mentor-card.component.scss']
 })
 export class MentorCardComponent implements OnInit {
-  @Input() mentor?: Mentor
+  @Input() mentor!: MentorCard
   stars: Array<number> | undefined;
 
   constructor(
@@ -16,10 +16,11 @@ export class MentorCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.stars = [...Array(this.mentor?.rating).keys()].map(i => i + 1);
+    // this.stars = [...Array(this.mentor?.rating).keys()].map(i => i + 1);
+    this.stars = [...Array(this.mentor?.rating).fill(0)].map(i => i + 1);
   }
 
   goTo(path: string): void {
-    this.router.navigateByUrl(path);
+    this.router.navigate([path, this.mentor.id]);
   }
 }
