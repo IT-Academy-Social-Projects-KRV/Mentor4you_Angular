@@ -1,3 +1,4 @@
+import { DialogBoardComponent } from './pages/messages/dialog-board/dialog-board.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
@@ -47,9 +48,12 @@ const routes: Routes = [
     component: TermsComponent,
   },
   {
-    path: 'messages',
-    component: MessagesComponent,
-    canActivate:[AuthGuard]
+    path: 'messages/:id',
+    component: MessagesComponent,canActivate:[AuthGuard],
+    children:[
+      {path:':id',component:DialogBoardComponent}
+    ]
+    
   },
   {
     path: 'how-it-works',

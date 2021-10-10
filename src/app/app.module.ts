@@ -1,3 +1,4 @@
+import { DialogBoardComponent } from './pages/messages/dialog-board/dialog-board.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -28,6 +29,7 @@ import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component
 
 import { NotificationModalModule } from './shared/layout/header/notification-modal/notification-modal.module';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 import {SettingsModule} from "./pages/account/components/account-settings/settings.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,7 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FooterComponent,
     TermsComponent,
     MessagesComponent,
-    HowItWorksComponent
+    HowItWorksComponent,
+    DialogBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccountModule,
     HttpClientModule,
     NotificationModalModule,
+    FormsModule,
     ImageCropperModule,
     SettingsModule,
     ToastrModule.forRoot({

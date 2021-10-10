@@ -1,4 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Input, DoCheck} from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-section',
@@ -9,7 +10,7 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
   @Input() mentor: any;
   @ViewChild('name')name?:ElementRef
 
-  constructor() { }
+  constructor(private router:Router) { }
 
 
   description:string='More than 15 years of commercial development and creation of IT products.I participate in pre-sale activities and design architectures. From time to time I write code in JavaScript, Python, Go, Java. I also conduct interviews and help with a career guide (individual development plan) for Middle, Senior, Tech Lead / Team Lead'
@@ -71,5 +72,8 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
 
   }
 
+  navigateToChat(id:any){
+    this.router.navigate([`/messages/${id}`])
+  }
 
 }
