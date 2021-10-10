@@ -6,10 +6,10 @@
           <div class="name fild">
             <label class="personal-data__block" for="first-name">
               <img class="icon" src="./../../../../../assets/images/user-name.svg" alt="First name">
-              First name:<span>*</span>
+              {{ "ACCOUNT.MENTEE.FNAME2" | translate }}<span>*</span>
             </label>
             <div class="personal-data__input">
-              <input formControlName="firstName" id="first-name" placeholder="Your first name" [(ngModel)]="userMentee.firstName"
+              <input formControlName="firstName" id="first-name" placeholder="{{ 'ACCOUNT.MENTEE.FNAME1' | translate }}" [(ngModel)]="userMentee.firstName"
                 *ngIf="editingState; else recordingData">
               <div class="validity-notification"
                 *ngIf="menteeForm.get('firstName')?.invalid && (menteeForm.get('firstName')?.dirty || menteeForm.get('firstName')?.touched)">
@@ -21,10 +21,10 @@
           <div class="name fild">
             <label class="personal-data__block" for="last-name">
               <img class="icon" src="./../../../../../assets/images/user-name.svg" alt="Last name">
-              Last name:<span>*</span>
+              {{ "ACCOUNT.MENTEE.LNAME2" | translate }}<span>*</span>
             </label>
             <div class="personal-data__input">
-              <input formControlName="lastName" id="last-name" placeholder="Your last name" [(ngModel)]="userMentee.lastName"
+              <input formControlName="lastName" id="last-name" placeholder="{{ 'ACCOUNT.MENTEE.LNAME1' | translate }}" [(ngModel)]="userMentee.lastName"
                 *ngIf="editingState; else recordingData">
               <div class="validity-notification"
                 *ngIf="menteeForm.get('lastName')?.invalid && (menteeForm.get('lastName')?.dirty || menteeForm.get('lastName')?.touched)">
@@ -39,7 +39,7 @@
               E-mail:<span>*</span>
             </label>
             <div class="personal-data__input">
-              <input formControlName="email" id="email" placeholder="Your email" [(ngModel)]="userMentee.email">
+              <input formControlName="email" id="email" placeholder="{{ 'ACCOUNT.MENTEE.EMAIL' | translate }}" [(ngModel)]="userMentee.email">
               <div class="validity-notification"
                 *ngIf="menteeForm.get('email')?.invalid && (menteeForm.get('email')?.dirty || menteeForm.get('email')?.touched)">
                 Please provide a valid email address. <br> ATTENTION: In case you change the email, you will logout.
@@ -49,7 +49,7 @@
           <div class="phone fild">
             <label class="personal-data__block" for="tel">
               <img class="icon" src="./../../../../../assets/images/phone.svg" alt="Phone number">
-              Phone number:<span></span>
+              {{ "ACCOUNT.MENTEE.PHONE" | translate }}<span></span>
             </label>
             <div class="personal-data__input">
               <input formControlName="phone" id="tel" type="text" placeholder="(000) 000-0000"
@@ -90,7 +90,7 @@
           </div>
         </fieldset>
         <button class="account__save-btn account__btn" [ngClass]="{'account__btn--disabled' : menteeForm.invalid}"
-          type="submit" [disabled]="menteeForm.invalid">Save Profile</button>
+          type="submit" [disabled]="menteeForm.invalid">{{ "ACCOUNT.MENTEE.SAVE" | translate }}</button>
       </form>
     </ng-container>
   </div>
@@ -101,7 +101,7 @@
     <div class="account__contact-info__inner fild">
       <div class="personal-data__block">
         <img class="icon" src="./../../../../../assets/images/user-name.svg" alt="Full name">
-        <p>Full name:</p>
+        <p>{{ "ACCOUNT.MENTEE.FULL" | translate }}</p>
       </div>
       <p class="info name-info">{{userMentee.firstName}} {{userMentee.lastName}}</p>
     </div>
@@ -115,7 +115,7 @@
     <div class="account__contact-info__inner fild">
       <div class="personal-data__block">
         <img class="icon" src="./../../../../../assets/images/phone.svg" alt="Phone number">
-        <p>Phone number:</p>
+        <p>{{ "ACCOUNT.MENTEE.PHONE" | translate }}</p>
       </div>
       <p class="info phone-info">{{userMentee.socialMap.PhoneNumFirst}}</p>
     </div>
@@ -147,7 +147,6 @@
       </div>
       <p class="info github-info">{{userMentee.socialMap.GitHub}}</p>
     </div>
-    <button class="account__edit-btn account__btn" (click)="editingState = true">Edit
-      Profile</button>
+    <button class="account__edit-btn account__btn" (click)="editingState = true">{{ "ACCOUNT.MENTEE.EDIT" | translate }}</button>
   </div>
 </ng-template>

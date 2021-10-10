@@ -14,11 +14,14 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private  auth:SigninService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let token:any
+    this.auth.token$.subscribe(value =>{
+      token=value} )
     if(this.auth.isAuth())
     {
       request = request.clone({
         setHeaders:{
-          Authorization: this.auth.getToken
+          Authorization: token
         }
       })
     }

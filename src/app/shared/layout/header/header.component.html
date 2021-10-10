@@ -7,13 +7,13 @@
       <nav class="header__menu">
         <ul class="header__menu__list">
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" routerLink="/how-it-works">How it works?</a>
+            <a class="header__menu__list-link" routerLink="/how-it-works">{{ 'HEADER.LINKS.HOWORKS' | translate}}</a>
           </li>
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" (click)="goTo('mentor')">Find mentor</a>
+            <a class="header__menu__list-link" (click)="goTo('mentor')">{{ 'HEADER.LINKS.FINDMENTOR' | translate}}</a>
           </li>
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" routerLink="/contacts">Contacts</a>
+            <a class="header__menu__list-link" routerLink="/contacts">{{ 'HEADER.LINKS.CONTACTS' | translate}}</a>
           </li>
         </ul>
       </nav>
@@ -36,7 +36,7 @@
             </div>
             <div class="header__btns-avatar">
               <div class="header__btns-avatar-border">
-                <img class="avatar" src="../../../../assets/images/mentor.png" alt="Avatar">
+                <img class="avatar" src="https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png" alt="Avatar">
               </div>
             </div>
             <div class="header__btns__settings">
@@ -45,15 +45,15 @@
               <div class="settings-menu" *ngIf="showSettingsMenu" #menu>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/user.svg" alt="User">
-                  <a class="settings-menu__item__text" (click)="goTo('account')">My account</a>
+                  <a class="settings-menu__item__text" (click)="goTo('account')">{{ 'HEADER.MENU.ACCOUNT' | translate}}</a>
                 </div>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/settings.svg" alt="Settings">
-                  <a class="settings-menu__item__text" routerLink="/account/settings">Settings</a>
+                  <a class="settings-menu__item__text" routerLink="/account/settings">{{ 'HEADER.MENU.SETTINGS' | translate}}</a>
                 </div>
                 <div class="settings-menu__item" (click)="logout()">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/power.svg" alt="logout">
-                  <a class="settings-menu__item__text logout">Logout</a>
+                  <a class="settings-menu__item__text logout">{{ 'HEADER.MENU.LOGOUT' | translate}}</a>
                 </div>
               </div>
             </div>
