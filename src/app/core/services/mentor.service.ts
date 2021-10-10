@@ -32,7 +32,6 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorBaseUrl)
       .pipe(map(mentors => {
-        console.log('m - all', mentors);
         return mentors
           .filter((m: any) => m.accounts.user.first_name !== null)
           .map((mentor: any) => {
@@ -47,9 +46,7 @@ export class MentorService {
               fullName: user.first_name + ' ' + user.last_name,
               avatar: this.currentAvatar,                          // expecting a change in structure of the data
               // avatar: user.avatar,                           
-              // categories: user.categories || this.tempCategories, // expecting a change in structure of the data
-              categoriesList: mentor.mentors_to_categories, // expecting a change in structure of the data
-              rating: Number(user.rating) || 5
+              categoriesList: mentor.mentors_to_categories,
             }
         })
       }));
@@ -88,7 +85,7 @@ export class MentorService {
       .get<any>(this.mentorBaseUrl + '/getMentorDTO/')
       .pipe(map((mentorDTO: any) => {
 
-        console.log('mDTO - server', mentorDTO);
+        // console.log('mDTO - server', mentorDTO);
 
         this.currentAvatar = this.isTempAvatar ? this.tempAvatar : this.tempAvatar_2;
 
@@ -133,7 +130,7 @@ export class MentorService {
 
   transformData(mentor: any): Object {
 
-    console.log('mentor - to Server', mentor);
+    // console.log('mentor - to Server', mentor);
 
     mentor.categoriesList.map((category: any) => {
       category.rate = mentor.rate;

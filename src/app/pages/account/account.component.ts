@@ -50,8 +50,6 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.isAccountActivated = mentor.isAccountActivated;
       }
     );
-
-    console.log('currentRole', this.currentRole);
   }
 
   setMentorData(mentorData: any): void {
