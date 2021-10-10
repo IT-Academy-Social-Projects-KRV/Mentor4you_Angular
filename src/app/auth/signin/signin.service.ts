@@ -60,6 +60,7 @@ export class SigninService {
 
   public isAuth(): boolean {
     if(localStorage.getItem('token')){
+      this.setTokenO(localStorage.getItem('token'));
       if(!this.isExpToken(this.token$.value)){
       return true
       }else return false
