@@ -31,7 +31,6 @@ export class MentorComponent implements OnInit {
   }
 }
 
-// this.star = [...Array(this.stars).keys()].map(i => i + 1);
 
 
 
