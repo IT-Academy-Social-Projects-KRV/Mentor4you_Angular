@@ -21,8 +21,8 @@ export class AppStarRaitingComponent{
 	constructor() { }
 
 	ngOnInit() {
-		console.log(this.starId);
-		console.log(this.rating);
+		// console.log(this.starId);
+		// console.log(this.rating);
 
 		if (this.rating >= this.starId) {
 			this.starClassName = "star-rating-filled";

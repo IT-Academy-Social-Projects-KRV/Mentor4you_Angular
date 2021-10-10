@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { MenteeProfile, Mentor } from '../interfaces';
-import { mentors } from '../mock/in-memory-data.service';
+import { MenteeProfile } from '../interfaces';
+// import { mentors } from '../mock/in-memory-data.service';
 
 @Injectable({
   providedIn: 'root'

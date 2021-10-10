@@ -9,8 +9,7 @@ import { AuthGuard } from 'src/app/core/interceptors/auth.guard';
 const routes = [
   {
     path: ':id',
-    component: MentorDetailsComponent, 
-  
+    component: MentorDetailsComponent
   }
 ]
 

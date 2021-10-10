@@ -1,5 +1,61 @@
-<app-mentor-top></app-mentor-top>
+<app-mentor-top (sendMentors)="dataMentors($event)"></app-mentor-top>
 <div class="container">
-    <app-mentors-cards></app-mentors-cards>
+<!--  <app-mentors-cards [dataMentors]="response"></app-mentors-cards>-->
+  <ng-template [ngIf]="response">
+    <div class="wrapper">
+      <div class="mentor-card" *ngFor="let item of response">
+        <div class="mentor-card__info">
+          <div class="mentor-card__image-wrap">
+            <img class="mentor-card__image" src="{{item.avatar}}" alt="error">
+          </div>
+          <p class="mentor-card__name">{{item.firstName}} {{item.lastName}}</p>
+          <p class="mentor-card__category"><span>{{item.categories}}</span></p>
+          <p class="mentor-card__category"><span>{{item.foundCategory}}</span></p>
+          <p class="mentor-card__category" *ngIf="item.rate !== 0 && item.currency !== null">
+            <span>{{item.rate}} {{item.currency}}</span></p>
+          <p class="mentor-card__rating" [ngSwitch]="item.rating">
+            <ng-template ngSwitchCase="1">
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="2">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="3">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="4">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="5">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+          </p>
+        </div>
+        <div class="mentor-card__btns btns">
+          <button class="btns__ask">Ask for a mentorship project</button>
+          <button class="btns__view" [routerLink]="['/mentor-details',item.id]">View more</button>
+        </div>
+      </div>
+    </div>
+    <ng-template [ngIf]="response.length === 0">
+      <div class="searchInfo">
+        <div class="searchMessage">
+          <div class="searchText">
+            <span class="text">WE DIDN'T FIND ANYTHING AT YOUR REQUEST</span>
+            <span class="text">TRY TO CHOOSE OTHER SEARCH CRITERIA</span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-template>
 </div>
-

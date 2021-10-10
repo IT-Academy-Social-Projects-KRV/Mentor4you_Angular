@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {SigninService} from "./auth/signin/signin.service";
 import {TranslateService} from "@ngx-translate/core";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class AppComponent implements OnInit, DoCheck{
   title = 'mentor4you';
   hiddenFooter: boolean = true;
+
   constructor(private auth: SigninService, private router: Router,public translate:TranslateService) {
 
   }
@@ -23,7 +25,7 @@ export class AppComponent implements OnInit, DoCheck{
     }
     this.onHiddenFooter();
 
-   
+    localStorage.setItem('role', 'mentor');
   }
   onHiddenFooter() {
     if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' ) {
