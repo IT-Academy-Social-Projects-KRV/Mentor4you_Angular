@@ -1,14 +1,15 @@
-<div class="mentorship-approve__item">
+<div class="mentorship-approve__item" *ngIf="mentorCooperation">
     <div class="mentorship-approve__inner">
       <div class="mentorship-approve__avatar">
         <div class="user-avatar">
           <div class="user-avatar__border">
-            <img class="avatar" src="../../../../assets/images/mentor.png" alt="Avatar">
+            <img class="avatar" src="{{mentorCooperation.mentor.img}}" alt="Avatar">
           </div>
         </div>
       </div>
-      <a class="mentorship-approve__user-name" routherlink="#">John Johnson</a>
-      <p class="mentorship-approve__text"> approved your mentorship request</p>
+      <a class="mentorship-approve__user-name" routherlink="#">{{mentorCooperation.mentor.name}} {{mentorCooperation.mentor.secondName}}</a>
+      <p class="mentorship-approve__text"> {{mentorCooperation.coopStatus | lowercase}} your mentorship request</p>
+      <span class="mentorship-approve__del" (click)="deleteNotification(mentorCooperation.mentor.id)">Delete this notification</span>
     </div>
     <hr>
   </div>

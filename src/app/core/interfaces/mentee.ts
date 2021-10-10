@@ -1,6 +1,7 @@
 export interface Mentee {
-    id?: number;
+    id: number;
     name: string;
+    secondName: string;
     img?: string;
   }
 

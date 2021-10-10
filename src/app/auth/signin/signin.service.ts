@@ -16,7 +16,7 @@ export class SigninService {
   }
   error!:any
   public user: any = {}
-  // private token:string|null = null;
+  private token: string | null = null;
   public token$ = new BehaviorSubject<any>(null);
 
   private url ='http://localhost:8080/api/auth/login'
@@ -34,14 +34,16 @@ export class SigninService {
           ({token})=>{
             localStorage.setItem('token',token);
             this.setTokenO(token);
-            // this.setToken(token);
+            this.setToken(token);
             this.user = this.parseJwt(token);
           }
         )
       )
   }
 
-
+  setToken(token:any){
+    this.token = token;
+  }
 
   setTokenO(token:any) : void{
     this.token$.next(token);
@@ -57,11 +59,10 @@ export class SigninService {
   // }
 
   public isAuth(): boolean {
-    if(localStorage.getItem('token'))
-    {
-      if(!this.isExpToken(this.token$.value))
-      {
-        return true
+    if(localStorage.getItem('token')){
+      this.setTokenO(localStorage.getItem('token'));
+      if(!this.isExpToken(this.token$.value)){
+      return true
       }else return false
     }
     else return false
@@ -70,7 +71,7 @@ export class SigninService {
 
   logout(){
     this.http.put('http://localhost:8080/api/auth/logout',{}).subscribe(value=>{})
-    this.setTokenO(null);
+    // this.setTokenO(null);
     localStorage.clear();
   }
 
@@ -82,6 +83,29 @@ export class SigninService {
     }).join(''));
 
     return JSON.parse(jsonPayload);
+  }
+
+  getRole(){   
+    if(typeof this.token === "string"){
+      const role = this.parseJwt(this.token).role[0].authority;
+      localStorage.setItem('role', role)
+    }
+  }
+
+  get isMentor(){
+    return localStorage.getItem('role') === "MENTOR";
+  }
+
+  get isMentee(){
+    return localStorage.getItem('role') === "MENTEE";
+  }
+
+  get isModerator(){
+    return localStorage.getItem('role') === "MODERATOR";
+  }
+
+  get isAdmin(){
+    return localStorage.getItem('role') === "ADMIN";
   };
 
   isExpToken(token:any){

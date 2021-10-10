@@ -27,12 +27,12 @@
               <img class="header__btns-message--indicator" src="./../../../../assets/images/indicator.svg"
                 alt="New massage" *ngIf="isNewMessage">
             </div>
-            <div class="header__btns-notifications__inner" (click)="open()" (click)="isNewNotification = false">
+            <div class="header__btns-notifications__inner" (click)="open()">
               <div class="header__btns-notifications">
                 <img class="header__btns-bell" src="./../../../../assets/images/bell.svg" alt="New Request">
               </div>
               <img class="header__btns-notifications--indicator" src="./../../../../assets/images/indicator.svg"
-                alt="New request" *ngIf="isNewNotification">
+                alt="New request" *ngIf="notificationModalService.isNewNotification$ | async">
             </div>
             <div class="header__btns-avatar">
               <div class="header__btns-avatar-border">

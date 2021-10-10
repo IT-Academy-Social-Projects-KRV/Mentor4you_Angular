@@ -23,16 +23,24 @@ export interface MentorProfile {
   description: string;
   isAccountActivated: boolean;
 }
-
 export interface CategoriesList {
   categories: { id: number, name: string };
   currency: string;
   rate: number;
 }
-
 export interface LanguagesList {
   id: number;
   name: string;
+}
+export interface MentorCooperation{
+  coopStatus: string;
+  mentor: MentorRespons;
+}
+export interface MentorRespons {
+  id: number;
+  name: string;
+  secondName: string;
+  img?: string;
 }
 
 

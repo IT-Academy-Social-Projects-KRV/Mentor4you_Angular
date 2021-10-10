@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, DoCheck{
     }
     this.onHiddenFooter();
 
-    localStorage.setItem('role', 'mentor');
+    // localStorage.setItem('role', 'mentor');
   }
   onHiddenFooter() {
     if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' ) {

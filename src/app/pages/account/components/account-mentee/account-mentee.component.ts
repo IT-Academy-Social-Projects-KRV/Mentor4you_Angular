@@ -44,7 +44,6 @@ export class AccountMenteeComponent implements OnInit, OnDestroy {
 
   onSubmit(form: FormGroup) {
     this.editingState = false;
-    console.log('------------', this.userMentee)
     if(this.menteeForm.valid){
       this.menteeService.sendData(this.userMentee)
       .subscribe((res) => {
