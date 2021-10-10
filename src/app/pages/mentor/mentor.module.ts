@@ -7,6 +7,7 @@ import {SharedModule} from 'src/app/shared/shared.module';
 import {MentorComponent} from './mentor.component';
 import {MentorTopComponent} from './components/mentor-top/mentor-top.component';
 import { MentorsCardsComponent } from './components/mentors-cards/mentors-cards.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -16,13 +17,14 @@ import { MentorsCardsComponent } from './components/mentors-cards/mentors-cards.
     MentorsCardsComponent,
 
   ],
-  imports: [
-    SharedModule,
-    MentorRoutingModule,
-    JwPaginationModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ]
+    imports: [
+        SharedModule,
+        MentorRoutingModule,
+        JwPaginationModule,
+        FormsModule,
+        ReactiveFormsModule,
+        TranslateModule,
+    ]
 })
 
 export class MentorModule {

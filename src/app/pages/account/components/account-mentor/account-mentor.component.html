@@ -2,19 +2,20 @@
   <form class="mentor" (ngSubmit)="onSubmit()" [formGroup]="mentorForm">
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
-        <span class="mentor__label"
-          >Name and Surname <span class="star">*</span></span
-        >
+        <span class="mentor__label">
+          <!-- {{ "ACCOUNT.MENTOR.NS" | translate }} <span class="star">*</span> -->
+          <span class="mentor__label">First Name </span><span class="star"> *</span>
+        </span>
 
         <div class="mentor__control-wrapper">
           <input
-            [ngClass]="invalidCheck('fullName')"
-            id="fullName"
+            [ngClass]="invalidCheck('firstName')"
+            id="firstName"
             type="text"
             class="mentor__control"
-            formControlName="fullName"
+            formControlName="firstName"
           />
-          <p class="invalid-text" *ngIf="invalidCheck('fullName')">
+          <p class="invalid-text" *ngIf="invalidCheck('firstName')">
             Please input alphabet characters only. Name must be at least 2
             characters long and max length - 15 characters
           </p>
@@ -22,17 +23,38 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">About <span class="star">*</span></span>
+        <span class="mentor__label">Last Name</span>
+
+        <div class="mentor__control-wrapper">
+          <input
+            [ngClass]="invalidCheck('lastName')"
+            id="lastName"
+            type="text"
+            class="mentor__control"
+            formControlName="lastName"
+          />
+          <p class="invalid-text" *ngIf="invalidCheck('lastName')">
+            Please input alphabet characters only. Name must be at least 2
+            characters long and max length - 15 characters
+          </p>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">
+          {{ "ACCOUNT.MENTOR.ABOUT" | translate }} <span class="star">*</span>
+        </span>
+
         <div class="mentor__control-wrapper">
           <textarea
-            [ngClass]="invalidCheck('about')"
-            id="about"
+            [ngClass]="invalidCheck('description')"
+            id="description"
             rows="5"
             class="mentor__control"
-            formControlName="about"
+            formControlName="description"
           >
           </textarea>
-          <p class="invalid-text" *ngIf="invalidCheck('about')">
+          <p class="invalid-text" *ngIf="invalidCheck('description')">
             Please input alphabet characters only. Name must be at least 2
             characters long and max length - 15 characters
           </p>
@@ -40,18 +62,51 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach"
-          >I can teach <span class="star">*</span></span
-        >
+        <span class="mentor__label mentor__teach">
+          {{ "ACCOUNT.MENTOR.TEACH" | translate }} <span class="star">*</span>
+        </span>
+
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [required]="true" [formControl]="subForm" multiple>
-              <mat-option *ngFor="let item of subjList" [value]="subForm">{{
-                item
-              }}</mat-option>
+            <mat-select [required]="true" [formControl]="categoriesForm" multiple>
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{ category.categories.name }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
+        </div>
+      </div>
+
+      <div class="mentor__form-field rate-field">
+        <div class="mentor__rate-wrapper">
+          <div>
+            <span class="mentor__label">Rate <span class="star">*</span>
+            </span>
+            <div class="mentor__control-wrapper">
+              <input
+                [ngClass]="invalidCheck('rate')"
+                id="rate"
+                type="text"
+                class="mentor__control mentor__rate-input"
+                [value]="rate"
+                formControlName="rate"
+              />
+              <p class="invalid-text" *ngIf="invalidCheck('rate')">Please input numbers only</p>
+            </div>
+          </div>
+
+          <div class="mentor__currency">
+            <span class="mentor__label">Currency <span class="star">*</span>
+            </span>
+            <mat-form-field>
+              <mat-select [required]="true" [formControl]="carrencyForm">
+                <mat-option *ngFor="let item of currency" [value]="item">
+                  {{ item }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </div>
 
@@ -72,40 +127,43 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label"
-          >Phone number <span class="star">*</span></span
-        >
+        <span class="mentor__label">
+          {{ "ACCOUNT.MENTEE.PHONE" | translate }} <span class="star">*</span>
+        </span>
         <div class="mentor__control-wrapper">
           <input
             type="text"
-            formControlName="phone"
+            formControlName="phoneNumFirst"
             class="mentor__control"
-            [ngClass]="invalidCheck('phone')"
+            [ngClass]="invalidCheck('phoneNumFirst')"
           />
-          <p class="invalid-text" *ngIf="invalidCheck('phone')">
+          <p class="invalid-text" *ngIf="invalidCheck('phoneNumFirst')">
             Input numbers only
           </p>
         </div>
       </div>
 
-      <div class="mentor__form-field rate-field">
-        <span class="mentor__label"
-          >Rate <span class="star">*</span></span
-        >
+        <div class="mentor__form-field rate-field">
+            <!-- {{ "ACCOUNT.MENTOR.RATE" | translate }}  -->
+        <span class="mentor__label">Telegram <span class="star">*</span></span>
+        
         <div class="mentor__control-wrapper">
-          <img
-            class="dollar-img"
-            src="../../../../../assets/images/$.svg"
-            alt="dollar"
-          />
           <input
-            [ngClass]="invalidCheck('rate')"
-            id="rate"
             type="text"
-            class="mentor__control mentor__rate-input"
-            formControlName="rate"
+            formControlName="telegram"
+            class="mentor__control"
           />
-          <p class="invalid-text" *ngIf="invalidCheck('rate')">Please input numbers only</p>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label">Skype</span>
+        <div class="mentor__control-wrapper">
+          <input
+            type="text"
+            formControlName="skype"
+            class="mentor__control"
+          />
         </div>
       </div>
 
@@ -121,92 +179,83 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Facebook</span>
+        <span class="mentor__label">GitHub</span>
         <div class="mentor__control-wrapper">
           <input
             type="text"
-            formControlName="facebook"
+            formControlName="gitHub"
             class="mentor__control"
           />
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">YouTube</span>
-        <div class="mentor__control-wrapper">
-          <input
-            type="text"
-            formControlName="youtube"
-            class="mentor__control"
-          />
-        </div>
-      </div>
-
-      <div class="mentor__form-field">
-        <span class="mentor__label">Certificates</span>
-        <div class="mentor__control-wrapper">
-          <textarea
-            id="about"
-            rows="5"
-            class="mentor__control"
-            formControlName="certificates"
-          >
-          </textarea>
-        </div>
-      </div>
-
-      <div class="mentor__form-field">
-        <span class="mentor__label">I can work with a group</span>
-        <div class="mentor__control-wrapper">
-          <mat-slide-toggle
-            [checked]="groupWork"
-            (toggleChange)="OnGroupWork()"
-            formControlName="group"
-          >
-          </mat-slide-toggle>
-        </div>
-      </div>
-
-      <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach"
-          >Languages <span class="star">*</span></span
-        >
+        <!-- <span class="mentor__label mentor__teach">Certificates</span> -->
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.CER" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [required]="true" [formControl]="langForm" multiple>
-              <mat-option *ngFor="let item of langList" [value]="langForm">{{
-                item
-              }}</mat-option>
+            <mat-select [formControl]="certificatesForm" multiple>
+              <mat-option *ngFor="let certificate of certificates" [value]="certificate">
+                {{ certificate.name }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label">Work</span>
-        <div class="mentor__control-wrapper" [ngClass]="checkBox()">
-          <mat-checkbox formControlName="remotely">Remotely</mat-checkbox>
-          <mat-checkbox formControlName="offline">Offline</mat-checkbox>
+        <!-- <span class="mentor__label">I can work with a group</span> -->
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK" | translate }}</span>
+        <div class="mentor__control-wrapper" [ngClass]="checkBox(personal, group)">
+          <mat-checkbox formControlName="personal" #personal>Personal</mat-checkbox>
+          <mat-checkbox formControlName="group" #group>Group</mat-checkbox>
         </div>
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">Location</span>
+        <span class="mentor__label mentor__teach">
+          {{ "ACCOUNT.MENTOR.LANG" | translate }} <span class="star">*</span>
+        </span>
+
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
-            <mat-select [formControl]="locForm">
-              <mat-option *ngFor="let item of locList" [value]="locForm">{{
-                item
-              }}</mat-option>
+            <mat-select [required]="true" [formControl]="languagesForm" multiple>
+              <mat-option *ngFor="let item of languages" [value]="item">
+                {{ item }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
 
-      <button (click)="onBtnClick()" class="mentor__btn">Save Profile</button>
+      <div class="mentor__form-field">
+        <!-- <span class="mentor__label">Work</span> -->
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK1" | translate }}</span>
+        <div class="mentor__control-wrapper" [ngClass]="checkBox(online, offlineOut)">
+          <mat-checkbox formControlName="online" #online>Remotely</mat-checkbox>
+          <mat-checkbox formControlName="offlineOut" #offlineOut >Offline</mat-checkbox>
+        </div>
+      </div>
+
+      <div class="mentor__form-field">
+        <span class="mentor__label mentor__teach">{{ "ACCOUNT.MENTOR.LOCATION" | translate }}</span>
+        <div class="mentor__control-wrapper">
+          <mat-form-field>
+            <mat-label>Categories</mat-label>
+            <mat-select [formControl]="citiesForm" multiple>
+              <mat-option *ngFor="let city of cities" [value]="city">
+                {{ city.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button type="submit" class="mentor__btn">{{ "ACCOUNT.MENTEE.SAVE" | translate }}</button>
+      <button class="mentor__btn" (click)="onShowProfile($event)">{{ "ACCOUNT.MENTOR.VIEWM" | translate }}</button>
     </fieldset>
   </form>
-  <button class="mentor__btn">View Public Profile</button>
+
 </div>

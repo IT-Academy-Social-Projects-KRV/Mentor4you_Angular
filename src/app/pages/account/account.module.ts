@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { TranslateModule } from "@ngx-translate/core";
 
 import { AccountRoutingModule } from './account-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AccountMentorComponent } from './components/account-mentor/account-mentor.component';
 import { AccountMenteeComponent } from './components/account-mentee/account-mentee.component';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { MainSectionComponent } from './components/main-section/main-section.component';
 import { AccountComponent } from './account.component';
+import { TokenInterceptor } from 'src/app/core/interceptors/token.interceptor';
 
 const maskConfigFunction: () => Partial<IConfig> = () => {
   return {
@@ -23,6 +28,8 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     AccountComponent,
     AccountMentorComponent,
     AccountMenteeComponent,
+    // AccountSettingsComponent,
+    MainSectionComponent
   ],
   imports: [
     SharedModule,
@@ -34,7 +41,15 @@ const maskConfigFunction: () => Partial<IConfig> = () => {
     ReactiveFormsModule,
     NgxMaskModule.forRoot(maskConfigFunction),
     AccountRoutingModule,
-    MatChipsModule
-  ]
+    MatChipsModule,
+    ImageCropperModule,
+    HttpClientModule,
+    TranslateModule
+  ],
+  providers: [ {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }],
 })
 export class AccountModule {}

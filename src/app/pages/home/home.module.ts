@@ -9,6 +9,7 @@ import { InvitationComponent } from './components/invitation/invitation.componen
 import { MentorCardComponent } from 'src/app/shared/sharedComponents/mentor-card/mentor-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -18,11 +19,12 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     InvitationComponent,
     MentorCardComponent,
   ],
-  imports: [
-    SharedModule, 
-    HomeRoutingModule, 
-    IvyCarouselModule
-  ],
+    imports: [
+        SharedModule,
+        HomeRoutingModule,
+        IvyCarouselModule,
+        TranslateModule
+    ],
   exports: [],
   providers: []
 })

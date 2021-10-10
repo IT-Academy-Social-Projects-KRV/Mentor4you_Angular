@@ -6,6 +6,7 @@ import { ChangeRoleComponent } from './change-role/change-role.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -15,9 +16,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     DeleteAccountComponent,
     ChangePasswordComponent,
   ],
-  imports: [
-    SharedModule,
-    SettingsRoutingModule,
-  ],
+    imports: [
+        SharedModule,
+        SettingsRoutingModule,
+        TranslateModule,
+    ],
 })
 export class SettingsModule {}

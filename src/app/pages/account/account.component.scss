@@ -15,6 +15,9 @@
   height: 90px;
   border-radius: 50%;
   cursor: default !important;
+  img {
+    border-radius: 100%;
+  }
 }
 
 .mentor-account {
@@ -62,7 +65,7 @@
 
   &__avatar-upload {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     background: $white;
     box-shadow: 1px 1px 5px 2px $lightgray;
@@ -80,25 +83,55 @@
     user-select: none;
 
     span {
-      font-size: 22px;
+      font-size: 16px;
       font-weight: regular;
+      position: absolute;
+    }
+    
+  }
+
+  &__submit-section {
+    button:hover{
+     color: white;
     }
   }
 
   &__upload-section {
     display: flex;
-    align-items: start;
-
+    align-items: flex-start;
     input {
       display: none;
     }
+    p.infoBlock {
+        font-size: 1.6rem;
+        color: $darkblue;
+    }
   }
+  
 
-  &__upload-field {
-    width: 400px;
-    border: 1px solid $lightgray;
-    padding: 10px 60px 10px 10px;
-    color: $grey;
+  &__cropper-inside{
+    text-align: center;
+    max-width: 35vw; 
+    ::ng-deep image-cropper {
+      div {
+        img {
+          width: 100%; 
+        }
+      }
+    }
+    
+    button{
+      background-color: whitesmoke;
+      padding: 15px;
+      border: 1px solid $fuschia100;
+      border-radius: 15px;
+      color:black;
+      margin-top: 10px;
+    }
+    button:hover{
+      background-color: $fuschia100;
+      color: white;
+    }
   }
 
   &__upload-btn {
@@ -113,10 +146,15 @@
     &:focus {
       background: $fuschia80;
     }
+    &:hover:disabled, &:focus:disabled{
+      background: gainsboro;
+    }
   }
 }
 
 #output {
+  // width: 70px;
+  background: $white;
   width: 90px;
 }
 
@@ -125,6 +163,24 @@
   padding: 50px;
   background: $white;
   box-shadow: 1px 1px 5px 2px $lightgray;
+}
+
+.edit-btn {
+  display: block;
+  margin: 45px auto 0;
+  width: 335px;
+  border-radius: 15px;
+  padding: 15px 5px;
+  border-color: $black;
+  background-color: $white;
+  color: $fuschia100;
+  border: 1px solid $fuschia100;
+  transition: 0.3s ease-in-out;
+  
+  &:hover {
+    color: $white;
+    background-color: $fuschia100;
+  }
 }
 
 ::ng-deep {
@@ -210,4 +266,12 @@
 
 ::ng-deep .mat-simple-snackbar {
   color: white !important;
+}
+::ng-deep snack-bar-container.danger{
+  background-color: $red;
+  .mat-simple-snackbar-action{
+    button {
+      color: black;
+    }
+  }
 }

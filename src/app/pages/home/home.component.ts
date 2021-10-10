@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
+
+import { MentorCard } from 'src/app/core/interfaces';
 import { SigninService } from 'src/app/auth/signin/signin.service';
-import { Mentor } from 'src/app/core/interfaces';
+// import { Mentor } from 'src/app/core/interfaces';
 import { MentorService } from 'src/app/core/services';
 
 @Component({
@@ -9,8 +13,9 @@ import { MentorService } from 'src/app/core/services';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  mentors: Mentor[] = [];
+export class HomeComponent implements OnInit, OnDestroy {
+  mentors: MentorCard[] = [];
+  subscriptionMentors!: Subscription;
 
   constructor(
     private mentorService: MentorService,
@@ -19,14 +24,22 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.mentorService.getMentors().subscribe(
-      (mentors: Mentor[]) => this.mentors = mentors
-      );
-    this.signinService.token$.subscribe(value =>{
-    })
+    this.subscriptionMentors = this.mentorService.getAllMentors().subscribe(
+      (mentors: MentorCard[]) => this.mentors = mentors
+    )
+
+    // console.log('Hello !!!!!!!!!!!!');
+
+    // this.signinService.token$.subscribe(value =>{
+    // })
+    // console.log(this.signinService.isAuth())
   }
 
   goTo(path: string): void {
     this.router.navigateByUrl(path);
   }
-}
+
+  ngOnDestroy(): void {
+    this.subscriptionMentors.unsubscribe();
+  }
+ }

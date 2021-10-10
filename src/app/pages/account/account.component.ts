@@ -1,40 +1,64 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SigninService } from 'src/app/auth/signin/signin.service';
+import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
+import { Subscription } from 'rxjs';
 
+import { MentorProfile, MentorService } from 'src/app/core';
+import { SigninService } from 'src/app/auth/signin/signin.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
 })
-export class AccountComponent implements OnInit {
-  // mentorData: any = {};
+export class AccountComponent implements OnInit, OnDestroy {
+  currentRole = localStorage.getItem('role');
+  isMentorForm: boolean = false;
   isAccountActivated!: boolean;
   isImage: boolean = false;
-  currentRole: string = '';
-  textFieldUpload: string = 'Upload you photo here';
   selectedFile!: File;
+  mentorSubscription!: Subscription;
+  avatarSubscription!: Subscription;
+  mentor?: MentorProfile;
+  textFieldUpload: string = 'Upload you photo here (<4 MB)';
+  imageChangedEvent: any = '';
+  croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+  avatarUrl: string = 'http://localhost:8080/api/users/uploadAvatar';
+  fileC: any;
+  myFile!: File;
+  newName: any = "";
+  imgType: any = '';
+  isBtnDisabled: boolean = true;
 
   constructor(
-    public auth: SigninService,
-    private http: HttpClient,
-    private _snackBar: MatSnackBar
-    ) {}
-
+    private http: HttpClient, 
+    private _snackBar: MatSnackBar,
+    private mentorService: MentorService,
+    private auth: SigninService
+  ) {}
+  
   get isAuth() {
     return this.auth.isAuth();
   }
 
   ngOnInit(): void {
-    this.isAccountActivated = true;
+    this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
+      (mentor: MentorProfile) => {
+        this.mentor = mentor;
+        this.isAccountActivated = mentor.isAccountActivated;
+      }
+    );
   }
 
   setMentorData(mentorData: any): void {
     this.isAccountActivated = mentorData.isAccountActivated;
-    this.insertBase64Image(mentorData.avatar);
+    this.imageCropped(mentorData.avatar);
+  }
+
+  viewMentorData(mentorData: any): void {
+    this.mentor = mentorData;
   }
 
   toggleAccountActivate(): void {
@@ -43,77 +67,73 @@ export class AccountComponent implements OnInit {
 
   toggleRole(button: HTMLElement): void {
     if (button.innerText === 'Move to Mentor Account') {
-      button.innerText = 'Move to Mentee Account';
       this.currentRole = 'mentor';
+      button.innerText = 'Move to Mentee Account';
     } else {
-      button.innerText = 'Move to Mentor Account';
       this.currentRole = 'mentee';
+      button.innerText = 'Move to Mentor Account';
     }
   }
+
 
   onFileSelected(event: any): void {
     this.selectedFile = <File>event.target.files[0];
-
-    if (!this.selectedFile.type.match('image/*')) {
+    
+    let ext = this.selectedFile.name.substring(this.selectedFile.name.lastIndexOf('.') + 1).toLowerCase();
+    
+    let sizeInKB = Math.round(this.selectedFile.size/1024);
+  
+    if (ext != 'png' && ext != 'jpg' && ext != 'jpeg') {
       this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
-    }
+    } 
 
-    this.isImage = true;
+    if (sizeInKB >= 4096){
+      this.openSnackBar('Size of picture should be less than 4MB', 'Got it', 'danger');
+      return;
+    }
 
     this.textFieldUpload =
-      this.selectedFile.name.length > 25
-        ? this.selectedFile.name.slice(0, 25) + '...'
+      this.selectedFile.name.length > 35
+        ? this.selectedFile.name.slice(0, 35) + '...'
         : this.selectedFile.name;
 
-    this.renderImage(this.selectedFile);
+    this.newName = this.selectedFile.name;
+    this.imgType = this.selectedFile.type;
+    this.imageChangedEvent = event;
+    this.selectedFile = this.imageChangedEvent;
+    this.isImage = true;
+    
+  }
+   
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    this.fileC = base64ToFile(this.croppedImage);
+    this.myFile = new File([this.fileC], this.newName, {lastModified:  Date.now(), type:  this.imgType});
   }
 
-  renderImage(img: any): void {
-    const reader = new FileReader();
-
-    reader.onload = ((theFile) => (e: any) => {
-      this.insertBase64Image(e.target.result);
-    })(img);
-
-    reader.readAsDataURL(img);
+  imgReady() {
+    this.isImage = false;
+    this.isBtnDisabled = false;
   }
-
-  insertBase64Image(img: string): void {
-    if (document.querySelector('.thumb')) {
-      document.querySelector('.thumb')?.remove();
-    }
-
-    const span = document.createElement('span');
-    span.innerHTML = [
-      '<img class="thumb" title="',
-      '" src="',
-      img,
-      '" />',
-    ].join('');
-    document.getElementById('output')?.insertBefore(span, null);
-  }
-
+ 
   onUpload(): void {
-    const file = this.selectedFile;
+    const file = this.myFile;
     const fd = new FormData();
 
-    if (!file || !file.type.match('image/*')) {
+    if (!file) {
       this.openSnackBar('Please select a photo', 'Got it', 'danger');
       return;
     }
 
-    // --- send to server
-    fd.append('image', file, file.name);
-    this.http
-      .post('api/mentors', fd, {
-        // reportProgress: true,
-        observe: 'events',
-      })
-      .subscribe((events) => {
-        this.textFieldUpload = 'Your photo uploaded successfully!';
-        console.log('Server response: ', events);
-      });
+    fd.append('file', file);
+   
+  this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(res => {
+    console.log('responce', res);
+  }, error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
+  () => this.textFieldUpload = 'Your photo uploaded successfully!'
+  );
+
   }
 
   openSnackBar(message: string, action: string, className: string) {
@@ -121,5 +141,9 @@ export class AccountComponent implements OnInit {
       duration: 5000,
       panelClass: className,
     });
+  }
+
+  ngOnDestroy(): void {
+    this.mentorSubscription.unsubscribe();
   }
 }
