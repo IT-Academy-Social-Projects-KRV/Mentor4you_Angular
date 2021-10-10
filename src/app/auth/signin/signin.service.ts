@@ -49,9 +49,9 @@ export class SigninService {
     this.token$.next(token);
   }
 
-  get getToken():any{
-    return localStorage.getItem('token');
-  }
+  // get getToken():any{
+  //   return localStorage.getItem('token');
+  // }
   //
   // get getToken0():any{
   //   return this.token$.subscribe(value =>{
@@ -59,11 +59,9 @@ export class SigninService {
   // }
 
   public isAuth(): boolean {
-    if(localStorage.getItem('token'))
-    {
-      if(!this.isExpToken(this.token$.value))
-      {
-        return true
+    if(localStorage.getItem('token')){
+      if(!this.isExpToken(this.token$.value)){
+      return true
       }else return false
     }
     else return false
@@ -72,7 +70,7 @@ export class SigninService {
 
   logout(){
     this.http.put('http://localhost:8080/api/auth/logout',{}).subscribe(value=>{})
-    this.setTokenO(null);
+    // this.setTokenO(null);
     localStorage.clear();
   }
 

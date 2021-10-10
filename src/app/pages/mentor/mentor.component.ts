@@ -20,7 +20,6 @@ export class MentorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscribtion = this.menrotService.getAllMentors().subscribe(
       mentors => {
-        // console.log('m', mentors);
         this.mentors = mentors
       }
     )

@@ -27,12 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscriptionMentors = this.mentorService.getAllMentors().subscribe(
       (mentors: MentorCard[]) => this.mentors = mentors
     )
-
-    // console.log('Hello !!!!!!!!!!!!');
-
-    // this.signinService.token$.subscribe(value =>{
-    // })
-    // console.log(this.signinService.isAuth())
   }
 
   goTo(path: string): void {

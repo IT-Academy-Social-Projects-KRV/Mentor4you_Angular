@@ -27,7 +27,6 @@ export class PageNotFoundComponent implements OnInit, DoCheck {
 			this.status = param.status
 			this.error = param.error
 			this.path = param.path
-			// console.log(status.length)
 		})
 	}
 		ngDoCheck(){
