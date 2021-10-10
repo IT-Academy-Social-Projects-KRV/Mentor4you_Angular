@@ -6,7 +6,6 @@ import {MentorRoutingModule} from './mentor-routing.module';
 import {SharedModule} from 'src/app/shared/shared.module';
 import {MentorComponent} from './mentor.component';
 import {MentorTopComponent} from './components/mentor-top/mentor-top.component';
-import { MentorsCardsComponent } from './components/mentors-cards/mentors-cards.component';
 import {TranslateModule} from "@ngx-translate/core";
 
 
@@ -14,7 +13,6 @@ import {TranslateModule} from "@ngx-translate/core";
   declarations: [
     MentorComponent,
     MentorTopComponent,
-    MentorsCardsComponent,
 
   ],
     imports: [
