@@ -13,9 +13,32 @@
           <p class="mentor-card__category"><span>{{item.foundCategory}}</span></p>
           <p class="mentor-card__category" *ngIf="item.rate !== 0 && item.currency !== null">
             <span>{{item.rate}} {{item.currency}}</span></p>
-          <p class="mentor-card__rating">
-            <img *ngFor="let star of stars" src="assets/images/star.svg" alt="error">
-<!--            <span class="material-icons-outlined">star</span>-->
+          <p class="mentor-card__rating" [ngSwitch]="item.rating">
+            <ng-template ngSwitchCase="1">
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="2">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="3">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="4">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
+            <ng-template ngSwitchCase="5">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </ng-template>
           </p>
         </div>
         <div class="mentor-card__btns btns">

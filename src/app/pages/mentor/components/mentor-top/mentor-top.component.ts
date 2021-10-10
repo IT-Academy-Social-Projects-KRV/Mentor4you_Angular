@@ -34,6 +34,7 @@ export class MentorTopComponent implements OnInit {
 
   RemoveCategory = ($event: any): void => {
     this.selectedCategories = this.selectedCategories.filter(categories => categories.id !== $event.value.id);
+    this.getMentors();
   };
 
   AddCity = ($event: any): void => {
@@ -42,6 +43,7 @@ export class MentorTopComponent implements OnInit {
 
   RemoveCity = ($event: any): void => {
     this.selectedCities = this.selectedCities.filter(cities => cities.id !== $event.value.id);
+    this.getMentors();
   };
 
   AddLanguage = ($event: any): void => {
@@ -50,6 +52,7 @@ export class MentorTopComponent implements OnInit {
 
   RemoveLanguage = ($event: any): void => {
     this.selectedLanguages = this.selectedLanguages.filter(languages => languages.id !== $event.value.id);
+    this.getMentors();
   };
 
   ChangeMin(event: any) {
@@ -72,12 +75,12 @@ export class MentorTopComponent implements OnInit {
     this.dropList = !this.dropList;
   };
 
-  // getMentors() {
-  //   this.mentorFilter.getMentors(12).subscribe(res => {
-  //     this.response = res;
-  //     this.sendMentors.emit(this.response);
-  //   })
-  // };
+  getMentors() {
+    this.mentorFilter.getMentors(12).subscribe(res => {
+      this.response = res;
+      this.sendMentors.emit(this.response);
+    })
+  };
 
   getFilteredMentors() {
     this.mentorFilter.FilteredMentorData
