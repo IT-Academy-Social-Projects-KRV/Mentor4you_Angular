@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-mentor-add-review-section',
   templateUrl: './mentor-add-review-section.component.html',
@@ -13,24 +13,34 @@ export class MentorAddREviewSectionComponent implements OnInit {
   stars = [1, 2, 3, 4, 5];
   rating = 0;
   hoverState = 0;
-  constructor() { }
+  showSpiner: boolean = false;
+  constructor(
+    private snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit(): void { 
      this.formAddReview = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      textarea: new FormControl('', Validators.required),
+      textarea: new FormControl('',),
     })
   }
   addFocus() { }
 
   submit() {
-    console.log(this.formAddReview.get('email'));
-    this.formAddReview.reset();
-    this.rating = 0
-    // console.log(this.formAddReview['controls'].name);
     
-
+    if (this.formAddReview.get('textarea')?.value.trim()){
+      console.log(this.formAddReview.get('email'));
+      this.snackBar.open('successful');
+      this.showSpiner = true;
+      setTimeout(() =>{
+        this.showSpiner = false
+        this.formAddReview.reset();
+        this.rating = 0;
+        
+      },3000)
+      
+      
+      
+    }
   }
   btnClick() {
     this.btnCheck = !this.btnCheck;

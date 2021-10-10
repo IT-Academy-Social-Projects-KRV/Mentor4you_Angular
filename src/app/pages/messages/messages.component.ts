@@ -29,8 +29,8 @@ export class MessagesComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.routerNavigate.params.subscribe((e)=>this.link=e.id)
-      this.chat.getAllChats().subscribe(allDialog=>{this.chats = allDialog;})
+    this.routerNavigate.params.subscribe((e)=>this.link=e.id);
+      this.chat.getAllChats().subscribe(allDialog=>{this.chats = allDialog});
     this.routerNavigate.params.subscribe(
       (e)=>this.chat.createChat(e.id).subscribe(userInfo=>{
         this.userBeck = userInfo;

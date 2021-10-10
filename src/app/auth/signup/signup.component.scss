@@ -542,22 +542,11 @@ form {
   }
 }
 
-snack-bar-container {}
-
-:host(.cdk-overlay-pane) {
-  width: 20px;
-}
-
-// :host  {
-//   background-color: #007BB5 !important;
-//   color: red !important;
-//   border: 11px solid red;
-// }
 
 ::ng-deep .cdk-overlay-pane {
-  top: 50%;
 
-  position: absolute !important;
+
+  
   snack-bar-container{
 
   } 

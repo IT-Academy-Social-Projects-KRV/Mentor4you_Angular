@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SigninService } from 'src/app/auth/signin/signin.service';
 
 @Component({
   selector: 'app-mentor-details',
@@ -7,11 +8,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./mentor-details.component.scss']
 })
 export class MentorDetailsComponent implements OnInit {
-
-  constructor(routerParam: ActivatedRoute) { }
+  constructor(
+    routerParam: ActivatedRoute,
+    public isAuth: SigninService) { }
 
   ngOnInit(): void {
-    // console.log()
+    console.log(this.isAuth.isAuth())
   }
 
 }

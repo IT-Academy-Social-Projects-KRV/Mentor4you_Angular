@@ -1,3 +1,3 @@
 <app-main-section></app-main-section>
-<app-mentor-add-review-section></app-mentor-add-review-section>
+<app-mentor-add-review-section *ngIf="isAuth.isAuth()"></app-mentor-add-review-section>
 <app-mentor-reviews></app-mentor-reviews>
