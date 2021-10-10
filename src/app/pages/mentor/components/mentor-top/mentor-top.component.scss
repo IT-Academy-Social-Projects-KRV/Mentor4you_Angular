@@ -1,28 +1,77 @@
 @import "variables";
-form {
+
+.container {
+
+  background-color: #F4F4F4;
+}
+
+.form {
+  width: 100%;
   margin: 40px auto;
   display: flex;
-  justify-content: space-between;
-  max-width: 1140px;
-  width: 100%;
-  height: 50px;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
 
   .categories {
-    max-width: 250px;
     width: 100%;
-    max-height: 50px;
+    height: 50px;
+
+    ::ng-deep .ng-placeholder {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $black;
+      width: 100%;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    ::ng-deep.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+      margin-left: 95px;
+    }
+
   }
 
   .languages {
-    max-width: 240px;
     width: 100%;
-    max-height: 50px;
+    height: 50px;
+
+    ::ng-deep .ng-placeholder {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $black;
+      width: 100%;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    ::ng-deep.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+      margin-left: 85px;
+    }
+
   }
 
   .city {
-    max-width: 250px;
     width: 100%;
-    max-height: 50px;
+    height: 50px;
+
+    ::ng-deep .ng-placeholder {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $black;
+      width: 100%;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    ::ng-deep.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+      margin-left: 95px;
+    }
+
+  }
+
+  .city, .languages, .categories, .showList {
+    margin-right: 5px;
   }
 }
 
@@ -35,26 +84,61 @@ form {
 .showList {
   display: flex;
   align-items: center;
-  margin-top: 1px;
-  border-bottom: 1px solid grey;
+  justify-content: center;
   max-width: 250px;
   width: 100%;
-  max-height: 50px;
-  height: 100%;
+  height: 51.5px;
   text-align: center;
   padding: 16px;
-  }
+  border: 1.5px solid $darkblue;
+  border-radius: 10px;
+  background-color: $fuschia40;
+  color: $black;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+
   span {
-    margin-top: 10px;
+    margin-top: 8px;
   }
+}
+
 
 ::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
-  background: linear-gradient(#59C173, #1E9600);
+  background: $fuschia80;
 }
 
 ::ng-deep .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
-  background: linear-gradient(#59C173, #1E9600);
+  background: $fuschia80;
 }
+
+::ng-deep .ng-select .ng-select-container {
+  align-items: center;
+  border: 1px solid $darkblue;
+  border-radius: 10px;
+  background-color: $fuschia40;
+}
+
+::ng-deep.ng-select.ng-select-multiple .ng-select-container.ng-has-value .ng-arrow-wrapper {
+  border-top: 0 solid transparent;
+}
+
+::ng-deep .ng-select .ng-select-container:after {
+  border-bottom: none;
+}
+
+::ng-deep .ng-dropdown-panel.ng-select-bottom {
+  margin-top: 5px;
+}
+
+::ng-deep .ng-select .ng-select-container .ng-value-container .ng-input > input {
+  text-align: center;
+  color: #ffffff;
+}
+
+//::ng-deep.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value{
+//  margin-left: 95px;
+//}
 
 
 //input type=range
@@ -63,12 +147,13 @@ form {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  background-color: #F6F9FE;
   z-index: 5;
+
   #rangeSlider {
+    background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 2px 2px 2px grey;
-    margin-top: 10px;
+    margin-top: 3px;
     height: 80px;
     animation: fadeIn 3s;
   }
@@ -93,13 +178,13 @@ form {
   }
 
   .number-group {
-    margin-top: 5px;
+    margin-top: 15px;
+    margin-right: 5px;
     flex: 1 0 auto;
     text-align: center;
-    height: 25px;
+    height: 30px;
     font-weight: 300;
-    font-size: 13px;
-    color: black;
+    font-size: 15px;
 
     .minInput {
       margin-right: 5px;
@@ -108,13 +193,13 @@ form {
     #input-min {
       outline: none;
       width: 60px;
-      margin-right: 3px;
+      margin-right: 10px;
     }
 
     #input-max {
       outline: none;
       width: 60px;
-      margin-left: 3px;
+      margin-left: 10px;
     }
 
 
@@ -123,7 +208,7 @@ form {
       height: 30px;
       text-align: center;
       color: #ffffff;
-      background: linear-gradient(#59C173, #1E9600);
+      background: $fuschia80;
       border: 0;
       border-radius: 5px;
 
@@ -143,7 +228,7 @@ form {
 
       &:invalid,
       &:out-of-range {
-        border: 2px solid green;
+        border: 2px solid $fuschia80;
       }
     }
   }
@@ -180,7 +265,7 @@ form {
         cursor: pointer;
         // animate: .2s;
         animation: .2s;
-        background: linear-gradient(#59C173, #1E9600);
+        background: $fuschia80;
         border-radius: 1px;
         box-shadow: none;
         border: 0;
@@ -191,13 +276,13 @@ form {
         position: relative;
         // box-shadow: 0px 0px 0px #000;
         // border: 1px solid #2497e3;
-        height: 10px;
-        width: 10px;
+        height: 15px;
+        width: 15px;
         border-radius: 50%;
-        background: linear-gradient(#59C173, #1E9600);
+        background: $fuschia80;
         cursor: pointer;
         -webkit-appearance: none;
-        margin-top: -4px;
+        margin-top: -6px;
       }
 
       &::-moz-range-track {
@@ -206,7 +291,7 @@ form {
         cursor: pointer;
         // animate: .2s;
         animation: .2s;
-        background: linear-gradient(#59C173, #1E9600);
+        background: $fuschia80;
         border-radius: 1px;
         box-shadow: none;
         border: 0;
@@ -220,7 +305,7 @@ form {
         height: 18px;
         width: 18px;
         border-radius: 50%;
-        background: linear-gradient(#59C173, #1E9600);
+        background: $fuschia80;
         cursor: pointer;
       }
 
@@ -237,7 +322,7 @@ form {
 
       &::-ms-fill-lower,
       &::-ms-fill-upper {
-        background: linear-gradient(#59C173, #1E9600);
+        background: $fuschia80;
         border-radius: 1px;
         box-shadow: none;
         border: 0;
@@ -251,7 +336,7 @@ form {
         height: 18px;
         width: 18px;
         border-radius: 50%;
-        background: linear-gradient(#59C173, #1E9600);
+        background: $fuschia80;
         cursor: pointer;
       }
     }
@@ -259,19 +344,30 @@ form {
 }
 
 .Submit-button {
+  margin-left: 5px;
+  border: none;
   height: 50px;
   text-align: center;
-  margin-top: 15px;
 
   .btn {
-    background: linear-gradient(#59C173, #1E9600);
-    border: none;
-    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $darkblue;
+    width: 200px;
+    height: 51.5px;
+    border: 2px solid $darkblue;
     border-radius: 10px;
+    cursor: pointer;
     outline: none;
+    p{
+      margin-top: 10px;
+    }
 
     &:hover {
-      box-shadow: 1px 1px 1px 1px darkblue;
+      -webkit-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+      -moz-box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+      box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
     }
   }
 }
+

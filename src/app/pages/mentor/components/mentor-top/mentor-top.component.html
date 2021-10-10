@@ -1,64 +1,66 @@
-<form #myForm="ngForm" novalidate (ngSubmit)="onSubmit()">
-  <div class="categories">
-    <ng-select class="custom"
-               [items]="categories"
-               bindLabel="name"
-               bindValue="id"
-               placeholder="{{ 'MENTOR.CATEGORY' | translate }}"
-               [multiple]="true"
-               [maxSelectedItems]="2"
-               (add)="AddCategory($event)"
-               (remove)="RemoveCategory($event)">
-    </ng-select>
-  </div>
-  <div class="languages">
-    <ng-select class="custom"
-               [items]="languages"
-               bindLabel="name"
-               bindValue="id"
-               placeholder="{{ 'MENTOR.LANGUAGE' | translate }}"
-               [multiple]="true"
-               [maxSelectedItems]="2"
-               (add)="AddLanguage($event)"
-               (remove)="RemoveCity($event)">
-    </ng-select>
-  </div>
-  <div class="city">
-    <ng-select class="custom"
-               [items]="city"
-               bindLabel="name"
-               placeholder="{{ 'MENTOR.CITY' | translate }}"
-               [multiple]="true"
-               [maxSelectedItems]="2"
-               (add)="AddCity($event)"
-               (remove)="RemoveCity($event)">
-    </ng-select>
-  </div>
-  <div class="dropButton">
-    <div class="showList" (click)="showSlider()"><span>{{ 'MENTOR.RATE' | translate }}</span></div>
-  <ng-container class="dropList" *ngIf="dropList">
-    <div class="range-slider">
-        <div id="rangeSlider" class="range-slider">
-          <div class="number-group">
-            <label for="input-min" class="minInput">From</label>
-            <input id="input-min" class="number-input" type="number" [value]="this.minNum" min="1" max="1000" (input)="ChangeMin($event)" (change)="setRangeSlider()"/>
-            <label for="input-max">to</label>
-            <input id="input-max" class="number-input" type="number" [value]="this.maxNum" min="1" max="1000" (input)="ChangeMax($event)" (change)="setRangeSlider()"/>
-          </div>
-          <div class="range-group">
-            <input class="range-input" [value]="this.minNum" min="1" max="1000" step="1" type="range"
-                   (input)="ChangeMin($event)" (change)="setRangeSlider()"/>
-            <input class="range-input" [value]="this.maxNum" min="1" max="1000" step="1" type="range"
-                   (input)="ChangeMax($event)" (change)="setRangeSlider()"/>
+<div class="container">
+  <div class="form">
+    <div class="categories">
+      <ng-select class="custom"
+                 [items]="categories"
+                 bindLabel="name"
+                 bindValue="id"
+                 placeholder="Choose category"
+                 [multiple]="true"
+                 [clearable]="false"
+                 [maxSelectedItems]="1"
+                 (add)="AddCategory($event)"
+                 (remove)="RemoveCategory($event)">
+      </ng-select>
+    </div>
+    <div class="languages">
+      <ng-select class="custom"
+                 [items]="languages"
+                 bindLabel="name"
+                 bindValue="id"
+                 placeholder="Choose language"
+                 [multiple]="true"
+                 [clearable]="false"
+                 [maxSelectedItems]="1"
+                 (add)="AddLanguage($event)"
+                 (remove)="RemoveCity($event)">
+      </ng-select>
+    </div>
+    <div class="city">
+      <ng-select class="custom"
+                 [items]="cities"
+                 bindLabel="name"
+                 placeholder="Choose city"
+                 [multiple]="true"
+                 [clearable]="false"
+                 [maxSelectedItems]="1"
+                 (add)="AddCity($event)"
+                 (remove)="RemoveCity($event)">
+      </ng-select>
+    </div>
+    <div class="dropButton">
+      <div class="showList" (click)="showSlider()"><span>Choose Rate</span></div>
+      <div class="dropList" *ngIf="dropList">
+        <div class="range-slider">
+          <div id="rangeSlider" class="range-slider">
+            <div class="number-group">
+              <input id="input-min" class="number-input" type="number" [value]="this.minPrice" min="1" max="1000"
+                     (input)="ChangeMin($event)" (change)="setRangeSlider()"/>
+              <input id="input-max" class="number-input" type="number" [value]="maxPrice" min="1" max="1000"
+                     (input)="ChangeMax($event)" (change)="setRangeSlider()"/>
+            </div>
+            <div class="range-group">
+              <input class="range-input" [value]="minPrice" min="1" max="1000" step="1" type="range"
+                     (input)="ChangeMin($event)" (change)="setRangeSlider()"/>
+              <input class="range-input" [value]="maxPrice" min="1" max="1000" step="1" type="range"
+                     (input)="ChangeMax($event)" (change)="setRangeSlider()"/>
+            </div>
           </div>
         </div>
+      </div>
     </div>
-  </ng-container>
+    <div class="Submit-button">
+      <button type="submit" class="btn" (click)="getFilteredMentors()"><p>Search</p></button>
+    </div>
   </div>
-  <div class="Submit-button">
-    <button type="submit" class="btn" (click)="getMentorData()">{{ 'MENTOR.SEARCH' | translate }}</button>
-  </div>
-</form>
-<!--<div>Имя: {{myForm.value.name}}</div>-->
-<!--<div>Email: {{myForm.value.email}}</div>`-->
-
+</div>
