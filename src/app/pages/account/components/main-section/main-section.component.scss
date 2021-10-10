@@ -2,9 +2,9 @@
 
 .main-section {
   font-family: Roboto, sans-serif;
+  width: 97%;
   height: 350px;
   padding: 45px;
-  width: 97%;
   box-shadow: 1px 1px 5px 2px #dedede;
 
   .image-wrap {
@@ -15,10 +15,6 @@
     overflow: hidden;
     background-color: $lightgreen;
   }
-  //   margin-top: 30px;
-  // border: .5px solid $green;
-  // border-radius: 6px;
-  // margin: 30px auto 0 auto;
 
   .image {
     position: absolute;

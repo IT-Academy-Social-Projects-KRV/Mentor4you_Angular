@@ -1,8 +1,6 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {categories, city, languages} from "./Selected_options";
-import {MentorsFilter} from "./MentorsFilter";
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {MentorTopService} from "./mentor-top.service";
-
+import {SmallMentorCards} from "./SmallMentorCards";
 
 @Component({
   selector: 'app-mentor-top',
@@ -10,95 +8,106 @@ import {MentorTopService} from "./mentor-top.service";
   styleUrls: ['./mentor-top.component.scss']
 })
 
-
 export class MentorTopComponent implements OnInit {
-  categories = categories;
-  languages = languages;
-  city = city;
-  minNum: number = 1;
-  maxNum: number = 1000;
-  selectedLanguages: any[] = [];
-  selectedCategories: any[] = [];
-  selectedCity: any[] = [];
-  dropList: boolean = true;
-  mentorDataFilter: any;
+
+  @Output() public sendMentors: EventEmitter<any> = new EventEmitter();
+  @Input()  public response?: SmallMentorCards[];
 
 
-  @ViewChild('showDiv') showDiv!: ElementRef;
-  @ViewChild('rangeSlider') rangeSlider!: ElementRef;
+  public categories: any[] = [];
+  public languages: any[] = [];
+  public cities: any[] = [];
+  public minPrice: number = 1;
+  public maxPrice: number = 1000;
+  public selectedLanguages: any[] = [];
+  public selectedCategories: any[] = [];
+  public selectedCities: any[] = [];
+  public dropList: boolean = true;
+  public star!: any[];
 
-
-  constructor(private mentorService: MentorTopService) {
-  }
-
-  ngOnInit(): void {
-
-    this.showSlider();
+  constructor(private mentorFilter: MentorTopService) {
   }
 
   AddCategory = ($event: any): void => {
     this.selectedCategories.push($event);
-    console.log($event)
-    console.log('After add Operation_Categories');
-    console.log(this.selectedCategories);
-  }
+  };
 
   RemoveCategory = ($event: any): void => {
-    console.log($event);
     this.selectedCategories = this.selectedCategories.filter(categories => categories.id !== $event.value.id);
-  }
+    this.getMentors();
+  };
 
   AddCity = ($event: any): void => {
-    this.selectedCity.push($event);
-    console.log('After add Operation_City');
-    console.log(this.selectedCity);
-  }
+    this.selectedCities.push($event);
+  };
 
   RemoveCity = ($event: any): void => {
-    console.log($event);
-    this.selectedCity = this.selectedCity.filter(cities => cities.id !== $event.value.id);
-  }
+    this.selectedCities = this.selectedCities.filter(cities => cities.id !== $event.value.id);
+    this.getMentors();
+  };
 
   AddLanguage = ($event: any): void => {
     this.selectedLanguages.push($event);
-    console.log('After add Operation_Language');
-    console.log(this.selectedLanguages);
-  }
+  };
 
   RemoveLanguage = ($event: any): void => {
-    console.log($event);
     this.selectedLanguages = this.selectedLanguages.filter(languages => languages.id !== $event.value.id);
-    this.selectedLanguages = [''];
-  }
-
+    this.getMentors();
+  };
 
   ChangeMin(event: any) {
-    this.minNum = event.target.value;
-  }
+    this.minPrice = event.target.value;
+  };
 
   ChangeMax(event: any) {
-    this.maxNum = event.target.value;
-  }
+    this.maxPrice = event.target.value;
+  };
 
   setRangeSlider() {
-    if (this.minNum > this.maxNum) {
-      let temp = this.maxNum;
-      this.maxNum = this.minNum;
-      this.minNum = temp;
+    if (this.minPrice > this.maxPrice) {
+      let temp = this.maxPrice;
+      this.maxPrice = this.minPrice;
+      this.minPrice = temp;
     }
-  }
-
-  onSubmit() {
-    let fields = new MentorsFilter(this.selectedCategories, this.selectedCity, this.selectedLanguages, this.minNum, this.maxNum)
-    this.mentorService.postConfig(fields);
-    console.log(fields)
-  }
-
-  getMentorData() {
-    this.mentorService.getMentorData().subscribe((data: any) => this.mentorDataFilter = data);
-  }
+  };
 
   showSlider() {
     this.dropList = !this.dropList;
+  };
+
+  getMentors() {
+    this.mentorFilter.getMentors(12).subscribe(res => {
+      this.response = res;
+      this.sendMentors.emit(this.response);
+    })
+  };
+
+  getFilteredMentors() {
+    this.mentorFilter.FilteredMentorData
+    (
+      this.selectedCategories[0],
+      this.selectedLanguages[0],
+      this.selectedCities[0],
+      this.minPrice,
+      this.maxPrice
+    ).subscribe(res => {
+      this.response = res;
+      this.sendMentors.emit(this.response);
+    })
+  };
+
+  getSelects() {
+    this.mentorFilter.getSelects().subscribe(res => {
+      this.cities = res.cityList;
+      this.languages = res.languagesList;
+      this.categories = res.categoriesList;
+    })
+  };
+
+  ngOnInit(): void {
+    // this.getMentors();
+    this.showSlider();
+    this.getSelects();
   }
 }
+

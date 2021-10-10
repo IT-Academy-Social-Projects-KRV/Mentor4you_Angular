@@ -18,6 +18,7 @@ export class TokenInterceptor implements HttpInterceptor {
     this.auth.token$.subscribe(value =>{
       token=value} )
     if(this.auth.isAuth())
+    // console.log('token ----- ', this.auth.getToken);
     {
       request = request.clone({
         setHeaders:{

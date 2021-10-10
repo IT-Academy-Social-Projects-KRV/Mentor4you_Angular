@@ -9,6 +9,9 @@
 
   .mainsection{
     margin: 0px auto!important;
+    .aside{
+      width: 200px;
+    }
     .aside,.content{
       background-color: white;
       @include border;
@@ -50,8 +53,6 @@
       }
 
     }
-
-
   }
 }
 

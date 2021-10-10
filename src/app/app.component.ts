@@ -2,6 +2,7 @@ import { Component, OnInit, DoCheck} from '@angular/core';
 import { Router } from '@angular/router';
 import {SigninService} from "./auth/signin/signin.service";
 import {TranslateService} from "@ngx-translate/core";
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class AppComponent implements OnInit, DoCheck{
   title = 'mentor4you';
   hiddenFooter: boolean = true;
+
   constructor(private auth: SigninService, private router: Router,public translate:TranslateService) {
 
   }
@@ -21,6 +23,8 @@ export class AppComponent implements OnInit, DoCheck{
       this.auth.setTokenO(potencialToken);
     }
     this.onHiddenFooter();
+
+    // localStorage.setItem('role', 'mentor');
   }
   onHiddenFooter() {
     if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' ) {
@@ -32,5 +36,4 @@ export class AppComponent implements OnInit, DoCheck{
   ngDoCheck() {
     this.onHiddenFooter();
   }
-
 }

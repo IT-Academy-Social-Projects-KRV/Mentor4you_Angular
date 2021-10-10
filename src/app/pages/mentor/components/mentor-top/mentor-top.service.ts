@@ -1,24 +1,36 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {MentorsFilter} from "./MentorsFilter";
+import {SmallMentorCards} from "./SmallMentorCards";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MentorTopService implements OnInit{
+
+export class MentorTopService {
 
   constructor(private http: HttpClient) {
   }
 
-  ngOnInit(): void {
+  staticURL = 'http://localhost:8080/';
 
-  }
+  getSelects() {
+    return this.http.get<any>(this.staticURL + 'api/searchMentor');
+  };
 
-  postConfig(mentor: MentorsFilter) {
-    this.http.post('', mentor)
-  }
+  getMentors(num: number) {
+    return this.http.get<SmallMentorCards[]>(this.staticURL + 'api/searchMentor/findMentorsBestRating/' + `${num}`);
+  };
 
-  getMentorData(){
-    return this.http.get('')
-  }
+  FilteredMentorData
+  (
+    selectedCategories: string[] = [' '],
+    selectedLanguages: string[] = [' '],
+    selectedCities: string[] = ['Online'],
+    minPrice: number,
+    maxPrice: number,
+  )
+  {
+    const queryParams = `/${selectedCities}/${selectedCategories}/${selectedLanguages}/${minPrice}/${maxPrice}`;
+    return this.http.get<SmallMentorCards[]>(this.staticURL + 'api/searchMentor/filterGetListSmallMentors' + queryParams);
+  };
 }

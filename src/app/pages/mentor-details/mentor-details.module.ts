@@ -10,13 +10,14 @@ import { MainSectionComponent } from './components/main-section/main-section.com
 import { MentorReviewsComponent } from './components/mentor-reviews/mentor-reviews.component';
 
 
-
 @NgModule({
   declarations: [
     MentorDetailsComponent,
     MentorAddREviewSectionComponent,
     AppStarRaitingComponent, 
-    MainSectionComponent, MentorReviewsComponent],
+    MainSectionComponent,
+    MentorReviewsComponent
+  ],
     
   imports: [
     SharedModule,

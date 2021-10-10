@@ -5,7 +5,7 @@
 }
 
 .content {
-  padding: 80px 50px;
+  padding: 80px 20px;
   background: $white;
   color: $black;
 }
@@ -83,8 +83,9 @@
     user-select: none;
 
     span {
-      font-size: 22px;
+      font-size: 16px;
       font-weight: regular;
+      position: absolute;
     }
     
   }
@@ -152,6 +153,8 @@
 }
 
 #output {
+  // width: 70px;
+  background: $white;
   width: 90px;
 }
 
@@ -160,6 +163,24 @@
   padding: 50px;
   background: $white;
   box-shadow: 1px 1px 5px 2px $lightgray;
+}
+
+.edit-btn {
+  display: block;
+  margin: 45px auto 0;
+  width: 335px;
+  border-radius: 15px;
+  padding: 15px 5px;
+  border-color: $black;
+  background-color: $white;
+  color: $fuschia100;
+  border: 1px solid $fuschia100;
+  transition: 0.3s ease-in-out;
+  
+  &:hover {
+    color: $white;
+    background-color: $fuschia100;
+  }
 }
 
 ::ng-deep {
