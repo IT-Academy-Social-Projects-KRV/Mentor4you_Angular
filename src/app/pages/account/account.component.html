@@ -10,9 +10,9 @@
           </mat-slide-toggle>
         </div>
 
-        <button class="mentor-account__btn" #button (click)="toggleRole(button)">
+        <!-- <button class="mentor-account__btn" #button (click)="toggleRole(button)">
           {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
-        </button>
+        </button> -->
       </div>
     </div>
 
@@ -37,11 +37,11 @@
     </div>
 
     <div [ngSwitch]="true">
-      <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
+      <div class="mentor" *ngSwitchCase="auth.isMentor">
         <app-account-mentor (setMentorData)="setMentorData($event)"></app-account-mentor>
       </div>
 
-      <div class="mentee" *ngSwitchCase="currentRole === 'mentee'">
+      <div class="mentee" *ngSwitchCase="auth.isMentee">
         <app-account-mentee></app-account-mentee>
       </div>
     </div>

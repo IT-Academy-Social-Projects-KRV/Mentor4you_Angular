@@ -15,7 +15,7 @@ export class SigninService {
     }
   error!:any
   public user: any = {}
-  private token:string|null = null;
+  private token: string | null = null;
   public token$ = new BehaviorSubject<any>(null);
 
   private url ='http://localhost:8080/api/auth/login'
@@ -69,6 +69,29 @@ export class SigninService {
     }).join(''));
 
     return JSON.parse(jsonPayload);
-};
+  }
+
+  getRole(){   
+    if(typeof this.token === "string"){
+      const role = this.parseJwt(this.token).role[0].authority;
+      localStorage.setItem('role', role)
+    }
+  }
+
+  get isMentor(){
+    return localStorage.getItem('role') === "MENTOR";
+  }
+
+  get isMentee(){
+    return localStorage.getItem('role') === "MENTEE";
+  }
+
+  get isModerator(){
+    return localStorage.getItem('role') === "MODERATOR";
+  }
+
+  get isAdmin(){
+    return localStorage.getItem('role') === "ADMIN";
+  }
 
 }

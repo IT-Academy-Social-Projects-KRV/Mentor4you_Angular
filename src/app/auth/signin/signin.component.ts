@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators,} from "@angular/forms";
 import {CookieService} from "ngx-cookie-service"
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SigninService} from "./signin.service";
+import { NotificationModalService } from 'src/app/core';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -11,7 +12,13 @@ import {SigninService} from "./signin.service";
 })
 export class SigninComponent implements OnInit{
   fullGroup!:FormGroup;
-  constructor(private http:SigninService,private router:Router) {}
+
+  constructor(
+    private http:SigninService,
+    private router:Router,
+    private notificationModalService: NotificationModalService,
+    private auth:SigninService
+    ) {}
 
   emailValue!:string
   passwordValue!:string
@@ -90,6 +97,15 @@ submitFrom(){
   let login = this.http.authRedirect(this.emailValue,this.passwordValue)
 
   login.subscribe(response=>{
+    this.auth.getRole();
+    switch (localStorage.getItem('role')){
+      case "MENTOR": 
+      this.notificationModalService.getMenteesRequests();
+      break;
+      case "MENTEE": 
+      this.notificationModalService.getMenteesResponces();
+      break;
+    }
 
     if(response)
     {

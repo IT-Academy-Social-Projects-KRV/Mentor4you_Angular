@@ -18,7 +18,11 @@ export class AccountComponent implements OnInit {
   textFieldUpload: string = 'Upload you photo here';
   selectedFile!: File;
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private auth:SigninService) {}
+  constructor(
+    public auth: SigninService,
+    private http: HttpClient,
+    private _snackBar: MatSnackBar
+    ) {}
 
   get isAuth() {
     return this.auth.isAuth();

@@ -6,6 +6,17 @@ export interface Mentor {
   rating?: number;
 }
 
+export interface MentorCooperation{
+  coopStatus: string;
+  mentor: MentorRespons;
+}
+export interface MentorRespons {
+  id: number;
+  name: string;
+  secondName: string;
+  img?: string;
+}
+
 export interface MentorDataFilter {
   id: number;
   name: string;

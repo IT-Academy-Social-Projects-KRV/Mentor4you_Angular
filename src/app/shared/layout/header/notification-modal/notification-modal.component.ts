@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Mentee } from 'src/app/core/interfaces/mentee';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { SigninService } from 'src/app/auth/signin/signin.service';
 import { NotificationModalService } from '../../../../core/services/notification-modal.service';
 
 @Component({
@@ -9,34 +9,40 @@ import { NotificationModalService } from '../../../../core/services/notification
   styleUrls: ['./notification-modal.component.scss']
 })
 export class NotificationModalComponent implements OnInit {
-  //TODO should be implement in the next task
-  public isNewNotification: boolean = true;
-  public mentorRole:boolean = false;
+  public isNewNotification$: Subject<boolean> = new Subject;
   
-  public mentees: Mentee[] = [
-    {
-      id: 1,
-      img: "http://localhost:4200/assets/images/mentor.png",
-      name: "John Johnson"
-    },
-    {
-      id: 2,
-      img: "http://localhost:4200/assets/images/mentor.png",
-      name: "Jack Johnson"
-    }
-  ]
+  public mentees$ = new BehaviorSubject<[] | null>(null);
+  public mentors$ = new BehaviorSubject<[] | null>(null);
   display$: Observable<string> | undefined;
 
   constructor(
-      private modalService: NotificationModalService
+      public modalService: NotificationModalService,
+      public auth: SigninService
   ) {}
 
   ngOnInit() {
     this.display$ = this.modalService.watch();
+    this.mentees$ = this.modalService.mentees$;
+    this.isNewNotification$ = this.modalService.isNewNotification$;
+    this.mentors$ = this.modalService.mentors$;
   }
 
   close() {
     this.modalService.close();
+  }
+
+  approveIgnoreRequest(data: any): void{
+    this.modalService.approveIgnoreRequest(data.id, data.status)
+    .subscribe(() => {
+      this.modalService.getMenteesRequests();
+    })
+  }
+
+  deleteNotificationRequest(data: any): void{
+    this.modalService.deleteNotificationRequest(data.id)
+    .subscribe(() => {
+      this.modalService.getMenteesResponces();
+    })
   }
 
 }
