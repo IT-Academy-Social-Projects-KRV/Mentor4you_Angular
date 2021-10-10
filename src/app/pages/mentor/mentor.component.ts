@@ -10,23 +10,15 @@ import {MentorTopService} from "./components/mentor-top/mentor-top.service";
 export class MentorComponent implements OnInit {
 
   public response?: SmallMentorCards[];
-  public stars: any[] = [];
-  public star!: any[];
+  public stars!: any[];
 
   constructor(private mentorFilter: MentorTopService) {
   }
 
   getMentors() {
     this.mentorFilter.getMentors(12).subscribe(res => {
-      this.response = res
-      this.stars = res.map((m: any) => {
-        return m.rating;
-      })
-      console.log('stars', this.stars);
-      console.log(this.response, 'mentorMain')
+      this.response = res;
     });
-    this.star = [...Array(this.stars).keys()].map(i => i + 1);
-    console.log(this.star, 'star')
   }
 
   dataMentors(response: any) {
@@ -39,6 +31,7 @@ export class MentorComponent implements OnInit {
   }
 }
 
+// this.star = [...Array(this.stars).keys()].map(i => i + 1);
 
 
 
