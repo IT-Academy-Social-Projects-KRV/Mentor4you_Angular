@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import {TranslateService} from '@ngx-translate/core';
 @Component({
@@ -31,12 +31,14 @@ export class HeaderComponent implements OnInit {
   ) {}
 
 
+
   get isAuth() {
     return this.auth.isAuth();
   }
 
   ngOnInit(): void {
     this.closeMenu();
+   
   }
   open() {
     this.NotificationModalService.open();
@@ -63,4 +65,7 @@ export class HeaderComponent implements OnInit {
   goTo(path: string): void {
     this.router.navigateByUrl(path);
   }
+
+
+
 }
