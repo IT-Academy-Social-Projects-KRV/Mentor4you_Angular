@@ -5,8 +5,8 @@
     </div>
     <p class="mentor-card__name">{{mentor.fullName}} {{mentor.id}}</p>
     <p class="mentor-card__category">
-      <span *ngFor="let category of mentor.categoriesList">
-        {{category.categories.name}}
+      <span *ngFor="let category of mentor.categoriesList last as isLast">
+        {{category.categories.name}}<span *ngIf="!isLast">, </span>
       </span>
     </p>
     <p class="mentor-card__rating">

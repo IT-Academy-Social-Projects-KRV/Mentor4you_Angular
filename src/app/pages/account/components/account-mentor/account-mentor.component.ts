@@ -89,23 +89,14 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   initForm(): void {
     const controls = this.mentorForm.controls;
     
-    // console.log('mentorForm - data comes into the form',  this.mentor)
-    
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');
-      // console.log('mentor', controlName, this.mentor[controlName]);
-      // console.log('controls', controlName, controls[controlName].value);
     })
     
     const MAX = this.mentor['groupServ'];
     const YES = this.mentor['groupServ'];
     controls['personal'].setValue(MAX === 'MAX');
     controls['group'].setValue(YES === 'YES');
-
-    // const mentorData = {
-      // avatar: controls['avatar'].value,
-    // }
-    // this.setMentorData.emit(mentorData);
   }
 
   OnGroupWork() {
@@ -115,10 +106,6 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.btnTouched = true;
 
-    console.log('mentorForm - data is out from the form', this.mentorForm.value);
-
-    // console.log('mentorForm - valid - 0', this.mentorForm.valid);
-
     const controls = this.mentorForm.controls;
     const isMix = controls['group'].value && controls['personal'].value;
     const isGroup = controls['group'].value ? true : false;
@@ -126,21 +113,17 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
     controls['groupServ'].setValue(isGroupSevice);
 
-    this.mentorSubscription = this.mentorService
-        .updateMentor(this.mentorForm.value)
-        .subscribe();
-
     if (
       this.mentorForm.valid &&
       (this.mentorForm.controls['online'].value === true ||
         !this.mentorForm.controls['offlineOut'].value === true)
     ) {
-      // this.mentorSubscription = this.mentorService
-      //   .updateMentor(this.mentorForm.value)
-      //   .subscribe();
+      this.mentorSubscription = this.mentorService
+        .updateMentor(this.mentorForm.value)
+        .subscribe();
 
       this.btnTouched = true;
-      // this.router.navigate(['/']);
+      this.router.navigate(['/']);
     }
 
     isAvatar.next(true);

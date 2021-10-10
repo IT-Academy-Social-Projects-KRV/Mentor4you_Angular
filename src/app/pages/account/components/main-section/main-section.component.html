@@ -55,16 +55,16 @@
         </div>
 
         <div class="link">
-          <a href="https://www.skype.com/" *ngIf="mentor.skype">
+          <a href="{{mentor.skype}}" target="_blank" *ngIf="mentor.skype">
             <i class="fab fa-skype"></i>
           </a>
-          <a href="https://www.linkedin.com/" *ngIf="mentor.linkedIn">
+          <a href="{{mentor.linkedIn}}" target="_blank" *ngIf="mentor.linkedIn">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="https://www.linkedin.com/" *ngIf="mentor.telegram">
+          <a href="{{mentor.telegram}}" target="_blank" *ngIf="mentor.telegram">
             <i class="fab fa-telegram"></i>
           </a>
-          <a href="https://github.com/"  *ngIf="mentor.gitHub">
+          <a href="{{mentor.gitHub}}" target="_blank" *ngIf="mentor.gitHub">
             <i class="fab fa-github"></i>
           </a>
         </div>

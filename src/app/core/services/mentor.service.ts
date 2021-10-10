@@ -32,7 +32,7 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorBaseUrl)
       .pipe(map(mentors => {
-        // console.log('m', mentors);
+        console.log('m - all', mentors);
         return mentors
           .filter((m: any) => m.accounts.user.first_name !== null)
           .map((mentor: any) => {
@@ -47,7 +47,8 @@ export class MentorService {
               fullName: user.first_name + ' ' + user.last_name,
               avatar: this.currentAvatar,                          // expecting a change in structure of the data
               // avatar: user.avatar,                           
-              categories: user.categories || this.tempCategories, // expecting a change in structure of the data
+              // categories: user.categories || this.tempCategories, // expecting a change in structure of the data
+              categoriesList: mentor.mentors_to_categories, // expecting a change in structure of the data
               rating: Number(user.rating) || 5
             }
         })

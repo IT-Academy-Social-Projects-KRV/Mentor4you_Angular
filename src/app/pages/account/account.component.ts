@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ImageCroppedEvent, LoadedImage, base64ToFile } from 'ngx-image-cropper';
+import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
 import { Subscription } from 'rxjs';
 
 import { MentorProfile, MentorService } from 'src/app/core';
@@ -46,8 +46,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
       (mentor: MentorProfile) => {
-        // console.log('m', mentor);
-
         this.mentor = mentor;
         this.isAccountActivated = mentor.isAccountActivated;
       }
@@ -104,7 +102,6 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     this.newName = this.selectedFile.name;
     this.imgType = this.selectedFile.type;
-    //console.log(this.newName, this.imgType);
     this.imageChangedEvent = event;
     this.selectedFile = this.imageChangedEvent;
     this.isImage = true;
@@ -150,6 +147,5 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mentorSubscription.unsubscribe();
-    // this.avatarSubscription.unsubscribe();
   }
 }
