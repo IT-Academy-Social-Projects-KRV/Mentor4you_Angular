@@ -26,7 +26,7 @@ export class SendFormComponent implements OnInit {
   sendData(){
     console.log(this.sendingEmailForm.value.messageControl);
     const reqBody = {
-      "emailAdrId": 0,
+      "emailAdrId": 1,
       "emailAdres": this.sendingEmailForm.value.emailControl,
       "name": this.sendingEmailForm.value.fullNameControl,
       "subject": this.sendingEmailForm.value.subjectControl,
