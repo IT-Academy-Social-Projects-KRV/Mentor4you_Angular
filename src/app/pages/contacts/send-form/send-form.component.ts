@@ -37,7 +37,7 @@ export class SendFormComponent implements OnInit {
     console.log(reqBody);
     this.http.post("http://localhost:8080/api/emailToModerator/sendEmailToModer", reqBody, {observe: "response"}).subscribe(response => console.log(response),
     error => { if (error.status == 200){
-        this.openSnackBar('Message send!', 'Wait for answer', 'success');
+        this.openSnackBar('Message send!', 'We will try to answer you in 24 hours', 'success');
       } else {
         this.openSnackBar('Error', 'Try again later', 'danger');
       }

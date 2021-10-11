@@ -44,8 +44,8 @@ export class MentorService {
             return {
               id: user.id,
               fullName: user.first_name + ' ' + user.last_name,
-              avatar: this.currentAvatar,                          // expecting a change in structure of the data
-              // avatar: user.avatar,                           
+              //avatar: this.currentAvatar,                          // expecting a change in structure of the data
+              avatar: user.avatar,                           
               categoriesList: mentor.mentors_to_categories,
             }
         })
@@ -67,8 +67,8 @@ export class MentorService {
           email: mentor.email,
           firstName: mentor.firstName,
           lastName: mentor.lastName,
-          avatar: this.tempAvatar,      // expecting a change in structure of the data
-          // avatar: mentor.avatar,
+          //avatar: this.tempAvatar,      // expecting a change in structure of the data
+          avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst || '',
           categoriesList: mentorById.categoriesList,
           certificats: mentor.certificats,
@@ -97,8 +97,8 @@ export class MentorService {
           email: mentor.email,
           firstName: mentor.firstName,
           lastName: mentor.lastName,
-          avatar: this.currentAvatar,         // expecting a change in structure of the data
-          // avatar: mentor.avatar,
+          //avatar: this.currentAvatar,         // expecting a change in structure of the data
+          avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst,
           categoriesList: mentorDTO.categoriesList,
           rate: 0,

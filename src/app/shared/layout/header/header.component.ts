@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
         break;
       }
     }
+
   }
 
   open() {
