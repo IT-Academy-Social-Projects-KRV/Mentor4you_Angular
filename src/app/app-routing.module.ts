@@ -1,6 +1,7 @@
 import { DialogBoardComponent } from './pages/messages/dialog-board/dialog-board.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SendFormComponent } from './pages/contacts/send-form/send-form.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { MessagesComponent } from './pages/messages/messages.component';
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path: 'how-it-works',
     component: HowItWorksComponent
+  },
+  {
+    path: 'contacts',
+    loadChildren: () => import('./pages/contacts/contacts.module').then(m => m.ContactsModule)
   },
   {
     path: 'error-page',

@@ -1,0 +1,83 @@
+@import "variables";
+@import "reset";
+*{
+    color: black;       
+}
+.container{
+    h1{
+        font-size: 32px;
+        strong{
+            color:$darkblue;
+        }
+    }
+    p{
+    font-size: 1.2rem;
+    a{
+        color: $fuschia100;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+    }
+    form{
+        label{
+            padding-top: 10px;
+            font-weight: 600;
+        }
+        input, textarea{
+            background: whitesmoke;
+        }
+        button{
+            width: fit-content;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: $fuschia100;
+            color: #FFF;
+            text-decoration: none;
+            cursor: pointer;
+            display: block;
+            border: none;
+        }
+        button:not(:disabled){
+            @include btn-shadow;
+            cursor: pointer;
+            color: white;
+        }
+        button:hover{
+            @include btn-shadow;
+            transform: scale(1.1, 1.1);
+        }
+    }
+}
+
+input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
+
+.invalidF{
+    color: red;
+    padding-top: 5px;
+    font-size: .9rem;
+}
+
+::ng-deep snack-bar-container.danger{
+    background-color: $red;
+    .mat-simple-snackbar-action{
+      button {
+        color: black;
+      }
+    }
+  }
+
+  ::ng-deep snack-bar-container.success{
+    background-color: $grey;
+    color: white;
+    padding: 20px;
+    font-size: 1.5rem;
+    border: 3px solid $darkblue;
+    .mat-simple-snackbar-action{
+      button {
+        color: white;
+      }
+    }
+  }

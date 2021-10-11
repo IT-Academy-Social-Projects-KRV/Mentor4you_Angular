@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
 
+
   get isAuth() {
     return this.auth.isAuth();
   }
@@ -47,6 +48,7 @@ export class HeaderComponent implements OnInit {
         break;
       }
     }
+
   }
 
   open() {
@@ -77,4 +79,7 @@ export class HeaderComponent implements OnInit {
   goTo(path: string): void {
     this.router.navigateByUrl(path);
   }
+
+
+
 }
