@@ -42,7 +42,7 @@
           </p>
         </div>
         <div class="mentor-card__btns btns">
-          <button class="btns__ask">Ask for a mentorship project</button>
+          <button class="btns__ask" (click)="sendRequest(item.id)">Ask for a mentorship project</button>
           <button class="btns__view" [routerLink]="['/mentor-details',item.id]">View more</button>
         </div>
       </div>
