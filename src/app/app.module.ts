@@ -28,6 +28,8 @@ import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component
 
 import { NotificationModalModule } from './shared/layout/header/notification-modal/notification-modal.module';
 import { ToastrModule } from 'ngx-toastr';
+import { ContactsModule } from "./pages/contacts/contacts.module";
+
 import {SettingsModule} from "./pages/account/components/account-settings/settings.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -52,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AccountModule,
     HttpClientModule,
     NotificationModalModule,
+    ContactsModule,
     ImageCropperModule,
     SettingsModule,
     ToastrModule.forRoot({

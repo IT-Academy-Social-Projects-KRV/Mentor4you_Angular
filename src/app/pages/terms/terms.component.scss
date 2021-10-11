@@ -1,12 +1,13 @@
 @import "variables";
 
-.container{ 
+.containerM{ 
     font-family: 'Roboto', sans-serif;
     line-height: 20px;
     color: black;
-    background: -webkit-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
-    background: -moz-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
-    background: linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
+    background-color: white;
+    //background: -webkit-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
+    //background: -moz-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
+    //background: linear-gradient(180deg, #f4f4f4, rgb(255, 255, 255));
     padding: 10px 30px 50px 30px;
     a{
         color: $fuschia100;
