@@ -24,6 +24,7 @@ export class MessagesComponent implements OnInit {
   link!:string
   tokenId?:any
   lastSms!:any
+  lastTime!:any
   constructor(
     private router:Router,
     public chat:Chat,
@@ -36,6 +37,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.lastSms = this.socketService.newMessages[this.socketService.newMessages.length-1]
+  
 
     this.http.token$.subscribe(token=>{
       this.tokenId = this.http.parseJwt(token)
@@ -60,9 +62,7 @@ export class MessagesComponent implements OnInit {
   }
 
 
-  // qwerty(){
-  //  this.chat.qwerty().subscribe(console.log)
-  // }
+
 
 
 }

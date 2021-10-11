@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
+import { catchError, takeUntil } from 'rxjs/operators';
+import { NotificationModalService } from 'src/app/core';
 
 @Component({
   selector: 'app-mentors-cards',
@@ -6,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mentors-cards.component.scss']
 })
 export class MentorsCardsComponent implements OnInit {
+  private unSubscribeSubject: Subject<void> = new Subject;
+
   mentors:Mentor[] = [
     {id:1, name:"Alex Potakov", picture:"https://randomuser.me/api/portraits/men/5.jpg", rait:5, lessons:["Typescript", "Angular"]},
     {id:2, name:"Ira Frolova", picture:"https://randomuser.me/api/portraits/women/5.jpg", rait:4, lessons:["JavaScript", "React" ]},
@@ -35,9 +41,27 @@ export class MentorsCardsComponent implements OnInit {
   ];
   pageOfItems!: Array<any>;
 
-  constructor() { }
+  constructor(
+    private notificationModalService: NotificationModalService,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit(): void {
+    
+  }
+
+  sendRequest(id: number): void{
+    this.notificationModalService.sendRequest(id)
+    .pipe(
+      catchError((error: any) => {
+        this.toastr.error('Something went wrong or you have already sent a request');
+        return error;
+      }),
+      takeUntil(this.unSubscribeSubject)
+    )
+    .subscribe(() => {
+      this.toastr.info('Your mentorship request was sent');
+    });
   }
 
   createRait(rait:number):number[]{
@@ -49,7 +73,6 @@ export class MentorsCardsComponent implements OnInit {
   }
 
   onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
     this.pageOfItems = pageOfItems;
   }
 

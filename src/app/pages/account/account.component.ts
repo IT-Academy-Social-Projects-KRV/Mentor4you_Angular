@@ -14,7 +14,7 @@ import { SigninService } from 'src/app/auth/signin/signin.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit, OnDestroy {
-  currentRole = localStorage.getItem('role');
+  // currentRole = localStorage.getItem('role');
   isMentorForm: boolean = false;
   isAccountActivated!: boolean;
   isImage: boolean = false;
@@ -33,15 +33,15 @@ export class AccountComponent implements OnInit, OnDestroy {
   isBtnDisabled: boolean = true;
 
   constructor(
+    public auth: SigninService,
     private http: HttpClient, 
     private _snackBar: MatSnackBar,
-    private mentorService: MentorService,
-    private auth: SigninService
+    private mentorService: MentorService
   ) {}
   
-  // get isAuth() {
-  //   return this.auth.isAuth();
-  // }
+  get isAuth() {
+    return this.auth.isAuth();
+  }
 
   ngOnInit(): void {
     this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
@@ -65,15 +65,15 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.isAccountActivated = !this.isAccountActivated;
   }
 
-  toggleRole(button: HTMLElement): void {
-    if (button.innerText === 'Move to Mentor Account') {
-      this.currentRole = 'mentor';
-      button.innerText = 'Move to Mentee Account';
-    } else {
-      this.currentRole = 'mentee';
-      button.innerText = 'Move to Mentor Account';
-    }
-  }
+  // toggleRole(button: HTMLElement): void {
+  //   if (button.innerText === 'Move to Mentor Account') {
+  //     this.currentRole = 'mentor';
+  //     button.innerText = 'Move to Mentee Account';
+  //   } else {
+  //     this.currentRole = 'mentee';
+  //     button.innerText = 'Move to Mentor Account';
+  //   }
+  // }
 
 
   onFileSelected(event: any): void {

@@ -26,39 +26,29 @@ export class DialogBoardComponent implements OnInit{
 
   }
 	ngOnInit(){
-		
-	
-		console.log(this.messageObj)
-		console.log(this.sendid, this.recivid)
-		console.log(this.chatMessage);
+		console.log(this.globalMessage)
 		this.routerNavigate.params.subscribe(e =>{
 			[this.sendid, this.recivid] = e.id.split('_');
-			console.log(this.sendid, this.recivid)
-			this.chat.getMessage(this.sendid, this.recivid).subscribe(console.log)
+			// this.chat.getMessage(this.sendid, this.recivid).subscribe(console.log)
 		} )
 		this.socketService.checkMsg(this.sendid, this.recivid).subscribe((response: any) => {
-			// this.messageObj = response;
 			this.socketService.newMessages.push(...response)
-			console.log('msgALL:', response)
+
 		})
 		this.socketService.checkMsg( this.recivid,this.sendid).subscribe((response: any) => {
-			// this.messageObjClone = response;
-			
 			this.socketService.newMessages.push(...response)
-			console.log('messageObjClone:', response)
 			this.date=response.timestamp;
-			console.log('stringTime: '+this.date)
-
+         console.log(this.globalMessage)
 		})
 		
 		this.socketService.newMessages.sort((a, b) => a.timestamp - b.timestamp);
 		this.globalMessage = this.socketService.newMessages;
-		console.log(this.socketService.newMessages);
+		
 	}
 	sendChatMessage(){
 		if (this.chatMessage.trim()){
 			this.socketService.lastSms$.next(this.chatMessage)
-			console.log(this.chatMessage)
+		
       this.socketService.sendMsg(this.chatMessage,this.sendid,this.recivid)
 
 		}

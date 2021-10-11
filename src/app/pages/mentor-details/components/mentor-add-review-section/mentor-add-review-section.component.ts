@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog'; 
 @Component({
   selector: 'app-mentor-add-review-section',
   templateUrl: './mentor-add-review-section.component.html',
   styleUrls: ['./mentor-add-review-section.component.scss']
 })
-export class MentorAddREviewSectionComponent implements OnInit {
+export class MentorAddREviewSectionComponent implements OnInit, OnDestroy {
 
   btnCheck: boolean = false;
   formAddReview!: FormGroup;
@@ -16,6 +17,7 @@ export class MentorAddREviewSectionComponent implements OnInit {
   showSpiner: boolean = false;
   constructor(
     private snackBar: MatSnackBar,
+    public dialogMat: MatDialog
   ) { }
 
   ngOnInit(): void { 
@@ -28,19 +30,18 @@ export class MentorAddREviewSectionComponent implements OnInit {
   submit() {
     
     if (this.formAddReview.get('textarea')?.value.trim()){
-      console.log(this.formAddReview.get('email'));
-      this.snackBar.open('successful');
       this.showSpiner = true;
       setTimeout(() =>{
         this.showSpiner = false
         this.formAddReview.reset();
+        this.snackBar.open('Your comment has been successfully added! ');
         this.rating = 0;
-        
+        setTimeout(() => this.snackBar.dismiss(),4000)
       },3000)
+      }
+      return false
       
-      
-      
-    }
+    
   }
   btnClick() {
     this.btnCheck = !this.btnCheck;
@@ -56,6 +57,9 @@ export class MentorAddREviewSectionComponent implements OnInit {
   updateRating(i:number) {
     this.rating = i;
 
-    console.log(this.rating)
+  }
+
+  ngOnDestroy() {
+    this.snackBar.dismiss()
   }
 }

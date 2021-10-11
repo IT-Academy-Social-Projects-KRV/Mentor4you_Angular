@@ -20,9 +20,13 @@
                         <div *ngFor = "let chat of chats" class="chat_list active_chat" (click)="checkDialog(chat.chatId)">
                             <!-- <pre>{{chat.id}}</pre> -->
                             <div class="chat_people">
-                                <div class="chat_img"> <img src="{{chat.avatar}}"alt="usr avatar"></div>
+                                <div class="chat_img">
+                                     <img *ngIf="chat.avatar" src="{{chat.avatar}}"alt="usr avatar">
+                                     <img  *ngIf="!chat.avatar"src="https://ptetutorials.com/images/user-profile.png"alt="usr avatar">
+                                    </div>
                                 <div class="chat_ib">
-                                    <h5>{{chat.name}} <span class="chat_date">Dec 25</span></h5>
+                                    <h5 *ngIf="chat.name">{{chat.name}}</h5>
+                                    <h5 *ngIf="!chat.name">User</h5>
                                     <p>{{lastSms}}</p>
                                 </div>
                             </div>

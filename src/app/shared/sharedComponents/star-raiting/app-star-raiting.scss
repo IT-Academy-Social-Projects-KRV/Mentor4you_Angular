@@ -14,6 +14,11 @@
       height: 33px;
       width: 33px;
    }
+   @media(max-width: 500px) {
+      margin-top: -5px;
+      height: 20px;
+      width: 20px;
+   }
 }
 
 .star-rating-blank {

@@ -15,7 +15,7 @@ export class WebSocketService {
   topic = '/topic/messages/';
   stompClient: any;
   newMessages = new Array;
-  lastSms$ = new BehaviorSubject<any>('helo')
+  lastSms$ = new BehaviorSubject<any>('')
   constructor(private http:HttpClient) {
   }
   connect(myId: string) {

@@ -7,19 +7,6 @@
 			<div class="form-review__wrapper">
 				<div class="form-review__row">
 					<div class="form-review__input-wrapper">
-						<!-- <div class="form-review__column">
-							<label for="" class="form-review__label">
-								<input placeholder="Name" type="text" class="form-review__input" formControlName="name">
-							</label>
-						</div> -->
-						<!-- <div class="form-review__column">
-							<label for="" class="form-review__label">
-								<input placeholder="Email" type="text" class="form-review__input" formControlName="email">
-								<div class="error-text"
-									*ngIf="formAddReview.get('email')?.invalid&&formAddReview.get('email')?.touched&&!formAddReview.get('email')?.pristine">Введіть
-									коректний email</div>
-							</label>
-						</div> -->
 					</div>
 				</div>
 				<div class="form-review__row">
@@ -56,7 +43,9 @@
 			</div>
 		</form>
 	</div>
+	<mat-dialog-actions></mat-dialog-actions>
 	<div *ngIf="showSpiner"  class="spiner-preloder__wrapper">
 		<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 	</div>
 </section>
+

@@ -2,7 +2,7 @@ import { DialogBoardComponent } from './pages/messages/dialog-board/dialog-board
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ImageCropperModule } from 'ngx-image-cropper';
-
+import { MatDialogModule } from '@angular/material/dialog';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -32,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
 import {SettingsModule} from "./pages/account/components/account-settings/settings.module";
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -44,7 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     TermsComponent,
     MessagesComponent,
     HowItWorksComponent,
-    DialogBoardComponent
+    DialogBoardComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -58,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     ImageCropperModule,
     SettingsModule,
+    MatDialogModule,
     ToastrModule.forRoot({
       timeOut: 8000,
     }),
