@@ -1,3 +1,4 @@
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { MentorAddREviewSectionComponent } from './components/mentor-add-review-
 import { AppStarRaitingComponent } from '../../shared/sharedComponents/star-raiting/app-star-raiting';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { MentorReviewsComponent } from './components/mentor-reviews/mentor-reviews.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,13 @@ import { MentorReviewsComponent } from './components/mentor-reviews/mentor-revie
     MainSectionComponent,
     MentorReviewsComponent
   ],
-    
+   
   imports: [
     SharedModule,
     MentorDetailsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class MentorDetailsModule { }

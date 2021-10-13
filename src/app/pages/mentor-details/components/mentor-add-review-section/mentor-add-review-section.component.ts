@@ -1,33 +1,47 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog'; 
 @Component({
   selector: 'app-mentor-add-review-section',
   templateUrl: './mentor-add-review-section.component.html',
   styleUrls: ['./mentor-add-review-section.component.scss']
 })
-export class MentorAddREviewSectionComponent implements OnInit {
+export class MentorAddREviewSectionComponent implements OnInit, OnDestroy {
 
   btnCheck: boolean = false;
   formAddReview!: FormGroup;
   stars = [1, 2, 3, 4, 5];
   rating = 0;
   hoverState = 0;
-  constructor() { }
+  showSpiner: boolean = false;
+  constructor(
+    private snackBar: MatSnackBar,
+    public dialogMat: MatDialog
+  ) { }
 
   ngOnInit(): void { 
      this.formAddReview = new FormGroup({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      textarea: new FormControl('', Validators.required),
+      textarea: new FormControl('',),
     })
   }
   addFocus() { }
 
   submit() {
-    console.log(this.formAddReview.get('email'));
-    this.formAddReview.reset();
-    this.rating = 0
+    
+    if (this.formAddReview.get('textarea')?.value.trim()){
+      this.showSpiner = true;
+      setTimeout(() =>{
+        this.showSpiner = false
+        this.formAddReview.reset();
+        this.snackBar.open('Your comment has been successfully added! ');
+        this.rating = 0;
+        setTimeout(() => this.snackBar.dismiss(),4000)
+      },3000)
+      }
+      return false
+      
+    
   }
   btnClick() {
     this.btnCheck = !this.btnCheck;
@@ -43,6 +57,9 @@ export class MentorAddREviewSectionComponent implements OnInit {
   updateRating(i:number) {
     this.rating = i;
 
-    console.log(this.rating)
+  }
+
+  ngOnDestroy() {
+    this.snackBar.dismiss()
   }
 }

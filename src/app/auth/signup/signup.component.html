@@ -6,7 +6,7 @@
 					<h2 class="signup__title">Create Your Account</h2>
 					<div class="signup__email form-floating">
 						<div for="exampleFormControlInput1" class="form-label"><span>E-mail</span></div>
-						<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email"
+						<input (input)="showTooltip=false" type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email"
 							[class.is-invalid]="signUpGroup.get('email')?.errors&&signUpGroup.get('email')?.touched"
 							[class.is-valid]="signUpGroup.get('email')?.valid" formControlName="email">
 						<div class="valid-feedback">Success! You've done it.</div>
@@ -51,8 +51,9 @@
 								formControlName="rules">
 							<label class="form-check-label" for="inlineCheckbox1">
 								<span class="signup__checkbox-text">By Signing Up I agree with </span>
-								<a href="#" class="signup__checkbox-rules">Terms & Conditions</a>
+								<a (click)="navigateToTerms($event)" class="signup__checkbox-rules">Terms & Conditions</a>
 							</label>
+							
 						</div>
 					</div>
 					<div class="signup__btn">
@@ -115,3 +116,7 @@
 		</div>
 	</div>
 </section>
+<div *ngIf = "showSpiner" class="spiner-preloder__wrapper">
+	<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+

@@ -1,0 +1,28 @@
+
+  <div class="cards_main_container" *ngIf="mentors">
+    <div class="card_container" *ngFor="let mentor of pageOfItems">
+        <div class="card_content">
+            <div class="image_container">
+                <img src={{mentor.picture}} alt={{mentor.name}}>
+            </div>
+            <h3>{{mentor.name}}</h3>
+            <div class="lessons_container">
+                <p *ngFor="let lesson of mentor.lessons">{{lesson}}</p>
+            </div>
+            <div class="stars_container">
+                <i class="far fa-star" *ngFor="let star of createRait(mentor.rait)"></i>
+            </div>
+        </div>
+        <div class="card_buttons">
+            <button class="mentorship_button" (click)="sendRequest(mentor.id)" >Ask for a mentorship<br> project</button>
+            <a routerlink="/">View more</a>
+            <button class="mentorship_button">{{ "MENTOR.ASK1" | translate }}<br> {{ "MENTOR.ASK2" | translate }}</button>
+            <a routerLink="/mentor-details/1">{{ "MENTOR.VIEW" | translate }}</a>
+ </div>
+    </div>
+</div>
+
+<div class="pagination_container">
+    <jw-pagination [items]="mentors" [pageSize]="12" [maxPages]="5" (changePage)="onChangePage($event)"></jw-pagination>
+</div>
+

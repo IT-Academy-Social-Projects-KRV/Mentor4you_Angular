@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck} from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import {SigninService} from "./auth/signin/signin.service";
 import {TranslateService} from "@ngx-translate/core";
 import { Subject } from 'rxjs';
@@ -27,13 +28,15 @@ export class AppComponent implements OnInit, DoCheck{
     // localStorage.setItem('role', 'mentor');
   }
   onHiddenFooter() {
-    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' ) {
+    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' ) {
       this.hiddenFooter = false;
     } else {
       this.hiddenFooter = true
     }
   }
+
   ngDoCheck() {
     this.onHiddenFooter();
+   
   }
 }
