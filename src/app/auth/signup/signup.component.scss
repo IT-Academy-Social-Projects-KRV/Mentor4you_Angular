@@ -7,15 +7,18 @@
 
   background-color: #fff;
   padding-top: 80px;
-  height: calc(100vh - 120px);
+  // height: calc(100vh - 120px);
   display: flex;
   justify-content: center;
 }
 
 .signup {
-  background-color: $bg;
+  background-color: #fff;
+  height: calc(100vh - 120px);
+  // overflow: hidden;
+
   @media(max-width:550px) {
-    padding: 80px 15px;
+    padding: 0px 15px;
   }
 
   // .signup__row
@@ -41,8 +44,12 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     padding: 55px 65px;
 
-    @media(max-width:490px) {
+    @media(max-width:550px) {
       padding: 25px 30px;
+    }
+
+    @media(max-width:350px) {
+      padding: 10px 12px;
     }
   }
 
@@ -97,7 +104,7 @@
 
     .form-check-input {
       margin-top: 2px;
-      width: 17px;
+      width: 14px;
     }
 
     .form-check-input:checked[type=radio] {
@@ -118,6 +125,10 @@
     .form-check-label {
       cursor: pointer;
       padding-left: 20px;
+
+      @media(max-width:350px) {
+        padding-left: 7px;
+      }
     }
 
     .form-check {
@@ -418,14 +429,6 @@ form {
   margin-left: 0;
 }
 
-// .error.form-control.ng-invalid.ng-dirty.ng-touched {
-//   border: 1px solid #ff7851;
-// }
-
-// .form-control.ng-valid.ng-touched {
-//   border: 1px solid $inputFormFocus;
-// }
-
 
 .signup__email,
 .signup__password {
@@ -512,4 +515,39 @@ form {
       margin: 0 0 0 8px !important;
     }
   }
+}
+
+.spiner-preloder__wrapper {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(255, 255, 255, .7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::ng-deep mat-progress-spinner circle {
+    stroke: $green;
+  }
+}
+
+@media(min-width: 992px) {
+  a:hover {
+    color: $green !important;
+    transition: all .2s ease;
+  }
+}
+
+
+::ng-deep .cdk-overlay-pane {
+
+
+  
+  snack-bar-container{
+
+  } 
 }

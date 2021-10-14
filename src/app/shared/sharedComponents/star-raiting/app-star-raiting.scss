@@ -14,22 +14,28 @@
       height: 33px;
       width: 33px;
    }
+   @media(max-width: 500px) {
+      margin-top: -5px;
+      height: 20px;
+      width: 20px;
+   }
 }
 
 .star-rating-blank {
    fill: #ADB5BD;
    transition: all .3s ease;
    margin-top: -10px;
+   
 
-   @media(max-width: 992px) {
-      margin-top: -15px;
-      height: 33px;
-      width: 33px;
-   }
+   // @media(max-width: 992px) {
+   //    margin-top: -15px;
+   //    height: 33px;
+   //    width: 33px;
+   // }
 
-   @media(max-width: 768px) {
-      margin-top: -5px;
-      height: 33px;
-      width: 33px;
-   }
+   // @media(max-width: 768px) {
+   //    margin-top: -5px;
+   //    height: 33px;
+   //    width: 33px;
+   // }
 }

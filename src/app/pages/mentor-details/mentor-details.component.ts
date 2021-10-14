@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './mentor-details.component.html',
   styleUrls: ['./mentor-details.component.scss']
 })
+
 export class MentorDetailsComponent implements OnInit, OnDestroy {
   mentor: any;
   mentorSubscription!: Subscription;
@@ -21,10 +22,11 @@ export class MentorDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.mentorSubscription = this.mentorService.getMentorById(id).subscribe(
+    this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
     // this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
       (mentor: any) => { this.mentor = mentor }
     )
+
   }
 
   ngOnDestroy(): void {

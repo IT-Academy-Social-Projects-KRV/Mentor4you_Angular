@@ -47,6 +47,7 @@ export class MentorsCardsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
   sendRequest(id: number): void{
