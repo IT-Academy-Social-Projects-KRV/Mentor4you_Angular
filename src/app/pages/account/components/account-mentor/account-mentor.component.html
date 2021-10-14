@@ -62,7 +62,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">
+        <span class="mentor__label mentor__teach mb-4">
           {{ "ACCOUNT.MENTOR.TEACH" | translate }} <span class="star">*</span>
         </span>
 
@@ -71,9 +71,14 @@
             <mat-label>Categories</mat-label>
             <mat-select [required]="true" [formControl]="categoriesForm" multiple>
               <mat-option *ngFor="let category of categories" [value]="category">
-                {{ category.categories.name }}
+                {{ category }}
               </mat-option>
             </mat-select>
+            <!-- <mat-select [required]="true" [formControl]="categoriesForm" multiple>
+              <mat-option *ngFor="let category of categories" [value]="category">
+                {{ category.categories.name }}
+              </mat-option>
+            </mat-select> -->
           </mat-form-field>
         </div>
       </div>
@@ -191,13 +196,13 @@
 
       <div class="mentor__form-field">
         <!-- <span class="mentor__label mentor__teach">Certificates</span> -->
-        <span class="mentor__label">{{ "ACCOUNT.MENTOR.CER" | translate }}</span>
+        <span class="mentor__label mb-4">{{ "ACCOUNT.MENTOR.CER" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>
             <mat-select [formControl]="certificatesForm" multiple>
               <mat-option *ngFor="let certificate of certificates" [value]="certificate">
-                {{ certificate.name }}
+                {{ certificate }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -214,7 +219,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">
+        <span class="mentor__label mentor__teach mb-4">
           {{ "ACCOUNT.MENTOR.LANG" | translate }} <span class="star">*</span>
         </span>
 
@@ -240,7 +245,7 @@
       </div>
 
       <div class="mentor__form-field">
-        <span class="mentor__label mentor__teach">{{ "ACCOUNT.MENTOR.LOCATION" | translate }}</span>
+        <span class="mentor__label mentor__teach mb-4">{{ "ACCOUNT.MENTOR.LOCATION" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
             <mat-label>Categories</mat-label>

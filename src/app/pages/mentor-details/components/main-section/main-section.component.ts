@@ -42,7 +42,7 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
   grp_ment: string | undefined
 
   getCustom(elem:HTMLElement){
-    console.log(elem.textContent)
+    // console.log(elem.textContent)
     elem.style.marginTop='20px'
   }
 
@@ -55,7 +55,7 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
       this.grp_ment='No'
     }
 
-    console.log('m - details - ngOnInit', this.mentor);
+    // console.log('m - details - ngOnInit', this.mentor);
   }
 
   ngDoCheck() {

@@ -1,4 +1,4 @@
-export const categoriesData = [
+export const categoriesList = [
   {
     categories: {id: 1, name:'Java',}, 
     rate: 0, 
@@ -36,9 +36,20 @@ export const categoriesData = [
   },
 ];
 
+export const categoriesData = ['Java', 'Pyton', 'HTML', 'TypeScript', 'JavaScript', 'Kotlin', 'CSS'];
+
 export const currencyData = ['\u20B4', '\u20BD', '$', '\u20AC'];
 
 export const languagesData = ['Ukrainian', 'English', 'Russian', 'Polish'];
+
+// export const certificateForSelection = [
+export const certificateList = [
+  'Certified Professional, Java EE 8',
+  'ISTQB Programming in HTML5 with JavaScript and CSS3',
+  'IELTS (International English Language Testing System)',
+  'TOEFL (Test of English as a Foreign Language)',
+  'IREB® Certified Professional for Requirements'
+];
 
 export const certificatesData = [
   {

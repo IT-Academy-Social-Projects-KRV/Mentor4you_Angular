@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
-import { categoriesData, certificatesData, citiesData, currencyData, languagesData } from './data';
+import { categoriesData, certificateList, certificatesData, citiesData, currencyData, languagesData } from './data';
 
 
 export interface AdditionalMentorData {
@@ -32,7 +32,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   currency = currencyData;
   languages = languagesData;
   cities = citiesData;
-  certificates = certificatesData;
+  certificates = certificateList;
 
   categoriesForm = new FormControl([]);
   carrencyForm = new FormControl([]);
@@ -88,6 +88,8 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
   initForm(): void {
     const controls = this.mentorForm.controls;
+
+    // console.log('--1', this.mentor)
     
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');
@@ -97,36 +99,59 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     const YES = this.mentor['groupServ'];
     controls['personal'].setValue(MAX === 'MAX');
     controls['group'].setValue(YES === 'YES');
+
+    this.setGroupService(this.mentorForm.controls);
+
+    // console.log('--2', this.mentorForm.value)
+
   }
 
-  OnGroupWork() {
-    this.groupWork = !this.groupWork;
+  setCertificates(certificates: any) {
+    // let newSertificateList = certificates;
+    // console.log('--1', certificates.value)
+
+    // if (typeof certificates.value[0] === 'string') {
+    //   console.log('--2', certificates.value)
+      const newSertificateList = certificatesData.filter(certificate => {
+        if (certificates.value.includes(certificate.name)) {
+          return true;
+        }
+  
+        return false;
+      });
+  
+    // }
+    
+    certificates.setValue(newSertificateList);
   }
 
-  onSubmit(): void {
-    this.btnTouched = true;
-
-    const controls = this.mentorForm.controls;
+  setGroupService(controls: {[key: string]: any}) {
     const isMix = controls['group'].value && controls['personal'].value;
     const isGroup = controls['group'].value ? true : false;
     const isGroupSevice = isMix ? 'MIX' : isGroup ? 'YES' : 'NO';
 
     controls['groupServ'].setValue(isGroupSevice);
+  }
 
-    if (
-      this.mentorForm.valid &&
-      (this.mentorForm.controls['online'].value === true ||
-        !this.mentorForm.controls['offlineOut'].value === true)
-    ) {
+  onSubmit(): void {
+    const certificates = this.mentorForm.controls['certificates'];
+
+    // if (Array.isArray(certificates.value)) {
+      this.setCertificates(certificates);
+    // }
+
+    // if (
+    //   this.mentorForm.valid &&
+    //   (this.mentorForm.controls['online'].value === true ||
+    //     !this.mentorForm.controls['offlineOut'].value === true)
+    // ) {
       this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
         .subscribe();
 
       this.btnTouched = true;
       this.router.navigate(['/']);
-    }
-
-    isAvatar.next(true);
+    // }
   }
 
   invalidCheck(controlName: string): string {
@@ -147,11 +172,11 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
   onShowProfile(event: Event): void {
     event.preventDefault();
+    const certificates = this.mentorForm.controls['certificates'];
 
-    this.mentor.categoriesList.map((category: any) => {
-      category.rate = this.mentor.rate;
-      category.currency = this.mentor.currency;
-    });
+    // if (Array.isArray(certificates.value)) {
+      this.setCertificates(certificates);
+    // }
     
     this.closeForm.emit();
     this.viewMentorData.next(this.mentorForm.value);

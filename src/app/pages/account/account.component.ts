@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
 import { Subscription } from 'rxjs';
 
-import { MentorProfile, MentorService } from 'src/app/core';
+import { Certificate, MentorProfile, MentorService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 
 @Component({
@@ -21,7 +21,8 @@ export class AccountComponent implements OnInit, OnDestroy {
   selectedFile!: File;
   mentorSubscription!: Subscription;
   avatarSubscription!: Subscription;
-  mentor?: MentorProfile;
+  // mentor?: MentorProfile;  // ----------------
+  mentor?: any;  // ----------------
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   imageChangedEvent: any = '';
   croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
@@ -48,10 +49,13 @@ export class AccountComponent implements OnInit, OnDestroy {
       (mentor: MentorProfile) => {
         this.mentor = mentor;
         this.isAccountActivated = mentor.isAccountActivated;
+        this.croppedImage = mentor.avatar;
+        console.log('mentor - account', mentor);
       }
     );
 
-    console.log('currentRole', this.currentRole);
+    // console.log('currentRole', this.currentRole);
+    console.log('mentor - account', this.mentor);
   }
 
   setMentorData(mentorData: any): void {
@@ -143,6 +147,14 @@ export class AccountComponent implements OnInit, OnDestroy {
       duration: 5000,
       panelClass: className,
     });
+  }
+
+  showMentorForm() {
+    this.isMentorForm = true;
+
+    console.log('mentor ---- 1', this.mentor);
+    this.mentor.certificates = this.mentor.certificates.map((certificate: Certificate) => certificate.name);
+    console.log('mentor ---- 2', this.mentor);
   }
 
   ngOnDestroy(): void {
