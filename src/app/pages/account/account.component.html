@@ -33,11 +33,15 @@
         </div>
 
         <div class="mentor-account__submit-section">
-          <button type="button" (click)="fileInput.click()" class="upload-btn">
+          <button type="button" (click)="fileInput.click()" class="edit-small-btn upper">
             <span class="material-icons"> edit </span>
           </button>
+
+          <button type="button" (click)="deleteAvatar()" class="edit-small-btn lower">
+            <span class="material-icons"> delete </span>
+          </button>
         </div>
-    
+
         <div class="mentor-account__upload-section">
           <input type="file" (change)="onFileSelected($event)" #fileInput>
 

@@ -136,6 +136,16 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   }
 
+  deleteAvatar(){
+    this.http.delete('http://localhost:8080/api/users/deleteAvatar').subscribe(response => console.log(response),
+    error => { if (error.status == 200){
+        this.openSnackBar('Photo deleted!', 'Now you have basic avatar', 'success');
+      } else {
+        this.openSnackBar('Error', 'Try again later', 'danger');
+      }
+    });
+  }
+
   openSnackBar(message: string, action: string, className: string) {
     this._snackBar.open(message, action, {
       duration: 5000,

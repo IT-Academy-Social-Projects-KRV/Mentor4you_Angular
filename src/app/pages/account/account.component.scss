@@ -78,7 +78,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80px;
+    height: 90px;
+    width: 90px;
     cursor: default;
     user-select: none;
 
@@ -91,8 +92,36 @@
   }
 
   &__submit-section {
-    button:hover{
-     color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .edit-small-btn{
+      width: 35px;
+      height: 35px;
+      //margin-top: 10px;
+      //padding-top: 5px;
+      border: 1px solid $fuschia100;
+      background-color: white;
+      border-radius: 50%;
+      padding-top: 7px;
+      &:hover {
+      transition: 0.3s ease-in-out;
+      background-color: $fuschia100;
+      color: white;
+      }
+      span{
+        font-size: 20px;
+        color: black;
+        margin-top: 0;
+        padding-top: 0;
+      }
+      &.upper {
+        margin-top: 5;
+      }
+      &.lower {
+        margin-top: 10px;
+      }
     }
   }
 
