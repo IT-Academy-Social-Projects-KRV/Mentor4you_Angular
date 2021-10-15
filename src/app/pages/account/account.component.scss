@@ -11,8 +11,8 @@
 }
 
 ::ng-deep .thumb {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   cursor: default !important;
   img {
@@ -78,8 +78,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 90px;
-    width: 90px;
+    height: 120px;
+    width: 120px;
     cursor: default;
     user-select: none;
 
@@ -99,14 +99,13 @@
     .edit-small-btn{
       width: 35px;
       height: 35px;
-      //margin-top: 10px;
-      //padding-top: 5px;
       border: 1px solid $fuschia100;
       background-color: white;
       border-radius: 50%;
       padding-top: 7px;
-      &:hover {
       transition: 0.3s ease-in-out;
+      &:hover {
+      
       background-color: $fuschia100;
       color: white;
       }
@@ -141,14 +140,6 @@
   &__cropper-inside{
     text-align: center;
     max-width: 35vw; 
-    ::ng-deep image-cropper {
-      div {
-        img {
-          width: 100%; 
-        }
-      }
-    }
-    
     button{
       background-color: whitesmoke;
       padding: 15px;
@@ -156,6 +147,7 @@
       border-radius: 15px;
       color:black;
       margin-top: 10px;
+      transition: 0.3s ease-in-out;
     }
     button:hover{
       background-color: $fuschia100;
@@ -170,13 +162,13 @@
     border: none;
     padding: 10px 50px;
     user-select: none;
-
+    transition: 0.3s ease-in-out;
     &:hover,
     &:focus {
       background: $fuschia80;
     }
     &:hover:disabled, &:focus:disabled{
-      background: gainsboro;
+      background: white;
     }
   }
 }
@@ -184,7 +176,7 @@
 #output {
   // width: 70px;
   background: $white;
-  width: 90px;
+  width: 120px;
 }
 
 .mentee {
@@ -233,15 +225,21 @@
 }
 
 .upload-btn {
-  width: 50px;
-  height: 50px;
-  padding-top: 5px;
+  width: 70px;
+  height: 40px;
   border: 1px solid $fuschia100;
   background-color: white;
-  border-radius: 50%;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  font-weight: 400;
+  font-size: 1.1rem;
   &:hover {
-    transition: 0.3s ease-in-out;
     background-color: $fuschia100;
+    color: white;
+  }
+  &:disabled {
+    background-color: $lightgray;
+    color: gray;
   }
 }
 

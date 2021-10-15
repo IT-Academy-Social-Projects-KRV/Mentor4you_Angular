@@ -3,8 +3,9 @@ import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
+import { UserService } from 'src/app/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,6 +16,10 @@ export class HeaderComponent implements OnInit {
   public isNewMessage: boolean = false;
   public showSettingsMenu: boolean = false;
   public wached = false;
+  public token: any;
+  public idOfUser: any;
+  public response: any;
+  public avatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
@@ -26,7 +31,8 @@ export class HeaderComponent implements OnInit {
     private NotificationModalService: NotificationModalService,
     private auth: SigninService,
     private http: HttpClient,
-    private translate:TranslateService
+    private translate:TranslateService,
+    private usersService: UserService
   ) {}
 
 
@@ -48,7 +54,19 @@ export class HeaderComponent implements OnInit {
         break;
       }
     }
+    
+    if (this.isAuth){
+    this.token = localStorage.getItem('token');
+    this.idOfUser = this.auth.parseJwt(this.token).id;
+    this.getAvatarById(this.idOfUser);
+    }
+  }
 
+  getAvatarById(idA: any){
+    return this.usersService.getUser().subscribe(response => {
+      this.response = response;
+      this.avatar = this.response[idA-1].avatar;
+    });
   }
 
   open() {

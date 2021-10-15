@@ -79,6 +79,9 @@
             @include avatar-round;
             &-border{
                 @include avatar-round-border;
+                img{
+                    height: 100%;
+                }
             }
         }
         &-dots{

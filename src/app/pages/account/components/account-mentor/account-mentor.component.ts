@@ -123,7 +123,8 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
         .subscribe();
 
       this.btnTouched = true;
-      this.router.navigate(['/']);
+      setTimeout( ()=> {this.router.navigate(['/'])}, 500);
+      //this.router.navigate(['/']);
     }
 
     isAvatar.next(true);

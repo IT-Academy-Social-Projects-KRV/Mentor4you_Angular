@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 
 import { MentorProfile, MentorService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
+import { UserService } from 'src/app/core';
 
 @Component({
   selector: 'app-account',
@@ -31,12 +32,16 @@ export class AccountComponent implements OnInit, OnDestroy {
   newName: any = "";
   imgType: any = '';
   isBtnDisabled: boolean = true;
+  public token: any;
+  public idOfUser: any;
+  public response: any;
 
   constructor(
     public auth: SigninService,
     private http: HttpClient, 
     private _snackBar: MatSnackBar,
-    private mentorService: MentorService
+    private mentorService: MentorService,
+    private usersService: UserService
   ) {}
   
   get isAuth() {
@@ -50,6 +55,20 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.isAccountActivated = mentor.isAccountActivated;
       }
     );
+
+    if (this.isAuth){
+      this.token = localStorage.getItem('token');
+      this.idOfUser = this.auth.parseJwt(this.token).id;
+      this.getAvatarById(this.idOfUser);
+      }
+
+  }
+
+  getAvatarById(idA: any){
+    return this.usersService.getUser().subscribe(response => {
+      this.response = response;
+      this.croppedImage = this.response[idA-1].avatar;
+    });
   }
 
   setMentorData(mentorData: any): void {
@@ -95,8 +114,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     this.textFieldUpload =
       this.selectedFile.name.length > 35
-        ? this.selectedFile.name.slice(0, 35) + '...'
-        : this.selectedFile.name;
+        ? this.selectedFile.name.slice(0, 35) + '...' + '. Now you can save avatar'
+        : this.selectedFile.name + '. Now you can save avatar';
 
     this.newName = this.selectedFile.name;
     this.imgType = this.selectedFile.type;
@@ -129,7 +148,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     fd.append('file', file);
    
   this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(res => {
-    console.log('responce', res);
+    console.log('response', res);
   }, error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
   () => this.textFieldUpload = 'Your photo uploaded successfully!'
   );
