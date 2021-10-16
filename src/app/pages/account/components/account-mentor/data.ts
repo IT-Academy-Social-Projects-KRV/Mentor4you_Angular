@@ -38,9 +38,9 @@ export const categoriesData = [
 
 export const categoriesList = ['Java', 'Pyton', 'HTML', 'TypeScript', 'JavaScript', 'Kotlin', 'CSS'];
 
-export const currencyData = ['\u20B4', '\u20BD', '$', '\u20AC'];
+export const currencyList = ['\u20B4', '\u20BD', '$', '\u20AC'];
 
-export const languagesData = ['Ukrainian', 'English', 'Russian', 'Polish'];
+export const languagesList = ['Ukrainian', 'English', 'Russian', 'Polish'];
 
 export const cityList = ['Poltava', 'Ostroh', 'Lviv', 'Kyiv'];
 

@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
-import { categoriesList, certificateList, certificatesData, cityList, currencyData, languagesData } from './data';
+import { categoriesList, certificateList, certificatesData, cityList, currencyList, languagesList } from './data';
 
 
 export interface AdditionalMentorData {
@@ -29,10 +29,10 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   @Output() viewMentorData: EventEmitter<any> = new EventEmitter();
 
   categories = categoriesList;
-  currency = currencyData;
-  languages = languagesData;
-  cities = cityList;
+  currency = currencyList;
   certificates = certificateList;
+  languages = languagesList;
+  cities = cityList;
 
   categoriesForm = new FormControl([]);
   carrencyForm = new FormControl([]);

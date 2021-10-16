@@ -148,7 +148,7 @@ export class MentorService {
 
     console.log('mentor - to Server', mentor);
 
-    const newCategoryList = categoriesData.filter((category: Category) => {
+    const newCategories = categoriesData.filter((category: Category) => {
       if (mentor.categoriesList.includes(category.categories.name)) {
         category.currency = mentor.currency;
         category.rate = mentor.rate;
@@ -161,7 +161,7 @@ export class MentorService {
 
     const newSities = citiesData.filter(city => mentor.cities.includes(city.name));
 
-    // console.log('category', newCategoryList);
+    // console.log('category', newCategories);
 
     return {
       accountInfo: {
@@ -183,7 +183,7 @@ export class MentorService {
       rating: mentor.rating || 0,
       educations: [],
       certificates: mentor.certificates,
-      categoriesList: newCategoryList,
+      categoriesList: newCategories,
       languages: mentor.languages,
       cities: newSities,
       online: mentor.online,
