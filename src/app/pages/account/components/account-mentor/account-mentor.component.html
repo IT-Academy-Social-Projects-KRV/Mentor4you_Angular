@@ -212,9 +212,9 @@
       <div class="mentor__form-field">
         <!-- <span class="mentor__label">I can work with a group</span> -->
         <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK" | translate }} <span class="star">*</span></span>
-        <div class="mentor__control-wrapper" [ngClass]="checkBox(personal, group)">
-          <mat-checkbox formControlName="personal" #personal>Personal</mat-checkbox>
-          <mat-checkbox formControlName="group" #group>Group</mat-checkbox>
+        <div class="mentor__control-wrapper" [ngClass]="checkBox('personal', 'group')">
+          <mat-checkbox formControlName="personal">Personal</mat-checkbox>
+          <mat-checkbox formControlName="group">Group</mat-checkbox>
         </div>
       </div>
 
@@ -238,9 +238,9 @@
       <div class="mentor__form-field">
         <!-- <span class="mentor__label">Work</span> -->
         <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK1" | translate }}</span>
-        <div class="mentor__control-wrapper" [ngClass]="checkBox(online, offlineOut)">
-          <mat-checkbox formControlName="online" #online>Remotely</mat-checkbox>
-          <mat-checkbox formControlName="offlineOut" #offlineOut >Offline</mat-checkbox>
+        <div class="mentor__control-wrapper" [ngClass]="checkBox('online', 'offlineOut')">
+          <mat-checkbox formControlName="online">Remotely</mat-checkbox>
+          <mat-checkbox formControlName="offlineOut">Offline</mat-checkbox>
         </div>
       </div>
 

@@ -90,7 +90,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     const controls = this.mentorForm.controls;
 
     Object.keys(controls).forEach(controlName => {
-      controls[controlName].setValue(this.mentor[controlName] || '');
+      controls[controlName].setValue(this.mentor[controlName]);
     })
 
     const groupServ = this.mentor['groupServ'];
@@ -139,35 +139,41 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     this.setCertificates(certificates);
     this.setGroupService(controls);
 
-    console.log(' this.mentorForm.valid',  this.mentorForm.valid);
+    const isOnline = controls['online'].value === true;
+    const isOfflineOut = controls['offlineOut'].value === true;
+    const isGroup = controls['group'].value === true;
+    const isPersonal = controls['personal'].value === true;
 
-    if (
-      this.mentorForm.valid &&
-      (this.mentorForm.controls['online'].value === true ||
-        !this.mentorForm.controls['offlineOut'].value === true)
-    ) {
+    if (this.mentorForm.valid && (isOnline || isOfflineOut) && (isGroup || isPersonal)) {
+
       this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
-        .subscribe(() => { this.router.navigate(['/']) });
+        .subscribe(() => { 
+          this.router.navigate(['/']) 
+        });
 
       this.btnTouched = true;
     }
   }
 
   invalidCheck(controlName: string): string {
-    if (
-      this.mentorForm.controls[controlName].invalid &&
-      (this.mentorForm.controls[controlName].touched ||
-        this.btnTouched === true)
-    ) {
+    const controls = this.mentorForm.controls;
+
+    if (controls[controlName].invalid && (controls[controlName].touched || this.btnTouched === true)) {
       return 'invalidForm';
-    } else return '';
+    } else {
+      return '';
+    };
   }
 
-  checkBox(box1: any, box2: any) {
-    if (this.btnTouched === true && box1._checked === false && box2._checked === false) {
+  checkBox(checkBox1: any, checkBox2: any) {
+    const controls = this.mentorForm.controls;
+
+    if (controls[checkBox1].value === false && controls[checkBox2].value === false) {
       return 'invalid-checkbox';
-    } else return '';
+    } else {
+      return '';
+    };
   }
 
   onShowProfile(event: Event): void {
