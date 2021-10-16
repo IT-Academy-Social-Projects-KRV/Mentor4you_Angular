@@ -5,9 +5,15 @@
 }
 
 .content {
-  padding: 80px 20px;
+  padding: 30px 20px;
   background: $white;
   color: $black;
+  @media screen and (max-width: 768px) {
+    padding: 20px 20px;
+  }
+  @media screen and (max-width: 576px) {
+    padding: 20px 5px;
+  }
 }
 
 ::ng-deep .thumb {
@@ -71,24 +77,19 @@
     box-shadow: 1px 1px 5px 2px $lightgray;
     padding: 20px 100px;
     margin-bottom: 50px;
+    @media screen and (max-width: 992px) {
+      padding: 20px 20px;
+    }
+    @media screen and (max-width: 576px) {
+      flex-wrap: wrap;
+    }
   }
 
   &__avatar-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 120px;
     width: 120px;
     cursor: default;
     user-select: none;
-
-    span {
-      font-size: 16px;
-      font-weight: regular;
-      position: absolute;
-    }
-    
   }
 
   &__submit-section {
@@ -126,7 +127,7 @@
 
   &__upload-section {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     input {
       display: none;
     }
@@ -152,23 +153,6 @@
     button:hover{
       background-color: $fuschia100;
       color: white;
-    }
-  }
-
-  &__upload-btn {
-    font-size: 18px;
-    color: $white;
-    background: $grey;
-    border: none;
-    padding: 10px 50px;
-    user-select: none;
-    transition: 0.3s ease-in-out;
-    &:hover,
-    &:focus {
-      background: $fuschia80;
-    }
-    &:hover:disabled, &:focus:disabled{
-      background: white;
     }
   }
 }

@@ -26,7 +26,7 @@ export class SendFormComponent implements OnInit {
   ngOnInit() { }
 
   sendData(){
-    console.log(this.sendingEmailForm.value.messageControl);
+    //console.log(this.sendingEmailForm.value.messageControl);
     const reqBody = {
       "emailAdrId": 1,
       "emailAdres": this.sendingEmailForm.value.emailControl,
@@ -34,7 +34,7 @@ export class SendFormComponent implements OnInit {
       "subject": this.sendingEmailForm.value.subjectControl,
       "message": this.sendingEmailForm.value.messageControl
     }
-    console.log(reqBody);
+    //console.log(reqBody);
     this.http.post("http://localhost:8080/api/emailToModerator/sendEmailToModer", reqBody, {observe: "response"}).subscribe(response => console.log(response),
     error => { if (error.status == 200){
         this.openSnackBar('Message send!', 'We will try to answer you in 24 hours', 'success');
