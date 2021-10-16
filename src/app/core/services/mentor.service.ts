@@ -26,14 +26,11 @@ export class MentorService {
   getAllMentors(): Observable<MentorCard[]> {
     return this.http
       .get<any>(this.mentorsBestRatingUrl)
-      // .get<any>(this.mentorBaseUrl)
       .pipe(map(mentors => {
         console.log('m - all', mentors);
         return mentors
           // .filter((m: any) => m.firstName !== null)
           .map((mentor: any) => {
-            // const user = mentor.accounts.user;
-
             return {
               id: mentor.id,
               fullName: mentor.firstName + ' ' + mentor.lastName,
@@ -41,15 +38,6 @@ export class MentorService {
               categories: mentor.categories,
               rating: Number(mentor.rating)
             }
-            
-            // return {
-            //   id: user.id,
-            //   fullName: user.first_name + ' ' + user.last_name,
-            //   avatar: user.avatar,                           
-            //   // categories: user.categories || this.tempCategories,  // expecting a change in structure of the data
-            //   categoriesList: mentor.mentors_to_categories,           // expecting a change in structure of the data
-            //   rating: Number(user.rating) || 5
-            // }
         })
       }));
   }
@@ -79,7 +67,7 @@ export class MentorService {
           linkedIn: socialMap.LinkedIn,
           gitHub: socialMap.GitHub,
           certificates: mentorById.certificates,
-          place: mentor.place || 'Remote',
+          place: mentor.place,
           groupServ: mentorById.groupServ,
           languages: mentorById.languages,
           description: mentorById.description,
@@ -123,13 +111,12 @@ export class MentorService {
           linkedIn: socialMap.LinkedIn,
           gitHub: socialMap.GitHub,
           certificates: mentorDTO.certificates,
-          place: mentor.place || 'Remote',
+          place: mentor.place,
           groupServ: mentorDTO.groupServ,
           languages: mentorDTO.languages,
           description: mentorDTO.description,
           isAccountActivated: mentorDTO.showable_status,
           cities: cities,
-          // cities: mentorDTO.cities,
           rating: mentorDTO.rating,
           online: mentorDTO.online,
           offlineOut: mentorDTO.offlineOut,

@@ -89,7 +89,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   initForm(): void {
     const controls = this.mentorForm.controls;
 
-    console.log('--1', this.mentor)
+    // console.log('--1', this.mentor)
     
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');

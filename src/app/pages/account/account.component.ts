@@ -50,12 +50,12 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.mentor = mentor;
         this.isAccountActivated = mentor.isAccountActivated;
         this.croppedImage = mentor.avatar;
-        console.log('mentor - account', mentor);
+        // console.log('mentor - account', mentor);
       }
     );
 
     // console.log('currentRole', this.currentRole);
-    console.log('mentor - account', this.mentor);
+    // console.log('mentor - account', this.mentor);
   }
 
   setMentorData(mentorData: any): void {
@@ -152,9 +152,9 @@ export class AccountComponent implements OnInit, OnDestroy {
   showMentorForm() {
     this.isMentorForm = true;
 
-    console.log('mentor ---- 1', this.mentor);
+    // console.log('mentor ---- 1', this.mentor);
     this.mentor.certificates = this.mentor.certificates.map((certificate: Certificate) => certificate.name);
-    console.log('mentor ---- 2', this.mentor);
+    // console.log('mentor ---- 2', this.mentor);
   }
 
   ngOnDestroy(): void {
