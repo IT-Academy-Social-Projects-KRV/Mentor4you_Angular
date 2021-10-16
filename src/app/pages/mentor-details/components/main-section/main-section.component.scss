@@ -2,7 +2,6 @@
 
 .main-section {
   font-family: Roboto, sans-serif;
-  height: 350px;
   padding: 45px;
   width: 97%;
   box-shadow: 1px 1px 5px 2px #dedede;
@@ -15,18 +14,18 @@
     overflow: hidden;
     background-color: $lightgreen;
   }
-  //   margin-top: 30px;
-  // border: .5px solid $green;
-  // border-radius: 6px;
-  // margin: 30px auto 0 auto;
 
   .image {
     position: absolute;
+    width: 100%;
   }
 
   .name {
     font-size: 20px;
     margin: 15px 0;
+    width: 120px;
+    text-align: center;
+    line-height: 24px;
   }
 
   .description {
@@ -55,10 +54,11 @@
   }
 
   .category-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
+    max-height: 85px;
+    width: 135px;
+    overflow: auto;
+    padding-top: 1px;
+    padding-left: 2px;
   }
 
   .category-rate {

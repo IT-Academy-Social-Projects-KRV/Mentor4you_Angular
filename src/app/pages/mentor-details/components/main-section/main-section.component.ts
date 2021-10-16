@@ -42,7 +42,7 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
   grp_ment: string | undefined
 
   getCustom(elem:HTMLElement){
-    console.log(elem.textContent)
+    // console.log(elem.textContent)
     elem.style.marginTop='20px'
   }
 

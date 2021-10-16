@@ -4,49 +4,38 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { MentorCard, MentorProfile } from '../interfaces';
-import mockAvatar from './../mock/avatar';
-import { isAvatar } from 'src/app/pages/account/components/account-mentor/account-mentor.component';
+import { Category, Certificate, MentorCard, MentorProfile, City } from '../interfaces';
+import { 
+  categoriesData,
+  certificateList as certificates,
+  citiesData
+} from 'src/app/pages/account/components/account-mentor/data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MentorService {
+  countBestMentors = 5;
+  mentorsBestRatingUrl = `http://localhost:8080/api/searchMentor/findMentorsBestRating/${this.countBestMentors}`;
   mentorBaseUrl = 'http://localhost:8080/api/mentors';
-  isTempAvatar = false;
-
-  // temporary data
-  tempAvatar = mockAvatar;
-  // tempAvatar_2 = 'https://i.pravatar.cc/120';
-  tempAvatar_2 = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
-  currentAvatar = this.tempAvatar_2;
-  tempCategories = ['HTML', 'CSS'];
 
   constructor(
     private http: HttpClient,
-  ) { 
-    isAvatar.subscribe((res) => this.isTempAvatar = res);
-  }
+  ) { }
 
   getAllMentors(): Observable<MentorCard[]> {
     return this.http
-      .get<any>(this.mentorBaseUrl)
+      .get<any>(this.mentorsBestRatingUrl)
       .pipe(map(mentors => {
         return mentors
-          .filter((m: any) => m.accounts.user.first_name !== null)
+          // .filter((m: any) => m.firstName !== null)
           .map((mentor: any) => {
-            const user = mentor.accounts.user;
-
-            if (this.isTempAvatar) {
-              this.currentAvatar = (user.id === 7) ? this.tempAvatar : this.tempAvatar_2;
-            }
-
             return {
-              id: user.id,
-              fullName: user.first_name + ' ' + user.last_name,
-              avatar: this.currentAvatar,                          // expecting a change in structure of the data
-              // avatar: user.avatar,                           
-              categoriesList: mentor.mentors_to_categories,
+              id: mentor.id,
+              fullName: mentor.firstName + ' ' + mentor.lastName,
+              avatar: mentor.avatar,                           
+              categories: mentor.categories,
+              rating: Number(mentor.rating)
             }
         })
       }));
@@ -56,27 +45,39 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorBaseUrl + `/${id}`)
       .pipe(map((mentorById: any) => {
-
-        // console.log('m - server', mentorById);
-
         const mentor = mentorById.accountInfo;
         const socialMap = mentorById.accountInfo.socialMap;
+        const currentRate = mentorById.categoriesList[0];
+        const categories = mentorById.categoriesList.map((category: Category) => category.categories.name);
 
         return {
           id: mentor.id,
           email: mentor.email,
           firstName: mentor.firstName,
           lastName: mentor.lastName,
-          avatar: this.tempAvatar,      // expecting a change in structure of the data
-          // avatar: mentor.avatar,
-          phoneNumFirst: socialMap.PhoneNumFirst || '',
-          categoriesList: mentorById.categoriesList,
-          certificats: mentor.certificats,
-          place: mentor.place || 'Remote',
-          groupServ: mentor.group_services || false,
+          // avatar: this.currentAvatar,         // expecting a change in structure of the data
+          avatar: mentor.avatar,
+          phoneNumFirst: socialMap.PhoneNumFirst,
+          categoriesList: categories,
+          rate: currentRate.rate,
+          currency: currentRate.currency,
+          telegram: socialMap.Telegram,
+          skype: socialMap.Skype,
+          linkedIn: socialMap.LinkedIn,
+          gitHub: socialMap.GitHub,
+          certificates: mentorById.certificates,
+          place: mentor.place,
+          groupServ: mentorById.groupServ,
           languages: mentorById.languages,
           description: mentorById.description,
+          isAccountActivated: mentorById.showable_status,
+          cities: mentorById.cities,
+          rating: mentorById.rating,
+          online: mentorById.online,
+          offlineOut: mentorById.offlineOut,
+          offlineIn: mentorById.offlineIn
         }
+
       }))
   }
 
@@ -87,33 +88,34 @@ export class MentorService {
 
         // console.log('mDTO - server', mentorDTO);
 
-        this.currentAvatar = this.isTempAvatar ? this.tempAvatar : this.tempAvatar_2;
-
         const mentor = mentorDTO.accountInfo;
         const socialMap = mentorDTO.accountInfo.socialMap;
+        const currentRate = mentorDTO.categoriesList[0] || 5;
+        const categories = mentorDTO.categoriesList.map((category: Category) => category.categories.name);
+        const cities = mentorDTO.cities.map((city: City) => city.name);
 
         return {
           id: mentor.id,
           email: mentor.email,
           firstName: mentor.firstName,
           lastName: mentor.lastName,
-          avatar: this.currentAvatar,         // expecting a change in structure of the data
-          // avatar: mentor.avatar,
+          // avatar: this.currentAvatar,         // expecting a change in structure of the data
+          avatar: mentor.avatar,
           phoneNumFirst: socialMap.PhoneNumFirst,
-          categoriesList: mentorDTO.categoriesList,
-          rate: 0,
-          currency: '',
+          categoriesList: categories,
+          rate: currentRate.rate,
+          currency: currentRate.currency,
           telegram: socialMap.Telegram,
           skype: socialMap.Skype,
           linkedIn: socialMap.LinkedIn,
           gitHub: socialMap.GitHub,
           certificates: mentorDTO.certificates,
-          place: mentor.place || 'Remote',
+          place: mentor.place,
           groupServ: mentorDTO.groupServ,
           languages: mentorDTO.languages,
           description: mentorDTO.description,
           isAccountActivated: mentorDTO.showable_status,
-          cities: mentorDTO.cities,
+          cities: cities,
           rating: mentorDTO.rating,
           online: mentorDTO.online,
           offlineOut: mentorDTO.offlineOut,
@@ -132,10 +134,20 @@ export class MentorService {
 
     // console.log('mentor - to Server', mentor);
 
-    mentor.categoriesList.map((category: any) => {
-      category.rate = mentor.rate;
-      category.currency = mentor.currency;
+    const newCategories = categoriesData.filter((category: Category) => {
+      if (mentor.categoriesList.includes(category.categories.name)) {
+        category.currency = mentor.currency;
+        category.rate = mentor.rate;
+
+        return true;
+      };
+
+      return false;
     });
+
+    const newSities = citiesData.filter(city => mentor.cities.includes(city.name));
+
+    // console.log('category', newCategories);
 
     return {
       accountInfo: {
@@ -157,9 +169,9 @@ export class MentorService {
       rating: mentor.rating || 0,
       educations: [],
       certificates: mentor.certificates,
-      categoriesList: mentor.categoriesList,
+      categoriesList: newCategories,
       languages: mentor.languages,
-      cities: mentor.cities,
+      cities: newSities,
       online: mentor.online,
       offlineOut: mentor.offlineOut,
       offlineIn: mentor.online && mentor.offlineOut,

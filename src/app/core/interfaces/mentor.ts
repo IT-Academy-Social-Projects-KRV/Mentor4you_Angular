@@ -1,8 +1,10 @@
+// import { Category } from "src/app/pages/account/components/chips-input/chips-input.component";
+
 export interface MentorCard {
   id: number;
   fullName: string;
   avatar: string;
-  categoriesList: Array<CategoriesList>;
+  categories: Array<Category>;
   // currency?: string;
   rating: number;
 }
@@ -14,23 +16,34 @@ export interface MentorProfile {
   lastName: string;
   avatar: string;
   phoneNumFirst: string;
-  categoriesList: Array<CategoriesList>;
+  categoriesList: Array<Category>;
   place: string;
   currency: string;
   rate: number;
   groupServ: string;
-  languagesList: Array<LanguagesList>;
+  languagesList: Array<Language>;
   description: string;
   isAccountActivated: boolean;
 }
 
-export interface CategoriesList {
+export interface Category {
   categories: { id: number, name: string };
   currency: string;
   rate: number;
 }
 
-export interface LanguagesList {
+export interface Certificate {
+  name: string;
+  description: string;
+  link: string;
+}
+
+export interface Language {
+  id: number;
+  name: string;
+}
+
+export interface City {
   id: number;
   name: string;
 }
