@@ -1,11 +1,9 @@
-// import { Category } from "src/app/pages/account/components/chips-input/chips-input.component";
-
 export interface MentorCard {
   id: number;
   fullName: string;
   avatar: string;
   categories: Array<Category>;
-  // currency?: string;
+  currency?: string;
   rating: number;
 }
 
@@ -17,13 +15,24 @@ export interface MentorProfile {
   avatar: string;
   phoneNumFirst: string;
   categoriesList: Array<Category>;
-  place: string;
-  currency: string;
   rate: number;
+  place?: string;
+  currency: string;
   groupServ: string;
-  languagesList: Array<Language>;
+  languagesList?: Array<Language>;
   description: string;
+  telegram: string;
+  skype: string;
+  linkedIn: string;
+  gitHub: string;
   isAccountActivated: boolean;
+  online: boolean;
+  offlineOut: boolean;
+  offlineIn: boolean;
+  certificates: Array<Certificate>;
+  languages: Array<Language>;
+  cities: Array<City>;
+  rating: number;
 }
 
 export interface Category {
@@ -44,13 +53,6 @@ export interface Language {
 }
 
 export interface City {
-  id: number;
-  name: string;
-}
-
-
-// -------------------------------
-export interface MentorDataFilter {
   id: number;
   name: string;
 }

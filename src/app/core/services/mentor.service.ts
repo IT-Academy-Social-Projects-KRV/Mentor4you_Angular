@@ -37,26 +37,26 @@ export class MentorService {
       }));
   }
 
-  getMentorById(id: number): Observable<any> {
+  getMentorById(id: number): Observable<MentorProfile> {
     return this.http
       .get<any>(this.mentorBaseUrl + `/${id}`)
       .pipe(map((mentorById: any) => this.transformDataForClient(mentorById)));
   }
 
-  getMentorDTO(): Observable<any> {
+  getMentorDTO(): Observable<MentorProfile> {
     return this.http
       .get<any>(this.mentorBaseUrl + '/getMentorDTO/')
       .pipe(map((mentorDTO: any) => this.transformDataForClient(mentorDTO)));
   }
 
-  updateMentor(mentor: any): Observable<any> {
+  updateMentor(mentor: MentorProfile): Observable<MentorProfile> {
     const updatedMentor = this.transformDataForServer(mentor);
     return this.http.put<any>(this.mentorBaseUrl + '/UpdateMentor/', updatedMentor);
   }
 
 
-  // ---------- transform data for Frontend & Backend --------------
-  
+  // ---------- transformation data for Frontend & Backend --------------
+
   transformDataForClient(mentor: any) {
     const mentorData = mentor.accountInfo;
     const socialMap = mentor.accountInfo.socialMap;
@@ -93,7 +93,6 @@ export class MentorService {
   }
 
   transformDataForServer(mentor: any): Object {
-
     const newCategories = categoriesData.filter((category: Category) => {
       if (mentor.categoriesList.includes(category.categories.name)) {
         category.currency = mentor.currency;
