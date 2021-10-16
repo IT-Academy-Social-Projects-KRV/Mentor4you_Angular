@@ -39,7 +39,7 @@ export class MainSectionComponent implements OnInit {
   grp_ment: string | undefined;
 
   getCustom(elem:HTMLElement): void {
-    console.log(elem.textContent);
+    // console.log(elem.textContent);
     elem.style.marginTop = '20px';
   }
 

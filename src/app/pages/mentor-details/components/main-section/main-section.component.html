@@ -28,9 +28,9 @@
             <div *ngFor="let category of mentor.categoriesList">
               <div class="category-rate">
                 <span class="category">
-                  {{category.categories.name}}
+                  {{category}}
                 </span>
-                <span class="rate"> {{category.rate}} <small>{{category.currency}}</small></span>
+                <!-- <span class="rate"> {{category.rate}} <small>{{category.currency}}</small></span> -->
               </div>
           </div>
         </div>
@@ -38,6 +38,9 @@
         </div>
         <br>
         <div class="info-section d-flex align-items-start flex-column">
+          <p><b>Rate:</b>
+            <span class="rate"> {{mentor.rate}} <small>{{mentor.currency}}</small></span>
+          </p>
           <p><b>Place:</b>
             <span class="place" *ngFor="let city of mentor.cities last as isLast"> 
               {{city.name}}<span *ngIf="!isLast">, </span>
