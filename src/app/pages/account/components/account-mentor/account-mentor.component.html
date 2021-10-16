@@ -150,7 +150,7 @@
 
         <div class="mentor__form-field rate-field">
             <!-- {{ "ACCOUNT.MENTOR.RATE" | translate }}  -->
-        <span class="mentor__label">Telegram <span class="star">*</span></span>
+        <span class="mentor__label">Telegram</span>
         
         <div class="mentor__control-wrapper">
           <input
@@ -211,7 +211,7 @@
 
       <div class="mentor__form-field">
         <!-- <span class="mentor__label">I can work with a group</span> -->
-        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK" | translate }}</span>
+        <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK" | translate }} <span class="star">*</span></span>
         <div class="mentor__control-wrapper" [ngClass]="checkBox(personal, group)">
           <mat-checkbox formControlName="personal" #personal>Personal</mat-checkbox>
           <mat-checkbox formControlName="group" #group>Group</mat-checkbox>

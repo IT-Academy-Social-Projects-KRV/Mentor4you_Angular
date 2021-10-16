@@ -89,38 +89,37 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   initForm(): void {
     const controls = this.mentorForm.controls;
 
-    // console.log('--1', this.mentor)
-    
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');
     })
-    
-    const MIX = this.mentor['groupServ'];
-    const YES = this.mentor['groupServ'];
-    controls['personal'].setValue(MIX === 'MIX');
-    controls['group'].setValue(YES === 'YES');
 
-    this.setGroupService(this.mentorForm.controls);
+    const groupServ = this.mentor['groupServ'];
 
-    // console.log('--2', this.mentorForm.value)
+    switch (true) {
+      case groupServ === 'MIX':
+        controls['personal'].setValue(true);
+        controls['group'].setValue(true);
+        break;
 
+      case groupServ === 'YES':
+        controls['personal'].setValue(false);
+        controls['group'].setValue(true);
+        break;
+
+      default:
+        controls['personal'].setValue(true);
+        controls['group'].setValue(false);
+    }
   }
 
   setCertificates(certificates: any) {
-    // let newSertificateList = certificates;
-    // console.log('--1', certificates.value)
+    const newSertificateList = certificatesData.filter(certificate => {
+      if (certificates.value.includes(certificate.name)) {
+        return true;
+      }
 
-    // if (typeof certificates.value[0] === 'string') {
-    //   console.log('--2', certificates.value)
-      const newSertificateList = certificatesData.filter(certificate => {
-        if (certificates.value.includes(certificate.name)) {
-          return true;
-        }
-  
-        return false;
-      });
-  
-    // }
+      return false;
+    });
     
     certificates.setValue(newSertificateList);
   }
@@ -134,23 +133,25 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const certificates = this.mentorForm.controls['certificates'];
+    const controls = this.mentorForm.controls;
+    const certificates = controls['certificates'];
+    
+    this.setCertificates(certificates);
+    this.setGroupService(controls);
 
-    // if (Array.isArray(certificates.value)) {
-      this.setCertificates(certificates);
-    // }
+    console.log(' this.mentorForm.valid',  this.mentorForm.valid);
 
-    // if (
-    //   this.mentorForm.valid &&
-    //   (this.mentorForm.controls['online'].value === true ||
-    //     !this.mentorForm.controls['offlineOut'].value === true)
-    // ) {
+    if (
+      this.mentorForm.valid &&
+      (this.mentorForm.controls['online'].value === true ||
+        !this.mentorForm.controls['offlineOut'].value === true)
+    ) {
       this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
         .subscribe(() => { this.router.navigate(['/']) });
 
       this.btnTouched = true;
-    // }
+    }
   }
 
   invalidCheck(controlName: string): string {
@@ -173,9 +174,8 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     event.preventDefault();
     const certificates = this.mentorForm.controls['certificates'];
 
-    // if (Array.isArray(certificates.value)) {
-      this.setCertificates(certificates);
-    // }
+    this.setCertificates(certificates);
+    this.setGroupService(this.mentorForm.controls);
     
     this.closeForm.emit();
     this.viewMentorData.next(this.mentorForm.value);
