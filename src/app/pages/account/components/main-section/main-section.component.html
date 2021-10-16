@@ -42,7 +42,7 @@
           </p>
           <p><b>Place:</b>
             <span class="place" *ngFor="let city of mentor.cities last as isLast"> 
-              {{city.name}}<span *ngIf="!isLast">, </span>
+              {{city}}<span *ngIf="!isLast">, </span>
             </span></p>
           <!-- <p><b>Rate:</b><span class="rate"> {{mentor.rate}} <small>{{mentor.currency}}</small></span></p> -->
           <p><b>Group mentoring:</b>

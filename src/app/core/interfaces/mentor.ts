@@ -43,6 +43,11 @@ export interface Language {
   name: string;
 }
 
+export interface City {
+  id: number;
+  name: string;
+}
+
 
 // -------------------------------
 export interface MentorDataFilter {

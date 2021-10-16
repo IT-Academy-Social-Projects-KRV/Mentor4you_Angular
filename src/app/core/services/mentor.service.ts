@@ -4,10 +4,11 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Category, Certificate, MentorCard, MentorProfile } from '../interfaces';
+import { Category, Certificate, MentorCard, MentorProfile, City } from '../interfaces';
 import { 
   categoriesData,
-  certificateList as certificates
+  certificateList as certificates,
+  citiesData
 } from 'src/app/pages/account/components/account-mentor/data';
 
 @Injectable({
@@ -104,6 +105,7 @@ export class MentorService {
         const socialMap = mentorDTO.accountInfo.socialMap;
         const currentRate = mentorDTO.categoriesList[0] || 5;
         const categories = mentorDTO.categoriesList.map((category: Category) => category.categories.name);
+        const cities = mentorDTO.cities.map((city: City) => city.name);
 
         return {
           id: mentor.id,
@@ -126,7 +128,8 @@ export class MentorService {
           languages: mentorDTO.languages,
           description: mentorDTO.description,
           isAccountActivated: mentorDTO.showable_status,
-          cities: mentorDTO.cities,
+          cities: cities,
+          // cities: mentorDTO.cities,
           rating: mentorDTO.rating,
           online: mentorDTO.online,
           offlineOut: mentorDTO.offlineOut,
@@ -156,6 +159,8 @@ export class MentorService {
       return false;
     });
 
+    const newSities = citiesData.filter(city => mentor.cities.includes(city.name));
+
     // console.log('category', newCategoryList);
 
     return {
@@ -180,7 +185,7 @@ export class MentorService {
       certificates: mentor.certificates,
       categoriesList: newCategoryList,
       languages: mentor.languages,
-      cities: mentor.cities,
+      cities: newSities,
       online: mentor.online,
       offlineOut: mentor.offlineOut,
       offlineIn: mentor.online && mentor.offlineOut,

@@ -42,6 +42,8 @@ export const currencyData = ['\u20B4', '\u20BD', '$', '\u20AC'];
 
 export const languagesData = ['Ukrainian', 'English', 'Russian', 'Polish'];
 
+export const cityList = ['Poltava', 'Ostroh', 'Lviv', 'Kyiv'];
+
 export const certificateList = [
   'Certified Professional, Java EE 8',
   'ISTQB Programming in HTML5 with JavaScript and CSS3',

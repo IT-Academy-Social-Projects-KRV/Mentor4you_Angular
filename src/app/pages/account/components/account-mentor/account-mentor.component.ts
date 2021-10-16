@@ -6,8 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
-import { categoriesList, certificateList, certificatesData, citiesData, currencyData, languagesData } from './data';
-import { delay } from 'rxjs/operators';
+import { categoriesList, certificateList, certificatesData, cityList, currencyData, languagesData } from './data';
 
 
 export interface AdditionalMentorData {
@@ -32,7 +31,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   categories = categoriesList;
   currency = currencyData;
   languages = languagesData;
-  cities = citiesData;
+  cities = cityList;
   certificates = certificateList;
 
   categoriesForm = new FormControl([]);
@@ -90,7 +89,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   initForm(): void {
     const controls = this.mentorForm.controls;
 
-    // console.log('--1', this.mentor)
+    console.log('--1', this.mentor)
     
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName] || '');
