@@ -4,7 +4,7 @@ export interface MentorCard {
   id: number;
   fullName: string;
   avatar: string;
-  categoriesList: Array<Category>;
+  categories: Array<Category>;
   // currency?: string;
   rating: number;
 }

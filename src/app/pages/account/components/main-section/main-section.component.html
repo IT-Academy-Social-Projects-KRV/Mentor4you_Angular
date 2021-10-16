@@ -1,7 +1,6 @@
 <div class="main-section container">
   <div class="row">
     <div class="col-4">
-      <div class="info">
       <div class="image-wrap">
         <img class="image" src="{{mentor.avatar}}" alt="{{mentor.firstName}}">
       </div>
@@ -20,13 +19,12 @@
 
       <button class="btn">{{button}}</button>
     </div>
-    </div>
 
     <div class="col-4">
       <div class="d-flex flex-column justify-content-around h-100">
         <div class="d-flex">
           <b>Category: </b>
-          <div class="category-list" >
+          <div class="category-list">
             <div *ngFor="let category of mentor.categoriesList">
               <div class="category-rate">
                 <span class="category">

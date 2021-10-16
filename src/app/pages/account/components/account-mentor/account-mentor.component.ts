@@ -6,7 +6,8 @@ import { FormControl } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
-import { categoriesData, certificateList, certificatesData, citiesData, currencyData, languagesData } from './data';
+import { categoriesList, certificateList, certificatesData, citiesData, currencyData, languagesData } from './data';
+import { delay } from 'rxjs/operators';
 
 
 export interface AdditionalMentorData {
@@ -28,7 +29,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   @Output() setMentorData: EventEmitter<AdditionalMentorData> = new EventEmitter();
   @Output() viewMentorData: EventEmitter<any> = new EventEmitter();
 
-  categories = categoriesData;
+  categories = categoriesList;
   currency = currencyData;
   languages = languagesData;
   cities = citiesData;
@@ -95,9 +96,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       controls[controlName].setValue(this.mentor[controlName] || '');
     })
     
-    const MAX = this.mentor['groupServ'];
+    const MIX = this.mentor['groupServ'];
     const YES = this.mentor['groupServ'];
-    controls['personal'].setValue(MAX === 'MAX');
+    controls['personal'].setValue(MIX === 'MIX');
     controls['group'].setValue(YES === 'YES');
 
     this.setGroupService(this.mentorForm.controls);
@@ -147,10 +148,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     // ) {
       this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
-        .subscribe();
+        .subscribe(() => { this.router.navigate(['/']) });
 
       this.btnTouched = true;
-      this.router.navigate(['/']);
     // }
   }
 

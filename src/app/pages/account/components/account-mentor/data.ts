@@ -1,4 +1,4 @@
-export const categoriesList = [
+export const categoriesData = [
   {
     categories: {id: 1, name:'Java',}, 
     rate: 0, 
@@ -36,13 +36,12 @@ export const categoriesList = [
   },
 ];
 
-export const categoriesData = ['Java', 'Pyton', 'HTML', 'TypeScript', 'JavaScript', 'Kotlin', 'CSS'];
+export const categoriesList = ['Java', 'Pyton', 'HTML', 'TypeScript', 'JavaScript', 'Kotlin', 'CSS'];
 
 export const currencyData = ['\u20B4', '\u20BD', '$', '\u20AC'];
 
 export const languagesData = ['Ukrainian', 'English', 'Russian', 'Polish'];
 
-// export const certificateForSelection = [
 export const certificateList = [
   'Certified Professional, Java EE 8',
   'ISTQB Programming in HTML5 with JavaScript and CSS3',

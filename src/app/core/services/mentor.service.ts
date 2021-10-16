@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Category, Certificate, MentorCard, MentorProfile } from '../interfaces';
 import { 
-  categoriesList as categories,
+  categoriesData,
   certificateList as certificates
 } from 'src/app/pages/account/components/account-mentor/data';
 
@@ -14,8 +14,9 @@ import {
   providedIn: 'root'
 })
 export class MentorService {
+  countBestMentors = 5;
+  mentorsBestRatingUrl = `http://localhost:8080/api/searchMentor/findMentorsBestRating/${this.countBestMentors}`;
   mentorBaseUrl = 'http://localhost:8080/api/mentors';
-  isTempAvatar = false;
 
   constructor(
     private http: HttpClient,
@@ -23,22 +24,31 @@ export class MentorService {
 
   getAllMentors(): Observable<MentorCard[]> {
     return this.http
-      .get<any>(this.mentorBaseUrl)
+      .get<any>(this.mentorsBestRatingUrl)
+      // .get<any>(this.mentorBaseUrl)
       .pipe(map(mentors => {
         console.log('m - all', mentors);
         return mentors
-          .filter((m: any) => m.accounts.user.first_name !== null)
+          // .filter((m: any) => m.firstName !== null)
           .map((mentor: any) => {
-            const user = mentor.accounts.user;
+            // const user = mentor.accounts.user;
 
             return {
-              id: user.id,
-              fullName: user.first_name + ' ' + user.last_name,
-              avatar: user.avatar,                           
-              // categories: user.categories || this.tempCategories,  // expecting a change in structure of the data
-              categoriesList: mentor.mentors_to_categories,           // expecting a change in structure of the data
-              rating: Number(user.rating) || 5
+              id: mentor.id,
+              fullName: mentor.firstName + ' ' + mentor.lastName,
+              avatar: mentor.avatar,                           
+              categories: mentor.categories,
+              rating: Number(mentor.rating)
             }
+            
+            // return {
+            //   id: user.id,
+            //   fullName: user.first_name + ' ' + user.last_name,
+            //   avatar: user.avatar,                           
+            //   // categories: user.categories || this.tempCategories,  // expecting a change in structure of the data
+            //   categoriesList: mentor.mentors_to_categories,           // expecting a change in structure of the data
+            //   rating: Number(user.rating) || 5
+            // }
         })
       }));
   }
@@ -47,34 +57,10 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorBaseUrl + `/${id}`)
       .pipe(map((mentorById: any) => {
-
-        // console.log('mById - server', mentorById);
-
-        // const mentor = mentorById.accountInfo;
-        // const socialMap = mentorById.accountInfo.socialMap;
-
-        // return {
-        //   id: mentor.id,
-        //   email: mentor.email,
-        //   firstName: mentor.firstName,
-        //   lastName: mentor.lastName,
-        //   // avatar: this.tempAvatar,      // expecting a change in structure of the data
-        //   avatar: mentor.avatar,
-        //   phoneNumFirst: socialMap.PhoneNumFirst || '',
-        //   categoriesList: mentorById.categoriesList,
-        //   certificats: mentor.certificats,
-        //   place: mentor.place || 'Remote',
-        //   groupServ: mentor.group_services,
-        //   languages: mentorById.languages,
-        //   description: mentorById.description,
-        // }
-
-        
         const mentor = mentorById.accountInfo;
         const socialMap = mentorById.accountInfo.socialMap;
         const currentRate = mentorById.categoriesList[0];
         const categories = mentorById.categoriesList.map((category: Category) => category.categories.name);
-        // const certificates = mentorById.certificates.map((certificate: Certificate) => certificate.name);
 
         return {
           id: mentor.id,
@@ -91,7 +77,6 @@ export class MentorService {
           skype: socialMap.Skype,
           linkedIn: socialMap.LinkedIn,
           gitHub: socialMap.GitHub,
-          // certificates: certificates,
           certificates: mentorById.certificates,
           place: mentor.place || 'Remote',
           groupServ: mentorById.groupServ,
@@ -117,9 +102,8 @@ export class MentorService {
 
         const mentor = mentorDTO.accountInfo;
         const socialMap = mentorDTO.accountInfo.socialMap;
-        const currentRate = mentorDTO.categoriesList[0];
+        const currentRate = mentorDTO.categoriesList[0] || 5;
         const categories = mentorDTO.categoriesList.map((category: Category) => category.categories.name);
-        // const certificates = mentorDTO.certificates.map((certificate: Certificate) => certificate.name);
 
         return {
           id: mentor.id,
@@ -136,7 +120,6 @@ export class MentorService {
           skype: socialMap.Skype,
           linkedIn: socialMap.LinkedIn,
           gitHub: socialMap.GitHub,
-          // certificates: certificates,
           certificates: mentorDTO.certificates,
           place: mentor.place || 'Remote',
           groupServ: mentorDTO.groupServ,
@@ -162,7 +145,7 @@ export class MentorService {
 
     console.log('mentor - to Server', mentor);
 
-    const newCategoryList = categories.filter((category: Category) => {
+    const newCategoryList = categoriesData.filter((category: Category) => {
       if (mentor.categoriesList.includes(category.categories.name)) {
         category.currency = mentor.currency;
         category.rate = mentor.rate;
