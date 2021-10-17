@@ -5,8 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { map, tap } from 'rxjs/operators';
 import { AuthSignupServices } from 'src/app/core/services/auth-signup.services';
 import { MatSnackBar } from '@angular/material/snack-bar';
-// import { signupUserDate } from '../../core/services/auth-signup.services'
-// import { ErrorPageServices } from 'src/app/core/services/errorPage.services';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -35,8 +34,6 @@ export class SignupComponent implements OnInit, OnDestroy {
       checkRole: this.fb.control('mentee', [Validators.required]),
       rules: this.fb.control(false, Validators.requiredTrue),
     })
-    // this.snackBar.open('successful');
-    // this.signUpGroup.valueChanges.subscribe(e => console.log(this.signUpGroup.get('password')?.valid))
   }
 
   passwordValidator(control: FormControl): { [key: string]: any } | null {
@@ -62,8 +59,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         this.signUpGroup.reset();
         this.signUpGroup.get('checkRole')?.setValue('mentee');
           if (e.message = "User created"){
-             this.snackBar.open('successful');
-           setTimeout(()=>this.router.navigate(['/auth/login']),2000)
+            this.snackBar.open('Successful registration !!! You can login in a moment');
+           setTimeout(()=>this.router.navigate(['/auth/login']),4000)
           }
         // 
         },500)
@@ -84,7 +81,6 @@ export class SignupComponent implements OnInit, OnDestroy {
   navigateToTerms(e:any){
     e.preventDefault();
     this.router.navigate(['/terms/']);
-    console.log('wertyuiolkjnbvnm,')
   }
   ngOnDestroy(){
     this.snackBar.dismiss()

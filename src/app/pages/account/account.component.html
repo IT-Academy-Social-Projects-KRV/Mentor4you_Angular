@@ -1,7 +1,6 @@
-
-  <!-- <div class="content" *ngIf="isAuth"> -->
+<div class="content" *ngIf="isAuth">
   <div class="content">
-    <div *ngIf="!isMentorForm && currentRole === 'mentor'">
+    <div *ngIf="!isMentorForm && auth.isMentor">
       <div *ngIf="mentor">
         <app-main-section [mentor]="mentor"></app-main-section>
 
@@ -9,12 +8,12 @@
       </div>
     </div>
       
-    <div *ngIf="isMentorForm || currentRole === 'mentee'">
+    <div *ngIf="isMentorForm || auth.isMentee">
       <div class="mentor-account__top-line">
         <h2 class="mentor-account__title">{{ "HEADER.MENU.ACCOUNT" | translate }}</h2>
 
         <div class="mentor-account__top-actions">
-          <div class="mentor-account__slide" *ngIf="currentRole === 'mentor'">
+          <div class="mentor-account__slide" *ngIf="auth.isMentor">
             <mat-slide-toggle 
               (toggleChange)="toggleAccountActivate()" 
               [checked]="isAccountActivated"
@@ -23,9 +22,6 @@
             </mat-slide-toggle>
           </div>
 
-          <!-- <button class="mentor-account__btn" #button (click)="toggleRole(button)">
-            {{currentRole == 'mentor' ? 'Move to Mentee Account' : 'Move to Mentor Account'}}
-          </button> -->
         </div>
       </div>
 
@@ -79,7 +75,7 @@
       
 
       <div [ngSwitch]="true">
-        <div class="mentor" *ngSwitchCase="currentRole === 'mentor'">
+        <div class="mentor" *ngSwitchCase="auth.isMentor">
           <app-account-mentor
             [mentor]="mentor"
             (setMentorData)="setMentorData($event)"
@@ -88,12 +84,10 @@
           ></app-account-mentor>
         </div>
         
-        <div class="mentee" *ngSwitchCase="currentRole === 'mentee'">
+        <div class="mentee" *ngSwitchCase="auth.isMentee">
           <app-account-mentee></app-account-mentee>
         </div>
       </div>
     </div> 
   </div>
-  
-
-
+</div>

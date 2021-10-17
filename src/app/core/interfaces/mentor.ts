@@ -46,6 +46,16 @@ export interface Certificate {
   description: string;
   link: string;
 }
+export interface MentorCooperation{
+  coopStatus: string;
+  mentor: MentorRespons;
+}
+export interface MentorRespons {
+  id: number;
+  name: string;
+  secondName: string;
+  img?: string;
+}
 
 export interface Language {
   id: number;

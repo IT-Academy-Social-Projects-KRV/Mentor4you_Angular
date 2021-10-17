@@ -44,20 +44,9 @@ validateEmail(event: any){
   RequestResetUser() {
     const email= this.RequestResetForm.value.email;
     this.isInstructionSend = true;
-    // let requestBody = {
-    //   "login": "oksana@gmail.com",
-    //   "password": "Wtf12345"
-    // };
-    //setTimeout( ()=> {this.router.navigate(['/'])}, 5000)
+    setTimeout( ()=> {this.router.navigate(['/auth/response-reset'])}, 5000)
     // this.http.post("http://localhost:8080/system/auth", requestBody).subscribe(response => console.log(response))
-    const smth = {
-        next: (x: any) => console.log("success"),
-        error: (err: any) => console.log(err)
-    };
-    let requestBody = {
-     "login": email,
-    };
-     this.http.post("http://localhost:8080/password/request", requestBody).subscribe(smth);
+    
   }
 
 }

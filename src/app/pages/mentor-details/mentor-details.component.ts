@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './mentor-details.component.html',
   styleUrls: ['./mentor-details.component.scss']
 })
+
 export class MentorDetailsComponent implements OnInit, OnDestroy {
   mentor: any;
   mentorSubscription!: Subscription;
@@ -23,7 +24,6 @@ export class MentorDetailsComponent implements OnInit, OnDestroy {
 
     this.mentorSubscription = this.mentorService.getMentorById(id).subscribe(
       (mentor: any) => {
-        console.log('mentor-details', mentor);
         this.mentor = mentor;
       }
     )

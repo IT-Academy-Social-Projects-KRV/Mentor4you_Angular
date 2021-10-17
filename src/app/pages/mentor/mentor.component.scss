@@ -1,0 +1,138 @@
+@import "variables";
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mentor-card {
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: .3s;
+
+  &:hover {
+    box-shadow: 0 0 20px 2px rgb(216, 216, 216);
+    bottom: 2px;
+    left: 2px;
+  }
+
+  &__info, .btns {
+    box-shadow: 0 0 20px 2px rgb(240, 240, 240);
+  }
+
+  &__info {
+    padding: 25px;
+    margin-bottom: 15px;
+  }
+
+  &__image-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: $lightgreen;
+    margin: 0 auto 20px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &__image {
+    position: absolute;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  &__category {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  &__rating {
+    display: flex;
+    justify-content: center;
+
+    span {
+      color: $fuschia80;
+    }
+  }
+}
+
+.btns {
+  padding: 40px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__ask,
+  &__view {
+    background-color: #fff;
+    width: 150px;
+    min-height: 40px;
+    line-height: 1;
+    padding: 5px;
+    font-size: 12px;
+    color: $darkblue;
+    border: 2px solid $darkblue;
+    border-radius: 10px;
+    transition: .3s;
+
+    &:hover, &:focus {
+      background-color: $darkblue;
+      border: 2px solid $bg;
+      color: $bg;
+    }
+  }
+
+  &__view {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+}
+
+.searchInfo {
+  border-radius: 20px;
+  width: 100%;
+  height: 650px;
+  background-color: $darkblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.searchMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchText {
+  width: 800px;
+  height: 200px;
+  background-color: $fuschia80;
+  border-radius: 20px;
+  text-transform: uppercase;
+  display: inline-block;
+
+  .text {
+    text-align: center;
+    margin-top: 40px;
+    display: block;
+    color: #ffffff;
+    font-size: 30px;
+  }
+}
