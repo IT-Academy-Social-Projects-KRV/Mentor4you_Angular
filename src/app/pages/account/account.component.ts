@@ -14,7 +14,6 @@ import { SigninService } from 'src/app/auth/signin/signin.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit, OnDestroy {
-  // currentRole = localStorage.getItem('role');
   isMentorForm: boolean = false;
   isAccountActivated!: boolean;
   isImage: boolean = false;
@@ -66,17 +65,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   toggleAccountActivate(): void {
     this.isAccountActivated = !this.isAccountActivated;
   }
-
-  // toggleRole(button: HTMLElement): void {
-  //   if (button.innerText === 'Move to Mentor Account') {
-  //     this.currentRole = 'mentor';
-  //     button.innerText = 'Move to Mentee Account';
-  //   } else {
-  //     this.currentRole = 'mentee';
-  //     button.innerText = 'Move to Mentor Account';
-  //   }
-  // }
-
 
   onFileSelected(event: any): void {
     this.selectedFile = <File>event.target.files[0];
@@ -130,12 +118,11 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     fd.append('file', file);
    
-  this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(res => {
-    console.log('responce', res);
-  }, error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
-  () => this.textFieldUpload = 'Your photo uploaded successfully!'
-  );
-
+    this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(
+      res => {}, 
+      error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
+      () => this.textFieldUpload = 'Your photo uploaded successfully!'
+    );
   }
 
   openSnackBar(message: string, action: string, className: string) {
@@ -148,6 +135,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   showMentorForm() {
     this.isMentorForm = true;
     this.mentor.certificates = this.mentor.certificates.map((certificate: Certificate) => certificate.name);
+    this.mentor.avatar = this.croppedImage;
   }
 
   ngOnDestroy(): void {

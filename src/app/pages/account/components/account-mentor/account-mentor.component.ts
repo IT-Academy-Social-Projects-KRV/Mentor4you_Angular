@@ -63,7 +63,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       lastName: [''],
       description: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumFirst: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      phoneNumFirst: ['', [Validators.required, Validators.pattern('^[+][0-9]+$')]],
       categoriesList: this.categoriesForm,
       currency: this.carrencyForm,
       rate: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
@@ -184,7 +184,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     this.setGroupService(this.mentorForm.controls);
     
     this.closeForm.emit();
-    this.viewMentorData.next(this.mentorForm.value);
+    this.viewMentorData.emit(this.mentorForm.value);
   }
 
   ngOnDestroy(): void {
