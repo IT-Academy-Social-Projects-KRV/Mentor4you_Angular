@@ -23,6 +23,7 @@ export class MentorDetailsComponent implements OnInit, OnDestroy {
 
     this.mentorSubscription = this.mentorService.getMentorById(id).subscribe(
       (mentor: any) => {
+        console.log('mentor-details', mentor);
         this.mentor = mentor;
       }
     )

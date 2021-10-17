@@ -65,7 +65,7 @@
 
   &__avatar-upload {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background: $white;
     box-shadow: 1px 1px 5px 2px $lightgray;
@@ -79,6 +79,7 @@
     align-items: center;
     justify-content: center;
     height: 80px;
+    width: 80px;
     cursor: default;
     user-select: none;
 
@@ -235,6 +236,10 @@
     &__fild-upload {
       width: 255px;
     }
+
+    &__avatar-upload {
+      padding: 20px 15px;
+    }
   }
 }
 
@@ -261,6 +266,10 @@
     &__upload-photo {
       padding: 20px 35px;
     }
+
+    // .infoBlock {
+      // display: none;
+    // }
   }
 }
 

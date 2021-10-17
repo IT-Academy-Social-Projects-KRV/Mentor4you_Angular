@@ -159,3 +159,10 @@
     background-color: $fuschia100;
   }
 }
+
+
+@media screen and (max-width: 992px) {
+  .description {
+    margin-top: 20px;
+  }
+}
