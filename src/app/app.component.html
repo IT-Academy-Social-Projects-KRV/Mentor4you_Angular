@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <app-header></app-header>
+  <app-header *ngIf="hideHeader"></app-header>
   <div class="container">
     <router-outlet></router-outlet>
     <app-notification-modal></app-notification-modal>
