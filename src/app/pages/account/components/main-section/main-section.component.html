@@ -1,8 +1,7 @@
 <div class="main-section container">
   <div class="row">
-    <div class="col-4">
+    <div class="col-5 col-lg-4">
       <div class="image-wrap">
-        <!-- <img class="image" src="https://i.pravatar.cc/120" alt="name"> -->
         <img class="image" src="{{mentor.avatar}}" alt="{{mentor.firstName}}">
       </div>
 
@@ -21,17 +20,16 @@
       <button class="btn">{{button}}</button>
     </div>
 
-    <div class="col-4">
+    <div class="col-7 col-lg-4">
       <div class="d-flex flex-column justify-content-around h-100">
         <div class="d-flex">
           <b>Category: </b>
-          <div class="category-list" >
+          <div class="category-list">
             <div *ngFor="let category of mentor.categoriesList">
               <div class="category-rate">
                 <span class="category">
-                  {{category.categories.name}}
+                  {{category}}
                 </span>
-                <span class="rate"> {{category.rate}} <small>{{category.currency}}</small></span>
               </div>
           </div>
         </div>
@@ -39,9 +37,12 @@
         </div>
         <br>
         <div class="info-section d-flex align-items-start flex-column">
+          <p><b>Rate:</b>
+            <span class="rate"> {{mentor.rate}} <small>{{mentor.currency}}</small></span>
+          </p>
           <p><b>Place:</b>
             <span class="place" *ngFor="let city of mentor.cities last as isLast"> 
-              {{city.name}}<span *ngIf="!isLast">, </span>
+              {{city}}<span *ngIf="!isLast">, </span>
             </span></p>
           <!-- <p><b>Rate:</b><span class="rate"> {{mentor.rate}} <small>{{mentor.currency}}</small></span></p> -->
           <p><b>Group mentoring:</b>
@@ -71,7 +72,7 @@
       </div>
     </div>
 
-    <div class="col-4 description">
+    <div class="col-12 col-lg-4 description">
       <br>
       <p>{{mentor.description}}</p>
       <br>

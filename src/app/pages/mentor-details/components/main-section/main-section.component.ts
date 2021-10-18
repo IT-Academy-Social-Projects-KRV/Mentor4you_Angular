@@ -1,7 +1,5 @@
-
-import { Router } from '@angular/router';
 import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Input, DoCheck} from '@angular/core';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-section',
@@ -45,7 +43,7 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
   grp_ment: string | undefined
 
   getCustom(elem:HTMLElement){
-    console.log(elem.textContent)
+    // console.log(elem.textContent)
     elem.style.marginTop='20px'
   }
 

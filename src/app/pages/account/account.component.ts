@@ -5,8 +5,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
 import { Subscription } from 'rxjs';
 
-import { MentorProfile, MentorService } from 'src/app/core';
+import { Certificate, MentorProfile, MentorService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -14,14 +15,12 @@ import { SigninService } from 'src/app/auth/signin/signin.service';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit, OnDestroy {
-  // currentRole = localStorage.getItem('role');
   isMentorForm: boolean = false;
   isAccountActivated!: boolean;
   isImage: boolean = false;
   selectedFile!: File;
   mentorSubscription!: Subscription;
-  avatarSubscription!: Subscription;
-  mentor?: MentorProfile;
+  mentor?: any;
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   imageChangedEvent: any = '';
   croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
@@ -50,6 +49,7 @@ export class AccountComponent implements OnInit, OnDestroy {
       (mentor: MentorProfile) => {
         this.mentor = mentor;
         this.isAccountActivated = mentor.isAccountActivated;
+        this.croppedImage = mentor.avatar;
       }
     );
 
@@ -77,17 +77,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   toggleAccountActivate(): void {
     this.isAccountActivated = !this.isAccountActivated;
   }
-
-  // toggleRole(button: HTMLElement): void {
-  //   if (button.innerText === 'Move to Mentor Account') {
-  //     this.currentRole = 'mentor';
-  //     button.innerText = 'Move to Mentee Account';
-  //   } else {
-  //     this.currentRole = 'mentee';
-  //     button.innerText = 'Move to Mentor Account';
-  //   }
-  // }
-
 
   onFileSelected(event: any): void {
     this.selectedFile = <File>event.target.files[0];
@@ -141,6 +130,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     fd.append('file', file);
    
+<<<<<<< HEAD
   this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(
     res => { console.log('response', res); },
     error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
@@ -151,6 +141,13 @@ export class AccountComponent implements OnInit, OnDestroy {
     }
   );
 
+=======
+    this.http.post(this.avatarUrl, fd).pipe(take(1)).subscribe(
+      res => {}, 
+      error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
+      () => this.textFieldUpload = 'Your photo uploaded successfully!'
+    );
+>>>>>>> dev
   }
 
   deleteAvatar(){
@@ -170,6 +167,12 @@ export class AccountComponent implements OnInit, OnDestroy {
       duration: 5000,
       panelClass: className,
     });
+  }
+
+  showMentorForm() {
+    this.isMentorForm = true;
+    this.mentor.certificates = this.mentor.certificates.map((certificate: Certificate) => certificate.name);
+    this.mentor.avatar = this.croppedImage;
   }
 
   ngOnDestroy(): void {
