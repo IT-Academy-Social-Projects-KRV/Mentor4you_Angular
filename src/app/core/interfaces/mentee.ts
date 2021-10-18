@@ -2,11 +2,12 @@ export interface Mentee {
     id: number;
     name: string;
     secondName: string;
-    img?: string;
+    avatar?: string;
   }
 
 export interface MenteeProfile{
     id?: number;
+    avatar?: string;
     firstName: string;
     lastName: string;
     email: string;
