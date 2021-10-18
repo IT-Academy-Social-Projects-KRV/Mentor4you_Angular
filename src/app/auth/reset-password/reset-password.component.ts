@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { Router } from '@angular/router';
 import { chainedInstruction } from '@angular/compiler/src/render3/view/util';
 import { HttpClient } from '@angular/common/http';
@@ -22,7 +21,6 @@ export class ResetPasswordComponent implements OnInit {
   
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     private http: HttpClient,
    ) {

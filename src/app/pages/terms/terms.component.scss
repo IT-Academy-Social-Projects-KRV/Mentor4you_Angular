@@ -5,10 +5,10 @@
     line-height: 20px;
     color: black;
     background-color: white;
-    //background: -webkit-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
-    //background: -moz-linear-gradient(180deg, rgb(244, 244, 244), rgb(255, 255, 255));
-    //background: linear-gradient(180deg, #f4f4f4, rgb(255, 255, 255));
     padding: 10px 30px 50px 30px;
+    @media screen and (max-width: 768px) {
+        padding: 10px 0;
+      }
     a{
         color: $fuschia100;
         font-weight: bold;
@@ -16,11 +16,26 @@
     }
     h1, h2{
        @include title; 
-       padding: 5px 0;  
+       padding: 5px 0; 
+       @media screen and (max-width: 768px) {
+        font-size: 30px;
+       } 
+       @media only screen and (max-width: 600px){
+           margin: 0;
+       }
+    }
+    h3 {
+        @media only screen and (max-width: 600px){
+            margin: 0;
+        }
     }
     h1 {
         text-align: center;
         font-size: 40px;
+        color: $darkblue;
+        @media screen and (max-width: 768px) {
+            font-size: 32px;
+          }
     }
     h3{
         color: $grey;  

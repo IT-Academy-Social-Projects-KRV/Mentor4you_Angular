@@ -27,19 +27,20 @@
 
       <div class="mentor-account__avatar-upload">
     
-        <div class="mentor-account__avatar-wrapper">
-          <div class="mentor-account__avatar-section">
-            <p *ngIf="isImage">Preview</p>
-            <span id="output" class="thumb"><img [src]="croppedImage" /></span>
-          </div>
-
-          <div class="mentor-account__submit-section">
-            <button type="button" (click)="fileInput.click()" class="upload-btn">
-              <span class="material-icons"> edit </span>
-            </button>
-          </div>
+        <div class="mentor-account__avatar-section">
+          <span id="output" class="thumb"><img [src]="croppedImage" alt="avatar"/></span>
         </div>
-    
+
+        <div class="mentor-account__submit-section">
+          <button type="button" (click)="fileInput.click()" class="edit-small-btn upper">
+            <span class="material-icons"> edit </span>
+          </button>
+
+          <button type="button" (click)="deleteAvatar()" class="edit-small-btn lower">
+            <span class="material-icons"> delete </span>
+          </button>
+        </div>
+
         <div class="mentor-account__upload-section">
           <input type="file" (change)="onFileSelected($event)" #fileInput>
 
@@ -57,20 +58,20 @@
               [imageChangedEvent]="imageChangedEvent"
               [maintainAspectRatio]="true"
               [aspectRatio]="1 / 1"
-              [resizeToWidth]=90
-              [cropperMinWidth]=90
+              [resizeToWidth]=120
+              [cropperMinWidth]=120
               [roundCropper]=true
                         
               format="png"
               (imageCropped)="imageCropped($event)"
             ></image-cropper>
-            <button (click)="imgReady()">Save</button>
+            <button (click)="imgReady()">OK</button>
           </div>
         </ng-template>
 
         <div class="file-upload">
           <button mat-mini-fab color="primary" class="upload-btn" (click)="onUpload()" [disabled]="isBtnDisabled">
-            <mat-icon>attach_file</mat-icon>
+            Save
           </button>
         </div>
       </div>

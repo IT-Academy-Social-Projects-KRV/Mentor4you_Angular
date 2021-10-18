@@ -6,12 +6,19 @@
 .container{
     h1{
         font-size: 32px;
+        @media screen and (max-width: 576px) {
+            font-size: 24px;
+            margin: 0;
+          }
         strong{
             color:$darkblue;
         }
     }
     p{
     font-size: 1.2rem;
+    @media screen and (max-width: 576px) {
+        font-size: 1rem;
+      }
     a{
         color: $fuschia100;
     }
@@ -37,6 +44,9 @@
             cursor: pointer;
             display: block;
             border: none;
+            @media screen and (max-width: 768px) {
+                margin: auto;
+              }
         }
         button:not(:disabled){
             @include btn-shadow;

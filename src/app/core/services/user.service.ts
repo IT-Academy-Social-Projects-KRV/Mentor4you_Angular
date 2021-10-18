@@ -7,9 +7,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   deletUserDataUrl = 'http://localhost:8080/api/users/delete';
+ 
 
   constructor(private http: HttpClient) { }
 
+  
   deleteUser(): Observable<any> {
     return this.http.delete(this.deletUserDataUrl, {});
 }

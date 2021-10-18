@@ -3,7 +3,6 @@
 footer{
     .container{
     background-color: $fuschia80;
-    height: 150px;
     @extend %base-font;
     margin: auto;
     *{
@@ -12,14 +11,26 @@ footer{
     p{
         font-size: 18px;
         padding: 5px;
+        @media screen and (max-width: 760px) {
+            font-size: 16px;
+            margin: 0;
+          }
     }
     .mainText {
         display: flex;
         justify-content: space-between;
         justify-items: flex-start;
         padding: 20px 0 0 0;
+        @media screen and (max-width: 760px) {
+            flex-wrap: wrap;
+            flex: 100%;
+          }
         .projectName {
             padding-left: 30px;
+            @media screen and (max-width: 760px) {
+                margin: auto;
+                padding-left: 0;
+              }
             img{
                 width: 300px;
             }
@@ -28,6 +39,11 @@ footer{
             padding: 0 30px 0 0;
             text-align: center;
             margin: auto 0;
+            @media screen and (max-width: 760px) {
+                margin: auto;
+                padding: 0;
+                margin-top: 10px;
+              }
         a{
             text-decoration: none;
         }
@@ -40,6 +56,10 @@ footer{
         text-align: center;
         font-size: 16px;
         padding-top: 20px;
+        padding-bottom: 15px;
+        @media screen and (max-width: 576px) {
+            font-size: 12px;
+          }
     }
 }
 }

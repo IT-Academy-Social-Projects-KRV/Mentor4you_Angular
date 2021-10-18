@@ -15,11 +15,13 @@
 }
 .container{
     background-color: white;
-    //background-image: url(../../../assets/images/bg.png);
     padding: 50px 30px;
     line-height: 20px;
     font-family: 'Roboto', sans-serif;
     color: black;
+    @media screen and (max-width: 768px) {
+        padding: 30px 0;
+      }
     h1, h2{
         @include title;
         text-align: center;
@@ -49,25 +51,65 @@
     }
     .threeColumnsStep {
         padding: 40px 0;
-        .col-sm-2{
+        @media screen and (max-width: 576px) {
+            padding: 20px 0;
+          }
+        .numberOfStep{
             @extend %numbersForSteps;
+            @media screen and (max-width: 768px) {
+                display: none;
+              }
         }
-        .col-sm-6{
+        .contentOfStep{
             text-align: center;
             h3{
                @extend %for3headers;
+               span{
+                   display: none;
+                   @media screen and (max-width: 768px) {
+                    display: inline-block;
+                    color: $fuschia100;
+                    font-size: 1.5rem;
+                  }
+               }
             }
         }
+            .hiddenAtBeginning{
+                display: none;
+                    @media screen and (max-width: 768px) {
+                        display: block;
+                    }
+                }
+            .hiddenInEnd{
+                display: block;
+                @media screen and (max-width: 768px) {
+                    display: none;
+                }
+            }
     }
     .secondStep {
         padding: 30px 0;
-        .col-sm-2{
+        @media screen and (max-width: 576px) {
+            padding: 20px 0;
+          }
+        .numberOfStep{
             @extend %numbersForSteps;
+            @media screen and (max-width: 768px) {
+                display: none;
+              }
         }
-        .col-sm-10 {
+        .col-md-10 {
             text-align: center;
             h3{
                @extend %for3headers;
+               span{
+                display: none;
+                @media screen and (max-width: 768px) {
+                 display: inline-block;
+                 color: $fuschia100;
+                 font-size: 1.5rem;
+               }
+            }
             }
             p {
                 padding-bottom: 10px;
@@ -75,7 +117,7 @@
         }
     }
     .fifthStep{
-        .col-sm-4{
+        .col-md-12{
             p{
                 font-size: 144px;
                 display: block;
@@ -83,6 +125,14 @@
             img {
                 height: 144px;
             }
+        }
+    }
+    .lastStep{
+        .hiddenLater{
+            display: block;
+            @media screen and (max-width: 768px) {
+                display: none;
+              }
         }
     }
     .blockWithBtn {
@@ -101,11 +151,18 @@
                 @include btn-shadow;
                 transform: scale(1.1, 1.1);
             }
+            @media screen and (max-width: 576px) {
+                padding: 10px;
+                border-radius: 10px;
+              }
         }
         .btnMentor{
             background-color:white;
             color: $fuschia100;
             border: 1px solid  $fuschia100;
+            @media screen and (max-width: 576px) {
+                margin-top: 10px;
+              }
         }
     }
 }

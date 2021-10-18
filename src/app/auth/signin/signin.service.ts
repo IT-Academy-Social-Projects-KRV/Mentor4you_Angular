@@ -17,7 +17,9 @@ export class SigninService {
   error!:any
   public user: any = {}
   private token: string | null = null;
+  private avatar: string | null = null;
   public token$ = new BehaviorSubject<any>(null);
+  public profileImageUpdate$ = new Subject<string>();
 
   private url ='http://localhost:8080/api/auth/login'
 
@@ -28,11 +30,13 @@ export class SigninService {
       'password':password
     }
 
-    return  this.http.post<{token:string}>(this.url,data)
+    return  this.http.post<{token:string, avatar: string}>(this.url,data)
       .pipe(
         tap(
-          ({token})=>{
+          ({token, avatar})=>{
             localStorage.setItem('token',token);
+            localStorage.setItem('avatar',avatar);
+            this.setAvatar(avatar);
             this.setTokenO(token);
             this.setToken(token);
             this.user = this.parseJwt(token);
@@ -43,6 +47,10 @@ export class SigninService {
 
   setToken(token:any){
     this.token = token;
+  }
+
+  setAvatar(avatar: any){
+    this.profileImageUpdate$.next(avatar);
   }
 
   setTokenO(token:any) : void{

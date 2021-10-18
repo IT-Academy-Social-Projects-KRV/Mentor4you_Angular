@@ -30,12 +30,15 @@ export class AccountComponent implements OnInit, OnDestroy {
   newName: any = "";
   imgType: any = '';
   isBtnDisabled: boolean = true;
+  public token: any;
+  public response: any;
+  public avatarSubscription: any;
 
   constructor(
     public auth: SigninService,
     private http: HttpClient, 
     private _snackBar: MatSnackBar,
-    private mentorService: MentorService
+    private mentorService: MentorService,
   ) {}
   
   get isAuth() {
@@ -50,6 +53,17 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.croppedImage = mentor.avatar;
       }
     );
+
+    if (this.isAuth){
+      let avatarCheck = localStorage.getItem('avatar');
+        if(avatarCheck == 'null'){
+          this.croppedImage = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+          return;
+        } else {
+          this.croppedImage = localStorage.getItem('avatar');
+        }
+      }
+
   }
 
   setMentorData(mentorData: any): void {
@@ -84,8 +98,8 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     this.textFieldUpload =
       this.selectedFile.name.length > 35
-        ? this.selectedFile.name.slice(0, 35) + '...'
-        : this.selectedFile.name;
+        ? this.selectedFile.name.slice(0, 35) + '...' + '. Now you can save avatar'
+        : this.selectedFile.name + '. Now you can save avatar';
 
     this.newName = this.selectedFile.name;
     this.imgType = this.selectedFile.type;
@@ -117,11 +131,28 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     fd.append('file', file);
    
-    this.http.post(this.avatarUrl, fd).pipe(take(1)).subscribe(
-      res => {}, 
-      error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
-      () => this.textFieldUpload = 'Your photo uploaded successfully!'
-    );
+  this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(
+    res => { console.log('response', res); },
+    error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
+    () => {
+      this.textFieldUpload = 'Your photo uploaded successfully!'; 
+      localStorage.setItem('avatar',  this.croppedImage);
+      //this.auth.profileImageUpdate$.next(this.croppedImage);
+    }
+  );
+
+  }
+
+  deleteAvatar(){
+    this.http.delete('http://localhost:8080/api/users/deleteAvatar').subscribe(response => console.log(response),
+    error => { if (error.status == 200){
+        this.openSnackBar('Photo deleted!', 'Now you have basic avatar', 'success');
+        localStorage.setItem('avatar',  'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png');
+        //this.auth.profileImageUpdate$.next('https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png');
+      } else {
+        this.openSnackBar('Error', 'Try again later', 'danger');
+      }
+    });
   }
 
   openSnackBar(message: string, action: string, className: string) {
