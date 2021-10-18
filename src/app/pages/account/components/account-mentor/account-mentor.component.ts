@@ -153,11 +153,6 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
         });
 
       this.btnTouched = true;
-<<<<<<< HEAD
-      setTimeout( ()=> {this.router.navigate(['/'])}, 500);
-      //this.router.navigate(['/']);
-=======
->>>>>>> dev
     }
   }
 

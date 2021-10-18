@@ -32,6 +32,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   isBtnDisabled: boolean = true;
   public token: any;
   public response: any;
+  public avatarSubscription: any;
 
   constructor(
     public auth: SigninService,
@@ -130,7 +131,6 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     fd.append('file', file);
    
-<<<<<<< HEAD
   this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(
     res => { console.log('response', res); },
     error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
@@ -141,13 +141,6 @@ export class AccountComponent implements OnInit, OnDestroy {
     }
   );
 
-=======
-    this.http.post(this.avatarUrl, fd).pipe(take(1)).subscribe(
-      res => {}, 
-      error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
-      () => this.textFieldUpload = 'Your photo uploaded successfully!'
-    );
->>>>>>> dev
   }
 
   deleteAvatar(){
