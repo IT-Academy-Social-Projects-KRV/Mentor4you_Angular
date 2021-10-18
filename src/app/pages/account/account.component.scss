@@ -65,12 +65,17 @@
 
   &__avatar-upload {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background: $white;
     box-shadow: 1px 1px 5px 2px $lightgray;
     padding: 20px 100px;
     margin-bottom: 50px;
+  }
+
+  &__avatar-wrapper {
+    display: flex;
+    align-items: center;
   }
 
   &__avatar-section {
@@ -79,6 +84,8 @@
     align-items: center;
     justify-content: center;
     height: 80px;
+    width: 80px;
+    margin-right: 20px;
     cursor: default;
     user-select: none;
 
@@ -167,7 +174,7 @@
 
 .edit-btn {
   display: block;
-  margin: 45px auto 0;
+  margin: 15px auto 0;
   width: 335px;
   border-radius: 15px;
   padding: 15px 5px;
@@ -235,6 +242,10 @@
     &__fild-upload {
       width: 255px;
     }
+
+    &__avatar-upload {
+      padding: 20px;
+    }
   }
 }
 
@@ -261,6 +272,10 @@
     &__upload-photo {
       padding: 20px 35px;
     }
+
+    // .infoBlock {
+      // display: none;
+    // }
   }
 }
 

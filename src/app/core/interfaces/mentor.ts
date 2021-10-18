@@ -2,8 +2,8 @@ export interface MentorCard {
   id: number;
   fullName: string;
   avatar: string;
-  categoriesList: Array<CategoriesList>;
-  // currency?: string;
+  categories: Array<Category>;
+  currency?: string;
   rating: number;
 }
 
@@ -14,23 +14,37 @@ export interface MentorProfile {
   lastName: string;
   avatar: string;
   phoneNumFirst: string;
-  categoriesList: Array<CategoriesList>;
-  place: string;
-  currency: string;
+  categoriesList: Array<Category>;
   rate: number;
+  place?: string;
+  currency: string;
   groupServ: string;
-  languagesList: Array<LanguagesList>;
+  languagesList?: Array<Language>;
   description: string;
+  telegram: string;
+  skype: string;
+  linkedIn: string;
+  gitHub: string;
   isAccountActivated: boolean;
+  online: boolean;
+  offlineOut: boolean;
+  offlineIn: boolean;
+  certificates: Array<Certificate>;
+  languages: Array<Language>;
+  cities: Array<City>;
+  rating: number;
 }
-export interface CategoriesList {
+
+export interface Category {
   categories: { id: number, name: string };
   currency: string;
   rate: number;
 }
-export interface LanguagesList {
-  id: number;
+
+export interface Certificate {
   name: string;
+  description: string;
+  link: string;
 }
 export interface MentorCooperation{
   coopStatus: string;
@@ -43,9 +57,12 @@ export interface MentorRespons {
   img?: string;
 }
 
+export interface Language {
+  id: number;
+  name: string;
+}
 
-// -------------------------------
-export interface MentorDataFilter {
+export interface City {
   id: number;
   name: string;
 }

@@ -3,7 +3,7 @@
 .main-section {
   font-family: Roboto, sans-serif;
   width: 97%;
-  height: 350px;
+  // height: 350px;
   padding: 45px;
   box-shadow: 1px 1px 5px 2px #dedede;
 
@@ -24,6 +24,9 @@
   .name {
     font-size: 20px;
     margin: 15px 0;
+    width: 120px;
+    text-align: center;
+    line-height: 24px;
   }
 
   .description {
@@ -52,25 +55,23 @@
   }
 
   .category-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-  }
-
-  .category-rate {
-    margin-bottom: 7px;
+    max-height: 97px;
+    width: 135px;
+    overflow: auto;
+    padding-top: 2px;
+    padding-left: 2px;
   }
 
   .category {
     margin-bottom: 15px;
     font-size: 16px;
     border: 1px solid #3AB67D;;
+    color: #3AB67D;
     margin: 0 5px;
     padding: 2px 5px;
     font-size: 12px;
-    // margin-left: 5px;
-    color: #3AB67D;
+    display: inline-block;
+    margin-bottom: 5px;
   }
 
   .info-section > p {
@@ -123,10 +124,18 @@
 
 .certificates{
   width: 100%;
-  margin-top: 20px;
+  margin: 20px 0;
   padding: 20px;
   border: 0.5px solid #52D197;
   border-radius: 6px;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 7px;
+  }
 }
 
 .cartificateLink {
@@ -149,5 +158,12 @@
   &:hover {
     color: $white;
     background-color: $fuschia100;
+  }
+}
+
+
+@media screen and (max-width: 992px) {
+  .description {
+    margin-top: 20px;
   }
 }
