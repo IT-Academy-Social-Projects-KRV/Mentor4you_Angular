@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MentorService } from 'src/app/core';
+import {  MentorService } from 'src/app/core';
 
 import { Subscription } from 'rxjs';
 
@@ -22,11 +22,11 @@ export class MentorDetailsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
-    // this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
-      (mentor: any) => { this.mentor = mentor }
+    this.mentorSubscription = this.mentorService.getMentorById(id).subscribe(
+      (mentor: any) => {
+        this.mentor = mentor;
+      }
     )
-
   }
 
   ngOnDestroy(): void {
