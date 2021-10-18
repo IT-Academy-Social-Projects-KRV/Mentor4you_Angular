@@ -76,6 +76,14 @@
   flex-direction: column;
   align-items: center;
 
+  // &__ask:disabled{
+  //   cursor: no-drop;
+  //   &:hover {
+  //   background-color: #fff;
+  //   border: 2px solid $darkblue;
+  //   color: $darkblue;
+  // }
+  // }
   &__ask,
   &__view {
     background-color: #fff;
