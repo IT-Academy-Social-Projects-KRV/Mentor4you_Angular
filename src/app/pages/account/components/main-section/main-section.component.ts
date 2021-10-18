@@ -1,12 +1,10 @@
-import {Component, ElementRef, OnInit, ViewChild,AfterViewInit, Output, EventEmitter, Input} from '@angular/core';
-import { MentorProfile } from 'src/app/core';
+import {Component, ElementRef, OnInit, ViewChild, Output, EventEmitter, Input} from '@angular/core';
 
 @Component({
   selector: 'app-main-section',
   templateUrl: './main-section.component.html',
   styleUrls: ['./main-section.component.scss']
 })
-// export class MainSectionComponent implements OnInit,AfterViewInit {
 export class MainSectionComponent implements OnInit {
   @ViewChild('name')name?:ElementRef;
   @Input() mentor: any;

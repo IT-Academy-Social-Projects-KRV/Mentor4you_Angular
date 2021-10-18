@@ -47,11 +47,6 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorBaseUrl + '/getMentorDTO/')
       .pipe(map((mentorDTO: any) => this.transformDataForClient(mentorDTO)));
-      // .pipe(map((mentorDTO: any) => {
-        
-      //   const mentor = this.transformDataForClient(mentorDTO)
-      //   console.log('---- account - mentorDTO', mentor)
-      //    return mentor}));
   }
 
   updateMentor(mentor: MentorProfile): Observable<MentorProfile> {

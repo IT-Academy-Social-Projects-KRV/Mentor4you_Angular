@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 
 import { Certificate, MentorProfile, MentorService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-account',
@@ -19,9 +20,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   isImage: boolean = false;
   selectedFile!: File;
   mentorSubscription!: Subscription;
-  avatarSubscription!: Subscription;
-  // mentor?: MentorProfile;  // ----------------
-  mentor?: any;  // ----------------
+  mentor?: any;
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   imageChangedEvent: any = '';
   croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
@@ -118,7 +117,7 @@ export class AccountComponent implements OnInit, OnDestroy {
 
     fd.append('file', file);
    
-    this.avatarSubscription = this.http.post(this.avatarUrl, fd).subscribe(
+    this.http.post(this.avatarUrl, fd).pipe(take(1)).subscribe(
       res => {}, 
       error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
       () => this.textFieldUpload = 'Your photo uploaded successfully!'
