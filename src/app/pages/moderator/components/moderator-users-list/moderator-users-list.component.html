@@ -1,0 +1,20 @@
+<div class="moderator-main-content-container">
+    <div class="moderator-main-content-inputs">
+        <input 
+            type="text" 
+            placeholder="Search..." 
+            #searchUserInput 
+            (input)="searchUser(searchUserInput.value)">
+        <select (change)="onRoleSelectChange($event)">
+            <option value="All">All</option>
+            <option value="MENTEE">Mentee</option>
+            <option value="MENTOR">Mentor</option>
+            <option value="MODERATOR">Moderator</option>
+            <option value="ADMIN">Admin</option>
+        </select>
+    </div>
+    <div class="users-cards-container" *ngIf="filteredUsers">
+        <app-user-item *ngFor="let userEl of filteredUsers" [user]="userEl"></app-user-item>
+    </div>    
+    <app-moderator-user-details [userInformation]="selectedUser"></app-moderator-user-details>        
+</div>
