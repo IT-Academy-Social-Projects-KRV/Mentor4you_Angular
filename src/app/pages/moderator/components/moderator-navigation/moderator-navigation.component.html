@@ -1,0 +1,46 @@
+<div class="moderator-main-info-container">
+    <div class="moderator-logo-container">
+        <div class="moderator-info">
+            <div class="moderator-name">
+                <h2>Moderator</h2>
+                <p>{{moderator.last_name}} {{moderator.first_name}}</p>
+            </div>
+            <div class="moderator-icon-container">
+                <div class="moderator-icon">
+                    <img src="{{moderator.avatar}}" alt="">
+                </div> 
+            </div>                               
+            <div class="moderator-edit">
+                <a routerLink="/moderator/edit">
+                    <i class="far fa-edit" title="Edit profile"></i> 
+                </a>                                            
+            </div>
+        </div>
+    </div>
+    <div class="moderator-navbar-container">
+        <ul>
+            <li>
+                <a 
+                    routerLink="/moderator/users" 
+                    routerLinkActive="active">
+                    Users
+                </a>
+            </li>            
+            <li>
+                <a 
+                    routerLink="/moderator/black-list" 
+                    routerLinkActive="active">
+                    Black List
+                </a>
+            </li>
+            <li>
+                <a 
+                    routerLink="/moderator/chats" 
+                    routerLinkActive="active">
+                    Chats
+                </a>
+            </li>                
+        </ul>
+    </div>
+</div>
+

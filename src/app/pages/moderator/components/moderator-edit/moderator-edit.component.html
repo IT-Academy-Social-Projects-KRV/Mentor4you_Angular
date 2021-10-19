@@ -1,0 +1,69 @@
+<div class="moderator-edit-container">
+    <h2>Edit your Moderator profile</h2>
+    <div class="form-container">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div 
+                class="moderator-data-container" 
+                id="moderator-data" 
+                ngModelGroup="moderatorData" 
+                #moderatorData="ngModelGroup"
+            >
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input 
+                        type="text" 
+                        id="firstName" 
+                        ngModel 
+                        name="firstName" 
+                        [placeholder]="moderatorInfo.first_name"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input 
+                        type="text" 
+                        id="lastName" 
+                        ngModel 
+                        name="lastName" 
+                        [placeholder]="moderatorInfo.last_name"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        ngModel 
+                        name="email" 
+                        [placeholder]="moderatorInfo.email"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="picture">Avatar:</label>
+                    <input 
+                        type="text" 
+                        id="picture" 
+                        ngModel 
+                        name="picture" 
+                        [placeholder]="moderatorInfo.avatar"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        ngModel 
+                        name="password" 
+                        placeholder="Change your password"
+                    >
+                </div>
+                <button 
+                    class="btn btn-primary" 
+                    type="submit">
+                    Change Profile
+                </button>
+            </div>            
+        </form>
+    </div>
+</div>
