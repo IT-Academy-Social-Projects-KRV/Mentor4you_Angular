@@ -43,6 +43,8 @@ import { UsersComponent } from './pages/administrator/users/users.component';
 import { AdminNavigationComponent } from './pages/administrator/admin-navigation/admin-navigation.component';
 import { AdminDashboardComponent } from './pages/administrator/admin-dashboard/admin-dashboard.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CategoriesComponent } from './pages/administrator/categories/categories.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -62,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UsersComponent,
     AdminNavigationComponent,
     AdminDashboardComponent,
+    CategoriesComponent,
     
   ],
   imports: [
@@ -82,6 +85,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatMenuModule,
     MatButtonModule,
     MatToolbarModule,
+    Ng2SearchPipeModule,
     MatDialogModule,
     MatPaginatorModule,
     ToastrModule.forRoot({
