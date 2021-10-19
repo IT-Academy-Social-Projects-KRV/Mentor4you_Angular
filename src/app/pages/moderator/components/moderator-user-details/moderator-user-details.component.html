@@ -1,0 +1,31 @@
+<div class="user-informaion-global-container" id="userInfo" >
+    <div class="user-information-container" *ngIf="userInformation">
+        <div class="user-information-img-container" >
+            <div class="user-img-circle-container">
+                <img src="{{userInformation.avatar}}" alt="">
+            </div>            
+        </div>
+        <div class="user-main-info-container">
+            <div class="user-name-container">
+                <p class="user-name">{{userInformation.last_name}}</p>
+                <p class="user-name">{{userInformation.first_name}}</p>
+            </div>            
+            <p>Email: {{userInformation.email}}</p>            
+            <p>Role: {{userInformation.role | titlecase}}</p>
+            <p *ngIf="userInformation.status">Status: Active</p>
+            <p *ngIf="!userInformation.status">Status: Not active</p>
+            <p *ngIf="!userInformation.ban">Ban: Not Banned</p>
+            <p *ngIf="userInformation.ban">Ban: Banned</p>
+            <button 
+                class="ban-btn" 
+                *ngIf="userInformation.role !== 'ADMIN' && userInformation.role !== 'MODERATOR'"
+                [disabled]="userInformation.ban"
+                (click)="onUserBanned(userInformation.id, userInformation.last_name, userInformation.first_name)"
+                >Ban User</button>
+        </div>
+        <div class="close-user-information" (click)="onUserInformation()">
+            <i class="fas fa-times"></i>                                                   
+        </div>
+    </div>                    
+</div>
+

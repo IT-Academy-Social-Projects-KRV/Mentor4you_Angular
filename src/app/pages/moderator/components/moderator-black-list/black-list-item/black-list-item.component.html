@@ -1,0 +1,20 @@
+<div class="banned-user-card">
+    <div class="banned-user-card-img-container">
+        <div class="banned-user-card-img">
+            <img src="{{bannedUser.avatar}}" alt="{{bannedUser.last_name}} {{bannedUser.first_name}}" title="{{bannedUser.last_name}} {{bannedUser.first_name}}">
+        </div>
+    </div>                
+    <div class="banned-user-card-name">
+        <h3>{{bannedUser.last_name}} {{bannedUser.first_name}}</h3>
+        <p>{{bannedUser.role | titlecase}}</p>
+    </div>
+    <div class="banned-user-card-buttons">
+        <button 
+            type="button"
+            [disabled]="!bannedUser.ban"
+            (click)="onUnBanUser(bannedUser.id, bannedUser.last_name, bannedUser.first_name)"
+            >Unban User
+        </button>        
+    </div>    
+</div>
+
