@@ -3,18 +3,13 @@
         <div class="moderator-info">
             <div class="moderator-name">
                 <h2>Moderator</h2>
-                <p>{{moderator.last_name}} {{moderator.first_name}}</p>
+                <p>{{moderator.lastName}} {{moderator.firstName}}</p>
             </div>
             <div class="moderator-icon-container">
                 <div class="moderator-icon">
                     <img src="{{moderator.avatar}}" alt="">
                 </div> 
-            </div>                               
-            <div class="moderator-edit">
-                <a routerLink="/moderator/edit">
-                    <i class="far fa-edit" title="Edit profile"></i> 
-                </a>                                            
-            </div>
+            </div>        
         </div>
     </div>
     <div class="moderator-navbar-container">
@@ -35,9 +30,9 @@
             </li>
             <li>
                 <a 
-                    routerLink="/moderator/chats" 
+                    routerLink="/moderator/edit" 
                     routerLinkActive="active">
-                    Chats
+                    Edit Profile
                 </a>
             </li>                
         </ul>
