@@ -15,7 +15,7 @@
                         id="firstName" 
                         ngModel 
                         name="firstName" 
-                        [placeholder]="moderatorInfo.first_name"
+                        [placeholder]="moderatorInfo.firstName"
                     >
                 </div>
                 <div class="form-group">
@@ -25,37 +25,27 @@
                         id="lastName" 
                         ngModel 
                         name="lastName" 
-                        [placeholder]="moderatorInfo.last_name"
+                        [placeholder]="moderatorInfo.lastName"
                     >
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        ngModel 
-                        name="email" 
-                        [placeholder]="moderatorInfo.email"
-                    >
-                </div>
-                <div class="form-group">
-                    <label for="picture">Avatar:</label>
-                    <input 
-                        type="text" 
-                        id="picture" 
-                        ngModel 
-                        name="picture" 
-                        [placeholder]="moderatorInfo.avatar"
-                    >
-                </div>
-                <div class="form-group">
-                    <label for="password">Password:</label>
+                    <label for="oldPassword">Password:</label>
                     <input 
                         type="password" 
-                        id="password" 
+                        id="oldPassword" 
                         ngModel 
-                        name="password" 
-                        placeholder="Change your password"
+                        name="oldPassword" 
+                        placeholder="Write your old password..."
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New password:</label>
+                    <input 
+                        type="password" 
+                        id="newPassword" 
+                        ngModel 
+                        name="newPassword" 
+                        placeholder="Write your new password..."
                     >
                 </div>
                 <button 

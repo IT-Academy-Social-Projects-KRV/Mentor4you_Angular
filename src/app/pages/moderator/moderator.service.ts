@@ -11,14 +11,7 @@ export class ModeratorService {
   userSelected = new EventEmitter<User>();
   users:User[] = [];
   usersInBan:User[] = [];
-  moderator:Moderator = {
-    id:1,
-    email: "Moderator1@gmail.com",
-    password: "some string password",
-    first_name: "Moder",
-    last_name:"Mod", 
-    avatar:"https://avatarmaker.net/images/1.png"
-  }
+  moderator!:Moderator;
 
   constructor(private http: HttpClient) { }
 
@@ -49,5 +42,17 @@ export class ModeratorService {
 
   fetchAllBanUsers() {
     return this.http.get<User[]>('http://localhost:8080/api/users/getAllBannedUser')
+  }
+
+  getModerator() {
+    return this.http.get<Moderator>('http://localhost:8080/api/moderator/getModeratorDTO/')
+  }
+
+  changeModeratorName(data:{lastName:string, firstName:string, email:string}){
+    return this.http.put("http://localhost:8080/api/moderator/updateModerator/",data)
+  }
+
+  changeModeratorPassword(data:{oldPassword:string, newPassword:string}){
+    return this.http.put("http://localhost:8080/api/users/changePassword",data)
   }
 }

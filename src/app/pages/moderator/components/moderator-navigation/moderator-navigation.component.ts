@@ -13,6 +13,9 @@ export class ModeratorNavigationComponent implements OnInit {
   constructor(private moderatorService: ModeratorService) { }
 
   ngOnInit(): void {
-    this.moderator = this.moderatorService.moderator;
+    this.moderatorService.getModerator().subscribe(data => {      
+      this.moderatorService.moderator = data;  
+      this.moderator = this.moderatorService.moderator;
+    }) 
   }
 }
