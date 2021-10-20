@@ -78,3 +78,29 @@ input:focus:-ms-input-placeholder{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+app-moderator-users-list {
+  width: 70%;
+  box-sizing: border-box;
+  padding-right: 10px;
+}
+
+app-moderator-black-list {
+  width: 70%;
+  box-sizing: border-box;
+  padding-right: 10px;
+}
+
+app-moderator-chats {
+  width: 70%;
+  box-sizing: border-box;
+  padding-right: 10px;
+}
+
+app-moderator-edit {
+  width: 70%;
+  box-sizing: border-box;
+  padding-right: 10px;
+}

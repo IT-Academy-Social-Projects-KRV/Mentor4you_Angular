@@ -1,0 +1,59 @@
+<div class="moderator-edit-container">
+    <h2>Edit your Moderator profile</h2>
+    <div class="form-container">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div 
+                class="moderator-data-container" 
+                id="moderator-data" 
+                ngModelGroup="moderatorData" 
+                #moderatorData="ngModelGroup"
+            >
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input 
+                        type="text" 
+                        id="firstName" 
+                        ngModel 
+                        name="firstName" 
+                        [placeholder]="moderatorInfo.firstName"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input 
+                        type="text" 
+                        id="lastName" 
+                        ngModel 
+                        name="lastName" 
+                        [placeholder]="moderatorInfo.lastName"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="oldPassword">Password:</label>
+                    <input 
+                        type="password" 
+                        id="oldPassword" 
+                        ngModel 
+                        name="oldPassword" 
+                        placeholder="Write your old password..."
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New password:</label>
+                    <input 
+                        type="password" 
+                        id="newPassword" 
+                        ngModel 
+                        name="newPassword" 
+                        placeholder="Write your new password..."
+                    >
+                </div>
+                <button 
+                    class="btn btn-primary" 
+                    type="submit">
+                    Change Profile
+                </button>
+            </div>            
+        </form>
+    </div>
+</div>

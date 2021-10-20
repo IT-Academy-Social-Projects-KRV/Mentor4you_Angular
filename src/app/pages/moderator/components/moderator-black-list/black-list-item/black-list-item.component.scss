@@ -1,0 +1,73 @@
+@import "variables";
+
+.banned-user-card {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: $white;
+    border: 1px solid $black;
+    border-radius: 0;
+    box-shadow: 1px 2px 2px $grey;
+    margin-bottom: 20px;
+
+    .banned-user-card-img-container {
+        width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .banned-user-card-img {
+            width: 70%;                        
+            border-radius: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 100%;
+            }
+            
+        }
+    }
+
+    .banned-user-card-name {
+        width: 45%;
+        padding: 5px;
+        box-sizing: border-box;
+
+        h3 {                        
+            font-weight: 600;
+            font-size: 27px;
+            color: $red;
+            cursor: default;
+        }
+
+        p {
+            margin-top: 7px;
+            font-size: 17px;
+            cursor: default;
+        }
+    }
+
+    .banned-user-card-buttons {
+        width: 40%;
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            color: $fuschia100;
+            background-color: $white;
+            padding: 4px 8px;
+            border: 1px solid $fuschia100;
+            border-radius: 4px;
+
+            &:active {                    
+                color: $white;
+                background-color: $fuschia100;                    
+            }
+        }
+    }    
+}
