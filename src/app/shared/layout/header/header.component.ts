@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   //TODO should be implement in the next task
   public isNewMessage: boolean = false;
   public showSettingsMenu: boolean = false;
+  public showBurgerMenu: boolean = false;
   public wached = false;
   public token: any;
   public response: any;
@@ -33,8 +34,6 @@ export class HeaderComponent implements OnInit {
     private http: HttpClient,
     private translate:TranslateService,
   ) {}
-
-
 
   get isAuth() {
     return this.auth.isAuth();
@@ -82,10 +81,11 @@ export class HeaderComponent implements OnInit {
     this.showSettingsMenu = !this.showSettingsMenu;
   }
 
+  showMenu() {
+    this.showBurgerMenu = !this.showBurgerMenu;
+  }
+
   goTo(path: string): void {
     this.router.navigateByUrl(path);
   }
-
-
-
 }
