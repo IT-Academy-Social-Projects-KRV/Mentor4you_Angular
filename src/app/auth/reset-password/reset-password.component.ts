@@ -42,7 +42,7 @@ validateEmail(event: any){
   RequestResetUser() {
     const email= this.RequestResetForm.value.email;
     this.isInstructionSend = true;
-    setTimeout( ()=> {this.router.navigate(['/auth/response-reset'])}, 5000)
+    setTimeout( ()=> {this.router.navigate(['/auth/login'])}, 7000);
     // this.http.post("http://localhost:8080/system/auth", requestBody).subscribe(response => console.log(response))
     
   }
