@@ -26,6 +26,7 @@ export class MentorService {
         return mentors
           .filter((m: any) => m.firstName !== null)
           .map((mentor: any) => {
+
             return {
               id: mentor.id,
               fullName: mentor.firstName + ' ' + mentor.lastName,
@@ -40,13 +41,17 @@ export class MentorService {
   getMentorById(id: number): Observable<MentorProfile> {
     return this.http
       .get<any>(this.mentorBaseUrl + `/${id}`)
-      .pipe(map((mentorById: any) => this.transformDataForClient(mentorById)));
+      .pipe(map((mentorById: any) => {
+        return this.transformDataForClient(mentorById)}
+      ));
   }
 
   getMentorDTO(): Observable<MentorProfile> {
     return this.http
       .get<any>(this.mentorBaseUrl + '/getMentorDTO/')
-      .pipe(map((mentorDTO: any) => this.transformDataForClient(mentorDTO)));
+      .pipe(map((mentorDTO: any) => {
+        return this.transformDataForClient(mentorDTO)}
+      ));
   }
 
   updateMentor(mentor: MentorProfile): Observable<MentorProfile> {

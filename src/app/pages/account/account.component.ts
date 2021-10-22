@@ -1,11 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
 import { Subscription } from 'rxjs';
 
-import { Certificate, MentorProfile, MentorService } from 'src/app/core';
+import { Certificate, MenteeService, MentorProfile, MentorService, UserService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 import { take } from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ import { take } from 'rxjs/operators';
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
 })
-export class AccountComponent implements OnInit, OnDestroy {
+export class AccountComponent implements OnInit {
   isMentorForm: boolean = false;
   isAccountActivated!: boolean;
   isImage: boolean = false;
@@ -35,7 +35,9 @@ export class AccountComponent implements OnInit, OnDestroy {
     public auth: SigninService,
     private http: HttpClient, 
     private _snackBar: MatSnackBar,
-    private mentorService: MentorService
+    private mentorService: MentorService,
+    private menteeService: MenteeService,
+    private userService: UserService
   ) {}
   
   get isAuth() {
@@ -43,13 +45,24 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.mentorSubscription = this.mentorService.getMentorDTO().subscribe(
-      (mentor: MentorProfile) => {
-        this.mentor = mentor;
-        this.isAccountActivated = mentor.isAccountActivated;
-        this.croppedImage = mentor.avatar;
-      }
-    );
+    switch (localStorage.getItem('role')){
+      case "MENTOR":  
+        this.mentorSubscription = this.mentorService.getMentorDTO().pipe(take(1)).subscribe(
+          (mentor: MentorProfile) => {
+            this.mentor = mentor;
+            this.isAccountActivated = mentor.isAccountActivated;
+            this.croppedImage = mentor.avatar;
+          }
+        );
+        break;
+
+      case "MENTEE": 
+        this.menteeService.getData().pipe(take(1)).subscribe(data => {
+          this.croppedImage = data.avatar;
+        })
+        break;
+    }
+    
   }
 
   setMentorData(mentorData: any): void {
@@ -122,6 +135,8 @@ export class AccountComponent implements OnInit, OnDestroy {
       error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
       () => this.textFieldUpload = 'Your photo uploaded successfully!'
     );
+
+    this.userService.setAvatar(this.croppedImage);
   }
 
   openSnackBar(message: string, action: string, className: string) {
@@ -135,9 +150,5 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.isMentorForm = true;
     this.mentor.certificates = this.mentor.certificates.map((certificate: Certificate) => certificate.name);
     this.mentor.avatar = this.croppedImage;
-  }
-
-  ngOnDestroy(): void {
-    this.mentorSubscription.unsubscribe();
   }
 }

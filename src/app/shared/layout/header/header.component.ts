@@ -5,6 +5,8 @@ import { SigninService } from 'src/app/auth/signin/signin.service';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
+import { MenteeService, MentorService, UserService } from 'src/app/core';
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -15,6 +17,7 @@ export class HeaderComponent implements OnInit {
   public isNewMessage: boolean = false;
   public showSettingsMenu: boolean = false;
   public wached = false;
+  public avatar: any;
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
@@ -26,10 +29,11 @@ export class HeaderComponent implements OnInit {
     private NotificationModalService: NotificationModalService,
     private auth: SigninService,
     private http: HttpClient,
-    private translate:TranslateService
+    private translate:TranslateService,
+    private mentorService: MentorService,
+    private menteeService: MenteeService,
+    private userService: UserService
   ) {}
-
-
 
   get isAuth() {
     return this.auth.isAuth();
@@ -41,14 +45,23 @@ export class HeaderComponent implements OnInit {
       this.auth.getRole();
       switch (localStorage.getItem('role')){
         case "MENTOR": 
-        this.notificationModalService.getMenteesRequests();
-        break;
+          this.notificationModalService.getMenteesRequests();
+          this.mentorService.getMentorDTO().subscribe(mentor => {
+            this.avatar = mentor.avatar;
+          })
+          break;
         case "MENTEE": 
-        this.notificationModalService.getMenteesResponces();
-        break;
+          this.notificationModalService.getMenteesResponces();
+          this.menteeService.getData().subscribe(mentor => {
+            this.avatar = mentor.avatar;
+          })
+          break;
       }
     }
 
+    this.userService.avatar$.subscribe(avatar => {
+      this.avatar = avatar;
+    });
   }
 
   open() {
