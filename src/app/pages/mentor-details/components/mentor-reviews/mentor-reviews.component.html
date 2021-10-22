@@ -1,67 +1,159 @@
-<div class="container mt-3 d-flex justify-content-center mb-6">
+<div class="container d-flex justify-content-center">
     <div class="row d-flex justify-content-center">
         <div class="col-md-12">
-            <div class="text-left">
-                <h6>All comments(4)</h6>
-            </div>
-            <div class="card p-2 mb-2">
-                <div class="d-flex flex-row"> <img src="https://i.imgur.com/dwiGgJr.jpg" height="40" width="40" class="rounded-circle ml-1">
-                    <div class="d-flex flex-column ms-2">
-                        <h6 class="card-title pl-2 mb-2">Natalka</h6>
-                        <p class="card-text pl-2 mb-3">When I joined the Mentor4you I simply wanted to learn internet marketing. I'm utterly realistic, I have my feet firmly on the ground and I have a finely honed ‘bull shit meter'. I'm a former Mortgage Broker so I'm used to in depth training in financial regulation & compliance & frankly</p>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row gap-3 align-items-center">
-                        <div class="d-flex align-items-center"><button type="button" class="btn btn-secondary btn-sm mb-2 ml-2">Comment</button></div>
-                    </div>
-                    <div class="d-flex flex-row"> <span class="text-muted fw-small fs-8">August 10, 2021 12:10 PM</span> </div>
-                </div>
-            </div>
-            <div class="card p-3 mb-2">
-                <div class="d-flex flex-row"> <img src="https://i.imgur.com/hczKIze.jpg" height="40" width="40" class="rounded-circle">
-                    <div class="d-flex flex-column ms-2">
-                        <h6 class="card-title pl-2 mb-2">Illya</h6>
-                        <p class="card-text pl-2 mb-3">The incredible support, friendship and leadership I have experienced within the SFM and DEA has allowed me to explore my true potential and has opened my eyes to the incredible power of working together with others in achieving my own goals, whilst also giving me the opportunity to give back </p>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row gap-3 align-items-center">
-                        <div class="d-flex align-items-center"> <button type="button" class="btn btn-secondary btn-sm mb-2 ml-2">Comment</button></div>
-                    </div>
-                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-8">July 21, 2020 1:10 PM</span> </div>
-                </div>
-            </div>
-            <div class="card p-3 mb-2">
-                <div class="d-flex flex-row"> <img src="https://i.imgur.com/C4egmYM.jpg" height="40" width="40" class="rounded-circle">
-                    <div class="d-flex flex-column ms-2">
-                        <h6 class="card-title pl-2 mb-2">Yaroslav</h6>
-                        <p class="card-text pl-2 mb-3">When I became an Mentor4you member, I was also enrolled at Full Sail University in Orlando, FL, pursuing a Masters in Innovation & Entrepreneurship through their online platform.</p>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row gap-3 align-items-center">
-                        <div class="d-flex align-items-center"><button type="button" class="btn btn-secondary btn-sm mb-2 ml-2">Comment</button> </div>
-                    </div>
-                    <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">July 12, 2020 12:10 PM</span> </div>
-                </div>
-            </div>
-            <div class="card p-3 mb-2">
-                <div class="d-flex flex-row"> <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(19).jpg" height="40" width="40" class="rounded-circle">
-                    <div class="d-flex flex-column ms-2">
-                        <h6 class="card-title pl-2 mb-2">Oksana</h6>
-                        <p class="card-text pl-2 mb-3">I lost interest in their curriculum after beginning my training with the Mentor4you, and gained more knowledge and value after only 2 days with the Six Figure Mentors than I had after 2 months at Full Sail.</p>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex flex-row gap-3 align-items-center">
-                        <div class="d-flex align-items-center"> <button type="button" class="btn btn-secondary btn-sm mb-2 ml-2">Comment</button></div>
-                    </div>
-                    <div class="d-flex flex-row"><span class="text-muted fw-normal fs-10">May 22, 2020 12:10 PM</span> </div>
-                </div>
-            </div>
-        </div>
-    </div>
-   
+    <mat-card class="reviews_card">      
+            <mat-card-header>
+                <div mat-card-avatar class="mente1_avatar" ></div>
+                <mat-card-title>Natalia Shevchuk</mat-card-title>           
+                <mat-card-subtitle>
+                  <span class="material-icons">
+                    star_ratestar_ratestar_ratestar_ratestar_rate
+                    </span>
+                </mat-card-subtitle> 
+            </mat-card-header>
+        <mat-card-content>
+          <p>
+            Amazing experience with Mentor4you services... Words can’t describe how
+            helpful were Mentor staff members. Always there when facing challenges.
+            Highly recommend Mentor after this experience.
+          </p>
+        </mat-card-content>
+         <mat-card-actions> 
+          <button mat-raised-button>Reply</button>
+          <button mat-flat-button matTooltip="Share">
+            <span class="material-icons">share</span>
+            </button> 
+            <button mat-flat-button matTooltip="like" [ngClass]="{ 'colorRed' :flag }" (click)="btnClick()">
+                <span class="material-icons">
+                    favorite
+                </span>
+            </button> 
+            <button mat-flat-button matTooltip="Edit">
+                <span class="material-icons">edit</span>
+                </button>
+                <button mat-flat-button matTooltip="Delete">
+                    <span class="material-icons">delete</span>
+                    </button>
+        </mat-card-actions> 
+        <mat-card-footer>
+             <span class="text-muted">August 10,2021 12:10 PM</span> 
+        </mat-card-footer>
+      </mat-card>
+      <mat-card class="reviews_card">      
+        <mat-card-header>
+            <div mat-card-avatar class="mentee_avatar" ></div>
+            <mat-card-title>Illya Stepanuk</mat-card-title>           
+            <mat-card-subtitle>
+              <span class="material-icons">
+                star_ratestar_ratestar_rate
+                </span>
+            </mat-card-subtitle> 
+        </mat-card-header>
+    <mat-card-content>
+      <p>
+        Successful outcome and valued support .. Mentor Education provided me with clear and concise materials and expectations. 
+        The assessors provided great and encouraging feedback and support...
+      </p>
+    </mat-card-content>
+     <mat-card-actions> 
+      <button mat-raised-button>Reply</button>
+      <button mat-flat-button matTooltip="Share">
+        <span class="material-icons">share</span>
+        </button> 
+        <button mat-flat-button matTooltip="like">
+            <span class="material-icons">
+                favorite
+            </span>
+        </button> 
+        <button mat-flat-button matTooltip="Edit">
+            <span class="material-icons">edit</span>
+            </button>
+            <button mat-flat-button matTooltip="Delete">
+                <span class="material-icons">delete</span>
+                </button>
+    </mat-card-actions> 
+    <mat-card-footer>
+         <span class="text-muted">August 1,2021 14:12 PM</span> 
+    </mat-card-footer>
+  </mat-card>
+  <mat-card class="reviews_card">      
+    <mat-card-header>
+        <div mat-card-avatar class="mentee3_avatar" ></div>
+        <mat-card-title>Yaroslav Krasavchuk</mat-card-title>           
+        <mat-card-subtitle>
+          <span class="material-icons">
+            star_ratestar_ratestar_ratestar_rate
+            </span>
+        </mat-card-subtitle> 
+    </mat-card-header>
+<mat-card-content>
+  <p>
+    When I became an Mentor4you member, I was also enrolled at Full Sail University in Orlando, FL, 
+    pursuing a Masters
+     in Innovation & Entrepreneurship through their online platform.
+  </p>
+</mat-card-content>
+ <mat-card-actions> 
+  <button mat-raised-button>Reply</button>
+  <button mat-flat-button matTooltip="Share">
+    <span class="material-icons">share</span>
+    </button> 
+    <button mat-flat-button matTooltip="like">
+        <span class="material-icons">
+            favorite
+        </span>
+    </button> 
+    <button mat-flat-button matTooltip="Edit">
+        <span class="material-icons">edit</span>
+        </button>
+        <button mat-flat-button matTooltip="Delete">
+            <span class="material-icons">delete</span>
+            </button>
+</mat-card-actions> 
+<mat-card-footer>
+     <span class="text-muted">June 29, 2021 14:50 PM</span> 
+</mat-card-footer>
+</mat-card>
+<mat-card class="reviews_card">      
+    <mat-card-header>
+        <div mat-card-avatar class="mentee4_avatar" ></div>
+        <mat-card-title>Oksana Dzybak</mat-card-title>           
+        <mat-card-subtitle>
+          <span class="material-icons">
+            star_ratestar_ratestar_ratestar_ratestar_rate
+            </span>
+        </mat-card-subtitle> 
+    </mat-card-header>
+<mat-card-content>
+  <p>
+    Amazing experience with Mentor4you services... Words can’t describe how
+    helpful were Mentor staff members. Always there when facing challenges.
+    Highly recommend Mentor after this experience.
+  </p>
+</mat-card-content>
+ <mat-card-actions> 
+  <button mat-raised-button>Reply</button>
+  <button mat-flat-button matTooltip="Share">
+    <span class="material-icons">share</span>
+    </button> 
+    <button mat-flat-button matTooltip="like">
+        <span class="material-icons">
+            favorite
+        </span>
+    </button> 
+    <button mat-flat-button matTooltip="Edit">
+        <span class="material-icons">edit</span>
+        </button>
+        <button mat-flat-button matTooltip="Delete">
+            <span class="material-icons">delete</span>
+            </button>
+</mat-card-actions> 
+<mat-card-footer>
+     <span class="text-muted">June 27, 2021 8:26 PM</span> 
+</mat-card-footer>
+</mat-card>
 </div>
-
+<mat-paginator [length]="5" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page">
+</mat-paginator>
+</div> 
+</div>    

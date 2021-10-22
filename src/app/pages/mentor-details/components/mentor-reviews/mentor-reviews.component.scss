@@ -1,13 +1,31 @@
-.card{
+mat-card{
     border: 1px solid rgba(59, 58, 58, 0.125) !important;
     border-radius: .25rem !important;
 }
-.card-text{
+mat-card-text{
     margin: 0px, 0px, 16px !important;
     font-family:  'Roboto', sans-serif, bold;
     color: #524C6F !important;
     font-size: 13px !important;
     line-height: 1.5;
+
+}
+mat-card-title{
+    font-family:  'Roboto', sans-serif, bold;
+    color: #524C6F !important;
+}
+mat-card-content{
+    font-family:  'Roboto', sans-serif, bold;
+    color: #524C6F !important;
+    font-size: 13px !important;
+}
+mat-card-footer{
+    font-family:  'Roboto', sans-serif, bold;
+    color: #524C6F !important;
+    text-align: end;
+    margin-right: 0.2px;
+    margin-top: 0px;
+    margin-left: 0px;
 }
 .text-left{
     margin-bottom: 10px;
@@ -89,3 +107,35 @@ body {
     font-size: 14px;
     margin-top: 12px
 }
+
+.mente1_avatar {
+    background-image: url('https://i.imgur.com/dwiGgJr.jpg');
+    background-size: cover;
+  }
+  .mentee_avatar{
+  background-image: url("https://i.imgur.com/hczKIze.jpg");
+  background-size: cover;
+  }
+  .mentee3_avatar{
+    background-image: url("https://i.imgur.com/C4egmYM.jpg");
+    background-size: cover;
+    }
+    .mentee4_avatar{
+        background-image: url("https://mdbootstrap.com/img/Photos/Avatars/img%20(19).jpg");
+        background-size: cover;
+     }
+    
+  mat-card.reviews_card{
+      margin-bottom: 2em;
+  }
+  button mat-raised-button{
+      margin-left: 2em;
+  }
+ .buttonTop{
+     margin-left: 2rem;
+ }
+
+ ::ng-deep .colorRed{
+    color:red;
+}
+

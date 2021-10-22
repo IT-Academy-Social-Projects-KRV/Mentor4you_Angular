@@ -35,6 +35,7 @@ import { ContactsModule } from "./pages/contacts/contacts.module";
 import {SettingsModule} from "./pages/account/components/account-settings/settings.module";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -87,6 +88,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatToolbarModule,
     Ng2SearchPipeModule,
     MatDialogModule,
+    MatCardModule,
     MatPaginatorModule,
     ToastrModule.forRoot({
       timeOut: 8000,
