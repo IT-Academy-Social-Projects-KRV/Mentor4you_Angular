@@ -23,6 +23,7 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorsBestRatingUrl)
       .pipe(map(mentors => {
+        // console.log('mentors - getAllMentors', mentors);
         return mentors
           .filter((m: any) => m.firstName !== null)
           .map((mentor: any) => {

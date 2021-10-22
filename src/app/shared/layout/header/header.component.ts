@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/co
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, pipe } from 'rxjs';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
 import { MenteeService, MentorService, UserService } from 'src/app/core';
@@ -13,7 +13,6 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  //TODO should be implement in the next task
   public isNewMessage: boolean = false;
   public showSettingsMenu: boolean = false;
   public wached = false;
@@ -46,14 +45,15 @@ export class HeaderComponent implements OnInit {
       switch (localStorage.getItem('role')){
         case "MENTOR": 
           this.notificationModalService.getMenteesRequests();
-          this.mentorService.getMentorDTO().subscribe(mentor => {
+          this.mentorService.getMentorDTO().pipe(take(1)).subscribe(mentor => {
             this.avatar = mentor.avatar;
           })
           break;
         case "MENTEE": 
           this.notificationModalService.getMenteesResponces();
-          this.menteeService.getData().subscribe(mentor => {
-            this.avatar = mentor.avatar;
+          this.menteeService.getData().pipe(take(1)).subscribe(mentee => {
+            console.log('mentee - header', mentee)
+            this.avatar = mentee.avatar;
           })
           break;
       }
@@ -92,7 +92,4 @@ export class HeaderComponent implements OnInit {
   goTo(path: string): void {
     this.router.navigateByUrl(path);
   }
-
-
-
 }

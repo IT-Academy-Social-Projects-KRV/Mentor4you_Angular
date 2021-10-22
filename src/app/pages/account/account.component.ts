@@ -57,8 +57,9 @@ export class AccountComponent implements OnInit {
         break;
 
       case "MENTEE": 
-        this.menteeService.getData().pipe(take(1)).subscribe(data => {
-          this.croppedImage = data.avatar;
+        this.menteeService.getData().pipe(take(3)).subscribe(mentee => {
+          console.log('mentee - account', mentee)
+          this.croppedImage = mentee.avatar;
         })
         break;
     }

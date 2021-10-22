@@ -3,7 +3,6 @@
     <fieldset class="mentor__form-group">
       <div class="mentor__form-field">
         <span class="mentor__label">
-          <!-- {{ "ACCOUNT.MENTOR.NS" | translate }} <span class="star">*</span> -->
           <span class="mentor__label">First Name </span><span class="star"> *</span>
         </span>
 
@@ -74,11 +73,6 @@
                 {{ category }}
               </mat-option>
             </mat-select>
-            <!-- <mat-select [required]="true" [formControl]="categoriesForm" multiple>
-              <mat-option *ngFor="let category of categories" [value]="category">
-                {{ category.categories.name }}
-              </mat-option>
-            </mat-select> -->
           </mat-form-field>
         </div>
       </div>
@@ -149,7 +143,6 @@
       </div>
 
         <div class="mentor__form-field rate-field">
-            <!-- {{ "ACCOUNT.MENTOR.RATE" | translate }}  -->
         <span class="mentor__label">Telegram</span>
         
         <div class="mentor__control-wrapper">
@@ -195,7 +188,6 @@
       </div>
 
       <div class="mentor__form-field">
-        <!-- <span class="mentor__label mentor__teach">Certificates</span> -->
         <span class="mentor__label mb-4">{{ "ACCOUNT.MENTOR.CER" | translate }}</span>
         <div class="mentor__control-wrapper">
           <mat-form-field>
@@ -210,7 +202,6 @@
       </div>
 
       <div class="mentor__form-field">
-        <!-- <span class="mentor__label">I can work with a group</span> -->
         <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK" | translate }} <span class="star">*</span></span>
         <div class="mentor__control-wrapper" [ngClass]="checkBox('personal', 'group')">
           <mat-checkbox formControlName="personal">Personal</mat-checkbox>
@@ -236,7 +227,6 @@
       </div>
 
       <div class="mentor__form-field">
-        <!-- <span class="mentor__label">Work</span> -->
         <span class="mentor__label">{{ "ACCOUNT.MENTOR.WORK1" | translate }}</span>
         <div class="mentor__control-wrapper" [ngClass]="checkBox('online', 'offlineOut')">
           <mat-checkbox formControlName="online">Remotely</mat-checkbox>
