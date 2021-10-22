@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
 import { MenteeService, MentorService, UserService } from 'src/app/core';
 import { take } from 'rxjs/operators';
@@ -13,11 +13,14 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  //TODO should be implement in the next task
   public isNewMessage: boolean = false;
   public showSettingsMenu: boolean = false;
+  public showBurgerMenu: boolean = false;
   public wached = false;
-  public avatar: any;
+  // public avatar: any;
+  public token: any;
+  public response: any;
+  public avatar: string | null = null;
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
@@ -29,7 +32,7 @@ export class HeaderComponent implements OnInit {
     private NotificationModalService: NotificationModalService,
     private auth: SigninService,
     private http: HttpClient,
-    private translate:TranslateService,
+    private translate: TranslateService,
     private mentorService: MentorService,
     private menteeService: MenteeService,
     private userService: UserService
@@ -46,18 +49,26 @@ export class HeaderComponent implements OnInit {
       switch (localStorage.getItem('role')){
         case "MENTOR": 
           this.notificationModalService.getMenteesRequests();
-          this.mentorService.getMentorDTO().subscribe(mentor => {
-            this.avatar = mentor.avatar;
-          })
+          this.mentorService.getMentorDTO().subscribe(mentor => this.avatar = mentor.avatar);
           break;
+
         case "MENTEE": 
           this.notificationModalService.getMenteesResponces();
-          this.menteeService.getData().subscribe(mentor => {
-            this.avatar = mentor.avatar;
-          })
+          this.menteeService.getData().subscribe(mentor => this.avatar = mentor.avatar);
           break;
       }
     }
+    
+    if (this.isAuth){
+      let avatarCheck = localStorage.getItem('avatar');
+        if(avatarCheck == 'null'){
+          this.avatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+        } else {
+          this.avatar = localStorage.getItem('avatar');
+        }
+    }
+
+    this.onHideBurger();
 
     this.userService.avatar$.subscribe(avatar => {
       this.avatar = avatar;
@@ -89,10 +100,23 @@ export class HeaderComponent implements OnInit {
     this.showSettingsMenu = !this.showSettingsMenu;
   }
 
+  showMenu() {
+    this.showBurgerMenu = !this.showBurgerMenu;
+  }
+
   goTo(path: string): void {
     this.router.navigateByUrl(path);
   }
 
-
-
+  onHideBurger(): boolean{
+    if(
+      this.router.url == '/moderator/users' || 
+      this.router.url == '/moderator/black-list' ||
+      this.router.url == '/moderator/edit'){
+      return false
+    }
+    else {
+      return true
+    }
+  }
 }

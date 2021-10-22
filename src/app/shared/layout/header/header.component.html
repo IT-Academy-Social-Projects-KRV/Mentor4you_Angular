@@ -10,7 +10,7 @@
             <a class="header__menu__list-link" routerLink="/how-it-works">{{ 'HEADER.LINKS.HOWORKS' | translate}}</a>
           </li>
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" (click)="goTo('mentor')">{{ 'HEADER.LINKS.FINDMENTOR' | translate}}</a>
+            <a class="header__menu__list-link" routerLink="/mentor">{{ 'HEADER.LINKS.FINDMENTOR' | translate}}</a>
           </li>
           <li class="header__menu__list-item">
             <a class="header__menu__list-link" routerLink="/contacts">{{ 'HEADER.LINKS.CONTACTS' | translate}}</a>
@@ -19,7 +19,7 @@
       </nav>
       <div class="header__btns">
         <ng-container *ngIf="isAuth; else unauthorized">
-          <div class="header__btns__inner">
+          <div class="header__btns__inner" *ngIf="onHideBurger()">
             <div class="header__btns-message__inner" (click)="isNewMessage = false">
               <a class="header__btns-message" routerLink="/messages">
                 <img class="header__btns-chat" src="./../../../../assets/images/chat.svg" alt="Messages">
@@ -45,11 +45,13 @@
               <div class="settings-menu" *ngIf="showSettingsMenu" #menu>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/user.svg" alt="User">
-                  <a class="settings-menu__item__text" (click)="goTo('account')">{{ 'HEADER.MENU.ACCOUNT' | translate}}</a>
+                  <a class="settings-menu__item__text"
+                    (click)="goTo('account')">{{ 'HEADER.MENU.ACCOUNT' | translate}}</a>
                 </div>
                 <div class="settings-menu__item">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/settings.svg" alt="Settings">
-                  <a class="settings-menu__item__text" routerLink="/account/settings">{{ 'HEADER.MENU.SETTINGS' | translate}}</a>
+                  <a class="settings-menu__item__text"
+                    routerLink="/account/settings">{{ 'HEADER.MENU.SETTINGS' | translate}}</a>
                 </div>
                 <div class="settings-menu__item" (click)="logout()">
                   <img class="settings-menu__item__img" src="./../../../../assets/images/power.svg" alt="logout">
@@ -57,13 +59,35 @@
                 </div>
               </div>
             </div>
+            <div class="header__burger" (click)="showMenu()" #toggleButton [ngClass]="{active : showBurgerMenu}">
+              <span class="header__burger-line"></span>
+            </div>
           </div>
         </ng-container>
       </div>
     </div>
+    <div class="header__burger-menu" *ngIf="showBurgerMenu" #burgermenu>
+      <ul class="header__burger-menu__list">
+        <li class="header__burger-menu__list-item" (click)="showMenu()">
+          <a class="header__burger-menu__list-link"
+            routerLink="/how-it-works">{{ 'HEADER.LINKS.HOWORKS' | translate}}</a>
+        </li>
+        <li class="header__burger-menu__list-item" (click)="showMenu()">
+          <a class="header__burger-menu__list-link" routerLink="/mentor">{{ 'HEADER.LINKS.FINDMENTOR' | translate}}</a>
+        </li>
+        <li class="header__burger-menu__list-item" (click)="showMenu()">
+          <a class="header__burger-menu__list-link" routerLink="/contacts">{{ 'HEADER.LINKS.CONTACTS' | translate}}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </header>
 <ng-template #unauthorized>
-  <a class="header__btns-signin header__btn" routerLink="/auth/login">Sign In</a>
-  <a class="header__btns-signup header__btn" routerLink="/auth/signup">Sign Up</a>
+  <div class="signin-menu">
+    <a class="header__btns-signin header__btn" routerLink="/auth/login">Sign In</a>
+    <a class="header__btns-signup header__btn" routerLink="/auth/signup">Sign Up</a>
+    <div class="header__burger" (click)="showMenu()" #toggleButton [ngClass]="{active : showBurgerMenu}">
+      <span class="header__burger-line"></span>
+    </div>
+  </div>
 </ng-template>

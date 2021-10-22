@@ -22,6 +22,6 @@ export class MenteeService {
   }
 
   sendData(mentee: MenteeProfile): Observable<any> {
-    return this.http.post(this.menteeSendDataUrl, mentee);
+    return this.http.put(this.menteeSendDataUrl, mentee);
 }
 }

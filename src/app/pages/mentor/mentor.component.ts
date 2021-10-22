@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NotificationModalService } from 'src/app/core';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { SigninService } from 'src/app/auth/signin/signin.service';
 
 @Component({
   selector: 'app-mentor',
@@ -18,6 +19,7 @@ export class MentorComponent implements OnInit {
   public stars!: any[];
 
   constructor(
+    public signinService: SigninService,
     private notificationModalService: NotificationModalService,
     private toastr: ToastrService,
     private mentorFilter: MentorTopService
@@ -37,6 +39,7 @@ export class MentorComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMentors();
+    console.log("88", this.signinService.isMentee);
   }
 
   sendRequest(id: number): void{

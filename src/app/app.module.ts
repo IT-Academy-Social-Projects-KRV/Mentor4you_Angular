@@ -33,6 +33,16 @@ import { FormsModule } from '@angular/forms';
 import { ContactsModule } from "./pages/contacts/contacts.module";
 
 import {SettingsModule} from "./pages/account/components/account-settings/settings.module";
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { AdminComponent } from './pages/administrator/admin/admin.component';
+import { UsersComponent } from './pages/administrator/users/users.component';
+import { AdminNavigationComponent } from './pages/administrator/admin-navigation/admin-navigation.component';
+import { AdminDashboardComponent } from './pages/administrator/admin-dashboard/admin-dashboard.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -48,6 +58,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     MessagesComponent,
     HowItWorksComponent,
     DialogBoardComponent,
+    AdminComponent,
+    UsersComponent,
+    AdminNavigationComponent,
+    AdminDashboardComponent,
     
   ],
   imports: [
@@ -60,10 +74,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     NotificationModalModule,
     FormsModule,
+    MatListModule,
     ContactsModule,
     ImageCropperModule,
     SettingsModule,
+    MatSidenavModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatToolbarModule,
     MatDialogModule,
+    MatPaginatorModule,
     ToastrModule.forRoot({
       timeOut: 8000,
     }),

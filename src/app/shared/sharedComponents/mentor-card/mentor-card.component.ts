@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
+import { SigninService } from 'src/app/auth/signin/signin.service';
 import { NotificationModalService } from 'src/app/core';
 import { MentorCard } from 'src/app/core/interfaces';
 
@@ -17,6 +18,7 @@ export class MentorCardComponent implements OnInit {
   private unSubscribeSubject: Subject<void> = new Subject;
 
   constructor(
+    public signinService: SigninService,
     private router: Router,
     private notificationModalService: NotificationModalService,
     private toastr: ToastrService

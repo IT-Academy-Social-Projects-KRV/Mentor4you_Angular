@@ -13,6 +13,7 @@ import { Subject } from 'rxjs';
 export class AppComponent implements OnInit, DoCheck{
   title = 'mentor4you';
   hiddenFooter: boolean = true;
+  hideHeader:boolean = true;
 
   constructor(private auth: SigninService, private router: Router,public translate:TranslateService) {
 
@@ -24,11 +25,12 @@ export class AppComponent implements OnInit, DoCheck{
       this.auth.setTokenO(potencialToken);
     }
     this.onHiddenFooter();
+    this.onHideHeader();
 
     // localStorage.setItem('role', 'mentor');
   }
   onHiddenFooter() {
-    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' ) {
+    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' || this.router.url == '/administrator' ) {
       this.hiddenFooter = false;
     } else {
       this.hiddenFooter = true
@@ -37,6 +39,15 @@ export class AppComponent implements OnInit, DoCheck{
 
   ngDoCheck() {
     this.onHiddenFooter();
+    this.onHideHeader();
    
+  }
+  onHideHeader(): void{
+    if(this.router.url == '/administrator'){
+      this.hideHeader = false;
+    }
+    else {
+      this.hideHeader = true;
+    }
   }
 }
