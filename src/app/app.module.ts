@@ -48,6 +48,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CategoriesComponent } from './pages/administrator/categories/categories.component';
 
 
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }

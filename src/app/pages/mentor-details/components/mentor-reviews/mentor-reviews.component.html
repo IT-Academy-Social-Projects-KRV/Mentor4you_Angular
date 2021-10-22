@@ -7,7 +7,7 @@
                 <mat-card-title>Natalia Shevchuk</mat-card-title>           
                 <mat-card-subtitle>
                   <span class="material-icons">
-                    star_ratestar_ratestar_ratestar_ratestar_rate
+                    star_rate star_rate 
                     </span>
                 </mat-card-subtitle> 
             </mat-card-header>
@@ -19,26 +19,26 @@
           </p>
         </mat-card-content>
          <mat-card-actions> 
-          <button mat-raised-button>Reply</button>
-          <button mat-flat-button matTooltip="Share">
+          <button type="button" class="btn btn-outline-dark btn-sm">Reply</button>
+           <button type="button" class="btn btn-outline-dark btn-sm"> 
             <span class="material-icons">share</span>
-            </button> 
-            <button mat-flat-button matTooltip="like" [ngClass]="{ 'colorRed' :flag }" (click)="btnClick()">
+             </button>  
+            <button type="button" class="btn btn-outline-dark btn-sm" matTooltip="like" [ngClass]="{ 'colorRed' :flag }" (click)="btnClick()"> 
                 <span class="material-icons">
                     favorite
                 </span>
-            </button> 
-            <button mat-flat-button matTooltip="Edit">
+             </button>  
+            <button type="button" class="btn btn-outline-dark btn-sm" matTooltip="Edit">
                 <span class="material-icons">edit</span>
                 </button>
-                <button mat-flat-button matTooltip="Delete">
+                <button type="button" class="btn btn-outline-dark btn-sm" matTooltip="Delete">
                     <span class="material-icons">delete</span>
                     </button>
         </mat-card-actions> 
         <mat-card-footer>
              <span class="text-muted">August 10,2021 12:10 PM</span> 
         </mat-card-footer>
-      </mat-card>
+      <!-- </mat-card>
       <mat-card class="reviews_card">      
         <mat-card-header>
             <div mat-card-avatar class="mentee_avatar" ></div>
@@ -150,8 +150,8 @@
 </mat-card-actions> 
 <mat-card-footer>
      <span class="text-muted">June 27, 2021 8:26 PM</span> 
-</mat-card-footer>
-</mat-card>
+</mat-card-footer>-->
+</mat-card> 
 </div>
 <mat-paginator [length]="5" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page">
 </mat-paginator>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
@@ -12,7 +13,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   imports: [MatRadioModule],
   exports: [
-    MatIconModule,
+     MatIconModule,
     MatSlideToggleModule,
     MatCardModule,
     MatProgressSpinnerModule,
