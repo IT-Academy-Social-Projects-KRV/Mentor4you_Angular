@@ -7,12 +7,17 @@ import {CookieService} from "ngx-cookie-service";
 import {tap} from "rxjs/operators";
 import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { UserService } from 'src/app/core';
+import mockAvatar from 'src/app/core/mock/mockAvatar';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SigninService {
-  constructor(private http:HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) {
   }
   error!:any
   public user: any = {}
@@ -20,6 +25,7 @@ export class SigninService {
   private avatar: string | null = null;
   public token$ = new BehaviorSubject<any>(null);
   public profileImageUpdate$ = new Subject<string>();
+  public mockAvatar = mockAvatar;
 
   private url ='http://localhost:8080/api/auth/login'
 
@@ -35,8 +41,9 @@ export class SigninService {
         tap(
           ({token, avatar})=>{
             localStorage.setItem('token',token);
-            localStorage.setItem('avatar',avatar);
+            // localStorage.setItem('avatar',avatar);
             this.setAvatar(avatar);
+            this.userService.setAvatar(avatar || this.mockAvatar);
             this.setTokenO(token);
             this.setToken(token);
             this.user = this.parseJwt(token);

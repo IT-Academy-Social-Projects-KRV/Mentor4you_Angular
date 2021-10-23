@@ -6,7 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
 import { MenteeService, MentorService, UserService } from 'src/app/core';
-import { take } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
+import avatar from 'src/app/core/mock/avatar';
+import mockAvatar from 'src/app/core/mock/mockAvatar';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,7 +22,9 @@ export class HeaderComponent implements OnInit {
   // public avatar: any;
   public token: any;
   public response: any;
-  public avatar: string | null = null;
+  // public avatar: string | null = null;
+  public mockAvatar = mockAvatar;
+  public avatar = this.mockAvatar;
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
@@ -49,24 +53,34 @@ export class HeaderComponent implements OnInit {
       switch (localStorage.getItem('role')){
         case "MENTOR": 
           this.notificationModalService.getMenteesRequests();
-          this.mentorService.getMentorDTO().subscribe(mentor => this.avatar = mentor.avatar);
+          this.mentorService
+            .getMentorDTO()
+            .pipe(first())
+            .subscribe(mentor => this.avatar = mentor.avatar || this.mockAvatar);
           break;
 
         case "MENTEE": 
           this.notificationModalService.getMenteesResponces();
-          this.menteeService.getData().subscribe(mentor => this.avatar = mentor.avatar);
+          this.menteeService
+            .getData()
+            .pipe(first())
+            .subscribe(mentee => this.avatar = mentee.avatar || this.mockAvatar);
           break;
       }
     }
     
-    if (this.isAuth){
-      let avatarCheck = localStorage.getItem('avatar');
-        if(avatarCheck == 'null'){
-          this.avatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
-        } else {
-          this.avatar = localStorage.getItem('avatar');
-        }
-    }
+    // if (this.isAuth){
+    //   // let avatarCheck = localStorage.getItem('avatar');
+    //   console.log('mockAvatar', this.mockAvatar);
+    //   let avatarCheck = this.avatar;
+    //     if(avatarCheck == 'null'){
+    //       this.avatar = this.mockAvatar;
+    //       // this.avatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+    //     } else {
+    //       this.avatar = this.avatar;
+    //       // this.avatar = localStorage.getItem('avatar');
+    //     }
+    // }
 
     this.onHideBurger();
 

@@ -19,7 +19,6 @@ export class AccountComponent implements OnInit {
   isAccountActivated!: boolean;
   isImage: boolean = false;
   selectedFile!: File;
-  mentorSubscription!: Subscription;
   mentor?: any;
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   imageChangedEvent: any = '';
@@ -50,22 +49,25 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     switch (localStorage.getItem('role')){
       case "MENTOR":  
-        this.mentorSubscription = this.mentorService.getMentorDTO().pipe(take(1)).subscribe(
-          (mentor: MentorProfile) => {
-            this.mentor = mentor;
-            this.isAccountActivated = mentor.isAccountActivated;
-            this.croppedImage = mentor.avatar;
-          }
-        );
+        this.mentorService
+          .getMentorDTO()
+          .pipe(take(1))
+          .subscribe(
+            (mentor: MentorProfile) => {
+              this.mentor = mentor;
+              this.isAccountActivated = mentor.isAccountActivated;
+              this.croppedImage = mentor.avatar;
+            }
+          );
         break;
 
       case "MENTEE": 
-        this.menteeService.getData().pipe(take(1)).subscribe(data => {
-          this.croppedImage = data.avatar;
-        })
+        this.menteeService
+          .getData()
+          .pipe(take(1))
+          .subscribe(mentee => this.croppedImage = mentee.avatar);
         break;
     }
-    
   }
 
   setMentorData(mentorData: any): void {
@@ -133,7 +135,7 @@ export class AccountComponent implements OnInit {
 
     fd.append('file', file);
    
-    this.http.post(this.avatarUrl, fd).pipe(take(1)).subscribe(
+    this.http.post(this.avatarUrl, fd).pipe(take(3)).subscribe(
       res => {}, 
       error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
       () => this.textFieldUpload = 'Your photo uploaded successfully!'
@@ -146,7 +148,7 @@ export class AccountComponent implements OnInit {
     this.http.delete('http://localhost:8080/api/users/deleteAvatar').subscribe(response => console.log(response),
     error => { if (error.status == 200){
         this.openSnackBar('Photo deleted!', 'Now you have basic avatar', 'success');
-        localStorage.setItem('avatar',  'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png');
+        // localStorage.setItem('avatar',  'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png');
         //this.auth.profileImageUpdate$.next('https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png');
       } else {
         this.openSnackBar('Error', 'Try again later', 'danger');
