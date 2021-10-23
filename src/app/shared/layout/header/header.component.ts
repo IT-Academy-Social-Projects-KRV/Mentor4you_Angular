@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
     private NotificationModalService: NotificationModalService,
     private auth: SigninService,
     private http: HttpClient,
-    private translate:TranslateService,
+    private translate:TranslateService,    
   ) {}
 
   get isAuth() {
@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
       }
     }
     
+    this.onHideBurger();
   }
 
   open() {
@@ -87,5 +88,17 @@ export class HeaderComponent implements OnInit {
 
   goTo(path: string): void {
     this.router.navigateByUrl(path);
+  }
+
+  onHideBurger(): boolean{
+    if(
+      this.router.url == '/moderator/users' || 
+      this.router.url == '/moderator/black-list' ||
+      this.router.url == '/moderator/edit'){
+      return false
+    }
+    else {
+      return true
+    }
   }
 }
