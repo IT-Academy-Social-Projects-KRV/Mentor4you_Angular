@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
-import { Subscription } from 'rxjs';
 
 import { Certificate, MenteeService, MentorProfile, MentorService, UserService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';

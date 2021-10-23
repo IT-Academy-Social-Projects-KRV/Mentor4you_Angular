@@ -70,8 +70,6 @@ export class HeaderComponent implements OnInit {
     }
     
     // if (this.isAuth){
-    //   // let avatarCheck = localStorage.getItem('avatar');
-    //   console.log('mockAvatar', this.mockAvatar);
     //   let avatarCheck = this.avatar;
     //     if(avatarCheck == 'null'){
     //       this.avatar = this.mockAvatar;

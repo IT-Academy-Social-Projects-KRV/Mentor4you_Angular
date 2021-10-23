@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 import { Subject, Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 
-import { MentorService } from 'src/app/core';
+import { MentorService, UserService } from 'src/app/core';
 import { categoriesList, certificateList, certificatesData, cityList, currencyList, languagesList } from './data';
 
 
@@ -49,14 +50,15 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder, 
     private router: Router,
-    private mentorService: MentorService
+    private mentorService: MentorService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
     this.btnTouched = false;
     this.groupWork = false;
     this.mentorForm = this.fb.group({
-      // avatar: this.selectedFile,
+      localAvatar: [''],
       avatar: [''],
       isAccountActivated: [false],
       firstName: ['', Validators.required],
@@ -89,9 +91,17 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   initForm(): void {
     const controls = this.mentorForm.controls;
 
+    this.userService.avatar$
+      .pipe(first())
+      .subscribe(avatar => {
+        controls['localAvatar'].setValue(avatar);
+      })
+
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName]);
     })
+
+    console.log('mentor - form - localAvatar', this.mentor.localAvatar);
 
     const groupServ = this.mentor['groupServ'];
 
@@ -185,6 +195,9 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     
     this.closeForm.emit();
     this.viewMentorData.emit(this.mentorForm.value);
+
+    console.log('mentor - form - localAvatar - 1', this.mentor.localAvatar);
+    console.log('mentor - form - localAvatar - 2', this.mentorForm.controls['localAvatar'].value);
   }
 
   ngOnDestroy(): void {
