@@ -19,7 +19,8 @@ export class SigninService {
   private token: string | null = null;
   public token$ = new BehaviorSubject<any>(null);
 
-  private url ='http://localhost:8080/api/auth/login'
+  private url ='http://localhost:8080/api/auth/login';
+  private forgetUrl = 'http://localhost:8080/sendSecurityEmail';
 
   authRedirect(email:any,password:any):Observable<{token:string}>{
 
@@ -112,6 +113,10 @@ export class SigninService {
     const helper = new JwtHelperService();
     const isExpired = helper.isTokenExpired(token);
     return isExpired
+  }
+
+  resetPassword(email: any): Observable<any>{
+    return this.http.get(this.forgetUrl + `/${email}`);
   }
 
 }

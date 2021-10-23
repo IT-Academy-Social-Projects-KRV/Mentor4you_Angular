@@ -81,13 +81,13 @@ input.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid{
 
   ::ng-deep snack-bar-container.success{
     background-color: $grey;
-    color: white;
+    color: black;
     padding: 20px;
     font-size: 1.5rem;
     border: 3px solid $darkblue;
     .mat-simple-snackbar-action{
       button {
-        color: white;
+        color:black;
       }
     }
   }
