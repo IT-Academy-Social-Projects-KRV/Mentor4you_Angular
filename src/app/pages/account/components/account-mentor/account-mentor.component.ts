@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 import { Subject, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MentorService, UserService } from 'src/app/core';
 import { categoriesList, certificateList, certificatesData, cityList, currencyList, languagesList } from './data';
@@ -49,9 +50,10 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder, 
-    private router: Router,
+    // private router: Router,
     private mentorService: MentorService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -100,8 +102,6 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName]);
     })
-
-    console.log('mentor - form - localAvatar', this.mentor.localAvatar);
 
     const groupServ = this.mentor['groupServ'];
 
@@ -159,7 +159,12 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
       this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
         .subscribe(() => { 
-          this.router.navigate(['/']) 
+          this.snackBar.open('Your data has been successfully saved!', '', {
+            duration: 5000,
+            verticalPosition: 'top',
+            panelClass: 'success'
+          });
+          // this.router.navigate(['/'])
         });
 
       this.btnTouched = true;
@@ -195,9 +200,6 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     
     this.closeForm.emit();
     this.viewMentorData.emit(this.mentorForm.value);
-
-    console.log('mentor - form - localAvatar - 1', this.mentor.localAvatar);
-    console.log('mentor - form - localAvatar - 2', this.mentorForm.controls['localAvatar'].value);
   }
 
   ngOnDestroy(): void {

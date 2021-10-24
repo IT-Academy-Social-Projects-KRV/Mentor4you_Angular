@@ -24,10 +24,10 @@ export class SigninService {
   private token: string | null = null;
   private avatar: string | null = null;
   public token$ = new BehaviorSubject<any>(null);
-  public profileImageUpdate$ = new Subject<string>();
-  public mockAvatar = mockAvatar;
-
+  // public profileImageUpdate$ = new Subject<string>();
   private url ='http://localhost:8080/api/auth/login'
+  public mockAvatar = mockAvatar;
+  public standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
 
   authRedirect(email:any,password:any):Observable<{token:string}>{
 
@@ -41,9 +41,9 @@ export class SigninService {
         tap(
           ({token, avatar})=>{
             localStorage.setItem('token',token);
-            // localStorage.setItem('avatar',avatar);
-            this.setAvatar(avatar);
-            this.userService.setAvatar(avatar || this.mockAvatar);
+            const currentAvatar = avatar === this.standartUserAvatar ?  this.mockAvatar : avatar;
+
+            this.userService.setAvatar(currentAvatar);
             this.setTokenO(token);
             this.setToken(token);
             this.user = this.parseJwt(token);
@@ -56,9 +56,9 @@ export class SigninService {
     this.token = token;
   }
 
-  setAvatar(avatar: any){
-    this.profileImageUpdate$.next(avatar);
-  }
+  // setAvatar(avatar: any){
+  //   this.profileImageUpdate$.next(avatar);
+  // }
 
   setTokenO(token:any) : void{
     this.token$.next(token);

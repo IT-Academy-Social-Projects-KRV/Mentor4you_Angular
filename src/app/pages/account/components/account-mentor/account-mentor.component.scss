@@ -226,6 +226,11 @@ mat-checkbox {
   color: $fuschia100 !important;
 }
 
+::ng-deep .mat-simple-snackbar {
+  justify-content: center !important;
+  font-size: 16px;
+}
+
 .invalid-checkbox {
   color: red !important;
 }

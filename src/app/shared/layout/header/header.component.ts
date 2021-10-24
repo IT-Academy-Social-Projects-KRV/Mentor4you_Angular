@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   public response: any;
   // public avatar: string | null = null;
   public mockAvatar = mockAvatar;
+  public standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
   public avatar = this.mockAvatar;
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
@@ -56,7 +57,7 @@ export class HeaderComponent implements OnInit {
           this.mentorService
             .getMentorDTO()
             .pipe(first())
-            .subscribe(mentor => this.avatar = mentor.avatar || this.mockAvatar);
+            .subscribe(mentor => this.avatar = mentor.avatar === this.standartUserAvatar ?  this.mockAvatar : mentor.avatar);
           break;
 
         case "MENTEE": 
@@ -64,7 +65,7 @@ export class HeaderComponent implements OnInit {
           this.menteeService
             .getData()
             .pipe(first())
-            .subscribe(mentee => this.avatar = mentee.avatar || this.mockAvatar);
+            .subscribe(mentee => this.avatar = mentee.avatar === this.standartUserAvatar ?  this.mockAvatar : mentee.avatar);
           break;
       }
     }
@@ -82,9 +83,13 @@ export class HeaderComponent implements OnInit {
 
     this.onHideBurger();
 
+    // console.log('avatar - header - 1', this.avatar);
+    
     this.userService.avatar$.subscribe(avatar => {
       this.avatar = avatar;
     });
+
+    // console.log('avatar - header - 2', this.avatar);
   }
 
   open() {

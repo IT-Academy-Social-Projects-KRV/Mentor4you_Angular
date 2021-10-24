@@ -1,4 +1,4 @@
-<div *ngIf="mentor" class="mentor-card">
+<div *ngIf="mentor" class="mentor-card" (click)="goTo('mentor-details')">
   <div class="mentor-card__info">
     <div class="mentor-card__image-wrap">
       <img class="mentor-card__image" src="{{mentor.avatar}}" alt="{{mentor.fullName}}">
