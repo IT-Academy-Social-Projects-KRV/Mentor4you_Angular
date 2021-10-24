@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   public wached = false;
   public token: any;
   public response: any;
-  public avatar: string | null = null;
+  public avatar: string | null = './../../../../assets/images/standardAvatar.jpg';
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
