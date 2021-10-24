@@ -5,6 +5,7 @@ import {CookieService} from "ngx-cookie-service"
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {SigninService} from "./signin.service";
 import { NotificationModalService } from 'src/app/core';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -17,7 +18,7 @@ export class SigninComponent implements OnInit{
     private http:SigninService,
     private router:Router,
     private notificationModalService: NotificationModalService,
-    private auth:SigninService
+    private auth:SigninService,
     ) {}
 
   emailValue!:string
@@ -96,7 +97,8 @@ submitFrom(){
   this.isDisabled=false
   let login = this.http.authRedirect(this.emailValue,this.passwordValue)
 
-  login.subscribe(response=>{
+  login.subscribe
+  login.subscribe((response)=>{
     this.auth.getRole();
     switch (localStorage.getItem('role')){
       case "MENTOR": 
@@ -106,7 +108,7 @@ submitFrom(){
       this.notificationModalService.getMenteesResponces();
       break;
     }
-
+    
     if(response)
     {
       this.router.navigate(['/'])
