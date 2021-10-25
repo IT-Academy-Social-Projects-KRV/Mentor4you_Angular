@@ -1,0 +1,51 @@
+
+<div class="container"> 
+    <div class="table-responsive">
+    <table class="table table-hover">
+
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Role</th>
+            <th scope="col">Email</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Unban user</th>
+          </tr>
+        </thead>
+
+        <tbody *ngFor="let name of banUser">
+            <tr>
+            <!-- <th scope="row">1</th> -->
+            <td> {{name.id}} </td>
+            <td> {{name.role}} </td>
+            <td> {{name.email}} </td>
+            <td> {{name.first_name}} </td>
+            <td> {{name.last_name}} </td>
+            <!-- <td> {{item.ban}} </td>  -->
+            <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" disabled>Moderator</button></td>
+            <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" (click)=unBunUsers(name.id)>Unban</button></td>
+            <!-- <div class="form-check form-switch" >
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked (click)=bunUsers(item.id)>
+                <label class="form-check-label" for="flexSwitchCheckChecked">Activate/Deactivate</label>
+              </div> -->
+            
+            
+          </tr>
+          <tr>
+           
+        </tbody>
+      </table>
+      </div>
+      
+
+
+ </div>
+
+
+  
+
+
+
+
+

@@ -9,6 +9,7 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import {AuthGuard} from "./core/interceptors/auth.guard";
 import {NotAuthGuard} from "./core/interceptors/not-auth.guard";
+import { BannedUsersComponent } from './pages/administrator/banned-users/banned-users.component';
 
 const routes: Routes = [
   {
@@ -48,8 +49,11 @@ const routes: Routes = [
   {
     path: 'administrator',
     loadChildren: () => import('./pages/administrator/admin/admin.module').then(m => m.AdminModule),
+   
+    canActivate:[AuthGuard]
     
   },
+
   {
     path: 'users',
     component: UsersComponent

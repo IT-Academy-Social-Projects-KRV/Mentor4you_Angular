@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UsersService } from 'src/app/core/services/users.service';
+
 export class ExampleComponent {
 	constructor(private admin_router: Router) {}
 }
@@ -20,9 +22,13 @@ export class AdminNavigationComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) {
+
+  }
+  
 
 }
+
 
 
 

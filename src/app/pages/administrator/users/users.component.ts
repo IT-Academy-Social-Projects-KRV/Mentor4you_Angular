@@ -19,8 +19,19 @@ export class UsersComponent implements OnInit {
    searchText:any;
    
 
-  constructor(private userService: UsersService) { }
-  
+  constructor(private userService: UsersService, private bannedUsers:UsersService) {
+    
+   }
+   
+   response:any;
+   bunUsers(id:number){
+    this.bannedUsers.banUser(id).subscribe(res=>{
+      this.response = res;
+      console.log(this.response)
+    })
+  }
+
+
 
   ngOnInit(): void {
    

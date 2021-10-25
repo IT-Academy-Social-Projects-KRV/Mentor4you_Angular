@@ -46,6 +46,9 @@ import { AdminDashboardComponent } from './pages/administrator/admin-dashboard/a
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CategoriesComponent } from './pages/administrator/categories/categories.component';
+import { AppointModeratorComponent } from './pages/administrator/appoint-moderator/appoint-moderator.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 
 
@@ -67,6 +70,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminNavigationComponent,
     AdminDashboardComponent,
     CategoriesComponent,
+    AppointModeratorComponent
+    
     
   ],
   imports: [
@@ -91,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     MatCardModule,
     MatPaginatorModule,
+    MatIconModule,
     ToastrModule.forRoot({
       timeOut: 8000,
     }),
