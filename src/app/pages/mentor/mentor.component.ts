@@ -6,6 +6,7 @@ import { NotificationModalService } from 'src/app/core';
 import { catchError, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { SigninService } from 'src/app/auth/signin/signin.service';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 @Component({
   selector: 'app-mentor',
@@ -22,14 +23,18 @@ export class MentorComponent implements OnInit {
     public signinService: SigninService,
     private notificationModalService: NotificationModalService,
     private toastr: ToastrService,
-    private mentorFilter: MentorTopService
+    private mentorFilter: MentorTopService,
+    private errorPagesServices: ErrorPagesServices
     ) {
   }
 
   getMentors() {
     this.mentorFilter.getMentors(12).subscribe(res => {
       this.response = res;
-    });
+    },
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      });
   }
 
   dataMentors(response: any) {

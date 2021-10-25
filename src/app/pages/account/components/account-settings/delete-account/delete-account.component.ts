@@ -5,6 +5,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 @Component({
   selector: 'app-delete-account',
@@ -18,7 +19,8 @@ export class DeleteAccountComponent implements OnInit {
     private http:HttpClient,
     private userService: UserService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private errorPagesServices: ErrorPagesServices
     ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,9 @@ export class DeleteAccountComponent implements OnInit {
       this.router.navigateByUrl("/");
       localStorage.clear();
       this.toastr.info('Your account is deleted');
-    })
+    },
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      })
   }
 }

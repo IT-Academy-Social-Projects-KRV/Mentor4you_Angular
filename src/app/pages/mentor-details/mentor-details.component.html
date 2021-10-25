@@ -1,8 +1,8 @@
 <div class="container">
   <div class="content">
-    <app-main-section  *ngIf="mentor" [mentor]="mentor"></app-main-section>
+    <app-main-section  *ngIf="mentor" [mentor]="mentor" [idMentor]="idMentor"></app-main-section>
 
-    <app-mentor-add-review-section ></app-mentor-add-review-section>
+    <app-mentor-add-review-section [idMentor]="idMentor"></app-mentor-add-review-section>
 
     <app-mentor-reviews></app-mentor-reviews>
   </div>

@@ -8,6 +8,7 @@ import { take } from 'rxjs/operators';
 import { Certificate, MenteeService, MentorProfile, MentorService, UserService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -22,7 +23,6 @@ export class AccountComponent implements OnInit {
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   imageChangedEvent: any = '';
   croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
-  avatarUrl: string = 'http://localhost:8080/api/users/uploadAvatar';
   fileC: any;
   myFile!: File;
   newName: any = "";
@@ -41,6 +41,7 @@ export class AccountComponent implements OnInit {
     private userService: UserService
   ) {}
   
+
   get isAuth() {
     return this.auth.isAuth();
   }
@@ -134,23 +135,29 @@ export class AccountComponent implements OnInit {
 
     fd.append('file', file);
    
-    this.http.post(this.avatarUrl, fd).pipe(take(3)).subscribe(
-      res => {}, 
-      error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
-      () => this.textFieldUpload = 'Your photo uploaded successfully!'
-    );
+  this.userService.uploadAvatar(fd).pipe(take(1)).subscribe(
+  // this.avatarSubscription = this.userService.uploadAvatar(fd).subscribe(
+    res => { },
+    error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
+    () => {
+      this.textFieldUpload = 'Your photo uploaded successfully!';
+      this.isBtnDisabled = true; 
+    }
+  );
 
     this.userService.setAvatar(this.croppedImage);
   }
 
   deleteAvatar(){
-    this.http.delete('http://localhost:8080/api/users/deleteAvatar').subscribe(response => console.log(response),
-    error => { if (error.status == 200){
-        this.openSnackBar('Photo deleted!', 'Now you have basic avatar', 'success');
-        // localStorage.setItem('avatar',  'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png');
-        //this.auth.profileImageUpdate$.next('https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png');
+    this.userService.deleteAvatar().subscribe(response => console.log(response),
+    error => { if (error.status == 200) {
+        this._snackBar.open('Photo deleted! Now you have basic avatar', '', {
+          duration: 3000
+        });
       } else {
-        this.openSnackBar('Error', 'Try again later', 'danger');
+        this._snackBar.open('Error. Try again later', '', {
+          duration: 3000
+        });
       }
     });
   }

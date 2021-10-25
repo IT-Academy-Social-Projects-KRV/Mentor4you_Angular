@@ -1,3 +1,4 @@
+import { WebSocketService } from './../../../pages/messages/web-socket.service';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
@@ -12,20 +13,20 @@ import mockAvatar from 'src/app/core/mock/mockAvatar';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   public isNewMessage: boolean = false;
   public showSettingsMenu: boolean = false;
   public showBurgerMenu: boolean = false;
   public wached = false;
-  // public avatar: any;
   public token: any;
   public response: any;
-  // public avatar: string | null = null;
   public mockAvatar = mockAvatar;
   public standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
   public avatar = this.mockAvatar;
+  public checkNewMessage: boolean = false;
+  // public avatar: string | null = './../../../../assets/images/standardAvatar.jpg';
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
@@ -40,7 +41,8 @@ export class HeaderComponent implements OnInit {
     private translate: TranslateService,
     private mentorService: MentorService,
     private menteeService: MenteeService,
-    private userService: UserService
+    private userService: UserService,
+    public webSocketService:WebSocketService  
   ) {}
 
   get isAuth() {
@@ -48,6 +50,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.closeMenu();
     if (this.isAuth) {
       this.auth.getRole();
@@ -70,26 +73,14 @@ export class HeaderComponent implements OnInit {
       }
     }
     
-    // if (this.isAuth){
-    //   let avatarCheck = this.avatar;
-    //     if(avatarCheck == 'null'){
-    //       this.avatar = this.mockAvatar;
-    //       // this.avatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
-    //     } else {
-    //       this.avatar = this.avatar;
-    //       // this.avatar = localStorage.getItem('avatar');
-    //     }
-    // }
 
     this.onHideBurger();
 
-    // console.log('avatar - header - 1', this.avatar);
-    
     this.userService.avatar$.subscribe(avatar => {
       this.avatar = avatar;
     });
 
-    // console.log('avatar - header - 2', this.avatar);
+    this.webSocketService.checkMessage$.subscribe(e=>this.checkNewMessage = e)
   }
 
   open() {

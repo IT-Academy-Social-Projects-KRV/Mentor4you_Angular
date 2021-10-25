@@ -300,6 +300,9 @@
 ::ng-deep .mat-simple-snackbar {
   color: white !important;
 }
+::ng-deep snack-bar-container{
+  background-color: $red !important;
+}
 ::ng-deep snack-bar-container.danger{
   background-color: $red;
   .mat-simple-snackbar-action{

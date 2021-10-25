@@ -1,9 +1,9 @@
-<section class="form-review container">
+<section *ngIf="checkCooperation" class="form-review container">
 	<div class="form-review__container">
 		<div class="form-review__row col-md-12">
 			<div class="form-review__title">Add Review</div>
 		</div>
-		<form  [formGroup]="formAddReview" (ngSubmit)="submit()">
+		<form [formGroup]="formAddReview" (ngSubmit)="submit()">
 			<div class="form-review__wrapper">
 				<div class="form-review__row">
 					<div class="form-review__input-wrapper">
@@ -17,35 +17,30 @@
 				</div>
 				<div class="below-textarea__wrapper">
 					<div class="form-review__row">
-					<div class="form-review__range-wrapper">
+						<div class="form-review__range-wrapper">
 
-						<div class="form-review__range">
-							<ng-container *ngFor="let star of stars">
-								<app-star-raiting [starId]="star" [rating]="hoverState || rating" (enter)="enter($event)"
-									(leave)="leave()" (bigClick)="updateRating(star)">
-								</app-star-raiting>
-							</ng-container>
+							<div class="form-review__range">
+								<ng-container *ngFor="let star of stars">
+									<app-star-raiting [starId]="star" [rating]="hoverState || rating" (enter)="enter($event)"
+										(leave)="leave()" (bigClick)="updateRating(star)">
+									</app-star-raiting>
+								</ng-container>
+							</div>
+						</div>
+					</div>
+					<div class="form-review__row">
+						<div class="form-review__button-wrapper">
+							<button [class.btnClick]="btnCheck" [disabled]="formAddReview.invalid" class="form-review__button"
+								type="submit" [class.disabled]="formAddReview.invalid" (click)="btnClick()">Submit Now</button>
 						</div>
 					</div>
 				</div>
-				<div class="form-review__row">
-					<div class="form-review__button-wrapper">
-						<button [class.btnClick]="btnCheck"
-						[disabled]="formAddReview.invalid"
-						class="form-review__button"
-							type="submit"
-							[class.disabled]="formAddReview.invalid"
-							(click)="btnClick()">Submit Now</button>
-					</div>
-				</div>
-				</div>
-				
+
 			</div>
 		</form>
 	</div>
 	<mat-dialog-actions></mat-dialog-actions>
-	<div *ngIf="showSpiner"  class="spiner-preloder__wrapper">
+	<div *ngIf="showSpiner" class="spiner-preloder__wrapper">
 		<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 	</div>
 </section>
-

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 import { Subject, Subscription } from 'rxjs';
@@ -9,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MentorService, UserService } from 'src/app/core';
 import { categoriesList, certificateList, certificatesData, cityList, currencyList, languagesList } from './data';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 
 export interface AdditionalMentorData {
@@ -50,10 +50,11 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder, 
-    // private router: Router,
     private mentorService: MentorService,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private errorPagesServices: ErrorPagesServices
+
   ) {}
 
   ngOnInit(): void {
@@ -130,11 +131,11 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
       return false;
     });
-    
+
     certificates.setValue(newSertificateList);
   }
 
-  setGroupService(controls: {[key: string]: any}) {
+  setGroupService(controls: { [key: string]: any }) {
     const isMix = controls['group'].value && controls['personal'].value;
     const isGroup = controls['group'].value ? true : false;
     const isGroupSevice = isMix ? 'MIX' : isGroup ? 'YES' : 'NO';
@@ -145,7 +146,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     const controls = this.mentorForm.controls;
     const certificates = controls['certificates'];
-    
+
     this.setCertificates(certificates);
     this.setGroupService(controls);
 
@@ -158,14 +159,18 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
       this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
-        .subscribe(() => { 
-          this.snackBar.open('Your data has been successfully saved!', '', {
-            duration: 5000,
-            verticalPosition: 'top',
-            panelClass: 'success'
-          });
+        .subscribe(
+          () => { 
+            this.snackBar.open('Your data has been successfully saved!', '', {
+              duration: 5000,
+              verticalPosition: 'top',
+              panelClass: 'success'
+            });
           // this.router.navigate(['/'])
-        });
+          },
+          (error) => {
+            this.errorPagesServices.checkError(error)
+          });
 
       this.btnTouched = true;
     }
@@ -197,7 +202,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
     this.setCertificates(certificates);
     this.setGroupService(this.mentorForm.controls);
-    
+
     this.closeForm.emit();
     this.viewMentorData.emit(this.mentorForm.value);
   }
