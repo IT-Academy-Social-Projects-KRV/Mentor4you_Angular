@@ -138,4 +138,8 @@ body {
  ::ng-deep .colorRed{
     color:red;
 }
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
 

@@ -49,7 +49,9 @@ import { CategoriesComponent } from './pages/administrator/categories/categories
 import { AppointModeratorComponent } from './pages/administrator/appoint-moderator/appoint-moderator.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import {MatInputModule} from '@angular/material/input';
 import { BannedUsersComponent } from './pages/administrator/banned-users/banned-users.component';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 
 
@@ -94,12 +96,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     SettingsModule,
     MatSidenavModule,
     MatMenuModule,
+    MatInputModule,
     MatButtonModule,
     MatToolbarModule,
     Ng2SearchPipeModule,
     MatDialogModule,
     MatCardModule,
     MatPaginatorModule,
+    TextFieldModule,
     MatIconModule,
     ToastrModule.forRoot({
       timeOut: 8000,

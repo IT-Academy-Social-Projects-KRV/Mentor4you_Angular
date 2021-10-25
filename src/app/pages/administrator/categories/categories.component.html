@@ -1,30 +1,42 @@
+<div class="table-responsive">
+  <div class="row">
+    <div class="col md-12">
+        <h1>Adding new category for the Mentors</h1>           
+        <mat-form-field >
+        <mat-label>Mentors category</mat-label>
+        <input matInput [(ngModel)]="newCateg">
+        <button mat-raised-button (click)='addCategory()'>Add</button>
+      </mat-form-field>
+         
+         
+        
+        
+    
 
-<div class="container">
-    <div class="row">
-       
-    <div class="table-responsive">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Category</th>
-            <button type="button" class="btn btn-outline-dark btn-sm">Add new Category</button>
-          </tr>
-        </thead>
-        <tbody *ngFor="">
-            <tr>
-            <!-- <th scope="row">1</th> -->
-          </tr>
-          
+             
+    </div> 
+  </div>
+</div>
+
+<div class="table_categories">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Categories</th>
+      
+    </tr>
+  </thead>
+  <tbody >
+    <tr *ngFor='let item of categories'>
+      <td>{{item}}</td>
+      <td>  </td>
+    <tr>
+  </tbody>
+</table> 
+</div>  
+
+
            
-        </tbody>
-      </table>
-    </div>  
-    <!-- <mat-paginator [length]="100"
-              [pageSize]="14"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-</mat-paginator>  -->
+  
 
 
- </div>
-<router-outlet></router-outlet>

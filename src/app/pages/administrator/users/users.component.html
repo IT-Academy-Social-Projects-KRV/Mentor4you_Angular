@@ -30,7 +30,7 @@
             <td> {{item.first_name}} </td>
             <td> {{item.last_name}} </td>
             <!-- <td> {{item.ban}} </td>  -->
-            <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" disabled>Moderator</button></td>
+            <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" (click)='getNewModerator()'>Moderator</button></td>
             <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" (click)=bunUsers(item.id)>Bann</button></td>
             <!-- <div class="form-check form-switch" >
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked (click)=bunUsers(item.id)>

@@ -19,15 +19,13 @@
           </p>
         </mat-card-content>
          <mat-card-actions> 
-          <button type="button" class="btn btn-outline-dark btn-sm">Reply</button>
+          <button mat-raised-button>Reply</button>
            <button type="button" class="btn btn-outline-dark btn-sm"> 
             <span class="material-icons">share</span>
              </button>  
-            <button type="button" class="btn btn-outline-dark btn-sm" matTooltip="like" [ngClass]="{ 'colorRed' :flag }" (click)="btnClick()"> 
-                <span class="material-icons">
-                    favorite
-                </span>
-             </button>  
+             <button mat-icon-button>
+              <mat-icon>favorite</mat-icon>
+            </button>
             <button type="button" class="btn btn-outline-dark btn-sm" matTooltip="Edit">
                 <span class="material-icons">edit</span>
                 </button>

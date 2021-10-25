@@ -21,14 +21,10 @@ export class BannedUsersComponent implements OnInit {
      constructor(private userService: UsersService, private unBanUsers:UsersService
       ) {
     
-
   }
-
 
   banUsers: any = [];
   result:any;
-  
-
    unBunUsers(id:number){
     this.unBanUsers.unBanUser(id).subscribe(res=>{
       this.result = res;

@@ -15,6 +15,8 @@ import { UsersService } from 'src/app/core/services/users.service';
 export class UsersComponent implements OnInit {
   
   users?: Users [];
+  email?: any [] = [];
+
    
    searchText:any;
    
@@ -30,6 +32,11 @@ export class UsersComponent implements OnInit {
       
     })
   }
+  getNewModerator () {
+    // this.userService.appointModerator().subscribe(()=>{
+    // })
+  }
+
 
 
 
@@ -38,8 +45,9 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers().subscribe(
     
       users=>{  
-        this.users = users}
-      
+        this.users = users;
+        
+      }  
     )
   }
     
