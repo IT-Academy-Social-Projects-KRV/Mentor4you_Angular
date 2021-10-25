@@ -164,7 +164,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
             this.snackBar.open('Your data has been successfully saved!', '', {
               duration: 5000,
               verticalPosition: 'top',
-              panelClass: 'success'
+              panelClass: 'danger'
             });
           // this.router.navigate(['/'])
           },

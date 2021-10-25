@@ -135,21 +135,20 @@ export class AccountComponent implements OnInit {
 
     fd.append('file', file);
    
-  this.userService.uploadAvatar(fd).pipe(take(1)).subscribe(
-  // this.avatarSubscription = this.userService.uploadAvatar(fd).subscribe(
-    res => { },
-    error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
-    () => {
-      this.textFieldUpload = 'Your photo uploaded successfully!';
-      this.isBtnDisabled = true; 
-    }
+    this.userService.uploadAvatar(fd).pipe(take(1)).subscribe(
+      () => { },
+      () => {this.textFieldUpload = 'Something went wrong. Please, try again!'},
+      () => {
+        this.textFieldUpload = 'Your photo uploaded successfully!';
+        this.isBtnDisabled = true; 
+      }
   );
 
     this.userService.setAvatar(this.croppedImage);
   }
 
   deleteAvatar(){
-    this.userService.deleteAvatar().subscribe(response => console.log(response),
+    this.userService.deleteAvatar().pipe(take(1)).subscribe(response => console.log(response),
     error => { if (error.status == 200) {
         this._snackBar.open('Photo deleted! Now you have basic avatar', '', {
           duration: 3000
