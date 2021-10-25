@@ -13,32 +13,35 @@ import { banUser } from 'src/app/core/interfaces/banUser';
   templateUrl: './banned-users.component.html',
   styleUrls: ['./banned-users.component.scss']
 })
+
 export class BannedUsersComponent implements OnInit {
 
    
 
-  
-
-  constructor(private userService: UsersService, private unBanUsers:UsersService) {
+     constructor(private userService: UsersService, private unBanUsers:UsersService
+      ) {
+    
 
   }
-  banUsers?: banUser [];
-  result:any;
-  displayedColumns: string[] = ['id', 'role', 'email', 'first_name', 'last_name', 'ban'];
 
-  unBunUsers(id:number){
-   this.unBanUsers.unBanUser(id).subscribe(res=>{
-     this.result = res;
-     console.log(this.result)
-   })
- }
+
+  banUsers: any = [];
+  result:any;
+  
+
+   unBunUsers(id:number){
+    this.unBanUsers.unBanUser(id).subscribe(res=>{
+      this.result = res;
+    })
+  }
 
 
   ngOnInit(): void {
     this.userService.getBanUsers().subscribe(
     
-      users=>{  
-        this.banUsers = users}
+       users=>{  
+         this.banUsers = users
+        }
       
     )
   }

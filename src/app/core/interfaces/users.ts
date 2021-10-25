@@ -4,5 +4,7 @@ export interface Users {
     email: string;
     first_name: string;
     last_name: string;
+    avatar: string;
     ban: boolean;
+   
   }

@@ -1,4 +1,3 @@
-
 <div class="container"> 
     <div class="table-responsive">
     <table class="table table-hover">
@@ -13,16 +12,15 @@
             <th scope="col">Unban user</th>
           </tr>
         </thead>
-
-        <tbody *ngFor="let name of banUser">
+        
+        <tbody *ngFor="let name of banUsers">
             <tr>
-            <!-- <th scope="row">1</th> -->
             <td> {{name.id}} </td>
             <td> {{name.role}} </td>
             <td> {{name.email}} </td>
             <td> {{name.first_name}} </td>
-            <td> {{name.last_name}} </td>
-            <!-- <td> {{item.ban}} </td>  -->
+            <td> {{name.last_name}} </td> 
+            <!-- <td> {{item.ban}} </td>   -->
             <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" disabled>Moderator</button></td>
             <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" (click)=unBunUsers(name.id)>Unban</button></td>
             <!-- <div class="form-check form-switch" >
@@ -31,15 +29,13 @@
               </div> -->
             
             
-          </tr>
+          
           <tr>
            
         </tbody>
+     
       </table>
-      </div>
-      
-
-
+      </div>  
  </div>
 
 

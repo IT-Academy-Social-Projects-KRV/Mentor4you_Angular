@@ -3,6 +3,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { banUser } from '../interfaces/banUser';
 import { User } from '../interfaces/user';
 import { Users } from '../interfaces/users';
 
@@ -23,9 +24,9 @@ export class UsersService {
     return this.http.put('http://localhost:8080/api/users/changeBanToUser',{id:id, banStatus:false});
   }
 
-  getBanUsers(): Observable<Users[]> {
+  getBanUsers()  {
     
-    return this.http.get<Users[]>(this.banUsersUrl);
+    return this.http.get<banUser[]>(this.banUsersUrl);
 
   }
 

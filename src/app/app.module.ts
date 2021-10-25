@@ -48,6 +48,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CategoriesComponent } from './pages/administrator/categories/categories.component';
 import { AppointModeratorComponent } from './pages/administrator/appoint-moderator/appoint-moderator.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { BannedUsersComponent } from './pages/administrator/banned-users/banned-users.component';
 
 
 
@@ -70,7 +72,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminNavigationComponent,
     AdminDashboardComponent,
     CategoriesComponent,
-    AppointModeratorComponent
+    AppointModeratorComponent,
+    BannedUsersComponent
     
     
   ],
@@ -80,6 +83,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     SharedModule,
     HomeModule,
+    CommonModule,
     AccountModule,
     HttpClientModule,
     NotificationModalModule,

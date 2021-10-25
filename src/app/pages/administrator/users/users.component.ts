@@ -15,7 +15,7 @@ import { UsersService } from 'src/app/core/services/users.service';
 export class UsersComponent implements OnInit {
   
   users?: Users [];
-   displayedColumns: string[] = ['id', 'role', 'email', 'first_name', 'last_name', 'ban'];
+   
    searchText:any;
    
 
@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
    bunUsers(id:number){
     this.bannedUsers.banUser(id).subscribe(res=>{
       this.response = res;
-      console.log(this.response)
+      
     })
   }
 
