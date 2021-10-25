@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenteeService } from 'src/app/core/services/mentee.service';
 import { MenteeProfile } from 'src/app/core/interfaces/mentee';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 @Component({
   selector: 'app-account-mentee',
@@ -25,7 +26,7 @@ export class AccountMenteeComponent implements OnInit, OnDestroy {
       GitHub: ""
     }
   }
-  constructor(private fb: FormBuilder, private menteeService: MenteeService) {
+  constructor(private fb: FormBuilder, private menteeService: MenteeService, private errorPagesServices: ErrorPagesServices) {
     this.menteeForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')]],
@@ -47,7 +48,10 @@ export class AccountMenteeComponent implements OnInit, OnDestroy {
     if(this.menteeForm.valid){
       this.menteeService.sendData(this.userMentee)
       .subscribe((res) => {
-      })
+      },
+        (error) => {
+          this.errorPagesServices.checkError(error)
+        })
     }
   }
 
@@ -59,7 +63,10 @@ export class AccountMenteeComponent implements OnInit, OnDestroy {
     this.menteeService.getData()
     .subscribe((res)=> {
       this.userMentee = res;
-    })
+    },
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      })
   }
 
 }

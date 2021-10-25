@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { WebSocketService } from './../../../pages/messages/web-socket.service';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
   public token: any;
   public response: any;
   public avatar: string | null = './../../../../assets/images/standardAvatar.jpg';
-
+  public checkNewMessage: boolean = false;
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
 
@@ -32,7 +33,8 @@ export class HeaderComponent implements OnInit {
     private NotificationModalService: NotificationModalService,
     private auth: SigninService,
     private http: HttpClient,
-    private translate:TranslateService,    
+    private translate:TranslateService,  
+    public webSocketService:WebSocketService  
   ) {}
 
   get isAuth() {
@@ -55,6 +57,9 @@ export class HeaderComponent implements OnInit {
     }
     
     this.onHideBurger();
+
+    //this.auth.profileImageUpdate$.subscribe((profileImage) => {this.avatar = profileImage;});
+    this.webSocketService.checkMessage$.subscribe(e=>this.checkNewMessage = e)
   }
 
   open() {

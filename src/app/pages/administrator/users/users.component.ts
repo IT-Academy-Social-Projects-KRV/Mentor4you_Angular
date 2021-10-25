@@ -2,6 +2,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { Ng2SearchPipeModule } from 'ng2-search-filter/src/ng2-filter.module';
 import { map, tap } from 'rxjs/operators';
 import { Users } from 'src/app/core/interfaces/users';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 import { UsersService } from 'src/app/core/services/users.service';
 
 
@@ -19,7 +20,10 @@ export class UsersComponent implements OnInit {
    searchText:any;
    
 
-  constructor(private userService: UsersService) { }
+  constructor(
+    private userService: UsersService,
+    private errorPagesServices: ErrorPagesServices
+    ) { }
   
 
   ngOnInit(): void {
@@ -27,9 +31,10 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers().subscribe(
     
       users=>{  
-        this.users = users}
-      
-    )
+        this.users = users},
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      })
   }
     
 }

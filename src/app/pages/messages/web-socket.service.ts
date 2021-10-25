@@ -15,21 +15,30 @@ export class WebSocketService {
   topic = '/topic/messages/';
   stompClient: any;
   newMessages = new Array;
+  firstStep = new Array;
   lastSms$ = new BehaviorSubject<any>('')
+  Sms$ = new BehaviorSubject<any>(this.newMessages)
+  checkMessage$ = new BehaviorSubject<boolean>(false)
+  closeNotification$ = new BehaviorSubject<any>('')
+  checkArray$ = new BehaviorSubject<any>('')
   constructor(private http:HttpClient) {
   }
   connect(myId: string) {
     const socket = new SockJS(this.webSocketEndPoint + '/chat');
     this.stompClient = Stomp.over(socket);
     this.stompClient.connect({}, (frame:any) => {
-      console.log('connected to: ' + frame);
       this.stompClient.subscribe(this.topic + myId, (response:any) => {
+        this.checkMessage$.next(true)
         const data = JSON.parse(response.body);
-        console.log(data);
-        this.newMessages.push(data);
-        this.lastSms$.next(data.message)
-        console.log("Map: ", this.newMessages)
-        // this.onMessageReceived(JSON.parse(response.body).content);
+        this.checkMsg(data.senderId, data.recipientId).subscribe((response: any) => {
+          this.newMessages.push(response[response.length - 1]);
+          this.newMessages.sort((a, b) => Date.parse(a.timestamp) - Date.parse(b.timestamp))
+          this.Sms$.next(this.newMessages)
+          this.closeNotification$.next(`${data.recipientId}_${data.senderId}`)
+          this.closeNotification$.subscribe(e=>{
+            this.checkArray$.next(e)
+          })
+        })
       });
     });
   }
@@ -38,35 +47,29 @@ export class WebSocketService {
     if (this.stompClient !== null) {
       this.stompClient.disconnect();
     }
-    console.log('Disconnected');
   }
 
-  sendMsg(text:string, from:string,recipientId:string) {
-    this.newMessages.push({ 
-      chatId: from + '_' + recipientId,
-      message: text,
-      recipientId: recipientId,
-      recipientName: recipientId,
-      senderId: from,
-      senderName: from,
-      timestamp: new Date().toString(),
-    });
-    console.log("Map: ", this.newMessages)
-    console.log('calling logout api via web socket');
+  sendMsg(text: string, senderId:string,recipientId:string) {
     this.stompClient.send('/app/chat/' + recipientId, {}, JSON.stringify({
-      chatId: from+'_'+recipientId,
-      senderId: from,
+      chatId: senderId+'_'+recipientId,
+      senderId: senderId,
       recipientId: recipientId,
-      senderName: from,
+      senderName: senderId,
       recipientName: recipientId,
       message: text
     }));
-  
+      this.checkMsg(senderId, recipientId).subscribe((response: any) => {
+        this.newMessages.push(response[response.length - 1]);
+        this.newMessages.sort((a,b)=>Date.parse(a)-Date.parse(b))
+        console.log('change-prod---', this.newMessages)
+        this.Sms$.next(this.newMessages)
+        this.Sms$.subscribe(e => console.log('Sms$.subscribe',e))
+  }) 
   }
 
   checkMsg(sendId:any,reId:any):Observable<any>
   {
     return  this.http.get("http://localhost:8080/findmessage/"+sendId+'/'+reId)
   }
-
+	
 }

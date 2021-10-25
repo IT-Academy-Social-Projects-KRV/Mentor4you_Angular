@@ -7,6 +7,7 @@ import { Subject, Subscription } from 'rxjs';
 
 import { MentorService } from 'src/app/core';
 import { categoriesList, certificateList, certificatesData, cityList, currencyList, languagesList } from './data';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 
 export interface AdditionalMentorData {
@@ -47,10 +48,11 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   rate = 0;
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private router: Router,
-    private mentorService: MentorService
-  ) {}
+    private mentorService: MentorService,
+    private errorPagesServices: ErrorPagesServices
+  ) { }
 
   ngOnInit(): void {
     this.btnTouched = false;
@@ -120,11 +122,11 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
       return false;
     });
-    
+
     certificates.setValue(newSertificateList);
   }
 
-  setGroupService(controls: {[key: string]: any}) {
+  setGroupService(controls: { [key: string]: any }) {
     const isMix = controls['group'].value && controls['personal'].value;
     const isGroup = controls['group'].value ? true : false;
     const isGroupSevice = isMix ? 'MIX' : isGroup ? 'YES' : 'NO';
@@ -135,7 +137,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     const controls = this.mentorForm.controls;
     const certificates = controls['certificates'];
-    
+
     this.setCertificates(certificates);
     this.setGroupService(controls);
 
@@ -148,9 +150,12 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
       this.mentorSubscription = this.mentorService
         .updateMentor(this.mentorForm.value)
-        .subscribe(() => { 
-          this.router.navigate(['/']) 
-        });
+        .subscribe(() => {
+          this.router.navigate(['/'])
+        },
+          (error) => {
+            this.errorPagesServices.checkError(error)
+          });
 
       this.btnTouched = true;
     }
@@ -182,7 +187,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
 
     this.setCertificates(certificates);
     this.setGroupService(this.mentorForm.controls);
-    
+
     this.closeForm.emit();
     this.viewMentorData.emit(this.mentorForm.value);
   }
