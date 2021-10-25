@@ -95,6 +95,7 @@
     width: 120px;
     cursor: default;
     user-select: none;
+    margin-right: 10px;
   }
 
   &__submit-section {
@@ -211,6 +212,14 @@
   .mat-slide-toggle-content {
     margin: 3px 15px 0 0;
   }
+
+  .mat-progress-spinner {
+    margin: auto;
+
+    circle {
+      stroke: $fuschia60;
+    }
+  } 
 }
 
 .upload-btn {

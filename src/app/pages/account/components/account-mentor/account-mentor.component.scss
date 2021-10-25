@@ -167,6 +167,7 @@ button {
 
 ::ng-deep .mat-snack-bar-container {
   min-width: 450px !important;
+  background-color: $fuschia80 !important;
 }
 
 ::ng-deep .danger {
@@ -225,6 +226,15 @@ mat-checkbox {
 ::ng-deep .mat-focused {
   color: $fuschia100 !important;
 }
+
+::ng-deep .mat-simple-snackbar {
+  justify-content: center !important;
+  font-size: 16px;
+}
+
+// ::ng-deep .snack-bar-container {
+//   background-color: #a2fc36 !important;
+// }
 
 .invalid-checkbox {
   color: red !important;

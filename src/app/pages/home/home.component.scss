@@ -44,3 +44,11 @@
   justify-content: center;
   padding-bottom: 45px;
 }
+
+::ng-deep .mat-progress-spinner {
+  margin: auto;
+  
+  circle {
+    stroke: $fuschia100;
+  }
+} 
