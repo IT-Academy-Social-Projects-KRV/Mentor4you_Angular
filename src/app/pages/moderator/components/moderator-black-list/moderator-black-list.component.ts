@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 import { ModeratorService } from '../../moderator.service';
 import { User } from '../../user.model';
 
@@ -15,13 +16,17 @@ export class ModeratorBlackListComponent implements OnInit {
   userNameSearch:string | null | undefined;
   userRoleSearch:string | null | undefined;
 
-  constructor(private moderatorService: ModeratorService) { }
+  constructor(private moderatorService: ModeratorService, private errorPagesServices: ErrorPagesServices) { }
 
   ngOnInit(): void {  
     this.moderatorService.fetchAllBanUsers().subscribe( response => {
       this.users = response;      
       this.filteredBanUsers = this.users;      
-    });
+    },
+    
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      });
   }
 
   searchBanUser(filterValue:string) {    

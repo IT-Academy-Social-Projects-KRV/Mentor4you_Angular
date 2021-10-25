@@ -9,6 +9,7 @@ import { Certificate, MentorProfile, MentorService, UserService } from 'src/app/
 import { SigninService } from 'src/app/auth/signin/signin.service';
 import { take } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -41,6 +42,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     private userService: UserService
   ) {}
   
+
   get isAuth() {
     return this.auth.isAuth();
   }
@@ -51,9 +53,8 @@ export class AccountComponent implements OnInit, OnDestroy {
         this.mentor = mentor;
         this.isAccountActivated = mentor.isAccountActivated;
         this.croppedImage = mentor.avatar;
-      }
+      },
     );
-
   }
 
   setMentorData(mentorData: any): void {

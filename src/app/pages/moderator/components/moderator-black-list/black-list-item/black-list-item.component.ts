@@ -3,6 +3,7 @@ import { ModeratorService } from '../../../moderator.service';
 
 import { User } from '../../../user.model';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 @Component({
   selector: 'app-black-list-item',
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BlackListItemComponent implements OnInit {
   @Input() bannedUser!: User;
 
-  constructor(private moderatorService: ModeratorService, private toastr: ToastrService) { }
+  constructor(private moderatorService: ModeratorService, private toastr: ToastrService, private errorPagesServices: ErrorPagesServices) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,10 @@ export class BlackListItemComponent implements OnInit {
     this.moderatorService.unbanUser(id).subscribe(() => {
       this.bannedUser.ban = false;
       this.toastr.success('has been unbanned!!', `${last_name} ${first_name}`);
-    });    
+    },
+    
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      });
   }
 }

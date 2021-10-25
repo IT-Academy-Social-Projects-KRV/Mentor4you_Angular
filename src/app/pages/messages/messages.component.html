@@ -17,7 +17,7 @@
                     </div>
                     <div class="inbox_chat">
                             <!-- PS class --active_chat-- show in what dialog you are now  -->
-                        <div *ngFor = "let chat of chats" class="chat_list" [class.active_chat] = "chat.chatId.includes(addClass)" (click)="checkDialog(chat.chatId)">
+                        <div *ngFor = "let chat of chats" class="chat_list" [class.active_chat] = "!chat.chatId.includes(addClass)" (click)="checkDialog(chat.chatId)">
                             <!-- <pre>{{chat.id}}</pre> -->
                             <div class="chat_people">
                                 <div class="chat_img">

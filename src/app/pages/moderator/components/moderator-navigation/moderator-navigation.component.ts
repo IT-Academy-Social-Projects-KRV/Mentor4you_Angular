@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModeratorService } from '../../moderator.service';
 import { Moderator } from '../../moderator.model';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 @Component({
   selector: 'app-moderator-navigation',
@@ -10,12 +11,15 @@ import { Moderator } from '../../moderator.model';
 export class ModeratorNavigationComponent implements OnInit {
   moderator!:Moderator;
 
-  constructor(private moderatorService: ModeratorService) { }
+  constructor(private moderatorService: ModeratorService, private errorPagesServices: ErrorPagesServices) { }
 
   ngOnInit(): void {
     this.moderatorService.getModerator().subscribe(data => {      
       this.moderatorService.moderator = data;  
       this.moderator = this.moderatorService.moderator;
-    }) 
+    },
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      })
   }
 }

@@ -27,7 +27,6 @@ export class WebSocketService {
     const socket = new SockJS(this.webSocketEndPoint + '/chat');
     this.stompClient = Stomp.over(socket);
     this.stompClient.connect({}, (frame:any) => {
-      console.log('connected to: ' + frame);
       this.stompClient.subscribe(this.topic + myId, (response:any) => {
         this.checkMessage$.next(true)
         const data = JSON.parse(response.body);
