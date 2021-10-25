@@ -35,10 +35,10 @@ export class SigninService {
       'password':password
     }
 
-    return  this.http.post<{token:string}>(this.url,data)
+    return  this.http.post<{token: string, avatar: string}>(this.url,data)
       .pipe(
         tap(
-          ({token})=>{
+          ({token, avatar})=>{
             localStorage.setItem('token',token);
             const currentAvatar = avatar === this.standartUserAvatar ?  this.mockAvatar : avatar;
 
@@ -58,15 +58,6 @@ export class SigninService {
   setTokenO(token:any) : void{
     this.token$.next(token);
   }
-
-  // get getToken():any{
-  //   return localStorage.getItem('token');
-  // }
-  //
-  // get getToken0():any{
-  //   return this.token$.subscribe(value =>{
-  //   })
-  // }
 
   public isAuth(): boolean {
     if(localStorage.getItem('token')){
