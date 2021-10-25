@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
@@ -6,10 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {TranslateService} from '@ngx-translate/core';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   //TODO should be implement in the next task
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   public wached = false;
   public token: any;
   public response: any;
-  public avatar: string | null = null;
+  public avatar: string | null = './../../../../assets/images/standardAvatar.jpg';
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef;
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
     private NotificationModalService: NotificationModalService,
     private auth: SigninService,
     private http: HttpClient,
-    private translate:TranslateService,
+    private translate:TranslateService,    
   ) {}
 
   get isAuth() {
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.closeMenu();
     if (this.isAuth) {
       this.auth.getRole();
@@ -52,16 +54,7 @@ export class HeaderComponent implements OnInit {
       }
     }
     
-    if (this.isAuth){
-      let avatarCheck = localStorage.getItem('avatar');
-        if(avatarCheck == 'null'){
-          this.avatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
-        } else {
-          this.avatar = localStorage.getItem('avatar');
-        }
-    }
-
-    //this.auth.profileImageUpdate$.subscribe((profileImage) => {this.avatar = profileImage;});
+    this.onHideBurger();
   }
 
   open() {
@@ -95,5 +88,17 @@ export class HeaderComponent implements OnInit {
 
   goTo(path: string): void {
     this.router.navigateByUrl(path);
+  }
+
+  onHideBurger(): boolean{
+    if(
+      this.router.url == '/moderator/users' || 
+      this.router.url == '/moderator/black-list' ||
+      this.router.url == '/moderator/edit'){
+      return false
+    }
+    else {
+      return true
+    }
   }
 }

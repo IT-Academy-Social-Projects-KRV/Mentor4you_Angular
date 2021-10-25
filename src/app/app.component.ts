@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
 export class AppComponent implements OnInit, DoCheck{
   title = 'mentor4you';
   hiddenFooter: boolean = true;
-  hideHeader:boolean =true;
+  hideHeader:boolean = true;
 
   constructor(private auth: SigninService, private router: Router,public translate:TranslateService) {
 
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit, DoCheck{
       this.hideHeader = false;
     }
     else {
-      this.hideHeader =true;
+      this.hideHeader = true;
     }
   }
 }
