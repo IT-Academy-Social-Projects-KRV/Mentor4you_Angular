@@ -5,14 +5,20 @@
 }
 
 .content {
-  padding: 80px 20px;
+  padding: 30px 20px;
   background: $white;
   color: $black;
+  @media screen and (max-width: 768px) {
+    padding: 20px 20px;
+  }
+  @media screen and (max-width: 576px) {
+    padding: 20px 5px;
+  }
 }
 
 ::ng-deep .thumb {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   cursor: default !important;
   img {
@@ -71,6 +77,12 @@
     box-shadow: 1px 1px 5px 2px $lightgray;
     padding: 20px 100px;
     margin-bottom: 50px;
+    @media screen and (max-width: 992px) {
+      padding: 20px 20px;
+    }
+    @media screen and (max-width: 576px) {
+      flex-wrap: wrap;
+    }
   }
 
   &__avatar-wrapper {
@@ -79,33 +91,49 @@
   }
 
   &__avatar-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 80px;
-    width: 80px;
-    margin-right: 20px;
+    height: 120px;
+    width: 120px;
     cursor: default;
     user-select: none;
-
-    span {
-      font-size: 16px;
-      font-weight: regular;
-      position: absolute;
-    }
-    
+    margin-right: 10px;
   }
 
   &__submit-section {
-    button:hover{
-     color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    .edit-small-btn{
+      width: 35px;
+      height: 35px;
+      border: 1px solid $fuschia100;
+      background-color: white;
+      border-radius: 50%;
+      padding-top: 7px;
+      transition: 0.3s ease-in-out;
+      &:hover {
+      
+      background-color: $fuschia100;
+      color: white;
+      }
+      span{
+        font-size: 20px;
+        color: black;
+        margin-top: 0;
+        padding-top: 0;
+      }
+      &.upper {
+        margin-top: 5;
+      }
+      &.lower {
+        margin-top: 10px;
+      }
     }
   }
 
   &__upload-section {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     input {
       display: none;
     }
@@ -119,14 +147,6 @@
   &__cropper-inside{
     text-align: center;
     max-width: 35vw; 
-    ::ng-deep image-cropper {
-      div {
-        img {
-          width: 100%; 
-        }
-      }
-    }
-    
     button{
       background-color: whitesmoke;
       padding: 15px;
@@ -134,27 +154,11 @@
       border-radius: 15px;
       color:black;
       margin-top: 10px;
+      transition: 0.3s ease-in-out;
     }
     button:hover{
       background-color: $fuschia100;
       color: white;
-    }
-  }
-
-  &__upload-btn {
-    font-size: 18px;
-    color: $white;
-    background: $grey;
-    border: none;
-    padding: 10px 50px;
-    user-select: none;
-
-    &:hover,
-    &:focus {
-      background: $fuschia80;
-    }
-    &:hover:disabled, &:focus:disabled{
-      background: gainsboro;
     }
   }
 }
@@ -162,7 +166,7 @@
 #output {
   // width: 70px;
   background: $white;
-  width: 90px;
+  width: 120px;
 }
 
 .mentee {
@@ -208,18 +212,32 @@
   .mat-slide-toggle-content {
     margin: 3px 15px 0 0;
   }
+
+  .mat-progress-spinner {
+    margin: auto;
+
+    circle {
+      stroke: $fuschia60;
+    }
+  } 
 }
 
 .upload-btn {
-  width: 50px;
-  height: 50px;
-  padding-top: 5px;
+  width: 70px;
+  height: 40px;
   border: 1px solid $fuschia100;
   background-color: white;
-  border-radius: 50%;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  font-weight: 400;
+  font-size: 1.1rem;
   &:hover {
-    transition: 0.3s ease-in-out;
     background-color: $fuschia100;
+    color: white;
+  }
+  &:disabled {
+    background-color: $lightgray;
+    color: gray;
   }
 }
 
@@ -281,6 +299,9 @@
 
 ::ng-deep .mat-simple-snackbar {
   color: white !important;
+}
+::ng-deep snack-bar-container{
+  background-color: $red !important;
 }
 ::ng-deep snack-bar-container.danger{
   background-color: $red;

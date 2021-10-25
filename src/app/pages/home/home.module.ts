@@ -10,6 +10,7 @@ import { MentorCardComponent } from 'src/app/shared/sharedComponents/mentor-card
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import {TranslateModule} from "@ngx-translate/core";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {TranslateModule} from "@ngx-translate/core";
         SharedModule,
         HomeRoutingModule,
         IvyCarouselModule,
-        TranslateModule
+        TranslateModule,
+        RouterModule
     ],
   exports: [],
   providers: []

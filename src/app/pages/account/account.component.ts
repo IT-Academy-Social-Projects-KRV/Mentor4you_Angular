@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ImageCroppedEvent, base64ToFile } from 'ngx-image-cropper';
-import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 import { Certificate, MenteeService, MentorProfile, MentorService, UserService } from 'src/app/core';
 import { SigninService } from 'src/app/auth/signin/signin.service';
-import { take } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-account',
@@ -19,17 +19,18 @@ export class AccountComponent implements OnInit {
   isAccountActivated!: boolean;
   isImage: boolean = false;
   selectedFile!: File;
-  mentorSubscription!: Subscription;
   mentor?: any;
   textFieldUpload: string = 'Upload you photo here (<4 MB)';
   imageChangedEvent: any = '';
   croppedImage: any = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
-  avatarUrl: string = 'http://localhost:8080/api/users/uploadAvatar';
   fileC: any;
   myFile!: File;
   newName: any = "";
   imgType: any = '';
   isBtnDisabled: boolean = true;
+  public token: any;
+  public response: any;
+  public avatarSubscription: any;
 
   constructor(
     public auth: SigninService,
@@ -40,6 +41,7 @@ export class AccountComponent implements OnInit {
     private userService: UserService
   ) {}
   
+
   get isAuth() {
     return this.auth.isAuth();
   }
@@ -47,23 +49,25 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     switch (localStorage.getItem('role')){
       case "MENTOR":  
-        this.mentorSubscription = this.mentorService.getMentorDTO().pipe(take(1)).subscribe(
-          (mentor: MentorProfile) => {
-            this.mentor = mentor;
-            this.isAccountActivated = mentor.isAccountActivated;
-            this.croppedImage = mentor.avatar;
-          }
-        );
+        this.mentorService
+          .getMentorDTO()
+          .pipe(take(1))
+          .subscribe(
+            (mentor: MentorProfile) => {
+              this.mentor = mentor;
+              this.isAccountActivated = mentor.isAccountActivated;
+              this.croppedImage = mentor.avatar;
+            }
+          );
         break;
 
       case "MENTEE": 
-        this.menteeService.getData().pipe(take(3)).subscribe(mentee => {
-          console.log('mentee - account', mentee)
-          this.croppedImage = mentee.avatar;
-        })
+        this.menteeService
+          .getData()
+          .pipe(take(1))
+          .subscribe(mentee => this.croppedImage = mentee.avatar);
         break;
     }
-    
   }
 
   setMentorData(mentorData: any): void {
@@ -98,8 +102,8 @@ export class AccountComponent implements OnInit {
 
     this.textFieldUpload =
       this.selectedFile.name.length > 35
-        ? this.selectedFile.name.slice(0, 35) + '...'
-        : this.selectedFile.name;
+        ? this.selectedFile.name.slice(0, 35) + '...' + '. Now you can save avatar'
+        : this.selectedFile.name + '. Now you can save avatar';
 
     this.newName = this.selectedFile.name;
     this.imgType = this.selectedFile.type;
@@ -131,13 +135,30 @@ export class AccountComponent implements OnInit {
 
     fd.append('file', file);
    
-    this.http.post(this.avatarUrl, fd).pipe(take(1)).subscribe(
-      res => {}, 
-      error => {console.log(error), this.textFieldUpload = 'Something went wrong. Please, try again!'},
-      () => this.textFieldUpload = 'Your photo uploaded successfully!'
-    );
+    this.userService.uploadAvatar(fd).pipe(take(1)).subscribe(
+      () => { },
+      () => {this.textFieldUpload = 'Something went wrong. Please, try again!'},
+      () => {
+        this.textFieldUpload = 'Your photo uploaded successfully!';
+        this.isBtnDisabled = true; 
+      }
+  );
 
     this.userService.setAvatar(this.croppedImage);
+  }
+
+  deleteAvatar(){
+    this.userService.deleteAvatar().pipe(take(1)).subscribe(response => console.log(response),
+    error => { if (error.status == 200) {
+        this._snackBar.open('Photo deleted! Now you have basic avatar', '', {
+          duration: 3000
+        });
+      } else {
+        this._snackBar.open('Error. Try again later', '', {
+          duration: 3000
+        });
+      }
+    });
   }
 
   openSnackBar(message: string, action: string, className: string) {

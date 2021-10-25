@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,7 +20,6 @@ export class ResponseResetComponent implements OnInit {
   isFormSubmited = false;
 
   constructor(
-    private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder

@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SendFormComponent } from './pages/contacts/send-form/send-form.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
+import { UsersComponent } from './pages/administrator/users/users.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import {AuthGuard} from "./core/interceptors/auth.guard";
@@ -45,16 +46,26 @@ const routes: Routes = [
       canActivate:[AuthGuard]
   },
   {
+    path: 'administrator',
+    loadChildren: () => import('./pages/administrator/admin/admin.module').then(m => m.AdminModule),
+    
+  },
+  {
+    path: 'users',
+    component: UsersComponent
+  },
+  {
     path: 'terms',
     component: TermsComponent,
   },
+
   {
-    path: 'messages/:id',
-    component: MessagesComponent,canActivate:[AuthGuard],
+    path: 'messages',
+    component: MessagesComponent,
+    // pathMatch:'full',
     children:[
       {path:':id',component:DialogBoardComponent}
-    ]
-    
+    ],canActivate:[AuthGuard]
   },
   {
     path: 'how-it-works',

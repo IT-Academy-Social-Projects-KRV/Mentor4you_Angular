@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from 'src/app/core';
 
 @Component({
   selector: 'app-send-form',
@@ -13,7 +14,10 @@ export class SendFormComponent implements OnInit {
   sendingEmailForm: FormGroup;
   isChecked = false; 
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder, private _snackBar: MatSnackBar){
+  constructor(private http: HttpClient, 
+              private formBuilder: FormBuilder, 
+              private _snackBar: MatSnackBar,
+              private userService: UserService){
     this.sendingEmailForm = formBuilder.group({
       fullNameControl: ['', [Validators.required, Validators.minLength(3)]],
       emailControl: ['', [Validators.required, Validators.email]],
@@ -26,7 +30,6 @@ export class SendFormComponent implements OnInit {
   ngOnInit() { }
 
   sendData(){
-    console.log(this.sendingEmailForm.value.messageControl);
     const reqBody = {
       "emailAdrId": 1,
       "emailAdres": this.sendingEmailForm.value.emailControl,
@@ -34,8 +37,7 @@ export class SendFormComponent implements OnInit {
       "subject": this.sendingEmailForm.value.subjectControl,
       "message": this.sendingEmailForm.value.messageControl
     }
-    console.log(reqBody);
-    this.http.post("http://localhost:8080/api/emailToModerator/sendEmailToModer", reqBody, {observe: "response"}).subscribe(response => console.log(response),
+    this.userService.sendMsgToModer(reqBody).subscribe(response => console.log(response),
     error => { if (error.status == 200){
         this.openSnackBar('Message send!', 'We will try to answer you in 24 hours', 'success');
       } else {

@@ -1,4 +1,4 @@
-import { AuthSignupServices } from './../core/services/auth-signup.services';
+import { AuthSignupServices } from '../core/services/auth-signup.service';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 

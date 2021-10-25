@@ -1,0 +1,11 @@
+<div class="user-card">
+    <div class="user-card-img-container">
+        <div class="user-card-img">
+            <img src="{{user.avatar}}" alt="{{user.last_name}} {{user.first_name}}" title="{{user.last_name}} {{user.first_name}}">
+        </div>
+    </div>                
+    <div class="user-card-name">
+        <h3 title="More information" (click)="selectUserInfo()">{{user.last_name}} {{user.first_name}}</h3>
+        <p>{{user.role | titlecase}}</p>
+    </div>
+</div>
