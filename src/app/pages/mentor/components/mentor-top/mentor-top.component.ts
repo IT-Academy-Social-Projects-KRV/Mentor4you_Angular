@@ -1,4 +1,5 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 import {MentorTopService} from "./mentor-top.service";
 import {SmallMentorCards} from "./SmallMentorCards";
 
@@ -25,7 +26,10 @@ export class MentorTopComponent implements OnInit {
   public dropList: boolean = true;
   public star!: any[];
 
-  constructor(private mentorFilter: MentorTopService) {
+  constructor(
+    private mentorFilter: MentorTopService,
+    private errorPagesServices: ErrorPagesServices
+    ) {
   }
 
   AddCategory = ($event: any): void => {
@@ -79,7 +83,10 @@ export class MentorTopComponent implements OnInit {
     this.mentorFilter.getMentors(12).subscribe(res => {
       this.response = res;
       this.sendMentors.emit(this.response);
-    })
+    },
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      })
   };
 
   getFilteredMentors() {
@@ -93,6 +100,9 @@ export class MentorTopComponent implements OnInit {
     ).subscribe(res => {
       this.response = res;
       this.sendMentors.emit(this.response);
+    },
+    (error)=>{
+      this.errorPagesServices.checkError(error)
     })
   };
 
@@ -101,6 +111,9 @@ export class MentorTopComponent implements OnInit {
       this.cities = res.cityList;
       this.languages = res.languagesList;
       this.categories = res.categoriesList;
+    },
+    (error)=>{
+      this.errorPagesServices.checkError(error)
     })
   };
 

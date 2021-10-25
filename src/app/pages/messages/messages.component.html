@@ -4,20 +4,20 @@
                 <div class="inbox_people">
                     <div class="headind_srch">
                         <div class="recent_heading">
-                            <h4>Recent</h4>
+                            <h4 style="text-align: center; min-width: 100%;display: block;">Mentor4you</h4>
                         </div>
                         <div class="srch_bar">
-                            <div class="stylish-input-group">
+                            <!-- <div class="stylish-input-group">
                                 <input type="text" class="search-bar" placeholder="Search">
                                 <span class="input-group-addon">
                                     <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                                 </span>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="inbox_chat">
                             <!-- PS class --active_chat-- show in what dialog you are now  -->
-                        <div *ngFor = "let chat of chats" class="chat_list active_chat" (click)="checkDialog(chat.chatId)">
+                        <div *ngFor = "let chat of chats" class="chat_list" [class.active_chat] = "chat.chatId.includes(addClass)" (click)="checkDialog(chat.chatId)">
                             <!-- <pre>{{chat.id}}</pre> -->
                             <div class="chat_people">
                                 <div class="chat_img">
@@ -27,7 +27,7 @@
                                 <div class="chat_ib">
                                     <h5 *ngIf="chat.name">{{chat.name}}</h5>
                                     <h5 *ngIf="!chat.name">User</h5>
-                                    <p>{{lastSms}}</p>
+                                    <!-- <p>{{lastSms}}</p> -->
                                 </div>
                             </div>
                         </div>    
@@ -35,10 +35,7 @@
                 </div>
                 <div class="router-outlet__wrapper">
                 <router-outlet></router-outlet>
-                </div>
-          
+                </div>     
             </div>
-
         </div>
-        <!-- <button (click)="qwerty()">11111</button> -->
     </div>

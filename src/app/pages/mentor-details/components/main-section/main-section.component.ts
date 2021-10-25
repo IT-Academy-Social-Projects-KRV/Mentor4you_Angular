@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
   @Input() mentor: any;
+  @Input() idMentor: any;
   @ViewChild('name')name?:ElementRef
 
   constructor(private router:Router) { }
@@ -72,8 +73,8 @@ export class MainSectionComponent implements OnInit,AfterViewInit, DoCheck {
 
   }
 
-  navigateToChat(id:any){
-    this.router.navigate([`/messages/${id}`])
+  navigateToChat(){
+    this.router.navigate([`/messages/`], { queryParams: { id: this.idMentor}})
   }
 
 }

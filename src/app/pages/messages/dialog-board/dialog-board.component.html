@@ -1,5 +1,6 @@
 <div class="mesgs">
 	<div class="msg_history">
+		<div>{{recivid}}</div>
 		<div *ngFor="let user of globalMessage">
 			<div class="incoming_msg" *ngIf="sendid != user.senderId">
 			<div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
@@ -22,8 +23,8 @@
 	</div>
 	<div class="write-message__box" >
 		<label for="" class="write-message__label">
-			<input [(ngModel)] = "chatMessage" class="write-message__input" type="text" placeholder="Write your message">
-			<button class="write-message__btn" (click)="sendChatMessage()">Send</button>
+			<input (click)="closeNotification()" (input)="closeNotification()" [(ngModel)] = "chatMessage" class="write-message__input" type="text" placeholder="Write your message">
+			<button type="submit" class="write-message__btn" (click)="sendChatMessage()" (keyup.enter)="sendChatMessage()">Send</button>
 		</label>
 	</div>
 </div>
