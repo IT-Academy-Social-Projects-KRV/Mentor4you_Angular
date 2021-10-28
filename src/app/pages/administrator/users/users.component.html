@@ -1,47 +1,13 @@
 
 <div class="container">
-    <div class="row">
+    <div class="row_search">
         <div class="search-users">
           <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"  placeholder=" Start searching for a user " >
           <i class="fa fa-search"></i>
         </div>
-    <!-- <h1 style="text-align: center;">All Users</h1> -->
-    <!-- <div class="md-form active-purple active-purple-2 mb-3">
-        <input class="form-control" type="search" id="search2" aria-label="Search" mdbInput>
-        <label for="search2">Search</label>
-      </div> -->
- 
- 
-    <!-- <table mat-table>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row >
-            <div *ngFor="let item of users">       
-        
-            <mat-header-cell *matHeaderCellDef mat-sort-header >Id</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{item.id}}</mat-cell>
-          </ng-container>
-            
-
-          <ng-container matColumnDef="role">
-            <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.role}}</mat-cell>
-          </ng-container>
-
-          <ng-container matColumnDef="email">
-            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.email}}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="first_name">
-            <mat-header-cell *matHeaderCellDef>First name</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.first_name}}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="last_name">
-            <mat-header-cell *matHeaderCellDef>Last name</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.last_name}}</mat-cell>
-          </ng-container>
-    </table>  -->
+   
     <div class="table-responsive">
-    <table class="table">
+    <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -49,39 +15,32 @@
             <th scope="col">Email</th>
             <th scope="col">First name</th>
             <th scope="col">Last name</th>
-            <th scope="col">Ban status</th>
-            <th scope="col">Make as Moderator</th>
-            <th scope="col">Account</th>
-
+            <th scope="col">Appoint</th> 
+            <th scope="col">Ban user</th>
           </tr>
         </thead>
-        <tbody *ngFor="let item of users ">
+        <tbody *ngFor="let item of users | filter:searchText">
             <tr>
-            <th scope="row">1</th>
             <td> {{item.id}} </td>
             <td> {{item.role}} </td>
             <td> {{item.email}} </td>
             <td> {{item.first_name}} </td>
             <td> {{item.last_name}} </td>
-            <td> {{item.ban}} </td> 
-            <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" disabled>Moderator</button></td>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Activate/Deactivate</label>
-              </div>
+            <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" (click)='getNewModerator()'>Moderator</button></td>
+            <td> <button mat-stroked-button (click)='bunUsers(item.id, item.first_name, item.last_name)'>Ban</button></td>         
           </tr>
-          <tr>
-           
+          <tr>    
         </tbody>
       </table>
-    </div>  
-    <mat-paginator [length]="100"
-              [pageSize]="14"
-              [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
-</mat-paginator> 
+     </div>
+      <!-- <mat-paginator [length]="users.length"
+      [pageSize]="14"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page">
+     </mat-paginator> -->
 <router-outlet></router-outlet>
  </div>
+</div>
 
   
 

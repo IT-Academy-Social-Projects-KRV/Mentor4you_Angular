@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, DoCheck{
     // localStorage.setItem('role', 'mentor');
   }
   onHiddenFooter() {
-    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' || this.router.url == '/administrator' ) {
+    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' || this.router.url == '/administrator/users' || this.router.url == '/administrator/bannedUsers' || this.router.url == '/administrator/categories' || this.router.url == '/administrator/chats') {
       this.hiddenFooter = false;
     } else {
       this.hiddenFooter = true
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, DoCheck{
    
   }
   onHideHeader(): void{
-    if(this.router.url == '/administrator'){
+    if(this.router.url == '/administrator' || this.router.url == '/administrator/bannedUsers' || this.router.url == '/administrator/users' || this.router.url == '/administrator/categories' || this.router.url == '/administrator/chats'){
       this.hideHeader = false;
     }
     else {

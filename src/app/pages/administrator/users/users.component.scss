@@ -1,3 +1,9 @@
+.container {
+  max-width: 100%;
+}
+.mat-list-base .mat-list-item {
+  color: #524c6f !important;
+}
 .active-purple input[type=search] {
     border-bottom: 1px solid#524C6F !important;
     box-shadow: 0 1px 0 0 #524C6F !important;
@@ -11,7 +17,7 @@
         align-content: flex-end;
 
       }
-      
+
       .form-control {
         box-shadow: 0 0px 0px 0 #524C6F !important;
       }
@@ -29,16 +35,32 @@
         z-index: 1;
         color: #524C6F
       }
-      input {
-        padding-right: 100px;
-        border-radius: 2px;
-        border: 1px solid #ccc;
-        height: 30px;
-        padding: 5px;
-        width: 320px;
+       .form-control {
+          padding-right: 0px;
+         border-radius: 2px;
+         border: 1px solid #ccc;
+         height: 30px;
+         padding: 5px;
+         width: 320px;
+       }
+       .table-responsive {
+    
+        padding: 0 58px 0 240px;
+    }
+    .mat-list-base {
+      padding-top: 25px;
       }
-      .table{
-        margin-left: 30px;
-        margin-right: 50px;
-       
-      }
+
+.btn-outline-dark:hover {
+  color: #fff;
+  background-color: #524C6F;
+   /*set the color you want here*/
+}
+.btn {
+  font-family: Roboto, "Helvetica Neue", sans-serif, bold;
+}
+.button>mat-stroked-button:active {
+  background-color: #b10000!important;
+}
+  
+  

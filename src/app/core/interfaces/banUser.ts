@@ -1,4 +1,4 @@
-export interface Users {
+export interface banUser {
     id: number;
     role: string;
     email: string;
@@ -6,5 +6,4 @@ export interface Users {
     last_name: string;
     avatar: string;
     ban: boolean;
-   
   }
