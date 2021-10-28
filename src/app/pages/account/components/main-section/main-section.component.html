@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-5 col-lg-4">
       <div class="image-wrap">
-        <img class="image" src="{{mentor.avatar}}" alt="{{mentor.firstName}}">
+        <img class="image" src="{{mentor.localAvatar || mentor.avatar}}" alt="{{mentor.firstName}}">
       </div>
 
       <h3 class="name" #name>

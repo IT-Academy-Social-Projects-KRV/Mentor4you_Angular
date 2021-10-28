@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../user.model';
 import { ModeratorService } from '../../moderator.service';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 @Component({
   selector: 'app-moderator-users-list',
@@ -16,17 +17,23 @@ export class ModeratorUsersListComponent implements OnInit {
   userNameSearch:string | null | undefined;
   userRoleSearch:string | null | undefined;
   
-  constructor(private moderatorService: ModeratorService) { }
+  constructor(private moderatorService: ModeratorService, private errorPagesServices: ErrorPagesServices) { }
 
   ngOnInit(): void {
     this.moderatorService.fetchAllUsers().subscribe( response => {
       this.users = response;      
       this.filteredUsers = this.users;      
-    });
+    },
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      });
     this.moderatorService.userSelected
       .subscribe(
         (user:User) => {
           this.selectedUser = user;
+        },
+        (error) => {
+          this.errorPagesServices.checkError(error)
         }
       )  
   }

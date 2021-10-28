@@ -1,8 +1,8 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Chat } from 'src/app/core/services/chat.service';
-import {WebSocketService} from "./web-socket.service";
-import {SigninService} from "../../auth/signin/signin.service";
+import { WebSocketService } from "./web-socket.service";
+import { SigninService } from "../../auth/signin/signin.service";
 
 interface userChat {
   avatar: string,
@@ -20,49 +20,57 @@ interface userChat {
 
 export class MessagesComponent implements OnInit {
   chats: any = []
-  userBeck: userChat[]=[]
-  link!:string
-  tokenId?:any
-  lastSms!:any
-  lastTime!:any
+  userBeck: userChat[] = []
+  link!: string
+  tokenId?: any
+  lastSms!: any
+  lastTime!: any
+  closeNotif!:any
+  addClass:any = false
   constructor(
-    private router:Router,
-    public chat:Chat,
-    public routerNavigate:ActivatedRoute,
-    private socketService:WebSocketService,
-    private http:SigninService,
-    ) {
+    private router: Router,
+    public chat: Chat,
+    public routerNavigate: ActivatedRoute,
+    private socketService: WebSocketService,
+    private http: SigninService,
+  ) {
 
-     }
+  }
 
   ngOnInit(): void {
-    this.lastSms = this.socketService.newMessages[this.socketService.newMessages.length-1]
-  
-
-    this.http.token$.subscribe(token=>{
+    this.socketService.closeNotification$.subscribe(e => { this.closeNotif = e })
+    this.socketService.checkArray$.subscribe(e=>this.addClass=e)
+    this.http.token$.subscribe(token => {
       this.tokenId = this.http.parseJwt(token)
     })
-    this.routerNavigate.params.subscribe((e)=>this.link=e.id)
-      this.chat.getAllChats().subscribe(allDialog=>{this.chats = allDialog;})
-    this.routerNavigate.params.subscribe(
-      (e)=>this.chat.createChat(e.id).subscribe(userInfo=>{
-        this.userBeck = userInfo;
-        this.chat.getAllChats().subscribe(allDialog=>{
-          this.chats = allDialog;
 
-        })
-      })
+    this.routerNavigate.queryParams.subscribe(
+      (e) => {
+        if (e.id) {
+          this.link = e.id;
+          this.chat.createChat(e.id).subscribe(userInfo => {
+            this.userBeck = userInfo;
+            this.chat.getAllChats().subscribe(allDialog => {
+              this.chats = allDialog;
+              
+            })
+          })
+        } else {
+          this.chat.getAllChats().subscribe(allDialog => {
+            this.chats = allDialog;
+            console.log(this.chats)
+          })
+        }
+      }
     )
+
     this.socketService.connect(this.tokenId.id);
-    this.socketService.lastSms$.subscribe(e => this.lastSms=e)
   }
-  checkDialog(elem:any){
-    this.router.navigate([`/messages/${this.link}/${elem}`]);
+  checkDialog(elem: any) {
 
+    if (this.closeNotif){
+      this.socketService.checkMessage$.next(false)
+    }
+      this.router.navigate([`/messages/${elem}`]);
   }
-
-
-
-
-
 }

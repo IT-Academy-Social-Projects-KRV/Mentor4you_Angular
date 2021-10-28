@@ -15,18 +15,18 @@ import { SigninService } from '../signin/signin.service';
 export class ResetPasswordComponent implements OnInit {
   RequestResetForm!: FormGroup;
   forbiddenEmails: any;
- 
+
   IsvalidForm = false;
 
   isInstructionSend = false;
   isEmailWrong = false;
-  
+
 
   constructor(
     private router: Router,
     private http: HttpClient,
     private auth: SigninService
-   ) {
+  ) {
 
   }
 
@@ -38,29 +38,29 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
-validateEmail(event: any){
-  this.IsvalidForm =  this.RequestResetForm.get("email")?.status=== "VALID";
-}
+  validateEmail(event: any) {
+    this.IsvalidForm = this.RequestResetForm.get("email")?.status === "VALID";
+  }
 
   RequestResetUser() {
-    const email= this.RequestResetForm.value.email;
+    const email = this.RequestResetForm.value.email;
     this.auth.resetPassword(email).subscribe(
       response => console.log(response),
       err => {
-        if (err.status == 403){
+        if (err.status == 403) {
           this.isEmailWrong = true;
-          setTimeout( ()=> {this.isEmailWrong = false}, 5000);
+          setTimeout(() => { this.isEmailWrong = false }, 5000);
           console.log(err)
         } else {
           console.log(err);
-          setTimeout( ()=> {this.router.navigate(['/auth/login'])}, 7000);
+          setTimeout(() => { this.router.navigate(['/auth/login']) }, 7000);
         }
       },
-      ()=>{
+      () => {
         this.isInstructionSend = true;
-        setTimeout( ()=> {this.router.navigate(['/auth/login'])}, 7000);
+        setTimeout(() => { this.router.navigate(['/auth/login']) }, 7000);
       }
-    );  
+    );
   }
 
 }

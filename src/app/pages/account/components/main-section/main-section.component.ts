@@ -10,30 +10,12 @@ export class MainSectionComponent implements OnInit {
   @Input() mentor: any;
   @Output() editMentor: EventEmitter<any> = new EventEmitter();
   
-  description: string = 
-    'More than 15 years of commercial development and creation of IT products.I participate in pre-sale activities and design architectures. From time to time I write code in JavaScript, Python, Go, Java. I also conduct interviews and help with a career guide (individual development plan) for Middle, Senior, Tech Lead / Team Lead';
-  name_surname: string = 'John Konnor';
-
-  public Category : Array<string> = [
-    ' JavaScript',
-    ' React',
-    ' Angular',
-    ' Python ',
-  ];
   button: string = 'Message';
   place: string = ' Remote';
   rate: string = ' 200$';
 
   group: boolean = true;
   auth: boolean = true;
-
-  public Languages:Array<string> = [
-    ' Ukrainian',
-    ' Russian',
-    ' English',
-    ' Germany ',
-  ];
-
   grp_ment: string | undefined;
 
   getCustom(elem:HTMLElement): void {
@@ -55,7 +37,6 @@ export class MainSectionComponent implements OnInit {
       this.button='Connect'
       this.getCustom(this.name?.nativeElement)
     }
-
   }
 
   toggleEditMentor(): void {

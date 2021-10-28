@@ -1,3 +1,4 @@
+import { ErrorPagesServices } from './../../core/services/error-pages.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {  MentorService } from 'src/app/core';
@@ -16,7 +17,9 @@ export class MentorDetailsComponent implements OnInit, OnDestroy {
   idMentor!:number
   constructor(
     private mentorService: MentorService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private errorPagesServices: ErrorPagesServices,
+
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +29,9 @@ export class MentorDetailsComponent implements OnInit, OnDestroy {
     this.mentorSubscription = this.mentorService.getMentorById(id).subscribe(
       (mentor: any) => {
         this.mentor = mentor;
+      },
+      (error) => {
+        this.errorPagesServices.checkError(error)
       }
     )
   }

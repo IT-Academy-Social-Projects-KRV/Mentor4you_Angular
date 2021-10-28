@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, Input, Output, EventEmitter, A
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
-import { AddReviewServices } from 'src/app/core/services/add-review.services';
+import { AddReviewServices } from 'src/app/core/services/add-review.service';
 interface UserMessageReview {
   message: string,
   rating: number
@@ -35,7 +35,6 @@ export class MentorAddREviewSectionComponent implements OnInit, OnDestroy {
     this.formAddReview = new FormGroup({
       textarea: new FormControl('',),
     })
-    console.log('add-review---', this.idMentor)
   }
   addFocus() { }
 
@@ -57,7 +56,6 @@ export class MentorAddREviewSectionComponent implements OnInit, OnDestroy {
             this.showSpiner = false;
             this.snackBar.open('Your comment has been successfully added!');
             setTimeout(() => this.snackBar.dismiss(), 4000);
-            console.log(value)
           }, 1500)
         },
         error => {
@@ -66,7 +64,6 @@ export class MentorAddREviewSectionComponent implements OnInit, OnDestroy {
             this.showSpiner = false;
             this.snackBar.open('Something went wrong, try again!');
             setTimeout(() => this.snackBar.dismiss(), 4000);
-            console.log(error)
           }, 1500)
 
         },

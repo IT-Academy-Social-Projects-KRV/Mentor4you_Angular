@@ -7,6 +7,7 @@ import { MentorCard } from 'src/app/core/interfaces';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 // import { Mentor } from 'src/app/core/interfaces';
 import { MentorService } from 'src/app/core/services';
+import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +21,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private mentorService: MentorService,
     private router: Router,
-    private signinService: SigninService
+    private signinService: SigninService,
+    private errorPagesServices: ErrorPagesServices
   ) { }
 
   ngOnInit(): void {
     this.subscriptionMentors = this.mentorService.getAllMentors().subscribe(
-      (mentors: MentorCard[]) => this.mentors = mentors
+      (mentors: MentorCard[]) => this.mentors = mentors,
+      (error) => {
+        this.errorPagesServices.checkError(error)
+      }
     )
   }
 

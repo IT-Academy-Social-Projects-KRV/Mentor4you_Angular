@@ -22,6 +22,7 @@ export class UsersComponent implements OnInit {
    searchText:any;
    
 
+
   constructor(private userService: UsersService, private bannedUsers:UsersService, private toAster:ToastrService) {
 
     
@@ -43,15 +44,20 @@ export class UsersComponent implements OnInit {
 
 
 
+
+
   ngOnInit(): void {
    
     this.userService.getUsers().subscribe(
     
       users=>{  
+
         this.users = users;
         
       }  
     )
+  
+
   }
     
 }

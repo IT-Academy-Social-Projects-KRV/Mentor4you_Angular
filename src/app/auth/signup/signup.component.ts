@@ -1,9 +1,10 @@
+import { ErrorPagesServices} from './../../core/services/error-pages.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-import { AuthSignupServices } from 'src/app/core/services/auth-signup.services';
+import { AuthSignupServices } from 'src/app/core/services/auth-signup.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private router: Router,
     private snackBar: MatSnackBar,
+    private errorPagesServices: ErrorPagesServices
   ) { }
 
 
@@ -60,7 +62,7 @@ export class SignupComponent implements OnInit, OnDestroy {
         this.signUpGroup.get('checkRole')?.setValue('mentee');
           if (e.message = "User created"){
             this.snackBar.open('Successful registration !!! You can login in a moment');
-           setTimeout(()=>this.router.navigate(['/auth/login']),4000)
+           setTimeout(()=>this.router.navigate(['/auth/login']),1500)
           }
         // 
         },500)
@@ -75,7 +77,7 @@ export class SignupComponent implements OnInit, OnDestroy {
             },500)
   
           }
-         
+         this.errorPagesServices.checkError(error)
         });
   }
   navigateToTerms(e:any){

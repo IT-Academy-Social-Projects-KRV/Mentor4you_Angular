@@ -62,13 +62,14 @@ const routes: Routes = [
     path: 'terms',
     component: TermsComponent,
   },
+
   {
-    path: 'messages/:id',
-    component: MessagesComponent,canActivate:[AuthGuard],
+    path: 'messages',
+    component: MessagesComponent,
+    // pathMatch:'full',
     children:[
       {path:':id',component:DialogBoardComponent}
-    ]
-    
+    ],canActivate:[AuthGuard]
   },
   {
     path: 'how-it-works',

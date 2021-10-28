@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 
 import { Category, MentorCard, MentorProfile, City } from '../interfaces';
 import { categoriesData, citiesData } from 'src/app/pages/account/components/account-mentor/data';
+import mockAvatar from '../mock/mockAvatar';
 
 @Injectable({
   providedIn: 'root'
@@ -14,39 +15,53 @@ export class MentorService {
   countBestMentors = 5;
   mentorsBestRatingUrl = `http://localhost:8080/api/searchMentor/findMentorsBestRating/${this.countBestMentors}`;
   mentorBaseUrl = 'http://localhost:8080/api/mentors';
+  standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
+  mockAvatar = mockAvatar;
 
   constructor(
     private http: HttpClient,
   ) { }
 
+  setAvatar(avatar: string) {
+    const currentAvatar = avatar === this.standartUserAvatar ? this.mockAvatar : avatar;
+    return currentAvatar;
+  }
+
   getAllMentors(): Observable<MentorCard[]> {
     return this.http
       .get<any>(this.mentorsBestRatingUrl)
       .pipe(map(mentors => {
+        // console.log('mentors - getAllMentors', mentors);
         return mentors
           .filter((m: any) => m.firstName !== null)
           .map((mentor: any) => {
+            const avatar = this.setAvatar(mentor.avatar);
+
             return {
               id: mentor.id,
               fullName: mentor.firstName + ' ' + mentor.lastName,
-              avatar: mentor.avatar,                           
+              avatar: avatar,                           
               categories: mentor.categories,
               rating: Number(mentor.rating)
             }
         })
       }));
   }
-
+  
   getMentorById(id: number): Observable<MentorProfile> {
     return this.http
       .get<any>(this.mentorBaseUrl + `/${id}`)
-      .pipe(map((mentorById: any) => this.transformDataForClient(mentorById)));
+      .pipe(map((mentorById: any) => {
+        return this.transformDataForClient(mentorById)}
+      ));
   }
 
   getMentorDTO(): Observable<MentorProfile> {
     return this.http
       .get<any>(this.mentorBaseUrl + '/getMentorDTO/')
-      .pipe(map((mentorDTO: any) => this.transformDataForClient(mentorDTO)));
+      .pipe(map((mentorDTO: any) => {
+        return this.transformDataForClient(mentorDTO)}
+      ));
   }
 
   updateMentor(mentor: MentorProfile): Observable<MentorProfile> {
@@ -63,13 +78,14 @@ export class MentorService {
     const currentRate = mentor.categoriesList[0] || 5;
     const categories = mentor.categoriesList.map((category: Category) => category.categories.name);
     const cities = mentor.cities.map((city: City) => city.name);
+    const avatar = this.setAvatar(mentorData.avatar);
 
     return {
       id: mentorData.id,
       email: mentorData.email,
       firstName: mentorData.firstName,
       lastName: mentorData.lastName,
-      avatar: mentorData.avatar,
+      avatar: avatar,
       phoneNumFirst: socialMap.PhoneNumFirst,
       categoriesList: categories,
       rate: currentRate.rate,
