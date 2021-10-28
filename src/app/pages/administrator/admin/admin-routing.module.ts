@@ -29,10 +29,8 @@ const routes = [
      {
        path: 'categories',
        component: CategoriesComponent
-     },
-     {
-      path: 'chats', 
-    }
+     }
+ 
     ]
   },
 

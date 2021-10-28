@@ -59,6 +59,8 @@
 .btn {
   font-family: Roboto, "Helvetica Neue", sans-serif, bold;
 }
-
+.button>mat-stroked-button:active {
+  background-color: #b10000!important;
+}
   
   

@@ -1,19 +1,13 @@
 <div class="table-responsive">
   <div class="row">
     <div class="col md-12">
-        <h1>Adding new category for the Mentors</h1>           
+        <h1>Mentors list of category</h1>           
         <mat-form-field >
-        <mat-label>Mentors category</mat-label>
+        <mat-label>Type new category here</mat-label>
         <input matInput [(ngModel)]="newCateg">
-        <button mat-raised-button (click)='addCategory()'>Add</button>
-      </mat-form-field>
-         
-         
         
-        
-    
-
-             
+      </mat-form-field>   
+      <button (click)='addCategory()'>Add</button>       
     </div> 
   </div>
 </div>
@@ -23,7 +17,6 @@
   <thead>
     <tr>
       <th scope="col">Categories</th>
-      
     </tr>
   </thead>
   <tbody >

@@ -9,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 
 export class MentorReviewsComponent implements OnInit {
   flag : any = false;
+  reply: string = '';
+  replyArr: string [] = [];
+
+ sendReply() {
+   this.replyArr.push(this.reply);
+   this.flag = false;
+ }
+ delReply() {
+  this.replyArr.shift();
+ }
+
 
 btnClick(){
-    this.flag = true;
+    this.flag = !this.flag;
+
 }
 
   constructor() { }

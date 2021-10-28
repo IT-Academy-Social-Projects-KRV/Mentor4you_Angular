@@ -4,7 +4,7 @@
     <mat-card class="reviews_card">      
             <mat-card-header>
                 <div mat-card-avatar class="mente1_avatar" ></div>
-                <mat-card-title>Natalia Shevchuk</mat-card-title>           
+                <mat-card-title>Dmytro Vasiv</mat-card-title>           
                 <mat-card-subtitle>
                   <span class="material-icons">
                     star_rate star_rate 
@@ -17,21 +17,39 @@
             helpful were Mentor staff members. Always there when facing challenges.
             Highly recommend Mentor after this experience.
           </p>
+          <div class="reply_new" *ngFor='let item of replyArr'>
+             
+              <img src ="assets/images/face.png"> 
+              <div class="Head">
+              <div class="text">Ivan Ivanov</div>
+             
+              <span class="material-icons">
+                star_rate star_rate star_rate 
+              </span>
+            </div>
+              <div>
+                <br>
+                <hr>
+                <p> {{item}} </p>
+              </div>
+              
+          </div>
         </mat-card-content>
          <mat-card-actions> 
-          <button mat-raised-button>Reply</button>
-           <button type="button" class="btn btn-outline-dark btn-sm"> 
-            <span class="material-icons">share</span>
-             </button>  
-             <button mat-icon-button>
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button type="button" class="btn btn-outline-dark btn-sm" matTooltip="Edit">
-                <span class="material-icons">edit</span>
-                </button>
-                <button type="button" class="btn btn-outline-dark btn-sm" matTooltip="Delete">
-                    <span class="material-icons">delete</span>
-                    </button>
+          <button type="button" class="btn btn-outline-dark btn-sm" id="rep" *ngIf="!flag" (click)=btnClick()>Reply</button>
+          <div class="reply" *ngIf="this.flag" >
+            <div class="form-group">
+              <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" [(ngModel)]='reply'></textarea>
+            </div>
+            <div class="buttons">
+              <button type="button" class="btn btn-outline-dark btn-sm" (click)="sendReply()" id='btn' matTooltip="">Send</button>
+    
+                  </div>
+            </div>
+            <button *ngIf='!flag' id='btn-del' type="button" class="btn btn-outline-dark btn-sm"  matTooltip="Delete">
+              <span  class="material-icons" (click)=delReply()>delete</span>
+              </button>
+           
         </mat-card-actions> 
         <mat-card-footer>
              <span class="text-muted">August 10,2021 12:10 PM</span> 
@@ -151,7 +169,7 @@
 </mat-card-footer>-->
 </mat-card> 
 </div>
-<mat-paginator [length]="5" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page">
-</mat-paginator>
+<!-- <mat-paginator [length]="5" [pageSizeOptions]="[5, 10, 15]" aria-label="Select page">
+</mat-paginator> -->
 </div> 
 </div>    

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { identifierModuleUrl } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { banUser } from '../interfaces/banUser';
 import { Categories } from '../interfaces/categories';
@@ -16,6 +16,17 @@ export class UsersService {
   usersUrl = 'http://localhost:8080/api/users';
   banUsersUrl = 'http://localhost:8080/api/users/getAllBannedUser';
   categUrl = 'http://localhost:8080/api/searchMentor';
+
+//   categors = [
+//     {name: 'Jack'},
+//     {name: 'Jhon'}
+//   ]
+//  getCategors (): Observable<any[]> {
+//     return of(this.categors);
+//  }
+//  addCategors (name:string) {
+//     this.categors = [...this.categors, { name }];
+//  }
 
   constructor(private http: HttpClient) {}
   banUser(id:number):Observable<any>{
@@ -39,7 +50,6 @@ export class UsersService {
 
   
   getUsers(): Observable<Users[]> {
-    
     return this.http.get<Users[]>(this.usersUrl);
 
   }
