@@ -1,4 +1,4 @@
-export const categoriesList = ['Java', 'Pyton', 'HTML', 'TypeScript', 'JavaScript', 'Kotlin', 'CSS'];
+export const categoriesList = ['Java', 'Python', 'HTML', 'TypeScript', 'JavaScript', 'Kotlin', 'CSS'];
 
 export const currencyList = ['\u20B4', '\u20BD', '$', '\u20AC'];
 
@@ -22,6 +22,7 @@ export const categoriesData = [
     currency: ''
   },
   {
+    // categories: {id: 2, name:'Python',}, 
     categories: {id: 2, name:'Pyton',}, 
     rate: 0, 
     currency: ''

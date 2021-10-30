@@ -6,7 +6,7 @@
           <span class="mentor__label">First Name </span><span class="star"> *</span>
         </span>
 
-        <div class="mentor__control-wrapper">
+        <div class="mentor__control-wrapper" [ngClass]="{name: isName} ">
           <input
             [ngClass]="invalidCheck('firstName')"
             id="firstName"

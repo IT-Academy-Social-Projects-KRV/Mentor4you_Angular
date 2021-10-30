@@ -145,6 +145,12 @@ export class AccountComponent implements OnInit {
   );
 
     this.userService.setAvatar(this.croppedImage);
+
+    this.appearanceAdamAndEve();       // ------------------ Adam & Eve -----------------------
+  }
+
+  appearanceAdamAndEve() {
+    this.userService.setName('Adam & Eve');
   }
 
   deleteAvatar(){
