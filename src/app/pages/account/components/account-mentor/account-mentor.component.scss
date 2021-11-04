@@ -129,6 +129,7 @@ button {
   color: $fuschia100;
   border: 1px solid $fuschia100;
   transition: 0.3s ease-in-out;
+  
   &:hover {
     color: $white;
     background-color: $fuschia100;
@@ -137,11 +138,11 @@ button {
 
 .name input {
   color: #000;
-  // font-family: 'Ink Free',serif;
-  font-family: 'Segoe Print',serif;
+  // font-family: 'Ink Free', serif;
+  font-family: 'Segoe Print', serif;
   font-size: 20px;
   padding: 0 9px;
-  animation: appearence 14s;
+  animation: appearence 5s;
 }
 
 @keyframes appearence {
@@ -149,12 +150,19 @@ button {
     color: white;
   }
 
-  60% {
+  10% {
     color: white;
   }
 
+  40% {
+    color: white;
+    border-color: $fuschia100;
+
+  }
+
   100% {
-    color: #000;
+    color: $black;
+    border-color: $lightgray;
   }
 }
 
