@@ -3,7 +3,7 @@
     <div class="mentor-card__image-wrap">
       <img class="mentor-card__image" src="{{mentor.avatar}}" alt="{{mentor.fullName}}">
     </div>
-    <p class="mentor-card__name">{{mentor.fullName}} {{mentor.id}}</p>
+    <p class="mentor-card__name">{{mentor.fullName}}</p>
     <p class="mentor-card__category">
       <span *ngFor="let category of mentor.categories last as isLast">
         {{category}}<span *ngIf="!isLast">, </span>
