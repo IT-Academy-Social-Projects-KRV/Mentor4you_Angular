@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
+import { TranslateModule } from "@ngx-translate/core";
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 import { HomeComponent } from './home.component';
@@ -9,8 +11,6 @@ import { InvitationComponent } from './components/invitation/invitation.componen
 import { MentorCardComponent } from 'src/app/shared/sharedComponents/mentor-card/mentor-card.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import {TranslateModule} from "@ngx-translate/core";
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
