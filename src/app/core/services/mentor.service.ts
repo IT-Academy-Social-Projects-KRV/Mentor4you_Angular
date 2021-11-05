@@ -12,7 +12,7 @@ import mockAvatar from '../mock/mockAvatar';
   providedIn: 'root'
 })
 export class MentorService {
-  countBestMentors = 5;
+  countBestMentors = 8;
   mentorsBestRatingUrl = `http://localhost:8080/api/searchMentor/findMentorsBestRating/${this.countBestMentors}`;
   mentorBaseUrl = 'http://localhost:8080/api/mentors';
   standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
@@ -31,7 +31,7 @@ export class MentorService {
     return this.http
       .get<any>(this.mentorsBestRatingUrl)
       .pipe(map(mentors => {
-        // console.log('mentors - getAllMentors', mentors);
+        console.log('mentors - getAllMentors', mentors);
         return mentors
           .filter((m: any) => m.firstName !== null)
           .map((mentor: any) => {
@@ -42,7 +42,7 @@ export class MentorService {
               fullName: mentor.firstName + ' ' + mentor.lastName,
               avatar: avatar,                           
               categories: mentor.categories,
-              rating: Number(mentor.rating)
+              rating: Number(mentor.rating) || 5
             }
         })
       }));

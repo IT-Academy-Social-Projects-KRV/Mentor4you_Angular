@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { MentorCard } from 'src/app/core/interfaces';
-import { SigninService } from 'src/app/auth/signin/signin.service';
-// import { Mentor } from 'src/app/core/interfaces';
 import { MentorService } from 'src/app/core/services';
 import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
 
@@ -21,7 +19,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private mentorService: MentorService,
     private router: Router,
-    private signinService: SigninService,
     private errorPagesServices: ErrorPagesServices
   ) { }
 

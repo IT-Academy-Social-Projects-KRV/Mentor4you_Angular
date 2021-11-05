@@ -7,14 +7,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
   deletUserDataUrl = 'http://localhost:8080/api/users/delete';
-  avatar$: Subject<any> = new Subject();
   deleteAvatarUrl = 'http://localhost:8080/api/users/deleteAvatar';
   uploadAvatarUrl = 'http://localhost:8080/api/users/uploadAvatar';
   sendMsgUrl = 'http://localhost:8080/api/emailToModerator/sendEmailToModer';
+  avatar$: Subject<any> = new Subject();
+  name$: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) { }
 
-  setAvatar(avatar: any) {
+  setName(name: string): void {
+    this.name$.next(name);
+  }
+
+  setAvatar(avatar: any): void {
     this.avatar$.next(avatar);
   }
 

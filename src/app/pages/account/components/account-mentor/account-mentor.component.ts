@@ -42,6 +42,7 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
   citiesForm = new FormControl([]);
   certificatesForm = new FormControl([]);
 
+  isName: boolean = false;
   btnTouched!: boolean;
   groupWork!: boolean;
   mentorForm!: FormGroup;
@@ -101,6 +102,12 @@ export class AccountMentorComponent implements OnInit, OnDestroy {
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue(this.mentor[controlName]);
     })
+
+    this.userService.name$.subscribe(name => {       // ------------------ Adam & Eve -----------------------
+      controls['firstName'].setValue(name);
+      controls['lastName'].setValue('');
+      this.isName = true;
+    });
 
     const groupServ = this.mentor['groupServ'];
 
