@@ -8,7 +8,6 @@ import { AuthSignupServices } from 'src/app/core/services/auth-signup.service';
 import { ErrorPagesServices} from './../../core/services/error-pages.service';
 
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -22,13 +21,13 @@ export class SignupComponent implements OnInit, OnDestroy {
   showSpiner: boolean = false;
   tooltipMessage: string = '';
   signUpSubscription!: Subscription;
+
   constructor(
     private fb: FormBuilder,
     private authSignupServices: AuthSignupServices,    
     private router: Router,  
     private errorPagesServices: ErrorPagesServices
   ) { }
-
 
   ngOnInit(): void {
     this.signUpGroup = this.fb.group({
@@ -41,10 +40,9 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   passwordValidator(control: FormControl): { [key: string]: Object } | null {
     const regex = (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/g.test(control.value));
+
     if (regex) {      
-      return { 
-        'passError': { value: control.value } 
-      }
+      return { 'passError': { value: control.value } }
     } else {      
       return null;
     }
@@ -52,7 +50,8 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   submitSignUpGroup() {
     this.showSpiner = true;    
-    this.signUpSubscription = this.authSignupServices.signupUser({
+    this.signUpSubscription = this.authSignupServices
+    .signupUser({
       email: this.signUpGroup.get('email')!.value,
       password: this.signUpGroup.get('password')!.value,
       role: this.signUpGroup.get('checkRole')!.value
@@ -62,7 +61,7 @@ export class SignupComponent implements OnInit, OnDestroy {
         this.signUpGroup.reset();
 
         if (e.message === "User created") {              
-          this.router.navigate(['/auth/login'])          
+          this.router.navigate(['/auth/login']); 
         }    
       },
       ({ error }) => {
@@ -71,8 +70,9 @@ export class SignupComponent implements OnInit, OnDestroy {
           this.tooltipMessage = error.message.replace(/=/g, ":");            
           this.showSpiner = false;
         }
-          this.errorPagesServices.checkError(error);
-        });
+          
+        this.errorPagesServices.checkError(error);
+      });
   }
 
   ngOnDestroy(): void {

@@ -15,25 +15,33 @@ export class AppComponent implements OnInit, DoCheck{
   hiddenFooter: boolean = true;
   hideHeader:boolean = true;
 
-  constructor(private auth: SigninService, private router: Router,public translate:TranslateService) {
+  constructor(
+    private auth: SigninService, 
+    private router: Router,
+    public translate:TranslateService
+  ) {}
 
-  }
   ngOnInit() {
-    const potencialToken=localStorage.getItem('token');
-    if(potencialToken!==null)
-    {
+    const potencialToken = localStorage.getItem('token');
+
+    // if (potencialToken !== null) {
+    if (potencialToken) {
       this.auth.setTokenO(potencialToken);
     }
+
     this.onHiddenFooter();
     this.onHideHeader();
 
     // localStorage.setItem('role', 'mentor');
   }
   onHiddenFooter() {
-    if (this.router.url == '/auth/signup' || this.router.url == '/error-page/404' || this.router.url == '/auth/login' || this.router.url == '/administrator/users' || this.router.url == '/administrator/bannedUsers' || this.router.url == '/administrator/categories' || this.router.url == '/administrator/chats') {
+    if ( this.router.url === '/auth/signup' 
+      || this.router.url === '/error-page/404'
+      || this.router.url === '/auth/login'
+      || this.router.url === '/administrator' ) {
       this.hiddenFooter = false;
     } else {
-      this.hiddenFooter = true
+      this.hiddenFooter = true;
     }
   }
 
