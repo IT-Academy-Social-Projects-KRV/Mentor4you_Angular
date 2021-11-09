@@ -39,7 +39,7 @@ export class NotificationModalService {
   }
 
   getMenteesRequest(): Observable<any> {
-  return this.http.get(this.getMenteesRequestDataUrl, {});
+    return this.http.get(this.getMenteesRequestDataUrl, {});
   }
 
   approveIgnoreRequest(id: number, status: boolean): Observable<any> {

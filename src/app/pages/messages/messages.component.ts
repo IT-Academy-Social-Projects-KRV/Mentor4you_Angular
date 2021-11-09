@@ -41,7 +41,7 @@ export class MessagesComponent implements OnInit {
     this.socketService.closeNotification$.subscribe(e => { this.closeNotif = e })
     this.socketService.checkArray$.subscribe(e=>this.addClass=e)
     this.http.token$.subscribe(token => {
-      this.tokenId = this.http.parseJwt(token)
+      this.tokenId = this.http.parseJwt(token as string)
     })
 
     this.routerNavigate.queryParams.subscribe(

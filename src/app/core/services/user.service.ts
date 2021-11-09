@@ -10,7 +10,7 @@ export class UserService {
   deleteAvatarUrl = 'http://localhost:8080/api/users/deleteAvatar';
   uploadAvatarUrl = 'http://localhost:8080/api/users/uploadAvatar';
   sendMsgUrl = 'http://localhost:8080/api/emailToModerator/sendEmailToModer';
-  avatar$: Subject<any> = new Subject();
+  avatar$: Subject<string> = new Subject();
   name$: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) { }
@@ -19,7 +19,7 @@ export class UserService {
     this.name$.next(name);
   }
 
-  setAvatar(avatar: any): void {
+  setAvatar(avatar: string): void {
     this.avatar$.next(avatar);
   }
 
