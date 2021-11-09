@@ -22,20 +22,21 @@ export class SigninService {
   error!:any
   public user: any = {}
   private token: string | null = null;
-  public token$ = new BehaviorSubject<any>(null);
-  private url ='http://localhost:8080/api/auth/login'
+  // public token$ = new BehaviorSubject<string | null>(null);
+  public token$ = new BehaviorSubject<string | null>('');
+  private url ='http://localhost:8080/api/auth/login';
   public mockAvatar = mockAvatar;
   public standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
   private forgetUrl = 'http://localhost:8080/sendSecurityEmail';
 
-  authRedirect(email:any,password:any):Observable<{token:string}>{
+  authRedirect(email: any,password: any): Observable<{token: string}> {
 
     const data:object={
       'email':email,
       'password':password
     }
 
-    return  this.http.post<{token: string, avatar: string}>(this.url,data)
+    return  this.http.post<{token: string, avatar: string}>(this.url, data)
       .pipe(
         tap(
           ({token, avatar})=>{
@@ -43,19 +44,22 @@ export class SigninService {
             const currentAvatar = avatar === this.standartUserAvatar ?  this.mockAvatar : avatar;
 
             this.userService.setAvatar(currentAvatar);
-            this.setTokenO(token);
-            this.setToken(token);
+            this.setTokenO(token);   // ------------------ ???
+            this.setToken(token);      // ------------------  ???
             this.user = this.parseJwt(token);
+            console.log('user', this.user);
           }
         )
       )
   }
   
-  setToken(token:any){
+  // setToken(token: any) {  // ------------------  ???
+  setToken(token: string | null): void {  // ------------------  ???
     this.token = token;
   }
 
-  setTokenO(token:any) : void{
+  // setTokenO(token:any) : void {    // ------------------  ???
+  setTokenO(token: string | null) : void {    // ------------------  ???
     this.token$.next(token);
   }
 
@@ -79,7 +83,7 @@ export class SigninService {
   parseJwt (token: string) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {  // parse token
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
@@ -87,7 +91,7 @@ export class SigninService {
   }
 
   getRole(){   
-    if(typeof this.token === "string"){
+    if (typeof this.token === "string") {
       const role = this.parseJwt(this.token).role[0].authority;
       localStorage.setItem('role', role)
     }
