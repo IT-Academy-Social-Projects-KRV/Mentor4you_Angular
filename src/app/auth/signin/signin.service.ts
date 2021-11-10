@@ -64,13 +64,13 @@ export class SigninService {
   }
 
   public isAuth(): boolean {
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')) {
       this.setTokenO(localStorage.getItem('token'));
-      if(!this.isExpToken(this.token$.value)){
-      return true
-      }else return false
+      if (!this.isExpToken(this.token$.value)) {
+        return true;
+      } else return false;
     }
-    else return false
+    else return false;
     // return localStorage.getItem('token') ? true : false;
   }
 
@@ -81,11 +81,11 @@ export class SigninService {
   }
 
   parseJwt (token: string) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {  // parse token
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');    
+    let jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {  // parse token
       return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    }).join(''));    
 
     return JSON.parse(jsonPayload);
   }

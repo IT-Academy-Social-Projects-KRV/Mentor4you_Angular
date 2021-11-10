@@ -2,37 +2,75 @@
   <div class="container">
     <div class="header__inner">
       <div class="header__logo" (click)="goTo('/')">
-        <img class="logo" src="./../../../../assets/images/Logo.png" alt="Logo">
+        <img 
+          class="logo" 
+          src="./../../../../assets/images/Logo.png" 
+          alt="Logo"
+        >
       </div>
       <nav class="header__menu">
         <ul class="header__menu__list">
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" routerLink="/how-it-works">{{ 'HEADER.LINKS.HOWORKS' | translate}}</a>
+            <a 
+              class="header__menu__list-link" 
+              routerLink="/how-it-works"
+            >
+              {{ 'HEADER.LINKS.HOWORKS' | translate}}
+            </a>
           </li>
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" routerLink="/mentor">{{ 'HEADER.LINKS.FINDMENTOR' | translate}}</a>
+            <a 
+              class="header__menu__list-link" 
+              routerLink="/mentor"
+            >
+              {{ 'HEADER.LINKS.FINDMENTOR' | translate}}
+            </a>
           </li>
           <li class="header__menu__list-item">
-            <a class="header__menu__list-link" routerLink="/contacts">{{ 'HEADER.LINKS.CONTACTS' | translate}}</a>
+            <a 
+              class="header__menu__list-link" 
+              routerLink="/contacts"
+            >
+              {{ 'HEADER.LINKS.CONTACTS' | translate}}
+            </a>
           </li>
         </ul>
       </nav>
       <div class="header__btns">
         <ng-container *ngIf="isAuth; else unauthorized">
           <div class="header__btns__inner" *ngIf="onHideBurger()">
-            <div class="header__btns-message__inner" [class.new-message]="checkNewMessage" (click)="isNewMessage = false">
+            <div 
+              class="header__btns-message__inner" 
+              [class.new-message]="checkNewMessage" 
+              (click)="isNewMessage = false"
+            >
               <a class="header__btns-message" routerLink="/messages">
-                <img class="header__btns-chat" src="./../../../../assets/images/chat.svg" alt="Messages">
+                <img 
+                  class="header__btns-chat" 
+                  src="./../../../../assets/images/chat.svg" 
+                  alt="Messages"
+                >
               </a>
-              <img class="header__btns-message--indicator" src="./../../../../assets/images/indicator.svg"
-                alt="New massage" *ngIf="isNewMessage">
+              <img 
+                class="header__btns-message--indicator" 
+                src="./../../../../assets/images/indicator.svg"
+                alt="New massage" 
+                *ngIf="isNewMessage"
+              >
             </div>
             <div class="header__btns-notifications__inner" (click)="open()">
               <div class="header__btns-notifications">
-                <img class="header__btns-bell" src="./../../../../assets/images/bell.svg" alt="New Request">
+                <img 
+                  class="header__btns-bell" 
+                  src="./../../../../assets/images/bell.svg" 
+                  alt="New Request"
+                >
               </div>
-              <img class="header__btns-notifications--indicator" src="./../../../../assets/images/indicator.svg"
-                alt="New request" *ngIf="notificationModalService.isNewNotification$ | async">
+              <img 
+                class="header__btns-notifications--indicator" 
+                src="./../../../../assets/images/indicator.svg"
+                alt="New request" 
+                *ngIf="notificationModalService.isNewNotification$ | async">
             </div>
             <div class="header__btns-avatar">
               <div class="header__btns-avatar-border">
@@ -40,43 +78,88 @@
               </div>
             </div>                    
             <div class="header__btns__settings">
-              <img class="header__btns-dots" src="./../../../../assets/images/dots.svg" alt="Settings"
-                (click)="showSettings()" #toggleButton>
+              <img class="header__btns-dots" 
+                src="./../../../../assets/images/dots.svg" 
+                alt="Settings"
+                (click)="showSettings()" 
+                #toggleButton
+              >
               <div class="settings-menu" *ngIf="showSettingsMenu" #menu>
                 <div class="settings-menu__item">
-                  <img class="settings-menu__item__img" src="./../../../../assets/images/user.svg" alt="User">
-                  <a class="settings-menu__item__text"
-                    (click)="goTo('account')">{{ 'HEADER.MENU.ACCOUNT' | translate}}</a>
+                  <i class="far fa-user settings-menu__item__img"></i>
+                  <!-- <img 
+                    class="settings-menu__item__img" 
+                    src="./../../../../assets/images/user.svg" 
+                    alt="User"> -->
+                  <a 
+                    class="settings-menu__item__text"
+                    (click)="goTo('account')"
+                  >
+                    {{ 'HEADER.MENU.ACCOUNT' | translate}}
+                  </a>
                 </div>
                 <div class="settings-menu__item">
-                  <img class="settings-menu__item__img" src="./../../../../assets/images/settings.svg" alt="Settings">
-                  <a class="settings-menu__item__text"
-                    routerLink="/account/settings">{{ 'HEADER.MENU.SETTINGS' | translate}}</a>
+                  <i class="fas fa-cog settings-menu__item__img"></i>                  
+                  <!-- <img 
+                    class="settings-menu__item__img" 
+                    src="./../../../../assets/images/settings.svg" 
+                    alt="Settings"
+                  > -->
+                  <a 
+                    class="settings-menu__item__text"
+                    routerLink="/account/settings"
+                  >
+                    {{ 'HEADER.MENU.SETTINGS' | translate}}
+                  </a>
                 </div>
                 <div class="settings-menu__item" (click)="logout()">
-                  <img class="settings-menu__item__img" src="./../../../../assets/images/power.svg" alt="logout">
-                  <a class="settings-menu__item__text logout">{{ 'HEADER.MENU.LOGOUT' | translate}}</a>
+                  <i class="fas fa-sign-out-alt settings-menu__item__img"></i>
+                  <!-- <img 
+                    class="settings-menu__item__img" 
+                    src="./../../../../assets/images/power.svg" 
+                    alt="logout"
+                  > -->
+                  <a class="settings-menu__item__text">{{ 'HEADER.MENU.LOGOUT' | translate}}</a>
                 </div>
               </div>
             </div>
-            <div class="header__burger" (click)="showMenu()" #toggleButton [ngClass]="{active : showBurgerMenu}">
+            <div 
+              class="header__burger" 
+              (click)="showMenu()" 
+              #toggleButton 
+              [ngClass]="{active : showBurgerMenu}"
+            >
               <span class="header__burger-line"></span>
             </div>
           </div>
         </ng-container>
       </div>
     </div>
-    <div class="header__burger-menu" *ngIf="showBurgerMenu" #burgermenu>
+    <div 
+      class="header__burger-menu" 
+      *ngIf="showBurgerMenu" 
+      #burgermenu
+    >
       <ul class="header__burger-menu__list">
         <li class="header__burger-menu__list-item" (click)="showMenu()">
           <a class="header__burger-menu__list-link"
             routerLink="/how-it-works">{{ 'HEADER.LINKS.HOWORKS' | translate}}</a>
         </li>
         <li class="header__burger-menu__list-item" (click)="showMenu()">
-          <a class="header__burger-menu__list-link" routerLink="/mentor">{{ 'HEADER.LINKS.FINDMENTOR' | translate}}</a>
+          <a 
+            class="header__burger-menu__list-link" 
+            routerLink="/mentor"
+          >
+            {{ 'HEADER.LINKS.FINDMENTOR' | translate}}
+          </a>
         </li>
         <li class="header__burger-menu__list-item" (click)="showMenu()">
-          <a class="header__burger-menu__list-link" routerLink="/contacts">{{ 'HEADER.LINKS.CONTACTS' | translate}}</a>
+          <a 
+            class="header__burger-menu__list-link" 
+            routerLink="/contacts"
+          >
+            {{ 'HEADER.LINKS.CONTACTS' | translate}}
+          </a>
         </li>
       </ul>
     </div>
@@ -86,7 +169,12 @@
   <div class="signin-menu">
     <a class="header__btns-signin header__btn" routerLink="/auth/login">Sign In</a>
     <a class="header__btns-signup header__btn" routerLink="/auth/signup">Sign Up</a>
-    <div class="header__burger" (click)="showMenu()" #toggleButton [ngClass]="{active : showBurgerMenu}">
+    <div 
+      class="header__burger" 
+      (click)="showMenu()" 
+      #toggleButton 
+      [ngClass]="{active : showBurgerMenu}"
+    >
       <span class="header__burger-line"></span>
     </div>
   </div>
