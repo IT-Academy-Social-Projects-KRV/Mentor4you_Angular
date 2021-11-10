@@ -55,14 +55,7 @@ export class SigninComponent implements OnInit {
 
     login.subscribe((response) => {
       this.auth.getRole();
-
       switch (localStorage.getItem('role')) {
-        case "ADMIN": 
-          this.notificationModalService.getMenteesResponces();
-          break;
-        case "MODERATOR": 
-          this.notificationModalService.getMenteesResponces();
-          break;
         case "MENTOR": 
           this.notificationModalService.getMenteesRequests();
           break;
@@ -71,7 +64,21 @@ export class SigninComponent implements OnInit {
           break;
       }
       
-      if (response) {
+      const userRole = localStorage.getItem('role');
+
+      const caseAdmin = userRole === "ADMIN" && response;
+      const caseModerator = userRole === "MODERATOR" && response;
+      const caseUsers = userRole === "MENTOR" || userRole === "MENTEE" && response;
+      
+      if (caseModerator) {
+        this.router.navigate(['/moderator']);
+        this.errorData = false;
+        this.auth.setTokenO(response.token);
+      } else if (caseAdmin) {
+        this.router.navigate(['/administrator']);
+        this.errorData = false;
+        this.auth.setTokenO(response.token);
+      } else if (caseUsers) {
         this.router.navigate(['/'])
         this.errorData = false;
         this.auth.setTokenO(response.token);
@@ -79,8 +86,8 @@ export class SigninComponent implements OnInit {
     }, 
     error => {
       if (error) {
-        this.errorData=true
-        this.isValidPass=false
+        this.errorData = true;
+        this.isValidPass = false;
       }
     })}
-  }
+  };

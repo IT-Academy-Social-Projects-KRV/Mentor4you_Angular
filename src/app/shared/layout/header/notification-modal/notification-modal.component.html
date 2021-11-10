@@ -3,7 +3,7 @@
     <section [class.open]="display === 'open'" (click)="close()">
 
       <div (click)="$event.stopPropagation()">
-        <button class="close" type="button" (click)="close()">X</button>
+        <button class="close" type="button" (click)="close()"><i class="fas fa-times"></i></button>
         <h1 class="mentorship-request__title">Requesting mentorship</h1>
         <hr>
         <ng-container *ngIf="modalService.isNewNotification$ | async; else NoNotification">
