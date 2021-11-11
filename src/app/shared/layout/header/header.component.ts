@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { first, tap } from 'rxjs/operators';
 import {TranslateService} from '@ngx-translate/core';
 
 import { WebSocketService } from './../../../pages/messages/web-socket.service';
@@ -48,17 +48,22 @@ export class HeaderComponent implements OnInit {
     public webSocketService:WebSocketService  
   ) { }
 
+  get isAuth() {
+    return this.auth.isAuth();
+  }
+
   ngOnInit(): void {    
     this.closeMenu();    
-    if (this.isAuth()) {
-      this.auth.getRole();
+    if (this.isAuth) {
+      // this.auth.getRole();
       switch (localStorage.getItem('role')){
         case "MENTOR": 
           this.notificationModalService.getMenteesRequests();
           this.mentorService
             .getMentorDTO()
-            .pipe(first())
-            .subscribe(mentor => this.avatar = mentor.avatar === this.standartUserAvatar ?  this.avatar : mentor.avatar);
+            .pipe(first(), tap(user => console.log("someText",user)))
+            // .subscribe(mentor => this.avatar = mentor.avatar === this.standartUserAvatar ?  this.avatar : mentor.avatar);
+            .subscribe(mentor => mentor);
           break;
 
         case "MENTEE": 
@@ -80,9 +85,9 @@ export class HeaderComponent implements OnInit {
     this.webSocketService.checkMessage$.subscribe(e=>this.checkNewMessage = e)
   }
 
-  isAuth() {
-    return this.auth.isAuth();
-  }
+  // isAuth() {
+  //   return this.auth.isAuth();
+  // }
 
   open() {
     this.notificationModalService.open();
@@ -95,6 +100,7 @@ export class HeaderComponent implements OnInit {
     this.notificationModalService.mentors$.next([]);
     this.notificationModalService.mentees$.next([]);
     this.notificationModalService.isNewNotification$.next(false);
+    this.router.navigate(['/']);
   }
 
   closeMenu(): void {
