@@ -1,6 +1,6 @@
 <div class="moderator-main-info-container">
     <div class="moderator-logo-container">
-        <div class="moderator-info">
+        <div class="moderator-info" *ngIf="moderator">
             <div class="moderator-name">
                 <h2>Moderator</h2>
                 <p>{{moderator.lastName}} {{moderator.firstName}}</p>
