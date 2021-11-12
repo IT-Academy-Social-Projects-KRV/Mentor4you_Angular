@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { 
+  animate, 
+  keyframes, 
+  state, 
+  style, 
+  transition, 
+  trigger 
+} from '@angular/animations';
+
 import { User } from '../../user.model';
 import { ModeratorService } from '../../moderator.service';
 import { ErrorPagesServices } from 'src/app/core/services/error-pages.service';
+
 
 @Component({
   selector: 'app-moderator-users-list',

@@ -15,13 +15,14 @@ import { BlackListItemComponent } from './components/moderator-black-list/black-
 import { UserItemComponent } from './components/moderator-users-list/user-item/user-item.component';
 
 
+
 @NgModule({
   declarations: [ModeratorComponent, ModeratorBlackListComponent, ModeratorChatsComponent, ModeratorEditComponent, ModeratorNavigationComponent, ModeratorUserDetailsComponent, ModeratorUsersListComponent, BlackListItemComponent, UserItemComponent],
   imports: [
     SharedModule,
     FormsModule,
     HttpClientModule,
-    ModeratorRoutingModule
+    ModeratorRoutingModule,
   ]
 })
 export class ModeratorModule { }
