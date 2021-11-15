@@ -54,7 +54,7 @@ export interface MentorRespons {
   id: number;
   name: string;
   secondName: string;
-  img?: string;
+  avatar?: string;
 }
 
 export interface Language {

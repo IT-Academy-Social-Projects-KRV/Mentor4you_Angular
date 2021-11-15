@@ -46,8 +46,7 @@ export class SigninService {
             this.userService.setAvatar(currentAvatar);
             this.setTokenO(token);   // ------------------ ???
             this.setToken(token);      // ------------------  ???
-            this.user = this.parseJwt(token);
-            console.log('user', this.user);
+            this.user = this.parseJwt(token);            
           }
         )
       )

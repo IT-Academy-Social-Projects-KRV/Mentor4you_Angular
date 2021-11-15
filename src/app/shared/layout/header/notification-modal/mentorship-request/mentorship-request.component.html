@@ -8,8 +8,18 @@
       </div>
     </div>
     <div class="mentorship-request__user-name">{{mentee.name}} {{mentee.secondName}}</div>
-    <button class="mentorship-request__ignore mentorship-request__btn" (click)='approveIgnore(mentee.id, false)'>IGNORE</button>
-    <button class="mentorship-request__accept mentorship-request__btn" (click)='approveIgnore(mentee.id, true)'>ACCEPT</button>
+    <button 
+      class="mentorship-request__ignore mentorship-request__btn" 
+      (click)='approveIgnore(mentee.id, false)'
+    >
+      IGNORE
+    </button>
+    <button 
+      class="mentorship-request__accept mentorship-request__btn" 
+      (click)='approveIgnore(mentee.id, true)'
+    >
+      ACCEPT
+    </button>
   </div>
   <hr>
 </div>

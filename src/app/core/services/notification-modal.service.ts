@@ -56,7 +56,7 @@ export class NotificationModalService {
 
   getMenteesRequests(){
     this.getMenteesRequest()
-    .subscribe((res) => {      
+    .subscribe((res) => {  
       if (res.length>0){
         this.mentees$.next(res);
         this.isNewNotification$.next(true);
@@ -71,7 +71,7 @@ export class NotificationModalService {
     this.getMenteesResponce()
     .subscribe((res) => {
       if (res.length>0){
-        this.mentors$.next(res);
+        this.mentors$.next(res);        
         this.isNewNotification$.next(true);
       }else{
         this.mentors$.next(null);

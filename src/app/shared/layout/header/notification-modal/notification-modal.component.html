@@ -8,15 +8,23 @@
         <hr>
         <ng-container *ngIf="modalService.isNewNotification$ | async; else NoNotification">
           <div class="mentorship-request__users">
-
             <ng-container *ngIf="auth.isMentor">
-              <app-mentorship-request *ngFor="let mentee of mentees$ | async" [mentee]="mentee"
-                (approveIgnoreRequest)="approveIgnoreRequest($event)"></app-mentorship-request>
+              <app-mentorship-request 
+                *ngFor="let mentee of mentees$ | async" 
+                [mentee]="mentee"
+                (approveIgnoreRequest)="approveIgnoreRequest($event)"
+              >
+              </app-mentorship-request>
             </ng-container>
             <ng-container *ngIf="auth.isMentee">
-              <app-mentorship-approve *ngFor="let mentor of mentors$ | async" [mentorCooperation]="mentor" (deleteNotificationRequest)="deleteNotificationRequest($event)"></app-mentorship-approve>
+              <app-mentorship-approve 
+                *ngFor="let mentor of mentors$ | async" 
+                [mentorCooperation]="mentor"
+                (moderatorDetails)="moderatorNavigate($event)"
+                (deleteNotificationRequest)="deleteNotificationRequest($event)"
+              >
+              </app-mentorship-approve>
             </ng-container>
-
           </div>
         </ng-container>
         <ng-template #NoNotification>
