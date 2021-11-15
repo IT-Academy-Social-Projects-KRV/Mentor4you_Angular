@@ -55,14 +55,14 @@ export class SigninComponent implements OnInit {
 
     login.subscribe((response) => {
       this.auth.getRole();
-      // switch (localStorage.getItem('role')) {
-      //   case "MENTOR": 
-      //     this.notificationModalService.getMenteesRequests();
-      //     break;
-      //   case "MENTEE": 
-      //     this.notificationModalService.getMenteesResponces();
-      //     break;
-      // }
+      switch (localStorage.getItem('role')) {
+        case "MENTOR": 
+          this.notificationModalService.getMenteesRequests();
+          break;
+        case "MENTEE": 
+          this.notificationModalService.getMenteesResponces();
+          break;
+      }
       
       const userRole = localStorage.getItem('role');
 

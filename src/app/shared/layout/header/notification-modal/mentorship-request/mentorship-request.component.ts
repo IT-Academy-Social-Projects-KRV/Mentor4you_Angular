@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { NotificationModalService } from 'src/app/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Subject } from 'rxjs';
+
 import { Mentee } from 'src/app/core/interfaces/mentee';
 
 
@@ -10,16 +11,14 @@ import { Mentee } from 'src/app/core/interfaces/mentee';
 })
 export class MentorshipRequestComponent implements OnInit {
   @Input() mentee?: Mentee;
-  @Output() approveIgnoreRequest: EventEmitter<any> = new EventEmitter<{id:number, status:boolean}>();
+  @Output() approveIgnoreRequest: Subject<{id:number, status:boolean}> = new Subject();
 
-  constructor(
-    private modalService: NotificationModalService,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
   approveIgnore(id: number, status: boolean): void{
-    this.approveIgnoreRequest.emit({id, status});
+    this.approveIgnoreRequest.next({id, status});
   }
 }

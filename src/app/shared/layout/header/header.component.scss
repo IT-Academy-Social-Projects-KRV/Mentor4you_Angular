@@ -73,6 +73,9 @@
 
         &-message {
             cursor: pointer;
+            color: #888888;
+            font-size: 21px;
+            margin-bottom: 1px;
 
             &__inner {
                 position: relative;
@@ -360,3 +363,10 @@
         background-color: $red;
     }
 }
+
+.red {
+    color: $red;
+    font-size: 13px;
+    font-weight: 520;
+}
+
