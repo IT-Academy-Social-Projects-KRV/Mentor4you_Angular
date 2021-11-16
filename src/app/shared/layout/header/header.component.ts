@@ -1,17 +1,13 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-
-import { BehaviorSubject } from 'rxjs';
 import { first, tap } from 'rxjs/operators';
-import {TranslateService} from '@ngx-translate/core';
-
 import { WebSocketService } from './../../../pages/messages/web-socket.service';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 import { MenteeService, MentorService, UserService } from 'src/app/core';
-import avatar from 'src/app/core/mock/avatar';
+
 import mockAvatar from 'src/app/core/mock/mockAvatar';
+import { ModeratorService } from 'src/app/pages/moderator/moderator.service';
 
 @Component({
   selector: 'app-header',
@@ -24,12 +20,13 @@ export class HeaderComponent implements OnInit {
   showBurgerMenu: boolean = false;
   wached: boolean = false;
   token!: string;
-  response: any; // ??????????????????????????????
-  // mockAvatar = mockAvatar;
+  response:any;
+  userData!: any;
+
   standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
   avatar = mockAvatar;
   checkNewMessage: boolean = false;
-  // public avatar: string | null = './../../../../assets/images/standardAvatar.jpg';
+
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
   @ViewChild('menu') menu!: ElementRef; //87
@@ -38,14 +35,12 @@ export class HeaderComponent implements OnInit {
     public notificationModalService: NotificationModalService,
     private renderer: Renderer2,
     private router: Router,
-    private NotificationModalService: NotificationModalService,
     private auth: SigninService,
-    private http: HttpClient,
-    private translate: TranslateService,
     private mentorService: MentorService,
     private menteeService: MenteeService,
     private userService: UserService,
-    public webSocketService:WebSocketService  
+    public webSocketService:WebSocketService,
+    private moderatorService: ModeratorService
   ) { }
 
   get isAuth() {
@@ -55,15 +50,16 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {    
     this.closeMenu();    
     if (this.isAuth) {
-      // this.auth.getRole();
       switch (localStorage.getItem('role')){
         case "MENTOR": 
           this.notificationModalService.getMenteesRequests();
           this.mentorService
             .getMentorDTO()
-            .pipe(first(), tap(user => console.log("someText",user)))
-            // .subscribe(mentor => this.avatar = mentor.avatar === this.standartUserAvatar ?  this.avatar : mentor.avatar);
-            .subscribe(mentor => mentor);
+            .pipe(first())      
+            .subscribe(mentor => {
+              this.avatar = mentor.avatar === this.standartUserAvatar ?  this.avatar : mentor.avatar;
+              this.userData = mentor;
+            });
           break;
 
         case "MENTEE": 
@@ -71,7 +67,30 @@ export class HeaderComponent implements OnInit {
           this.menteeService
             .getData()
             .pipe(first())
-            .subscribe(mentee => this.avatar = mentee.avatar === this.standartUserAvatar ?  this.avatar : mentee.avatar);
+            .subscribe(mentee => {
+              this.avatar = mentee.avatar === this.standartUserAvatar ?  this.avatar : mentee.avatar;
+              this.userData = mentee;
+            });
+          break;
+
+        case "MODERATOR":           
+          this.moderatorService
+            .getModerator()
+            .pipe(first())
+            .subscribe(moderator => {
+              this.avatar = moderator.avatar === this.standartUserAvatar ?  this.avatar : moderator.avatar;                
+              this.userData = moderator;
+            });
+          break;
+
+        case "ADMIN":           
+          this.moderatorService
+            .getModerator()
+            .pipe(first())
+            .subscribe(admin => {
+              this.avatar = admin.avatar === this.standartUserAvatar ?  this.avatar : admin.avatar;                
+              this.userData = admin;
+            });
           break;
       }
     }    

@@ -60,7 +60,7 @@
 
     &__btns {
         &__inner {
-            width: 170px;
+            width: 130px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -105,9 +105,10 @@
 
         &-avatar {
             @include avatar-round;
+            position: relative;
 
-            &-border {
-                @include avatar-round-border;
+            &-border {    
+                @include avatar-round-border;    
 
                 img {
                     height: 100%;
@@ -207,8 +208,8 @@
 
 .settings-menu {
     position: absolute;
-    right: 0;
-    bottom: -140px;
+    right: -25px;
+    bottom: -130px;
     border: 1px solid $lightgray;
     background-color: #fff;
     width: 205px;

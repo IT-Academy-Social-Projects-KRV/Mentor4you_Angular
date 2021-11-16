@@ -16,13 +16,14 @@ export class WebSocketService {
   stompClient: any;
   newMessages = new Array;
   firstStep = new Array;
-  lastSms$ = new BehaviorSubject<any>('')
-  Sms$ = new BehaviorSubject<any>(this.newMessages)
-  checkMessage$ = new BehaviorSubject<boolean>(false)
-  closeNotification$ = new BehaviorSubject<any>('')
-  checkArray$ = new BehaviorSubject<any>('')
-  constructor(private http:HttpClient) {
-  }
+  lastSms$ = new BehaviorSubject<any>('');
+  Sms$ = new BehaviorSubject<any>(this.newMessages);
+  checkMessage$ = new BehaviorSubject<boolean>(false);
+  closeNotification$ = new BehaviorSubject<any>('');
+  checkArray$ = new BehaviorSubject<any>('');
+
+  constructor(private http:HttpClient) {}
+
   connect(myId: string) {
     const socket = new SockJS(this.webSocketEndPoint + '/chat');
     this.stompClient = Stomp.over(socket);

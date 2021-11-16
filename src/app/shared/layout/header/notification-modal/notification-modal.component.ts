@@ -34,6 +34,7 @@ export class NotificationModalComponent implements OnInit {
   }
 
   approveIgnoreRequest(data: any): void{
+    console.log("DATAAAAAAAAAAAAAAA ", data);
     this.modalService.approveIgnoreRequest(data.id, data.status)
     .subscribe(() => {
       this.modalService.getMenteesRequests();
