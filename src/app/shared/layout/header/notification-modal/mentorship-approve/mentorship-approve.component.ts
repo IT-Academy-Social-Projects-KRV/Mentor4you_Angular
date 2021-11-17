@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 
 import { Subject } from 'rxjs';
 import { MentorCooperation} from 'src/app/core';
@@ -10,7 +10,7 @@ import { MentorCooperation} from 'src/app/core';
 })
 export class MentorshipApproveComponent implements OnInit {
   @Input() mentorCooperation?: MentorCooperation;
-  @Output() deleteNotificationRequest: EventEmitter<any> = new EventEmitter<{id:number}>();
+  @Output() deleteNotificationRequest: Subject<{id:number}> = new Subject();
   @Output() moderatorDetails: Subject<number> = new Subject();
   constructor() { }
 
@@ -19,7 +19,7 @@ export class MentorshipApproveComponent implements OnInit {
   }
 
   deleteNotification(id: number): void{
-    this.deleteNotificationRequest.emit({id});
+    this.deleteNotificationRequest.next({id});
   }
 
   goToMentor(id:number) {    

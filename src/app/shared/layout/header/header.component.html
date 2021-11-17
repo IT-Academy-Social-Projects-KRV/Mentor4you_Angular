@@ -50,36 +50,37 @@
                               *ngIf="notificationModalService.isNewNotification$ | async"
                             ></i>
                         </div>
-                        <div class="header__btns-avatar">
+                        <!-- <div class="header__btns-avatar" *ngIf="userData"> -->
+                        <div class="header__btns-avatar" *ngIf="userData">
                             <div class="header__btns-avatar-border" *ngIf="avatar">
-                                <img class="mentor-card__image" src="{{avatar}}" alt="Avatar">
-                            </div>
-                        </div>
-                        <div class="header__btns__settings">
-                          <i 
-                            class="fas fa-ellipsis-v header__btns-dots" 
-                            (click)="showSettings()" 
-                            #toggleButton
-                          ></i>
-                            <div class="settings-menu" *ngIf="showSettingsMenu" #menu>
-                                <div class="settings-menu__item">
-                                    <i class="far fa-user settings-menu__item__img"></i>
-                                    <a class="settings-menu__item__text" (click)="goTo('account')">
-                                      {{ 'HEADER.MENU.ACCOUNT' | translate}}
-                                    </a>
-                                </div>
-                                <div class="settings-menu__item">
-                                    <i class="fas fa-cog settings-menu__item__img"></i>
-                                    <a class="settings-menu__item__text" routerLink="/account/settings">
-                                      {{ 'HEADER.MENU.SETTINGS' | translate}}
-                                    </a>
-                                </div>
-                                <div class="settings-menu__item" (click)="logout()">
-                                    <i class="fas fa-sign-out-alt settings-menu__item__img"></i>
-                                    <a class="settings-menu__item__text">
-                                      {{ 'HEADER.MENU.LOGOUT' | translate}}
-                                    </a>
-                                </div>
+                                <img 
+                                  class="mentor-card__image" 
+                                  src="{{avatar}}" 
+                                  alt="Avatar" 
+                                  title="{{userData.firstName}} {{userData.lastName}}"
+                                  (click)="showSettings()" 
+                                  #toggleButton
+                                >
+                                <div class="settings-menu" *ngIf="showSettingsMenu" #menu>
+                                  <div class="settings-menu__item">
+                                      <i class="far fa-user settings-menu__item__img"></i>
+                                      <a class="settings-menu__item__text" (click)="goTo('account')">
+                                        {{ 'HEADER.MENU.ACCOUNT' | translate}}
+                                      </a>
+                                  </div>
+                                  <div class="settings-menu__item">
+                                      <i class="fas fa-cog settings-menu__item__img"></i>
+                                      <a class="settings-menu__item__text" routerLink="/account/settings">
+                                        {{ 'HEADER.MENU.SETTINGS' | translate}}
+                                      </a>
+                                  </div>
+                                  <div class="settings-menu__item" (click)="logout()">
+                                      <i class="fas fa-sign-out-alt settings-menu__item__img"></i>
+                                      <a class="settings-menu__item__text">
+                                        {{ 'HEADER.MENU.LOGOUT' | translate}}
+                                      </a>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                         <div 
