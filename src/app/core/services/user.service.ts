@@ -11,6 +11,7 @@ export class UserService {
   uploadAvatarUrl = 'http://localhost:8080/api/users/uploadAvatar';
   sendMsgUrl = 'http://localhost:8080/api/emailToModerator/sendEmailToModer';
   avatar$: Subject<string> = new Subject();
+  userName$: Subject<string> = new Subject();
   name$: Subject<any> = new Subject();
 
   constructor(private http: HttpClient) { }
@@ -21,6 +22,10 @@ export class UserService {
 
   setAvatar(avatar: string): void {
     this.avatar$.next(avatar);
+  }
+
+  setUserName(name: string): void {
+    this.userName$.next(name);
   }
 
   deleteUser(): Observable<any> {

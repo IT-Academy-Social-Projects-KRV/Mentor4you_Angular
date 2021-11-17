@@ -1,12 +1,12 @@
 <header class="header">
     <div class="container">
         <div class="header__inner">
-            <div class="header__logo" (click)="goTo('/')">
-                <img class="logo" 
-                  src="./../../../../assets/images/Logo.png" 
+            <a class="header__logo" routerLink="/" style="display: block;">
+              <img class="logo" 
+                  src="../../../../assets/images/Logo.png" 
                   alt="Logo"
                 >
-            </div>
+            </a>
             <nav class="header__menu">
                 <ul class="header__menu__list">
                     <li class="header__menu__list-item">
@@ -49,22 +49,21 @@
                               class="far fa-dot-circle header__btns-notifications--indicator red"
                               *ngIf="notificationModalService.isNewNotification$ | async"
                             ></i>
-                        </div>
-                        <!-- <div class="header__btns-avatar" *ngIf="userData"> -->
-                        <div class="header__btns-avatar" *ngIf="userData">
+                        </div>                        
+                        <div class="header__btns-avatar" *ngIf="userName">
                             <div class="header__btns-avatar-border" *ngIf="avatar">
                                 <img 
                                   class="mentor-card__image" 
                                   src="{{avatar}}" 
                                   alt="Avatar" 
-                                  title="{{userData.firstName}} {{userData.lastName}}"
+                                  title="{{userName}}"
                                   (click)="showSettings()" 
                                   #toggleButton
                                 >
                                 <div class="settings-menu" *ngIf="showSettingsMenu" #menu>
                                   <div class="settings-menu__item">
                                       <i class="far fa-user settings-menu__item__img"></i>
-                                      <a class="settings-menu__item__text" (click)="goTo('account')">
+                                      <a class="settings-menu__item__text" (click)="navigateTo('account')">
                                         {{ 'HEADER.MENU.ACCOUNT' | translate}}
                                       </a>
                                   </div>
