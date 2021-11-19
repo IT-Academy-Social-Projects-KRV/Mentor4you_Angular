@@ -4,6 +4,7 @@
 .container {
     background-color: $superlightgray;
     position: relative;
+    border-bottom: 2px solid $lightgray;
 }
 
 .logo {
@@ -23,7 +24,7 @@
 
 .header {
     @extend %base-font;
-    font-size: 20px;
+    font-size: 20px;    
 
     &__inner {
         display: flex;

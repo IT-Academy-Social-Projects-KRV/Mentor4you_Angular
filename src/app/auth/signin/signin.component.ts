@@ -63,7 +63,6 @@ export class SigninComponent implements OnInit {
           this.notificationModalService.getMenteesResponces();
           break;
       }
-      
       const userRole = localStorage.getItem('role');
 
       const caseAdmin = userRole === "ADMIN" && response;

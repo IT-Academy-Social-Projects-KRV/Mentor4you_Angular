@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { first, tap } from 'rxjs/operators';
-import { WebSocketService } from './../../../pages/messages/web-socket.service';
+import { first } from 'rxjs/operators';
+import { WebSocketService } from '../../../pages/messages/web-socket.service';
 import { NotificationModalService } from '../../../core/services/notification-modal.service';
 import { SigninService } from 'src/app/auth/signin/signin.service';
 import { MenteeService, MentorService, UserService } from 'src/app/core';
@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   token!: string;
   response:any;
   userData!: any;
+  userName!:string;
 
   standartUserAvatar = 'https://awss3mentor4you.s3.eu-west-3.amazonaws.com/avatars/standartUserAvatar.png';
   avatar = mockAvatar;
@@ -29,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
 
   @ViewChild('toggleButton') toggleButton!: ElementRef;
-  @ViewChild('menu') menu!: ElementRef; //87
+  @ViewChild('menu') menu!: ElementRef; 
 
   constructor(
     public notificationModalService: NotificationModalService,
@@ -57,8 +58,8 @@ export class HeaderComponent implements OnInit {
             .getMentorDTO()
             .pipe(first())      
             .subscribe(mentor => {
-              this.avatar = mentor.avatar === this.standartUserAvatar ?  this.avatar : mentor.avatar;
-              this.userData = mentor;
+              this.avatar = mentor.avatar === this.standartUserAvatar ? this.avatar : mentor.avatar;
+              this.userName = `${mentor.firstName} ${mentor.lastName}`;              
             });
           break;
 
@@ -68,8 +69,8 @@ export class HeaderComponent implements OnInit {
             .getData()
             .pipe(first())
             .subscribe(mentee => {
-              this.avatar = mentee.avatar === this.standartUserAvatar ?  this.avatar : mentee.avatar;
-              this.userData = mentee;
+              this.avatar = mentee.avatar === this.standartUserAvatar ? this.avatar : mentee.avatar;
+              this.userName = `${mentee.firstName} ${mentee.lastName}`; 
             });
           break;
 
@@ -78,8 +79,8 @@ export class HeaderComponent implements OnInit {
             .getModerator()
             .pipe(first())
             .subscribe(moderator => {
-              this.avatar = moderator.avatar === this.standartUserAvatar ?  this.avatar : moderator.avatar;                
-              this.userData = moderator;
+              this.avatar = moderator.avatar === this.standartUserAvatar ? this.avatar : moderator.avatar;                
+              this.userName = `${moderator.firstName} ${moderator.lastName}`; 
             });
           break;
 
@@ -88,8 +89,8 @@ export class HeaderComponent implements OnInit {
             .getModerator()
             .pipe(first())
             .subscribe(admin => {
-              this.avatar = admin.avatar === this.standartUserAvatar ?  this.avatar : admin.avatar;                
-              this.userData = admin;
+              this.avatar = admin.avatar === this.standartUserAvatar ? this.avatar : admin.avatar;                
+              this.userName = `${admin.firstName} ${admin.lastName}`; 
             });
           break;
       }
@@ -101,25 +102,24 @@ export class HeaderComponent implements OnInit {
       this.avatar = avatar;
     });
 
+    this.userService.userName$.subscribe(name => {
+      this.userName = name;
+    });
+
     this.webSocketService.checkMessage$.subscribe(e=>this.checkNewMessage = e)
   }
-
-  // isAuth() {
-  //   return this.auth.isAuth();
-  // }
 
   open() {
     this.notificationModalService.open();
     this.wached = true;
   }
 
-  logout()
-  {
+  logout() {
     this.auth.logout()
     this.notificationModalService.mentors$.next([]);
     this.notificationModalService.mentees$.next([]);
     this.notificationModalService.isNewNotification$.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/auth/login']);
   }
 
   closeMenu(): void {
@@ -138,8 +138,16 @@ export class HeaderComponent implements OnInit {
     this.showBurgerMenu = !this.showBurgerMenu;
   }
 
-  goTo(path: string): void {
-    this.router.navigateByUrl(path);
+  navigateTo(path: string): void {
+    const role = localStorage.getItem('role');
+    const navigate = (path:string[]) => this.router.navigate(path);
+    if ( role === "ADMIN") {
+      navigate(['/administrator']);
+    } else if (role === "MODERATOR") {
+      navigate(['/moderator']);
+    } else {
+      this.router.navigateByUrl(path);
+    }  
   }
 
   onHideBurger(): boolean{
