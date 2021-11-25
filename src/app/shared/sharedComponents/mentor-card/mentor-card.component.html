@@ -1,4 +1,4 @@
-<div *ngIf="mentor" class="mentor-card" (click)="goTo('mentor-details')">
+<a *ngIf="mentor" class="mentor-card" routerLink="/mentor-details/{{mentor.id}}">
   <div class="mentor-card__info">
     <div class="mentor-card__image-wrap">
       <img class="mentor-card__image" src="{{mentor.avatar}}" alt="{{mentor.fullName}}">
@@ -10,12 +10,20 @@
       </span>
     </p>
     <p class="mentor-card__rating">
-      <span class="material-icons-outlined" *ngFor="let star of stars">grade</span>
+      <i class="far fa-star icon__star" *ngFor="let star of stars"></i>
     </p>
   </div>
 
   <div class="mentor-card__btns btns">
-    <button class="btns__ask" *ngIf="signinService.isMentee" (click)="sendRequest(mentor.id)">Ask for a mentorship project</button>
-    <button class="btns__view" (click)="goTo('mentor-details')">View more</button>
+    <button 
+      class="btns__ask" 
+      *ngIf="signinService.isMentee" 
+      (click)="sendRequest(mentor.id)"
+    >
+        Ask for a mentorship project
+     </button>
+    <a class="btns__view" routerLink="/mentor-details/{{mentor.id}}">
+       View more
+    </a>  
   </div>
-</div>
+</a>

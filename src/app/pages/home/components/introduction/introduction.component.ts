@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-introduction',
@@ -8,15 +8,10 @@ import { Router } from '@angular/router';
 })
 export class IntroductionComponent implements OnInit {
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor( ) { }
 
   ngOnInit(): void {
   }
 
-  goTo(path: string): void {
-    this.router.navigateByUrl(path);
-  }
-
+ 
 }
