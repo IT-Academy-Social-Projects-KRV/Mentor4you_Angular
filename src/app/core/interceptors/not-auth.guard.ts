@@ -18,7 +18,6 @@ export class NotAuthGuard implements CanActivate {
       return of(false)
     }
     else{
-
       return of(true)
     }
   }

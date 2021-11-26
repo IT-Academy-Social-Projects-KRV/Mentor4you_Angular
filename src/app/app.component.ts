@@ -38,7 +38,10 @@ export class AppComponent implements OnInit, DoCheck{
     if ( this.router.url === '/auth/signup' 
       || this.router.url === '/error-page/404'
       || this.router.url === '/auth/login'
-      || this.router.url === '/administrator' ) {
+      || this.router.url === '/administrator'
+      || this.router.url === '/administrator/users'
+      || this.router.url === '/administrator/bannedUsers'
+      || this.router.url === '/administrator/categories' ) {
       this.hiddenFooter = false;
     } else {
       this.hiddenFooter = true;

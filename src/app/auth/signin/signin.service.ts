@@ -31,8 +31,6 @@ export class SigninService {
     private userService: UserService
   ) {}
 
-
-
   authRedirect(email:string, password:string): Observable<{token: string}> {
 
     const data: Object = {

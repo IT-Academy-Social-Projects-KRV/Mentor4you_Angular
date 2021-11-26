@@ -1,7 +1,6 @@
 import { DialogBoardComponent } from './pages/messages/dialog-board/dialog-board.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SendFormComponent } from './pages/contacts/send-form/send-form.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HowItWorksComponent } from './pages/how-it-works/how-it-works.component';
 import { UsersComponent } from './pages/administrator/users/users.component';
@@ -9,7 +8,8 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import {AuthGuard} from "./core/interceptors/auth.guard";
 import {NotAuthGuard} from "./core/interceptors/not-auth.guard";
-import { BannedUsersComponent } from './pages/administrator/banned-users/banned-users.component';
+import { ModeratorGuard } from "./core/interceptors/moderator.guard";
+import { AdministratorGuard } from './core/interceptors/administrator.guard';
 
 const routes: Routes = [
   {
@@ -44,14 +44,12 @@ const routes: Routes = [
       import('./pages/moderator/moderator.module').then(
         (m) => m.ModeratorModule
       ),
-      canActivate:[AuthGuard]
+      canActivate:[ModeratorGuard]
   },
   {
     path: 'administrator',
-    loadChildren: () => import('./pages/administrator/admin/admin.module').then(m => m.AdminModule),
-   
-    canActivate:[AuthGuard]
-    
+    loadChildren: () => import('./pages/administrator/admin/admin.module').then(m => m.AdminModule),   
+    canActivate:[AdministratorGuard]    
   },
 
   {
