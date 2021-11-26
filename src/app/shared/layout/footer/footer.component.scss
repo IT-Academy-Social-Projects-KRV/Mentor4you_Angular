@@ -26,6 +26,7 @@ footer{
             flex: 100%;
           }
         .projectName {
+            width: 33%;
             padding-left: 30px;
             @media screen and (max-width: 760px) {
                 margin: auto;
@@ -35,21 +36,48 @@ footer{
                 width: 300px;
             }
         }
-        .footerLinks{
+        .icons__links {
+            width: 33%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            a {
+                font-size: 30px;
+                margin-right: 10px;
+
+                i:hover {
+                    color: #524C6F;
+                }
+            }
+        }
+        .footerLinks {
+            width: 33%;
             padding: 0 30px 0 0;
             text-align: center;
             margin: auto 0;
+            display: flex;
+            justify-content: flex-end;
+            
+                .foo_links {
+                    display: block;
+
+                   a {
+                        text-decoration: none;
+
+                        &:hover {
+                            color: #524C6F;
+                        }
+                    }
+
+                
+                }
             @media screen and (max-width: 760px) {
                 margin: auto;
                 padding: 0;
                 margin-top: 10px;
               }
-        a{
-            text-decoration: none;
-        }
-        a:hover{
-            color: #524C6F;
-        }
+        
     }
     }
     .textBottom{

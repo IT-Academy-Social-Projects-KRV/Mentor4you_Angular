@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CELL } from '../../../../core/mock/CELL';
 import { cell } from '../../../../core/interfaces/cell.interface';
 

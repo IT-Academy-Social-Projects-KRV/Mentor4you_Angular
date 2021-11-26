@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -19,18 +18,12 @@ export class MentorCardComponent implements OnInit {
 
   constructor(
     public signinService: SigninService,
-    private router: Router,
     private notificationModalService: NotificationModalService,
     private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
-    // this.stars = [...Array(this.mentor?.rating).keys()].map(i => i + 1);
     this.stars = [...Array(this.mentor?.rating).fill(0)].map(i => i + 1);
-  }
-
-  goTo(path: string): void {
-    this.router.navigate([path, this.mentor.id]);
   }
 
   sendRequest(id: number): void{
