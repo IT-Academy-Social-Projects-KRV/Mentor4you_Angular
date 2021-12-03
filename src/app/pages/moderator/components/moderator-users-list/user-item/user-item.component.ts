@@ -8,7 +8,7 @@ import { User } from '../../../user.model';
   styleUrls: ['./user-item.component.scss']
 })
 export class UserItemComponent implements OnInit {
-  @Input() user!:User;
+  @Input() user!:User;  
   
   constructor( private moderatorService: ModeratorService ) { }
 
@@ -16,13 +16,7 @@ export class UserItemComponent implements OnInit {
   }
 
   selectUserInfo() {
-    this.moderatorService.userSelected.emit(this.user);
-    let informationUser = document.getElementById('userInfo');    
-    if(!informationUser) return;
-    if(informationUser.style.display === "" || informationUser.style.display === "none") {
-      informationUser.style.display = "flex";
-    } else {
-      informationUser.style.display = "none";
-    }     
+    this.moderatorService.userSelected.next(this.user);
+    this.moderatorService.userSelectedDisplay.next(true);
   }
 }

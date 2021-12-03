@@ -5,7 +5,7 @@
             placeholder="Search..." 
             #searchBanUserInput 
             (input)="searchBanUser(searchBanUserInput.value)">
-        <select name="" id="" (change)="onRoleSelectChange($event)">
+        <select (change)="onRoleSelectChange($event)">
             <option value="All">All</option>
             <option value="MENTEE">Mentee</option>
             <option value="MENTOR">Mentor</option>
@@ -14,7 +14,12 @@
         </select>
     </div>
     <div class="banned-users-cards-container" *ngIf="filteredBanUsers">
-        <app-black-list-item *ngFor="let userEl of filteredBanUsers" [bannedUser]="userEl"></app-black-list-item>
+        <app-black-list-item 
+            *ngFor="let userEl of filteredBanUsers" 
+            [bannedUser]="userEl"
+            (deleteTemplateUser)="deleteTemplate($event)"
+        >
+        </app-black-list-item>
     </div>
 </div>
 

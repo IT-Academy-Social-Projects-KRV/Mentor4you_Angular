@@ -1,17 +1,19 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from './user.model';
 import { Moderator } from './moderator.model';
+import { BehaviorSubject, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModeratorService {
-  userSelected = new EventEmitter<User>();
+  userSelected = new Subject<User>();
+  userSelectedDisplay = new BehaviorSubject<boolean>(false);
   users:User[] = [];
   usersInBan:User[] = [];
-  moderator!:Moderator;
+  moderator = new ReplaySubject<Moderator>();
 
   constructor(private http: HttpClient) { }
 
