@@ -11,7 +11,7 @@
           class="form-control" 
           [ngClass]="{'errorData': isInvalidField('email')}"
           placeholder="name@example.com" 
-          formControlName="email"
+          formControlName="email" 
         >
         <div *ngIf="isInvalidField('email')">
           Please enter a valid email!

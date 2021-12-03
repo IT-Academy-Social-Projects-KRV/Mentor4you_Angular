@@ -22,11 +22,7 @@ export class ModeratorBlackListComponent implements OnInit {
     this.moderatorService.fetchAllBanUsers().subscribe( response => {
       this.users = response;      
       this.filteredBanUsers = this.users;      
-    },
-    
-      (error) => {
-        this.errorPagesServices.checkError(error)
-      });
+    });
   }
 
   searchBanUser(filterValue:string) {    
