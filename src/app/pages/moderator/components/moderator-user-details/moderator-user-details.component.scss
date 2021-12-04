@@ -7,7 +7,7 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(128, 128, 128, 0.6);    
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -99,6 +99,10 @@
                 &:active {                    
                     color: $white;
                     background-color: $red;                    
+                }
+
+                &:disabled {                    
+                    cursor: not-allowed;
                 }
             }
 

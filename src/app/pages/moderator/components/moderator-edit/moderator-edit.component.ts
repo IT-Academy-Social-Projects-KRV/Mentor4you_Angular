@@ -1,17 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ModeratorService } from '../../moderator.service';
 import { Moderator } from '../../moderator.model';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-moderator-edit',
   templateUrl: './moderator-edit.component.html',
   styleUrls: ['./moderator-edit.component.scss']
 })
-export class ModeratorEditComponent implements OnInit {
+export class ModeratorEditComponent implements OnInit, OnDestroy {
   moderatorInfo!:Moderator;
   @ViewChild('f') changeForm: NgForm | undefined;
+  changeModeratorNameSubscription!: Subscription;
+  changeModeratorPasswordSubscription!: Subscription;
+  moderatorInfoSubscription!: Subscription;
   
 
   constructor(
@@ -19,7 +23,10 @@ export class ModeratorEditComponent implements OnInit {
     private toaster: ToastrService) { }
 
   ngOnInit(): void {
-    this.moderatorInfo = this.moderatorService.moderator;    
+    this.moderatorInfoSubscription = this.moderatorService.moderator
+      .subscribe(moderData => {
+        this.moderatorInfo = moderData;
+      })
   }
 
   onSubmit() {
@@ -42,20 +49,27 @@ export class ModeratorEditComponent implements OnInit {
       putNameData.firstName = this.changeForm?.value.moderatorData.firstName;
     }
 
-    this.moderatorService.changeModeratorName(putNameData).subscribe(() => {
-      this.moderatorService.moderator.lastName = putNameData.lastName;
-      this.moderatorService.moderator.firstName = putNameData.firstName;
-      this.toaster.success('Your data has been changed!');
-    })
+    this.changeModeratorNameSubscription = this.moderatorService
+      .changeModeratorName(putNameData).subscribe(() => {
+        this.moderatorInfo.lastName = putNameData.lastName;
+        this.moderatorInfo.firstName = putNameData.firstName;
+        this.moderatorService.moderator.next(this.moderatorInfo);  
+        this.toaster.success('Your data has been changed!');
+      })
 
     if(putPasswordData.oldPassword.length > 0 && putPasswordData.newPassword.length > 0) {
-      this.moderatorService.changeModeratorPassword(putPasswordData).subscribe(() => {
-        console.log('Password has been changed!');
-      })
+      this.changeModeratorPasswordSubscription = this.moderatorService
+        .changeModeratorPassword(putPasswordData).subscribe(() => {
+          console.log('Password has been changed!');
+        })
     }
-
 
     this.changeForm?.reset();
   }
 
+  ngOnDestroy(): void {
+    this.changeModeratorNameSubscription?.unsubscribe();
+    this.changeModeratorPasswordSubscription?.unsubscribe();
+    this.moderatorInfoSubscription.unsubscribe();
+  }
 }

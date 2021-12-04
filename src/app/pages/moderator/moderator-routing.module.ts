@@ -3,9 +3,9 @@ import { RouterModule } from '@angular/router';
 
 import { ModeratorComponent } from './moderator.component';
 import { ModeratorBlackListComponent } from './components/moderator-black-list/moderator-black-list.component';
-import { ModeratorChatsComponent } from './components/moderator-chats/moderator-chats.component';
 import { ModeratorEditComponent } from './components/moderator-edit/moderator-edit.component';
 import { ModeratorUsersListComponent } from './components/moderator-users-list/moderator-users-list.component';
+import { ModeratorResolver } from './moderator.resolver';
 
 const routes = [
   {
@@ -23,15 +23,13 @@ const routes = [
       },
       {
         path: 'black-list',
-        component: ModeratorBlackListComponent
-      },      
-      {
-        path: 'chats',
-        component: ModeratorChatsComponent
+        component: ModeratorBlackListComponent,
+        resolve: [ModeratorResolver]
       },
       {
         path: 'edit',
-        component: ModeratorEditComponent
+        component: ModeratorEditComponent,
+        resolve: [ModeratorResolver]
       }
     ]
   }
