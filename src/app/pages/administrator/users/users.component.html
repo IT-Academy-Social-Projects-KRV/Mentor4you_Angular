@@ -1,11 +1,15 @@
-
 <div class="container">
     <div class="row_search">
         <div class="search-users">
-          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"  placeholder=" Start searching for a user " >
-          <i class="fa fa-search"></i>
+          <div class="input_container">
+            <input class="form-control search" 
+              type="text" name="search" 
+              [(ngModel)]="searchText" autocomplete="off" 
+              placeholder=" Start searching for a user "
+            >
+            <i class="fas fa-search"></i>
+          </div>
         </div>
-   
     <div class="table-responsive">
     <table class="table table-hover">
         <thead>
@@ -19,27 +23,16 @@
             <th scope="col">Ban user</th>
           </tr>
         </thead>
-        <tbody *ngFor="let item of users | filter:searchText">
-            <tr>
-            <td> {{item.id}} </td>
-            <td> {{item.role}} </td>
-            <td> {{item.email}} </td>
-            <td> {{item.first_name}} </td>
-            <td> {{item.last_name}} </td>
-            <td><button type="button" class="btn btn-outline-dark btn-sm *ngIf" (click)='getNewModerator()'>Moderator</button></td>
-            <td> <button mat-stroked-button (click)='bunUsers(item.id, item.first_name, item.last_name)'>Ban</button></td>         
-          </tr>
-          <tr>    
-        </tbody>
+        <app-users-item 
+          *ngFor="let user of users | filter:searchText" 
+          [user]="user" 
+          [searchText]="searchText"
+        >
+        </app-users-item>
       </table>
-     </div>
-      <!-- <mat-paginator [length]="users.length"
-      [pageSize]="14"
-      [pageSizeOptions]="[5, 10, 25, 100]"
-      aria-label="Select page">
-     </mat-paginator> -->
+</div>
 <router-outlet></router-outlet>
- </div>
+</div>
 </div>
 
   
