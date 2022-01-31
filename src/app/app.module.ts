@@ -52,6 +52,8 @@ import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import { BannedUsersComponent } from './pages/administrator/banned-users/banned-users.component';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import { UsersItemComponent } from './pages/administrator/users/users-item/users-item.component';
+import { BannedUsersItemComponent } from './pages/administrator/banned-users/banned-users-item/banned-users-item.component';
 
 
 
@@ -75,7 +77,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     AdminDashboardComponent,
     CategoriesComponent,
     AppointModeratorComponent,
-    BannedUsersComponent
+    BannedUsersComponent,
+    UsersItemComponent,
+    BannedUsersItemComponent
     
     
   ],

@@ -1,0 +1,29 @@
+<tbody *ngIf="user">   
+    <tr>
+    <td> {{user.id}} </td>
+    <td> {{user.role}} </td>
+    <td> {{user.email}} </td>
+    <td> {{user.first_name}} </td>
+    <td> {{user.last_name}} </td>
+    <td>
+      <button 
+        type="button" 
+        class="btn btn-outline-dark btn-sm" 
+        (click)='getNewModerator()'
+        [disabled]='user.ban'
+      >
+          Moderator
+      </button>
+    </td>
+    <td>
+      <button 
+        mat-stroked-button
+        class="ban_button"
+        (click)='bunUsers(user)' 
+        [disabled]='user.ban'>
+          Ban
+      </button>
+    </td>         
+  </tr>
+  <tr>    
+</tbody>

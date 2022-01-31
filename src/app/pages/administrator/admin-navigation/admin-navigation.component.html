@@ -1,66 +1,76 @@
+<mat-sidenav-container class="sidenav-container">
 
-    <mat-sidenav-container class="sidenav-container">
-        <mat-sidenav #drawer class="sidenav" fixedInViewport
-            [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-            [mode]="(isHandset$ | async) ? 'over' : 'side'"
-            [opened]="(isHandset$ | async) === false">
-          <mat-toolbar>Menu</mat-toolbar>
-          <mat-nav-list>
-            <a mat-list-item routerLink="users" routerLinkActive="active" ><mat-icon> supervisor_account </mat-icon> All Users </a>
-            <a mat-list-item routerLink="bannedUsers" routerLinkActive="active"><mat-icon> block </mat-icon> Banned users </a>
-            <a mat-list-item routerLink="appointsModerator" routerLinkActive="active"><mat-icon>report</mat-icon> Moderators </a>
-            <a mat-list-item routerLink="categories" routerLinkActive="active"><mat-icon> category </mat-icon> Categories </a>
-            <!-- <a mat-list-item routerLink="messages" routerLinkActive="active"><mat-icon> chat </mat-icon> Chats </a> -->
-          </mat-nav-list>
-        </mat-sidenav>
-        <mat-sidenav-content>
-          <mat-toolbar color="primary">
-            <button
-              type="button"
-              aria-label="Toggle sidenav"
-              mat-icon-button
-              (click)="drawer.toggle()"
-              *ngIf="isHandset$ | async">
-              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-          </button>
-            <span class="justify-content-between"> 
-              <nav class="navbar">
-      
-                <!-- logo -->
-                <div class="navbar-brand">
-                  <a class="navbar-item">
-                    <img src="././assets/images/Admin_dash_500x80.png">
-                  </a>
-                </div>
-              </nav>
-              <!--<div class="logo" pt-4><img src="././assets/images/Logo_admin_dashboard600.png" ></div>-->
-                <mat-toolbar-row class="justify-content-end">
-                     <div class="row mr-2 ml-3">
-                       <ul>
-                         <li>
-                           <button mat-button [mat-menu-trigger-for]="menu">
-                             <img src="././assets/images/Admin.png" height="40" width="40" class="rounded-circle" alt="Moder">
-                             Hi, Admin
-                             <mat-icon>keyboard_arrow_down</mat-icon>
-                           </button>
-                          
-                           <mat-menu #menu="matMenu">
-                             <button mat-menu-item>
-                               <mat-icon>exit_to_app</mat-icon>
-                               Logout
-                             </button>
-                             <!-- <button mat-menu-item>
-                              <mat-icon>perm_identity</mat-icon>
-                              Change password
-                            </button> -->
-                           </mat-menu>
-                         </li>
-                       </ul>
-                     </div>
-                </mat-toolbar-row>
-            </span>
-          </mat-toolbar>
-        </mat-sidenav-content>
-      </mat-sidenav-container>
-     
-      
+  <mat-sidenav 
+    #drawer class="sidenav" 
+    fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" 
+    [opened]="(isHandset$ | async) === false"
+  >
+
+    <mat-toolbar>Menu</mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="users" routerLinkActive="active">
+        <mat-icon> supervisor_account </mat-icon> All Users
+      </a>
+      <a mat-list-item routerLink="bannedUsers" routerLinkActive="active">
+        <mat-icon> block </mat-icon> Banned users
+      </a>
+      <a mat-list-item routerLink="appointsModerator" routerLinkActive="active">
+        <mat-icon>report</mat-icon> Moderators
+      </a>
+      <a mat-list-item routerLink="categories" routerLinkActive="active">
+        <mat-icon> category </mat-icon> Categories
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+
+      <button 
+        type="button" aria-label="Toggle sidenav" 
+        mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <div class="admin_header_container">
+        <nav class="navbar">
+          <div class="navbar-brand">
+            <a class="navbar-item" routerLink="/">
+              <img src="../../../../assets/images/Logo.png" alt="Logo">
+            </a>
+          </div>
+        </nav>
+
+        <mat-toolbar-row class="justify-content-end">
+          <div class="row mr-2 ml-3">
+            <ul>
+              <li>
+                <button mat-button [mat-menu-trigger-for]="menu" class="button_header">
+                  <img 
+                    src="././assets/images/Admin.png" 
+                    height="40" width="40" 
+                    class="rounded-circle" alt="Moder"
+                  >
+                    Hi, Admin
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>exit_to_app</mat-icon>
+                    Logout
+                  </button>
+                </mat-menu>
+              </li>
+            </ul>
+          </div>
+        </mat-toolbar-row>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
